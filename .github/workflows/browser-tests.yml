@@ -1,0 +1,45 @@
+# The Playwright suite drives the whole editor — these specs audit all 154
+# patterns — and takes far longer than the gate, so it runs nightly and on
+# demand rather than on every push. A failure here is a real regression.
+name: Browser tests
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: browser-tests
+  cancel-in-progress: true
+
+jobs:
+  playwright:
+    name: Playwright (chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # The config starts the Vite dev server itself; only the browser is missing.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run the editor suite
+        run: npm run test:browser
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7

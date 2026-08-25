@@ -11,6 +11,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server/index.mjs",
+    "check:env": "node scripts/check-env.mjs",
+    "check:health": "node scripts/check-env.mjs --probe",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:browser": "playwright test",
@@ -39,16 +41,21 @@
     "verify:catalog": "node scripts/verify-catalog-against-theme.mjs"
   },
   "dependencies": {
+    "compression": "^1.8.1",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
-    "playwright": "^1.54.1",
     "zod": "^3.24.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.1",
     "concurrently": "^9.1.2",
+    "playwright": "^1.54.1",
     "supertest": "^7.1.1",
     "vite": "^7.0.0",
     "vitest": "^3.2.1"
+  },
+  "engines": {
+    "node": ">=20.19 <23",
+    "npm": ">=10"
   }
 }

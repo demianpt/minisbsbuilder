@@ -24,6 +24,94 @@ answers instead, and the editor says so.
 
 On macOS you can also double-click `START-MAC.command`. The launcher installs packages when needed, starts the application, and opens the builder.
 
+## Deploying
+
+Full runbook: **[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)**. The short version.
+
+This is **one stateless Node process**, not a static site.
+[`server/index.mjs`](server/index.mjs) serves the built client bundle *and*
+answers `/api/brief/*` on the same port and the same origin — so there is no
+second service, no static host, no CORS surface and no database. Publishing only
+`dist/` to a CDN would silently delete every AI feature.
+
+```bash
+npm ci && npm run build      # build
+npm run check:env            # validate the environment before starting
+npm start                    # serve bundle + API on one port
+```
+
+| | |
+| --- | --- |
+| Runtime | Node **20.19+**, pinned to 22.15.1 in `.nvmrc` |
+| Production dependencies | four packages — `express`, `compression`, `dotenv`, `zod` |
+| Runtime file set | `dist/`, `server/`, `shared/`, `package.json`, prod `node_modules` — ~12 MB installed |
+| Persistent state | **none.** No database, no volume, no writable path, no session affinity |
+| Outbound | `ollama.com` and `api.shutterstock.com`, both optional |
+| Liveness | `GET /healthz` — no upstream call |
+| Readiness | `GET /readyz` — `503` when the client bundle is missing |
+
+Three ways in, all prepared in this repository:
+
+| Path | Command |
+| --- | --- |
+| **Docker Compose** (recommended) | `cp deploy/env.staging.example .env.staging && docker compose up -d --build` |
+| **systemd on the host** | `deploy/deploy.sh` — atomic release swap, health gate, automatic rollback |
+| **Any PaaS** | build `npm ci && npm run build`, start `npm start`, health check `/healthz` |
+
+Supporting files: [`Dockerfile`](Dockerfile),
+[`docker-compose.yml`](docker-compose.yml),
+[`deploy/nginx/minisbsbuilder.dsstaging4.com.conf`](deploy/nginx/minisbsbuilder.dsstaging4.com.conf),
+[`deploy/systemd/minisbsbuilder.service`](deploy/systemd/minisbsbuilder.service),
+[`deploy/deploy.sh`](deploy/deploy.sh),
+[`deploy/env.staging.example`](deploy/env.staging.example).
+
+Push to `main` runs [`ci.yml`](.github/workflows/ci.yml) and then
+[`deploy-staging.yml`](.github/workflows/deploy-staging.yml), which deploys and
+confirms the public URL reports healthy. The four SSH secrets it needs are listed
+in the runbook.
+
+### The three settings that break a deployment
+
+Everything else has a working default. These do not, and two of them fail in a
+way that looks like a product bug rather than a configuration mistake.
+
+1. **`HOST=0.0.0.0`.** The server defaults to loopback. In a container or behind
+   a proxy it then starts, logs happily, and is unreachable.
+2. **`PUBLIC_APP_ORIGIN`** is an allowlist, not a label. `enforceOrigin()` in
+   [`server/routes/brief.mjs`](server/routes/brief.mjs) rejects any request whose
+   `Origin` header does not match it *exactly*, and browsers send `Origin` on
+   same-origin `POST`s too. Wrong value — a trailing slash is enough — and the
+   site loads perfectly while every AI action returns `403`.
+3. **The proxy read timeout must exceed `OLLAMA_TIMEOUT_MS` (180s).** Drafting a
+   whole page's copy is one request waiting on a language model. nginx's default
+   is 60s, which turns a working job into a `504` two thirds of the way in. The
+   supplied site config sets 200s on `/api/`.
+
+`npm run check:env` fails on the first, fails on a malformed second, and prints
+the rest of the resolved configuration without printing a single secret value.
+Run it on the box before starting the service.
+
+### What is already handled
+
+- **gzip on every text response** — the bundle is 2,315 KB uncompressed and
+  **392 KB on the wire**. If the proxy also compresses, it must pass the app's
+  `Content-Encoding` through; the supplied nginx config sets `gzip off`.
+- **`immutable` year-long caching on content-hashed assets, `no-store` on
+  `index.html`** which names them — the post-deploy white screen, prevented.
+- **Graceful `SIGTERM`**: close the listener, let in-flight AI jobs finish, drop
+  idle keep-alive sockets after 10s so a restart cannot hang a deploy.
+- **`keepAliveTimeout` 65s**, deliberately longer than the nginx pool in front,
+  so a reused socket is never one the app is closing.
+- **Per-visitor rate limiting** — correct only when `TRUST_PROXY` names the
+  proxy, or every visitor shares one bucket. Held by
+  `tests/integration/server-runtime.test.mjs`.
+- **Credentials never reach the browser.** `publicConfig()` in
+  [`server/config.mjs`](server/config.mjs) is the entire browser-facing surface
+  and reports whether each credential exists, never its value.
+- **Sizing**: 512 MB of RAM is enough. The process waits on a language model
+  rather than computing, holds only an in-memory cache, and scales horizontally
+  with no coordination.
+
 ## WordPress handoff
 
 The final step provides:
@@ -302,9 +390,16 @@ prompt carries an explicit output example and each schema has a `coerce*`
 function that repairs the flattened, renamed shapes the model actually returns.
 That repair layer is covered by `tests/unit/brief-schemas.test.mjs`.
 
-Configuration lives in `.env` (see `.env.example`). The API key is server-side
-only and never reaches the browser; `publicConfig()` in `server/config.mjs` is
-the entire browser-facing surface.
+Configuration lives in `.env` (see `.env.example`; for a deployed environment,
+`deploy/env.staging.example`). The API key is server-side only and never reaches
+the browser; `publicConfig()` in `server/config.mjs` is the entire browser-facing
+surface, asserted by `tests/security/config.test.mjs`.
+
+The server needs no AI credential to run. Unconfigured, `provider.status()`
+short-circuits without a network call, `/api/brief/status` reports
+`configured: false`, the editor disables what it cannot do, and every job is
+answered by the deterministic planner. That is why `/healthz` never probes the
+model: an Ollama outage is not an unhealthy deployment.
 
 ### A brief that arrives as a file
 
@@ -443,20 +538,27 @@ three concepts lose nothing, all three survive a storage round trip byte for byt
 undo stays inside the concept on screen, and reset and copy do exactly what they
 say. Writes `release-evidence/concept-isolation-qa.json`.
 
+### The deployment contract
+
+```bash
+npm run check:env     # validate the resolved server configuration
+npm run check:health  # ...and probe a running server's /healthz, /readyz and status
+```
+
+`tests/integration/server-runtime.test.mjs` holds what an orchestrator, a reverse
+proxy and a browser cache each depend on: liveness answering with no upstream
+call, readiness failing when the bundle is missing, `immutable` caching on hashed
+assets and `no-store` on the shell that names them, gzip on text, the response
+headers a proxy should not have to add, and the rate limit keyed per visitor only
+when `TRUST_PROXY` names the proxy. CI additionally boots the exact runtime file
+set the container copies and probes it.
+
 ### Everything else
 
 ```bash
-npm test              # unit, integration and security
+npm test              # unit, integration and security — 364 tests
 npm run test:browser  # Playwright, the full editor
 npm run test:all      # both
-```
-
-The normal project commands remain:
-
-```bash
-npm run build
-npm test
-npm run test:browser
 ```
 
 Install Playwright Chromium once when browser tests are needed:
@@ -465,4 +567,28 @@ Install Playwright Chromium once when browser tests are needed:
 npx playwright install chromium
 ```
 
+Playwright is a **dev** dependency: nothing in `server/` or `src/` imports it, so
+no browser binary is ever installed on a server. `npm ci --omit=dev` yields the
+four production packages and nothing else.
+
 Do **not** run `npm run migrate:legacy`; it can overwrite the maintained separated source files.
+
+## Repository layout
+
+Which directories the running server reads, and which exist only for authoring.
+
+| Path | Runtime | What it is |
+| --- | --- | --- |
+| `server/` | **yes** | The Brief Brain HTTP surface, the Ollama and Shutterstock providers, and the job prompts it reads from disk |
+| `shared/` | **yes** | Contracts used by both the browser and the server: schemas, the deterministic planner, the style compiler, design dials, palettes |
+| `src/` | build input | The client. Compiled into `dist/`; the server never reads it |
+| `dist/` | **yes** | The built bundle the server serves. Not committed |
+| `deploy/` | no | nginx site, systemd unit, deploy script, environment template |
+| `style-factory/` | no | Style seeds and the constitution. `npm run styles:build` turns these into `src/data/style-library.json` |
+| `styles/` | no | Generated per-style documentation and JSON |
+| `patternsSBS/`, `legacy/` | no | Pattern source material and the pre-separation page |
+| `wordpress-plugin/`, `deliverables/` | no | The importer plugin source and its built ZIP |
+| `tests/`, `release-evidence/` | no | Suites and the reports the builds emit |
+
+The container image and each release directory copy only the rows marked
+runtime — about 12 MB installed.

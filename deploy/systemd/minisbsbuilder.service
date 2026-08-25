@@ -1,0 +1,59 @@
+# The no-Docker path: Node straight on the host under systemd.
+#
+#   sudo useradd --system --home /srv/minisbsbuilder --shell /usr/sbin/nologin sbs
+#   sudo install -o sbs -g sbs -m 600 /dev/null /etc/minisbsbuilder.env
+#   sudoedit /etc/minisbsbuilder.env          # from deploy/env.staging.example
+#   sudo cp deploy/systemd/minisbsbuilder.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now minisbsbuilder
+#
+# Deploys are `deploy/deploy.sh`, which builds then restarts this unit.
+
+[Unit]
+Description=SBS Page Builder (Brief Brain server + client bundle)
+Documentation=https://github.com/digitalsilk/minisbsbuilder
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sbs
+Group=sbs
+WorkingDirectory=/srv/minisbsbuilder/current
+
+# Holds the API keys. Root-owned, mode 600, never in the repository.
+EnvironmentFile=/etc/minisbsbuilder.env
+Environment=NODE_ENV=production
+Environment=NODE_OPTIONS=--enable-source-maps
+
+ExecStart=/usr/bin/node server/index.mjs
+
+# The server closes its listener on SIGTERM, lets in-flight AI jobs finish, then
+# drops idle keep-alive sockets. Give it room to do that rather than killing a
+# request mid-draft; 180s is one full model timeout plus margin.
+KillSignal=SIGTERM
+TimeoutStopSec=190
+
+Restart=on-failure
+RestartSec=5s
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=minisbsbuilder
+
+# The process is stateless: it reads its bundle and prompts and writes nothing.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ReadOnlyPaths=/srv/minisbsbuilder
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryMax=1G
+
+[Install]
+WantedBy=multi-user.target

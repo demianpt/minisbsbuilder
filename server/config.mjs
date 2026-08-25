@@ -3,6 +3,9 @@ import { URL } from 'node:url';
 const DEFAULTS = Object.freeze({
   host: '127.0.0.1',
   port: 4174,
+  // Off by default. A server that trusts `X-Forwarded-For` without a proxy in
+  // front of it lets any client forge its own rate-limit key.
+  trustProxy: false,
   ollamaBaseUrl: 'https://ollama.com/api',
   // Available to free Ollama Cloud API keys and reliable with the strict JSON
   // `format` constraint every Brief Brain job depends on.
@@ -73,11 +76,27 @@ function booleanFromEnv(value, fallback) {
 }
 
 /**
+ * Express `trust proxy`. Behind nginx on the same host this must be `loopback`
+ * (or a hop count) or every request is keyed to the proxy's own address and the
+ * Brief Brain rate limit becomes one shared bucket for the whole site.
+ */
+function trustProxyFromEnv(value, fallback) {
+  if (value === undefined || value === '') return fallback;
+  const raw = String(value).trim();
+  const lowered = raw.toLowerCase();
+  if (['0', 'false', 'no', 'off'].includes(lowered)) return false;
+  if (['1', 'true', 'yes', 'on'].includes(lowered)) return 1;
+  if (/^\d+$/.test(raw)) return Number.parseInt(raw, 10);
+  return raw;
+}
+
+/**
  * Reads the server-only configuration. No value returned by this module should
  * be sent to the browser without deliberate sanitisation in a route handler.
  */
 export function createConfig(env = process.env) {
   const isTest = env.NODE_ENV === 'test';
+  const isProduction = env.NODE_ENV === 'production';
   const ollamaModel = (env.OLLAMA_MODEL || DEFAULTS.ollamaModel).trim();
   if (!ollamaModel) throw new Error('OLLAMA_MODEL must not be empty.');
 
@@ -85,6 +104,7 @@ export function createConfig(env = process.env) {
     ...DEFAULTS,
     host: env.HOST || DEFAULTS.host,
     port: integerFromEnv(env.PORT, DEFAULTS.port, { min: 1, max: 65_535 }),
+    trustProxy: trustProxyFromEnv(env.TRUST_PROXY, DEFAULTS.trustProxy),
     ollamaBaseUrl: validateHttpUrl(env.OLLAMA_BASE_URL || DEFAULTS.ollamaBaseUrl, 'OLLAMA_BASE_URL'),
     ollamaApiKey: env.OLLAMA_API_KEY || '',
     ollamaModel,
@@ -115,6 +135,7 @@ export function createConfig(env = process.env) {
     publicAppOrigin: env.PUBLIC_APP_ORIGIN || '',
     aiAttempts: integerFromEnv(env.BRIEF_BRAIN_AI_ATTEMPTS, DEFAULTS.aiAttempts, { min: 1, max: 3 }),
     isTest,
+    isProduction,
   });
 }
 

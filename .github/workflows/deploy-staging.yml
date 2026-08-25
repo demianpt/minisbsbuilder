@@ -1,0 +1,70 @@
+# Push to main -> staging. The deploy job only runs after CI passes.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   STAGING_SSH_HOST      dsstaging4.com
+#   STAGING_SSH_USER      the deploy user (owns /srv/minisbsbuilder)
+#   STAGING_SSH_KEY       private key, PEM, no passphrase
+#   STAGING_KNOWN_HOSTS   output of `ssh-keyscan -H dsstaging4.com`
+# Optional:
+#   STAGING_SSH_PORT      defaults to 22
+#
+# Nothing here builds or ships an artifact: deploy/deploy.sh on the box checks
+# out the exact commit, builds it, swaps a release symlink, and rolls back by
+# itself if the new release fails its health check.
+name: Deploy staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time, and never cancelled halfway: a cancelled deploy could
+# leave the release symlink swapped and the service mid-restart.
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy to minisbsbuilder.dsstaging4.com
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: staging
+      url: https://minisbsbuilder.dsstaging4.com
+    steps:
+      - name: Authorise SSH
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "${{ secrets.STAGING_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "${{ secrets.STAGING_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy ${{ github.sha }}
+        env:
+          HOST: ${{ secrets.STAGING_SSH_HOST }}
+          USER: ${{ secrets.STAGING_SSH_USER }}
+          PORT: ${{ secrets.STAGING_SSH_PORT || '22' }}
+        run: |
+          ssh -i ~/.ssh/id_deploy -p "$PORT" -o BatchMode=yes "$USER@$HOST" \
+            "REF=${{ github.sha }} /srv/minisbsbuilder/repo/deploy/deploy.sh"
+
+      - name: Confirm the public URL is serving this commit
+        run: |
+          for _ in $(seq 1 20); do
+            body="$(curl -fsS https://minisbsbuilder.dsstaging4.com/healthz || true)"
+            echo "$body"
+            case "$body" in *'"status":"ok"'*) exit 0;; esac
+            sleep 3
+          done
+          echo "The staging URL did not report healthy." >&2
+          exit 1
+
+      - name: Revoke SSH key
+        if: always()
+        run: rm -f ~/.ssh/id_deploy

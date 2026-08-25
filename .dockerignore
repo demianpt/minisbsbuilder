@@ -1,0 +1,33 @@
+# Build inputs only. Everything below is either rebuilt in the image, is local
+# state, or is authoring material the running server never reads.
+.git
+.github
+node_modules
+dist
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+# Tests, fixtures and reports
+tests
+test-results
+playwright-report
+release-evidence
+playwright.config.mjs
+vitest.config.mjs
+
+# Authoring, docs and handoff material
+docs
+deliverables
+legacy
+patternsSBS
+style-factory
+deploy
+START-MAC.command
+zz-sweep.mjs
+wordpress-plugin
+*.md
+# The Brief Brain reads its job prompts from disk at runtime. They are markdown.
+!server/ai/prompts/*.md

@@ -1,0 +1,47 @@
+# The staging deployment, in one command:
+#
+#   cp deploy/env.staging.example .env.staging   # then fill in the credentials
+#   docker compose up -d --build
+#
+# The container listens on 127.0.0.1:4174 only. nginx on the host terminates
+# TLS for minisbsbuilder.dsstaging4.com and proxies to it — see
+# deploy/nginx/minisbsbuilder.dsstaging4.com.conf.
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: minisbsbuilder:latest
+    container_name: minisbsbuilder
+    restart: unless-stopped
+    # Reap orphaned children and forward SIGTERM, so `docker compose restart`
+    # uses the server's own graceful shutdown path instead of a 10s timeout.
+    init: true
+    env_file:
+      - .env.staging
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "4174"
+    # Bound to loopback deliberately: nothing reaches the app except through
+    # nginx, so there is no way to hit the origin over plain HTTP from outside.
+    ports:
+      - "127.0.0.1:4174:4174"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4174/healthz').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    # The process is stateless — no volumes, no database, no writable paths.
+    # Every project lives in the browser's own storage until it is exported.
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
