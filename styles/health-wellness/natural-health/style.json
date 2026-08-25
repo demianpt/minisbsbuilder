@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "natural-health",
+  "familyId": "health-wellness",
+  "name": "Natural Health",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Botanical and calm: greens and stone, soft shapes, imagery of plants and light.",
+  "philosophy": "Natural credibility is built from material and restraint, not from claims.",
+  "polarity": "light",
+  "tags": [
+    "botanical",
+    "green",
+    "soft",
+    "calm"
+  ],
+  "useCases": [
+    "Supplement or remedy brand",
+    "Nutrition programme page",
+    "Practice and philosophy page"
+  ],
+  "industries": [
+    "healthcare",
+    "wellness",
+    "clinics",
+    "biotech"
+  ],
+  "palette": {
+    "bg": "#F6F8F3",
+    "ink": "#1D2620",
+    "accent": "#4E8156",
+    "soft": "#E3EBDF",
+    "dark": "#141A17"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Inter",
+    "scale": 1.08,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "18px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 28,
+    "measure": 44,
+    "headline": 56,
+    "accent": 34,
+    "surface": 26,
+    "corner": 84,
+    "imagery": 68,
+    "motion": 24,
+    "expressiveness": 38
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "raised",
+    "asymmetry": 24,
+    "fullBleedBias": 40
+  },
+  "patternPreferences": {
+    "prefer": [
+      "clear",
+      "list",
+      "faq",
+      "split",
+      "people",
+      "large media",
+      "rounded",
+      "spacious"
+    ],
+    "avoid": [
+      "brutal",
+      "oversized",
+      "table",
+      "dense"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three",
+          "rounded"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "viewport": "animate-headings",
+      "decoration": "blob",
+      "decorationOpacity": 0.1
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "faq": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Photograph material and light",
+    "Keep shapes soft"
+  ],
+  "donts": [
+    "Never make a medical claim look like a slogan",
+    "Avoid hard grids"
+  ]
+}

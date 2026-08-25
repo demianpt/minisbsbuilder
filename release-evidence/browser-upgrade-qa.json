@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "assertions": [
+    {
+      "label": "builder source boots in real Chromium",
+      "passed": true
+    },
+    {
+      "label": "Simple builder exposes the complete design-dial slider set",
+      "passed": true,
+      "dialCount": 9
+    },
+    {
+      "label": "Simple builder includes Quick styles",
+      "passed": true
+    },
+    {
+      "label": "Simple builder includes Design dials",
+      "passed": true
+    },
+    {
+      "label": "Simple design dial writes the canonical project design",
+      "passed": true,
+      "before": 48,
+      "after": 88
+    },
+    {
+      "label": "Simple design dial changes resolved site tokens",
+      "passed": true,
+      "beforeGap": "10.31vmin",
+      "afterGap": "6.07vmin"
+    },
+    {
+      "label": "AI Brain renders five flow recommendations",
+      "passed": true,
+      "count": 5
+    },
+    {
+      "label": "AI Brain can recommend richer new flows",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes navigation export",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes footer export",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes page export",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes html export",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes bundle export",
+      "passed": true
+    },
+    {
+      "label": "Simple review exposes simple-concept export",
+      "passed": true
+    },
+    {
+      "label": "Page JSON exports all nine dial inputs",
+      "passed": true,
+      "keys": [
+        "density",
+        "measure",
+        "headline",
+        "accent",
+        "surface",
+        "corner",
+        "imagery",
+        "motion",
+        "expressiveness"
+      ]
+    },
+    {
+      "label": "Page JSON exports resolved dial tokens",
+      "passed": true,
+      "tokenCount": 46
+    },
+    {
+      "label": "Simple and Advanced Page JSON are byte-equivalent after timestamp normalization",
+      "passed": true
+    },
+    {
+      "label": "No browser page errors",
+      "passed": true,
+      "pageErrors": []
+    },
+    {
+      "label": "No application console errors",
+      "passed": true,
+      "consoleErrors": [
+        "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ]
+    }
+  ],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "pageErrors": []
+}

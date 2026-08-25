@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "product-keynote-minimal",
+  "familyId": "technology",
+  "name": "Product Keynote Minimal",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "One product claim per screen, held in a wide field of white with the interface itself as the only ornament.",
+  "philosophy": "A keynote works because it refuses to show two things at once. Every band states one idea, gives the product room to be looked at, and moves on.",
+  "polarity": "light",
+  "tags": [
+    "minimal",
+    "product-led",
+    "spacious",
+    "keynote"
+  ],
+  "useCases": [
+    "Product launch",
+    "Platform homepage",
+    "Feature announcement"
+  ],
+  "industries": [
+    "saas",
+    "technology",
+    "developer-tools",
+    "ai"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#0B0D0F",
+    "accent": "#0A63F5",
+    "soft": "#F2F4F7",
+    "dark": "#0B0D0F"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Manrope",
+    "body": "Inter",
+    "scale": 1.2,
+    "displayCase": "none",
+    "displayTracking": -0.03
+  },
+  "radius": "10px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 22,
+    "measure": 46,
+    "headline": 78,
+    "accent": 34,
+    "surface": 24,
+    "corner": 58,
+    "imagery": 62,
+    "motion": 30,
+    "expressiveness": 40
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 10,
+    "fullBleedBias": 46
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "split",
+      "diagram",
+      "contained",
+      "large media",
+      "centered",
+      "single",
+      "screenshot"
+    ],
+    "avoid": [
+      "ornament",
+      "quote-led",
+      "dense",
+      "sidebar"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "centered",
+          "large media"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three",
+          "spacious"
+        ],
+        "avoid": [
+          "six"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": false,
+      "viewport": "animate-headings"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cta": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Give one claim the whole band",
+    "Let the product screenshot be the picture"
+  ],
+  "donts": [
+    "Never crowd two propositions into one band",
+    "Do not decorate what the product already shows"
+  ]
+}

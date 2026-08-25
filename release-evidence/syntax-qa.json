@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "javascript": {
+    "count": 66,
+    "failed": []
+  },
+  "php": {
+    "count": 12,
+    "failed": []
+  }
+}

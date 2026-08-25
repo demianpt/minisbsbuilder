@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "sbs-concept-isolation-qa/1.0",
+  "generatedAt": "2026-08-20T11:56:20.666Z",
+  "conceptModel": "sbs-concept-set/1.0",
+  "catalog": {
+    "patterns": 154,
+    "flows": 35,
+    "archetypes": 13,
+    "registeredComponents": 43
+  },
+  "totals": {
+    "checks": 24,
+    "passed": 24,
+    "failed": 0
+  },
+  "isolation": {
+    "v1": {
+      "changed": [
+        "v1"
+      ],
+      "details": {
+        "v1": [
+          "design",
+          "flowId",
+          "sections",
+          "header",
+          "footer",
+          "page",
+          "mediaAssignments"
+        ]
+      },
+      "isolated": true
+    },
+    "v2": {
+      "changed": [
+        "v2"
+      ],
+      "details": {
+        "v2": [
+          "design",
+          "flowId",
+          "sections",
+          "header",
+          "footer",
+          "page",
+          "mediaAssignments"
+        ]
+      },
+      "isolated": true
+    },
+    "v3": {
+      "changed": [
+        "v3"
+      ],
+      "details": {
+        "v3": [
+          "design",
+          "flowId",
+          "sections",
+          "header",
+          "footer",
+          "page",
+          "mediaAssignments"
+        ]
+      },
+      "isolated": true
+    }
+  },
+  "history": {
+    "v1": {
+      "undo": 1,
+      "redo": 0
+    },
+    "v2": {
+      "undo": 0,
+      "redo": 1
+    }
+  },
+  "checks": [
+    {
+      "name": "flow catalogue has no duplicate ids",
+      "detail": "35 flows",
+      "status": "pass"
+    },
+    {
+      "name": "flow catalogue count matches the skill manifest",
+      "detail": "data 35 · skill 35",
+      "status": "pass"
+    },
+    {
+      "name": "every flow family has a default pattern",
+      "detail": "all families resolve",
+      "status": "pass"
+    },
+    {
+      "name": "a 2.x project migrates to the concept set",
+      "detail": "from sbs-project/2.x",
+      "status": "pass"
+    },
+    {
+      "name": "V1 keeps the migrated project exactly",
+      "detail": "design, flow, globals and sections compared",
+      "status": "pass"
+    },
+    {
+      "name": "V2 and V3 stay empty until generated",
+      "detail": "old client work is never silently altered",
+      "status": "pass"
+    },
+    {
+      "name": "three concepts are generated",
+      "detail": "3 of 3",
+      "status": "pass"
+    },
+    {
+      "name": "no module identity is shared between concepts",
+      "detail": "18 module ids",
+      "status": "pass"
+    },
+    {
+      "name": "no mutable structure is shared between concepts",
+      "detail": "every object slice compared by reference",
+      "status": "pass"
+    },
+    {
+      "name": "editing V1 changes only V1",
+      "detail": "changed: v1",
+      "status": "pass"
+    },
+    {
+      "name": "editing V2 changes only V2",
+      "detail": "changed: v2",
+      "status": "pass"
+    },
+    {
+      "name": "editing V3 changes only V3",
+      "detail": "changed: v3",
+      "status": "pass"
+    },
+    {
+      "name": "media placements stay with the concept that made them",
+      "detail": "v1:asset-v1 v2:asset-v2 v3:asset-v3",
+      "status": "pass"
+    },
+    {
+      "name": "the media pool stays at project level",
+      "detail": "3 assets",
+      "status": "pass"
+    },
+    {
+      "name": "switching concepts loses nothing",
+      "detail": "seven switches across three concepts",
+      "status": "pass"
+    },
+    {
+      "name": "all three concepts survive storage",
+      "detail": "byte-for-byte comparison after a round trip",
+      "status": "pass"
+    },
+    {
+      "name": "the concept that was open is restored",
+      "detail": "active v2",
+      "status": "pass"
+    },
+    {
+      "name": "the restored project is still bound to its active concept",
+      "detail": "a write lands on the active concept only",
+      "status": "pass"
+    },
+    {
+      "name": "a concept with no edits has nothing to undo",
+      "detail": "V2 stack empty",
+      "status": "pass"
+    },
+    {
+      "name": "undo applies to the concept on screen",
+      "detail": "V2 restored, V1 still \"V1 edited again\"",
+      "status": "pass"
+    },
+    {
+      "name": "each concept keeps its own stack",
+      "detail": "{\"v1\":{\"undo\":1,\"redo\":0},\"v2\":{\"undo\":0,\"redo\":1}}",
+      "status": "pass"
+    },
+    {
+      "name": "copying a concept copies the workspace",
+      "detail": "design compared",
+      "status": "pass"
+    },
+    {
+      "name": "copying a concept never copies its public link",
+      "detail": "V3 shareId \"\"",
+      "status": "pass"
+    },
+    {
+      "name": "resetting a concept restores its generated workspace",
+      "detail": "V2 reset, V1 untouched",
+      "status": "pass"
+    }
+  ]
+}

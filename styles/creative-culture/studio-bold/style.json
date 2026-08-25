@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "studio-bold",
+  "familyId": "creative-culture",
+  "name": "Studio Bold",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A studio with opinions: heavy display type, flat colour blocks and confident asymmetry.",
+  "philosophy": "A studio should show taste by taking a position. Big type, hard colour, no hedging.",
+  "polarity": "light",
+  "tags": [
+    "bold",
+    "flat-colour",
+    "asymmetric",
+    "typographic"
+  ],
+  "useCases": [
+    "Design studio homepage",
+    "Capabilities and work page",
+    "Studio manifesto"
+  ],
+  "industries": [
+    "design",
+    "arts",
+    "culture",
+    "photography"
+  ],
+  "palette": {
+    "bg": "#F4F2ED",
+    "ink": "#111111",
+    "accent": "#FF4D2E",
+    "soft": "#E4E1D9",
+    "dark": "#0B0B0B"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Work Sans",
+    "scale": 1.26,
+    "displayCase": "upper",
+    "displayTracking": -0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "corner-cut",
+  "dials": {
+    "density": 40,
+    "measure": 60,
+    "headline": 92,
+    "accent": 70,
+    "surface": 22,
+    "corner": 2,
+    "imagery": 62,
+    "motion": 46,
+    "expressiveness": 88
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "flat",
+    "asymmetry": 80,
+    "fullBleedBias": 58
+  },
+  "patternPreferences": {
+    "prefer": [
+      "gallery",
+      "large media",
+      "caption",
+      "asymmetric",
+      "oversized",
+      "flat",
+      "overlap",
+      "text-dominant"
+    ],
+    "avoid": [
+      "table",
+      "price",
+      "rounded",
+      "glass"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "text-dominant",
+          "asymmetric"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "two",
+          "three"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "animate-headings"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 2
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    },
+    "cta": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Let type block out the band",
+    "Break the axis deliberately"
+  ],
+  "donts": [
+    "Never centre everything",
+    "Avoid soft rounded surfaces"
+  ]
+}

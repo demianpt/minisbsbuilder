@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "sbs-style-distinctness/1.0",
+  "generatedAt": "2026-08-20T11:56:30.402Z",
+  "minimum": 0.2,
+  "pairs": 1225,
+  "closest": [
+    {
+      "a": "luxury/quiet-luxury",
+      "b": "creative-culture/art-gallery",
+      "sameFamily": false,
+      "score": 0.212,
+      "parts": {
+        "dials": 0.15155555555555555,
+        "typography": 0.02160000000000002,
+        "composition": 0.404,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.6666666666666667,
+        "palette": 0.11811111812393887
+      }
+    },
+    {
+      "a": "editorial/oversized-editorial",
+      "b": "creative-culture/studio-bold",
+      "sameFamily": false,
+      "score": 0.238,
+      "parts": {
+        "dials": 0.24933333333333335,
+        "typography": 0.14880000000000002,
+        "composition": 0.2068,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.76,
+        "palette": 0.23048925143071763
+      }
+    },
+    {
+      "a": "luxury/gallery-luxury",
+      "b": "creative-culture/art-gallery",
+      "sameFamily": false,
+      "score": 0.244,
+      "parts": {
+        "dials": 0.06844444444444445,
+        "typography": 0.47879999999999995,
+        "composition": 0.38720000000000004,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.38888888888888884,
+        "palette": 0.08383677611883467
+      }
+    },
+    {
+      "a": "luxury/dark-prestige",
+      "b": "automotive-mobility/grand-touring",
+      "sameFamily": false,
+      "score": 0.259,
+      "parts": {
+        "dials": 0.0928888888888889,
+        "typography": 0,
+        "composition": 0.19960000000000003,
+        "radius": 1,
+        "buttons": 0,
+        "patterns": 0.7222222222222222,
+        "palette": 0.06219729817823756
+      }
+    },
+    {
+      "a": "luxury/quiet-luxury",
+      "b": "luxury/gallery-luxury",
+      "sameFamily": true,
+      "score": 0.28,
+      "parts": {
+        "dials": 0.132,
+        "typography": 0.5004,
+        "composition": 0.4016,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.5,
+        "palette": 0.09359622517237366
+      }
+    },
+    {
+      "a": "luxury/gallery-luxury",
+      "b": "creative-culture/portfolio-minimal",
+      "sameFamily": false,
+      "score": 0.302,
+      "parts": {
+        "dials": 0.08800000000000001,
+        "typography": 0.47880000000000006,
+        "composition": 0.0144,
+        "radius": 0,
+        "buttons": 1,
+        "patterns": 0.6111111111111112,
+        "palette": 0.06234037092546524
+      }
+    },
+    {
+      "a": "luxury/modern-heritage",
+      "b": "editorial/culture-journal",
+      "sameFamily": false,
+      "score": 0.313,
+      "parts": {
+        "dials": 0.10266666666666668,
+        "typography": 0.007200000000000006,
+        "composition": 0.3968,
+        "radius": 0,
+        "buttons": 1,
+        "patterns": 0.8,
+        "palette": 0.0800090807786107
+      }
+    },
+    {
+      "a": "luxury/editorial-luxury",
+      "b": "hospitality/resort-editorial",
+      "sameFamily": false,
+      "score": 0.313,
+      "parts": {
+        "dials": 0.264,
+        "typography": 0.5076,
+        "composition": 0.24520000000000003,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.7142857142857143,
+        "palette": 0.20859162206972082
+      }
+    },
+    {
+      "a": "luxury/quiet-luxury",
+      "b": "luxury/dark-prestige",
+      "sameFamily": true,
+      "score": 0.314,
+      "parts": {
+        "dials": 0.15644444444444447,
+        "typography": 0.014400000000000012,
+        "composition": 0.2308,
+        "radius": 0,
+        "buttons": 1,
+        "patterns": 0.5555555555555556,
+        "palette": 0.8928973541783418
+      }
+    },
+    {
+      "a": "automotive-mobility/heritage-garage",
+      "b": "experimental/neo-brutalist",
+      "sameFamily": false,
+      "score": 0.316,
+      "parts": {
+        "dials": 0.48888888888888893,
+        "typography": 0.043199999999999954,
+        "composition": 0.41840000000000005,
+        "radius": 0,
+        "buttons": 0,
+        "patterns": 0.84,
+        "palette": 0.21273017615907688
+      }
+    }
+  ],
+  "failures": [],
+  "ok": true,
+  "weakestAxis": [
+    {
+      "axis": "palette",
+      "mean": 0.414
+    },
+    {
+      "axis": "dials",
+      "mean": 0.453
+    },
+    {
+      "axis": "composition",
+      "mean": 0.538
+    },
+    {
+      "axis": "typography",
+      "mean": 0.645
+    },
+    {
+      "axis": "radius",
+      "mean": 0.82
+    },
+    {
+      "axis": "patterns",
+      "mean": 0.87
+    },
+    {
+      "axis": "buttons",
+      "mean": 0.908
+    }
+  ]
+}

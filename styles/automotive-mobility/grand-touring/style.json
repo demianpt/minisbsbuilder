@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "grand-touring",
+  "familyId": "automotive-mobility",
+  "name": "Grand Touring",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Long-distance luxury: warm dark neutrals, a serif display and landscape photography.",
+  "philosophy": "Touring is about the journey. Slower pacing, warmer light, more horizon.",
+  "polarity": "dark",
+  "tags": [
+    "luxury",
+    "warm",
+    "landscape",
+    "restrained"
+  ],
+  "useCases": [
+    "Touring model page",
+    "Ownership experience page",
+    "Brand journey story"
+  ],
+  "industries": [
+    "automotive",
+    "mobility",
+    "motorcycles",
+    "engineering"
+  ],
+  "palette": {
+    "bg": "#131110",
+    "ink": "#F2EEE8",
+    "accent": "#B08D57",
+    "soft": "#211D1B",
+    "dark": "#0A0908"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "scale": 1.18,
+    "displayCase": "none",
+    "displayTracking": 0.03
+  },
+  "radius": "2px",
+  "buttonStyle": "sweep-fill",
+  "dials": {
+    "density": 26,
+    "measure": 48,
+    "headline": 68,
+    "accent": 28,
+    "surface": 20,
+    "corner": 8,
+    "imagery": 84,
+    "motion": 34,
+    "expressiveness": 48
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 22,
+    "fullBleedBias": 72
+  },
+  "patternPreferences": {
+    "prefer": [
+      "full bleed",
+      "large media",
+      "stats",
+      "product",
+      "split",
+      "spacious"
+    ],
+    "avoid": [
+      "quote-led",
+      "table",
+      "dense"
+    ],
+    "byFamily": {
+      "split": {
+        "prefer": [
+          "large media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "split": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Photograph the road as much as the car",
+    "Keep the metallic accent sparing"
+  ],
+  "donts": [
+    "Never shout a spec",
+    "Avoid dense comparison grids"
+  ]
+}

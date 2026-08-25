@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "forbiddenEntries": [],
+  "containsEnvExample": true,
+  "containsRealEnv": false,
+  "containsNodeModules": false,
+  "containsDist": false,
+  "containsGit": false,
+  "containsWordPressPluginZip": true,
+  "containsSampleProjectBundle": true
+}

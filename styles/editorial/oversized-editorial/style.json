@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "oversized-editorial",
+  "familyId": "editorial",
+  "name": "Oversized Editorial",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Display type at poster scale, set against very little else, with words doing the composing.",
+  "philosophy": "If the sentence is the idea, set it at the size of the idea. Everything else steps back.",
+  "polarity": "light",
+  "tags": [
+    "oversized",
+    "typographic",
+    "asymmetric",
+    "flat"
+  ],
+  "useCases": [
+    "Manifesto page",
+    "Campaign statement",
+    "Conference or event front page"
+  ],
+  "industries": [
+    "media",
+    "publishing",
+    "culture",
+    "nonprofit"
+  ],
+  "palette": {
+    "bg": "#F2F0EB",
+    "ink": "#131313",
+    "accent": "#1F45FF",
+    "soft": "#E2DFD8",
+    "dark": "#0C0C0C"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Work Sans",
+    "scale": 1.34,
+    "displayCase": "none",
+    "displayTracking": -0.04
+  },
+  "radius": "0px",
+  "buttonStyle": "corner-cut",
+  "dials": {
+    "density": 26,
+    "measure": 66,
+    "headline": 98,
+    "accent": 44,
+    "surface": 12,
+    "corner": 2,
+    "imagery": 40,
+    "motion": 34,
+    "expressiveness": 82
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 72,
+    "fullBleedBias": 52
+  },
+  "patternPreferences": {
+    "prefer": [
+      "editorial",
+      "columns",
+      "quote-led",
+      "text-dominant",
+      "oversized",
+      "asymmetric",
+      "single"
+    ],
+    "avoid": [
+      "gradient",
+      "glass",
+      "dense",
+      "table",
+      "media"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "text-dominant",
+          "single"
+        ],
+        "avoid": [
+          "large media"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "animate-headings"
+    },
+    "text": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cta": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 2
+    }
+  },
+  "dos": [
+    "Let the headline be the picture",
+    "Keep the rest of the band nearly empty"
+  ],
+  "donts": [
+    "Never add a photograph to compete",
+    "Avoid four-across grids"
+  ]
+}

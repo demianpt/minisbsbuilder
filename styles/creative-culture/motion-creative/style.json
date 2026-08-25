@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "motion-creative",
+  "familyId": "creative-culture",
+  "name": "Motion Creative",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Built around movement: sequenced reveals, video-first bands and type that arrives.",
+  "philosophy": "If the studio's craft is motion, the site has to move. Every band earns its animation.",
+  "polarity": "dark",
+  "tags": [
+    "motion",
+    "video",
+    "sequenced",
+    "dark"
+  ],
+  "useCases": [
+    "Motion studio showreel",
+    "Production company homepage",
+    "Campaign case study"
+  ],
+  "industries": [
+    "design",
+    "arts",
+    "culture",
+    "photography"
+  ],
+  "palette": {
+    "bg": "#0D0C10",
+    "ink": "#F4F2F7",
+    "accent": "#00E5A0",
+    "soft": "#1A1820",
+    "dark": "#060509"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "scale": 1.18,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "12px",
+  "buttonStyle": "neon-trace",
+  "dials": {
+    "density": 34,
+    "measure": 54,
+    "headline": 78,
+    "accent": 64,
+    "surface": 30,
+    "corner": 62,
+    "imagery": 84,
+    "motion": 94,
+    "expressiveness": 82
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "layered",
+    "asymmetry": 44,
+    "fullBleedBias": 74
+  },
+  "patternPreferences": {
+    "prefer": [
+      "gallery",
+      "large media",
+      "caption",
+      "asymmetric",
+      "background media",
+      "full bleed",
+      "slider",
+      "overlay",
+      "sequenced"
+    ],
+    "avoid": [
+      "table",
+      "price",
+      "dense",
+      "bordered"
+    ],
+    "byFamily": {
+      "slider": {
+        "prefer": [
+          "media"
+        ],
+        "avoid": []
+      },
+      "hero": {
+        "prefer": [
+          "background media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    },
+    "slider": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true,
+      "viewport": "fade-in-seq",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Use video where a still would undersell",
+    "Sequence reveals down the page"
+  ],
+  "donts": [
+    "Never animate without a reason",
+    "Avoid a light canvas"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "human-corporate",
+  "familyId": "corporate",
+  "name": "Human Corporate",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Institutional structure warmed by real photography of people and softer surfaces.",
+  "philosophy": "Large organisations are still made of people. Keep the rigour, lose the coldness.",
+  "polarity": "light",
+  "tags": [
+    "warm",
+    "photographic",
+    "approachable",
+    "raised"
+  ],
+  "useCases": [
+    "Careers and culture page",
+    "Services overview",
+    "About and leadership"
+  ],
+  "industries": [
+    "consulting",
+    "finance",
+    "professional-services",
+    "enterprise"
+  ],
+  "palette": {
+    "bg": "#FBF9F6",
+    "ink": "#1D2126",
+    "accent": "#2E7D6B",
+    "soft": "#E9E4DC",
+    "dark": "#171A1E"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Manrope",
+    "body": "Inter",
+    "scale": 1.04,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "14px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 44,
+    "measure": 48,
+    "headline": 54,
+    "accent": 44,
+    "surface": 40,
+    "corner": 76,
+    "imagery": 62,
+    "motion": 34,
+    "expressiveness": 42
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "raised",
+    "asymmetry": 22,
+    "fullBleedBias": 30
+  },
+  "patternPreferences": {
+    "prefer": [
+      "structured",
+      "columns",
+      "stats",
+      "split",
+      "people",
+      "testimonial",
+      "rounded"
+    ],
+    "avoid": [
+      "ornament",
+      "gradient",
+      "table",
+      "brutal"
+    ],
+    "byFamily": {
+      "team": {
+        "prefer": [
+          "people",
+          "three"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "team": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "testimonial": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Show real people doing real work",
+    "Soften surfaces without losing the grid"
+  ],
+  "donts": [
+    "Never use stock handshakes",
+    "Avoid hard-edged dense tables"
+  ]
+}

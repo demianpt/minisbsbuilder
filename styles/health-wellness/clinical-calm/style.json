@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "clinical-calm",
+  "familyId": "health-wellness",
+  "name": "Clinical Calm",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Cool, orderly and reassuring: pale blues, clear lists and nothing that raises the pulse.",
+  "philosophy": "An anxious reader needs order. Short bands, plain language, obvious next step.",
+  "polarity": "light",
+  "tags": [
+    "calm",
+    "clear",
+    "cool",
+    "clinical"
+  ],
+  "useCases": [
+    "Clinic homepage",
+    "Treatments and conditions page",
+    "Appointment booking page"
+  ],
+  "industries": [
+    "healthcare",
+    "wellness",
+    "clinics",
+    "biotech"
+  ],
+  "palette": {
+    "bg": "#FAFCFD",
+    "ink": "#152029",
+    "accent": "#2E7BB8",
+    "soft": "#E6F0F6",
+    "dark": "#0F1820"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "scale": 1,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "10px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 40,
+    "measure": 44,
+    "headline": 46,
+    "accent": 40,
+    "surface": 40,
+    "corner": 56,
+    "imagery": 44,
+    "motion": 14,
+    "expressiveness": 22
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "raised",
+    "asymmetry": 8,
+    "fullBleedBias": 16
+  },
+  "patternPreferences": {
+    "prefer": [
+      "clear",
+      "list",
+      "faq",
+      "split",
+      "people",
+      "three"
+    ],
+    "avoid": [
+      "brutal",
+      "oversized",
+      "full bleed",
+      "slider"
+    ],
+    "byFamily": {
+      "faq": {
+        "prefer": [
+          "accordion",
+          "list"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "faq": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Answer the worry before the sell",
+    "Keep bands short"
+  ],
+  "donts": [
+    "Never use urgent language",
+    "Avoid full-bleed drama"
+  ]
+}

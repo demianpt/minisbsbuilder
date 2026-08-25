@@ -1,0 +1,106 @@
+{
+    "passed": true,
+    "assertionsPassed": 23,
+    "assertionsTotal": 23,
+    "pageBlocks": 120,
+    "navigationBlocks": 13,
+    "footerBlocks": 28,
+    "pageBytes": 43792,
+    "navigationBytes": 2190,
+    "footerBytes": 4807,
+    "themeCssBytes": 21025,
+    "assertions": [
+        {
+            "label": "page conversion succeeds",
+            "passed": true
+        },
+        {
+            "label": "page contains native DST banner block comments",
+            "passed": true
+        },
+        {
+            "label": "camelCase registered attributes are preserved",
+            "passed": true
+        },
+        {
+            "label": "core block comments use canonical WordPress names",
+            "passed": true
+        },
+        {
+            "label": "page contains no screenshot module markup",
+            "passed": true
+        },
+        {
+            "label": "page conversion includes a complete nested block tree",
+            "passed": true
+        },
+        {
+            "label": "navigation conversion succeeds",
+            "passed": true
+        },
+        {
+            "label": "navigation becomes editable DST navigation blocks",
+            "passed": true
+        },
+        {
+            "label": "WordPress menu ID is injected into navigation block",
+            "passed": true
+        },
+        {
+            "label": "converter counters reset between artifacts",
+            "passed": true
+        },
+        {
+            "label": "footer conversion succeeds",
+            "passed": true
+        },
+        {
+            "label": "footer becomes an editable DST wrapper",
+            "passed": true
+        },
+        {
+            "label": "footer menu headings are real heading blocks",
+            "passed": true
+        },
+        {
+            "label": "footer links are editable list blocks",
+            "passed": true
+        },
+        {
+            "label": "complete-project JSON is accepted",
+            "passed": true
+        },
+        {
+            "label": "complete-project JSON splits into page, navigation, and footer",
+            "passed": true
+        },
+        {
+            "label": "theme CSS includes semantic DST colors",
+            "passed": true
+        },
+        {
+            "label": "theme CSS is available in Gutenberg editor canvas",
+            "passed": true
+        },
+        {
+            "label": "theme CSS contains no external URL values",
+            "passed": true
+        },
+        {
+            "label": "resolved design-dial tokens are preserved when exported",
+            "passed": true
+        },
+        {
+            "label": "WordPress consumes the exact exported grid-gap dial token",
+            "passed": true
+        },
+        {
+            "label": "WordPress consumes the exact exported reading-measure dial token",
+            "passed": true
+        },
+        {
+            "label": "WordPress consumes the exact exported motion dial token",
+            "passed": true
+        }
+    ]
+}

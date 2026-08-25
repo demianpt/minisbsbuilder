@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "precision-health",
+  "familyId": "health-wellness",
+  "name": "Precision Health",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Data-led medicine: clean white ground, a technical accent and numbers doing the persuading.",
+  "philosophy": "Evidence is the pitch. Present it like a study, not a brochure.",
+  "polarity": "light",
+  "tags": [
+    "data",
+    "clinical",
+    "flat",
+    "systematic"
+  ],
+  "useCases": [
+    "Diagnostics product page",
+    "Clinical evidence page",
+    "Health data platform homepage"
+  ],
+  "industries": [
+    "healthcare",
+    "wellness",
+    "clinics",
+    "biotech"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#0F1417",
+    "accent": "#5B37E0",
+    "soft": "#EDEBFA",
+    "dark": "#0A0E10"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "scale": 1,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "8px",
+  "buttonStyle": "depth-press",
+  "dials": {
+    "density": 58,
+    "measure": 52,
+    "headline": 48,
+    "accent": 44,
+    "surface": 62,
+    "corner": 40,
+    "imagery": 34,
+    "motion": 18,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 12,
+    "fullBleedBias": 18
+  },
+  "patternPreferences": {
+    "prefer": [
+      "clear",
+      "list",
+      "faq",
+      "split",
+      "people",
+      "stats",
+      "grid",
+      "diagram",
+      "compare"
+    ],
+    "avoid": [
+      "brutal",
+      "oversized",
+      "full bleed",
+      "photo overlay"
+    ],
+    "byFamily": {
+      "stats": {
+        "prefer": [
+          "number-led",
+          "four"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "default",
+      "viewport": "fade-up"
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    }
+  },
+  "dos": [
+    "Cite the number",
+    "Keep the ground white"
+  ],
+  "donts": [
+    "Never lead with lifestyle photography",
+    "Avoid soft romantic language"
+  ]
+}

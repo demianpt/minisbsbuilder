@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "typographic-maximalist",
+  "familyId": "experimental",
+  "name": "Typographic Maximalist",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Type everywhere, at every scale: the page is set rather than laid out.",
+  "philosophy": "Words are the material. Let scale, weight and density do everything an image would.",
+  "polarity": "dark",
+  "tags": [
+    "typographic",
+    "maximal",
+    "dense",
+    "oversized"
+  ],
+  "useCases": [
+    "Poster-style campaign page",
+    "Conference homepage",
+    "Editorial statement page"
+  ],
+  "industries": [
+    "technology",
+    "culture",
+    "media",
+    "startups"
+  ],
+  "palette": {
+    "bg": "#111010",
+    "ink": "#F7F4EF",
+    "accent": "#FFE046",
+    "soft": "#1E1C1A",
+    "dark": "#070606"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Barlow",
+    "scale": 1.32,
+    "displayCase": "upper",
+    "displayTracking": -0.03
+  },
+  "radius": "0px",
+  "buttonStyle": "split-reveal",
+  "dials": {
+    "density": 78,
+    "measure": 68,
+    "headline": 100,
+    "accent": 74,
+    "surface": 30,
+    "corner": 0,
+    "imagery": 22,
+    "motion": 40,
+    "expressiveness": 98
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "none",
+    "surfaceTreatment": "flat",
+    "asymmetry": 88,
+    "fullBleedBias": 56
+  },
+  "patternPreferences": {
+    "prefer": [
+      "asymmetric",
+      "oversized",
+      "flat",
+      "text-dominant",
+      "dense",
+      "list",
+      "marquee"
+    ],
+    "avoid": [
+      "clear",
+      "table",
+      "large media",
+      "gallery",
+      "photo overlay"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "text-dominant"
+        ],
+        "avoid": [
+          "large media"
+        ]
+      },
+      "logo": {
+        "prefer": [
+          "marquee"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "text": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "inverted": true
+    },
+    "logo": {
+      "container": "full",
+      "paddingTop": "small",
+      "paddingBottom": "small",
+      "inverted": true
+    },
+    "cta": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Set the page like a poster",
+    "Use scale as the only hierarchy"
+  ],
+  "donts": [
+    "Never rely on a photograph",
+    "Avoid neat symmetrical bands"
+  ]
+}

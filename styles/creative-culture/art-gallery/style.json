@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "art-gallery",
+  "familyId": "creative-culture",
+  "name": "Art Gallery",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "White walls, fine rules, quiet navigation and artwork given the whole room.",
+  "philosophy": "The room exists for the work. Everything the page adds must be smaller than what it frames.",
+  "polarity": "light",
+  "tags": [
+    "gallery",
+    "white",
+    "fine-rule",
+    "spacious",
+    "quiet"
+  ],
+  "useCases": [
+    "Gallery homepage",
+    "Exhibition page",
+    "Artist representation index"
+  ],
+  "industries": [
+    "design",
+    "arts",
+    "culture",
+    "photography"
+  ],
+  "palette": {
+    "bg": "#FDFDFC",
+    "ink": "#151515",
+    "accent": "#7A1F1F",
+    "soft": "#F0EFEC",
+    "dark": "#0D0D0D"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "scale": 1.16,
+    "displayCase": "none",
+    "displayTracking": 0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 16,
+    "measure": 42,
+    "headline": 58,
+    "accent": 16,
+    "surface": 18,
+    "corner": 2,
+    "imagery": 86,
+    "motion": 14,
+    "expressiveness": 28
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 22,
+    "fullBleedBias": 30
+  },
+  "patternPreferences": {
+    "prefer": [
+      "gallery",
+      "large media",
+      "caption",
+      "asymmetric",
+      "spacious",
+      "bordered"
+    ],
+    "avoid": [
+      "table",
+      "price",
+      "dense",
+      "gradient",
+      "slider"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "large media",
+          "grid"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three"
+        ],
+        "avoid": [
+          "six"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "testimonial": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Hang the work with air around it",
+    "Use a hairline rule instead of a box"
+  ],
+  "donts": [
+    "Never tint the wall",
+    "Avoid animation that competes with the work"
+  ]
+}

@@ -1,0 +1,670 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:62.5%;scroll-behavior:smooth}
+body{font-family:var(--dst--font-primary,system-ui);line-height:var(--dst--base-lh,1.65);background:#0b0d10;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.ver{display:none}.ver.active{display:block}
+/* base body font-size — never inherit the 10px root (UX floor: body >= 16px) */
+.ver{font-family:var(--dst--font-primary);font-size:var(--dst--fs-base,1.7rem);color:var(--dst--base-text-color);background:var(--dst--body-bg)}
+h1,h2,h3,h4{color:var(--dst--base-heading-color);line-height:1.08;letter-spacing:-.01em}
+h1{font-family:var(--dst--h1-ff,var(--dst--font-secondary))}h2{font-family:var(--dst--h2-ff,var(--dst--font-secondary))}h3{font-family:var(--dst--h3-ff,var(--dst--font-secondary))}h4{font-family:var(--dst--h4-ff,var(--dst--font-primary))}
+p{color:var(--dst--base-text-color);font-size:var(--dst--fs-base,1.7rem)}
+a{font-size:inherit}
+.c-default{max-width:var(--dst--default-container-width,min(92.6vw, 1778px));margin-inline:auto;padding-inline:2.4rem}
+.c-alt{max-width:var(--dst--alt-container-width,1040px);margin-inline:auto;padding-inline:2.4rem}
+/* `wide` — the near-full-bleed measure. Wolverine's signature is breadth: a 62-image brand grid and
+   full-bleed photographic bands as punctuation. The library only offered default / alt / full, so the
+   only way to vary the measure was to go NARROWER, which is the opposite move and made the page feel
+   more constrained rather than more designed. `wide` keeps a small gutter so content still breathes at
+   the edge, unlike `full` which is truly edge-to-edge and belongs to imagery. */
+.c-wide{max-width:var(--dst--wide-container-width,max(var(--dst--default-container-width,1320px), min(96vw, 1920px)));margin-inline:auto;padding-inline:2.4rem}
+.c-full{max-width:none}
+/* theme-vocabulary container/padding (used by the c-list wrapper for WP parity — #45) */
+.container{max-width:var(--dst--default-container-width,1320px);margin-inline:auto;padding-inline:2.4rem}
+.container-alt{max-width:var(--dst--alt-container-width,1040px);margin-inline:auto;padding-inline:2.4rem}
+.container-fluid{max-width:none}
+.no-side-padding{padding-inline:0}
+@media(max-width:680px){.dst-list.no-side-padding{padding-inline:2rem}}
+.gt{padding-top:var(--dst--desktop-vertical-gap,8.8vmin)}.gb{padding-bottom:var(--dst--desktop-vertical-gap,8.8vmin)}
+.gt-s{padding-top:var(--dst--vgap-s,5vmin)}.gb-s{padding-bottom:var(--dst--vgap-s,5vmin)}
+/* vertical rhythm is EXPLICIT ONLY (dt/db) — no blanket section padding (it doubled + padded nested
+   blocks). A section's gap comes from dt/db on that section; nested blocks stay flush; a heading spaces
+   itself from the body with mb-s. */
+.dt{padding-top:var(--dst--desktop-vertical-gap,8.8vmin)}.db{padding-bottom:var(--dst--desktop-vertical-gap,8.8vmin)}
+.dt-s{padding-top:var(--dst--vgap-s,5vmin)}.db-s{padding-bottom:var(--dst--vgap-s,5vmin)}
+.dt-l{padding-top:var(--dst--vgap-l,12.5vmin)}.db-l{padding-bottom:var(--dst--vgap-l,12.5vmin)}
+.dt-0{padding-top:0}.db-0{padding-bottom:0}
+.mb-s{margin-bottom:4rem}.mb{margin-bottom:var(--dst--desktop-vertical-gap,8.8vmin)}
+.mt-s{margin-top:4rem}.mt{margin-top:var(--dst--desktop-vertical-gap,8.8vmin)}
+@media(max-width:782px){.dt{padding-top:44px}.db{padding-bottom:44px}}
+@media(max-width:782px){.dt-l{padding-top:56px}.db-l{padding-bottom:56px}}
+/* DEFAULT VERTICAL RHYTHM safety net — a top-level section that declares NO padding intent still gets
+   the theme's default gap (matches the WP theme, where sections are never zero-padded unless asked).
+   Explicit "none" (dt-0/db-0) opts out. Banner (own height) and header excluded. */
+.ver>section:not(.dt):not(.dt-s):not(.dt-l):not(.dt-0):not(.dst-banner):not(.site-header){padding-top:var(--dst--desktop-vertical-gap,8.8vmin)}
+.ver>section:not(.db):not(.db-s):not(.db-l):not(.db-0):not(.dst-banner):not(.site-header){padding-bottom:var(--dst--desktop-vertical-gap,8.8vmin)}
+/* FULL-WIDTH CONTENT sections (R71 violations + legit full-bleed non-wrapper blocks): the band may be
+   full-bleed, but its direct content is still constrained to the default container — never edge-to-edge. */
+.ver>section.c-full:not(.dst-banner):not(.dst-marquee):not(.dst-wrapper):not(.site-footer)>*{
+    max-width:var(--dst--default-container-width,1320px);margin-inline:auto;padding-inline:2.4rem}
+/* top-level sections without an explicit container still get side margins (no edge-to-edge text) */
+.ver>section:not(.c-default):not(.c-alt):not(.c-full):not(.dst-banner):not(.dst-marquee){
+    max-width:var(--dst--default-container-width,1320px);margin-inline:auto;padding-inline:2.4rem}
+/* media slot placeholder — single clean box, fills its container at the right aspect ratio */
+.ph{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;overflow:hidden;width:100%;
+    aspect-ratio:var(--ar,16/9);border-radius:var(--dst--default-radius,14px);
+    background:linear-gradient(135deg,color-mix(in srgb,var(--dst--primary-color3,#334) 30%,var(--dst--body-bg)),color-mix(in srgb,var(--dst--primary-color1,#223) 20%,var(--dst--body-bg)));
+    border:1px solid color-mix(in srgb,var(--dst--base-text-color,#888) 12%,transparent)}
+.ph__ico{width:4rem;height:4rem;opacity:.35;color:var(--dst--base-text-color)}
+.ph__cap{font-size:1.3rem;opacity:.7;padding:0 1.6rem;text-align:center;color:var(--dst--base-text-color)}
+.ph--photo{gap:0}.ph--photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}.ph--cutout{background:none!important}.ph--cutout img{object-fit:contain!important}
+.ph--photo .ph__ico{display:none}
+.ph--photo .ph__cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;padding:2.4rem 1.4rem .9rem;font-size:1.2rem;text-align:left}
+/* decoration layer (R84) — tinted SVG art painted BEHIND section content */
+/* 2.96 — SCROLLBAR-SAFE ROOT. `100vw` includes the classic vertical scrollbar; `clientWidth` does
+   not. So on any browser with non-overlay scrollbars — Windows Chrome/Edge/Firefox, macOS set to
+   "Always show scroll bars" — a `width:100vw` layer is ~15px wider than the visible page and pushes a
+   horizontal scrollbar. The decoration break-out below is exactly such a layer.
+
+   It cannot be reproduced in this project's headless Chromium, which uses OVERLAY scrollbars, so
+   `100vw == clientWidth` and every automated check reports clean. That is the same environment gap
+   that hid the backtitle overflow at 2.90: the only machine verifying is the one machine that cannot
+   see the defect. Hence a backstop rather than a targeted patch.
+
+   `overflow-x:clip` on the root, NOT `hidden`: `clip` does not create a scroll container, so
+   `position:sticky` keeps working — the timeline's sticky counter and the sticky header both depend
+   on it, and `hidden` would silently kill them. */
+html{overflow-x:clip}
+.has-deco{position:relative;isolation:isolate}
+.has-deco>.c-decoration{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  width:100vw;left:50%;transform:translateX(-50%)}
+.has-deco>*:not(.c-decoration){position:relative;z-index:1}
+.dst-deco{position:absolute;color:currentColor}
+.dst-deco svg{display:block;width:100%;height:100%;overflow:visible}
+.dst-deco--cover{inset:0}
+/* R203 — an edge motif is the SHAPE OF THE JOIN between two bands, so it must (a) be painted in the
+   neighbouring band's colour at full opacity and (b) occupy its own space rather than lie on top of the
+   content above it. The section reserves a margin equal to the decoration's height and the decoration is
+   translated into that margin — Olha, 2.76: "always margin that is equal the height of the decor +
+   transform top to place it where the margin adds spacing." Before this the wave sat INSIDE the band at
+   bottom:0 and smeared across whatever was there. */
+/* --- list timeline (flattened from assets/theme-css/list-timeline.scss — that file wins) ---------
+   A timeline is a VERTICAL device: a dot per item, a dashed rail down the left, items stacked. There
+   is no horizontal variant in the theme, which is why a multi-column timeline had no CSS to render
+   and collapsed into narrow columns of one-word-per-line text. R206 blocks authoring one. */
+.list-timeline .dst-list__grid{padding-inline:calc(var(--dst-list__dot-size,2rem)*1.5) 0;display:block}
+/* 2.82 — `.list-timeline` is the THEME's own selector (assets/theme-css/list-timeline.scss and
+   both live exports). 2.81 retargeted these to `.dst-list.is-timeline`, which was our invented
+   class — correct for our preview, wrong for the site. The renderer now emits the theme class,
+   so preview and build use one selector. */
+.list-timeline .dst-list__item{--timeline-color:var(--dst-list__timeline-color,var(--dst--primary-color2));position:relative;padding:0 0 var(--dst-list__item-gap,3.2rem) 0}
+.list-timeline .dst-list__item::after{content:'';position:absolute;width:var(--dst-list__dot-size,2rem);height:var(--dst-list__dot-size,2rem);border-radius:50%;background:radial-gradient(circle,var(--timeline-color) 0,var(--timeline-color) 32%,color-mix(in srgb,var(--timeline-color),var(--dst--secondary-color1)) 33%);inset-block:var(--dst-list__item-padding,0) auto;left:calc(var(--dst-list__dot-size,2rem)*-1.5);z-index:2}
+.list-timeline .dst-list__item:last-child .dst-list__content::after{display:none}
+/* 2.84 — `position` here was `relative`; the theme (list-timeline.scss) says `unset`. That one
+   word is why the dashed rail floated mid-row: the rail is drawn as `__content::after` at
+   left:-1.5*dot, and with the content POSITIONED the offset resolved against the content box
+   instead of the item. Measured on willow-lane: dot at x=294, rail at x=422, 128px apart. The
+   two must share the item as their containing block to land on one vertical line. */
+/* A timeline entry stacks. Row was the default, which put the counter beside the
+   title and squeezed the copy into whatever was left; column gives each entry its
+   own measure, and the bottom margin is the gap between entries the row layout
+   never needed. */
+.list-timeline .dst-list__content{display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem;margin-bottom:2rem;position:unset;z-index:1}
+/* the theme's `:has(.dst-list__hero)` branch — when a counter is present the ITEM's own dot is
+   suppressed and redrawn on the hero, so the number sits in the dot's place and pins with it.
+   The preview drew the item dot unconditionally and never drew the hero's, so a numbered timeline
+   showed a dot AND a number in separate columns. */
+.list-timeline .dst-list__item:has(.dst-list__hero){position:relative;padding:0}
+.list-timeline .dst-list__item:has(.dst-list__hero)::after{display:none}
+.list-timeline .dst-list__item:has(.dst-list__hero) .dst-list__content{padding:var(--dst-list__item-padding,0)}
+.list-timeline .dst-list__item:has(.dst-list__hero) .dst-list__content::after{height:calc(100% - var(--dst-list__dot-size,2rem)*0.5)}
+.list-timeline .dst-list__item:has(.dst-list__hero) .dst-list__hero{position:sticky;top:var(--sbs-sticky-top,12rem)}
+.list-timeline .dst-list__item:has(.dst-list__hero) .dst-list__hero::after{content:'';margin:auto;width:var(--dst-list__dot-size,2rem);height:var(--dst-list__dot-size,2rem);position:absolute;border-radius:50%;background:radial-gradient(circle,var(--timeline-color) 0,var(--timeline-color) 32%,color-mix(in srgb,var(--timeline-color),var(--dst--secondary-color1)) 33%);inset-block:var(--dst-list__item-padding,0) auto;left:calc(var(--dst-list__dot-size,2rem)*-1.5);z-index:2}
+.list-timeline .dst-list__content::after{content:'';position:absolute;width:var(--dst-list__dot-size,2rem);left:calc(var(--dst-list__dot-size,2rem)*-1.5 - var(--dst-list__dot-size,2rem)*0);inset-block:var(--dst-list__item-padding,0) auto;height:100%;background-image:repeating-linear-gradient(180deg,var(--timeline-color),var(--timeline-color) 10px,transparent 10px,transparent 20px,var(--timeline-color) 20px);background-size:1px 100%;background-position:50% 0;background-repeat:no-repeat;z-index:1;pointer-events:none}
+.list-timeline .dst-list__hero,.list-timeline .dst-list__hero--counter{min-width:calc(var(--dst-list__dot-size,2.2rem) + var(--dot-offset,1rem) + 4ch);text-align:left}
+.dst-deco--top{top:0;left:0;right:0;height:var(--deco-edge-h,calc(9vmin*var(--deco-scale,1)))}
+.dst-deco--bottom{bottom:0;left:0;right:0;height:var(--deco-edge-h,calc(9vmin*var(--deco-scale,1)))}
+/* 2.79 — RESERVE WITH PADDING, NOT MARGIN. Margin sits OUTSIDE the background box, so the transparent
+   half of the wave's SVG showed the PAGE colour: a third colour strip between the band and the curve
+   (Olha: "the section background color must match the wave color"). Padding is inside the box, so the
+   area above the curve is the band's own colour and the seam is exactly two colours — this band, then
+   the next. The decoration is positioned against the padding edge, not translated out of the element. */
+/* 2.86 — A WAVE BELONGS TO THE BAND IT IS THE COLOUR OF, AND SITS AT THAT BAND'S TOP.
+   Olha: "waves at the TOP of the section the wave shares color with. Exception - footer."
+
+   The old convention put the wave at the BOTTOM of the preceding band, painted in the NEXT band's
+   colour, occupying reserved padding inside the preceding band's box. That needs the reservation to
+   be inside the box (or a third colour shows through — the 2.79 bug), and it means the decoration is
+   authored on a section it has nothing to do with, so the importer attaches it to the wrong block.
+
+   The new geometry is simpler and cannot produce a third colour AT ALL. The wave sits at the TOP of
+   its OWN band, painted in that band's OWN colour, and is translated UP so it hangs over the band
+   above. Where the SVG is opaque you get this band's colour descending into the previous one; where
+   it is transparent the previous band shows through. Two colours, always, with no reserved space to
+   get wrong — the wave overlays its neighbour instead of asking it for room.
+
+   A TOP wave therefore reserves NOTHING and must not clip vertically. `overflow-x:clip` still holds
+   the line 2.83 drew against horizontal scroll; `overflow-y:visible` is what lets the wave hang. The
+   pair is legal precisely because `clip` (unlike `hidden`) does not force the other axis. */
+.has-deco-edge-top{overflow-x:clip;overflow-y:visible}
+.has-deco-edge-top>.c-decoration{overflow:visible}
+.has-deco-edge-top>.c-decoration>.dst-deco--top{
+  top:0;transform:translateY(-100%);height:var(--deco-edge-h,calc(9vmin*var(--deco-edge-scale,1)))}
+/* BOTTOM edge motifs keep the reserved-padding construction. The only legitimate remaining use is
+   the join into the FOOTER, which is a template part the importer builds separately and which
+   therefore cannot own a top decoration. R203 fails a bottom wave anywhere else. */
+.has-deco-edge-bottom{padding-bottom:calc(var(--deco-edge-h,calc(9vmin*var(--deco-edge-scale,1))) + var(--deco-edge-pad,0px))}
+/* 2.83 — this was `overflow:visible`, needed when the edge motif was TRANSLATED outside the box.
+   Since 2.80 it sits inside reserved padding, so the override is obsolete — and it was un-clipping
+   the slider's intentional right-bleed (measured overflowing to 1772px at a 1600 viewport) and the
+   backtitle, which is the horizontal scroll. A right-bleed is designed to be clipped by its band. */
+.has-deco-edge-bottom{overflow:hidden}
+/* the edge motif is translated INTO the reserved margin, i.e. outside the band box. The
+   decoration layer clips by default, which cut it off entirely — the wave rendered and was
+   then invisible. Un-clip the layer only when it carries an edge motif. */
+.has-deco-edge-bottom>.c-decoration{overflow:hidden}
+/* a corner motif must not create a scrollbar either */
+.dst-deco--bottom-right,.dst-deco--top-right{max-width:100%}
+.c-decoration{pointer-events:none}
+.dst-deco--left{top:50%;left:0;width:calc(26vmin*var(--deco-scale,1));height:calc(26vmin*var(--deco-scale,1));transform:translateY(-50%)}
+.dst-deco--right{top:50%;right:0;width:calc(26vmin*var(--deco-scale,1));height:calc(26vmin*var(--deco-scale,1));transform:translateY(-50%)}
+.dst-deco--center{top:50%;left:50%;width:calc(34vmin*var(--deco-scale,1));height:calc(34vmin*var(--deco-scale,1));transform:translate(-50%,-50%)}
+/* Corner decorations were anchored flush at 0,0 at up to 3x scale, so a corner-bracket's ARMS ran
+   straight across the content column (Red Moon: brackets struck through body copy and a card title).
+   They now hang partly outside the band and are clipped by .c-decoration's overflow, which leaves the
+   elbow in the corner and the arms along the edges — where a corner motif belongs. R155 caps the scale. */
+.dst-deco--top-left{top:-5vmin;left:-5vmin;width:calc(24vmin*var(--deco-scale,1));height:calc(24vmin*var(--deco-scale,1))}
+.dst-deco--top-right{top:-5vmin;right:-5vmin;width:calc(24vmin*var(--deco-scale,1));height:calc(24vmin*var(--deco-scale,1))}
+.dst-deco--bottom-left{bottom:-5vmin;left:-5vmin;width:calc(24vmin*var(--deco-scale,1));height:calc(24vmin*var(--deco-scale,1))}
+.dst-deco--bottom-right{bottom:-5vmin;right:-5vmin;width:calc(24vmin*var(--deco-scale,1));height:calc(24vmin*var(--deco-scale,1))}
+/* R155 bleed marks (footer only). The -5vmin corner offset is a constant, so a mark that grows also
+   grows almost entirely INWARD — at 2.5x that is ~495px of shape reaching across the footer grid and
+   under the newsletter column, which is the collision the corner cap was written to stop. Scaling the
+   offset with the mark keeps a fixed *proportion* of it off-canvas, so growth is shared between the
+   crop and the band instead of being paid for entirely by the content. The mark is still clipped by
+   .c-decoration (or by .has-deco-edge-top's overflow-x:clip when a top wave un-clips the layer), so
+   this cannot widen the page. max-width:100% above stays as the last line of defence. */
+.dst-deco--bleed.dst-deco--top-right,.dst-deco--bleed.dst-deco--bottom-right{right:calc(-6vmin*var(--deco-scale,1))}
+.dst-deco--bleed.dst-deco--top-left,.dst-deco--bleed.dst-deco--bottom-left{left:calc(-6vmin*var(--deco-scale,1))}
+.dst-ico{display:inline-flex;width:var(--icon-size,4.4rem);height:var(--icon-size,4.4rem);color:var(--dst--base-link-color)}
+.dst-ico svg{width:100%;height:100%;display:block}
+.is-style-colors-inverted .dst-ico{color:var(--dst--pretitle-color-alt,var(--dst--base-link-color))}
+/* headings */
+.c-heading.-center{text-align:center}
+.c-heading.-center>*{margin-inline:auto}                 /* center width-capped children (title/sub) */
+.c-heading.-center .c-heading__description{align-items:center}
+.dst-heading.text-center{text-align:center}
+.dst-heading.text-center .c-heading__description,.dst-heading.text-center .dst-button-group{justify-content:center;align-items:center}
+.dst-heading.text-center .c-heading__sub{margin-inline:auto}
+.dst-heading.text-right{text-align:right}
+.dst-heading.text-right .c-heading__description,.dst-heading.text-right .dst-button-group{justify-content:flex-end}
+.dst-heading.text-left{text-align:left}
+@media(max-width:640px){
+.dst-heading.text-center-mobile{text-align:center}
+.dst-heading.text-center-mobile .c-heading__description,.dst-heading.text-center-mobile .dst-button-group{justify-content:center}
+.dst-heading.text-left-mobile{text-align:left}}
+.c-heading.-center .dst-button-group{justify-content:center}
+.c-heading.-center .trust-list{align-items:flex-start;display:inline-flex}
+/* backtitle = WATERMARK. It was in normal flow with a -.18em pullback, so it COLLIDED with the title
+   instead of sitting behind it (Red Moon V1/V2: "RIDE" struck straight through the heading). It is now
+   absolutely positioned and z-ordered behind, anchored to the heading's own alignment. */
+.c-heading{position:relative}
+.c-heading>*:not(.c-heading__preamble){position:relative;z-index:1}
+/* 2.90 — the backtitle is sized against ITS CONTAINER, not the root or the viewport.
+   The cap used to be `min(clamp(6rem,14vw,22rem), Nvw)`, which depends on the root font
+   size: at the skill's 62.5% root the ghost word cleared its card by 170px, and at a 16px
+   root the same markup cleared it by 29px — with the real webfont, ~20px, i.e. touching the
+   edge. It read as clipped in Olha's browser and fitted in the headless one, which is the
+   worst kind of bug: the preview was right on the only machine that checked it.
+   `cqw` removes both dependencies — the only thing that governs the word is the box it has
+   to fit inside. Declared on the banner/wrapper rather than the heading so the measure is
+   the CARD; the preamble's containing block is still the heading, which comes first. */
+.dst-banner:has(.c-heading__preamble),section.dst-wrapper:has(.c-heading__preamble){container-type:inline-size}
+.c-heading__preamble{position:absolute;z-index:0;top:0;left:0;transform:translateY(-40%);font-family:var(--dst--font-secondary,inherit);font-size:var(--dst--fs-backtitle,clamp(6rem,14vw,22rem));line-height:.82;font-weight:var(--dst--backtitle-fw,700);letter-spacing:var(--dst--backtitle-ls,-.02em);text-transform:var(--dst--backtitle-tt,uppercase);color:var(--dst--backtitle-color,color-mix(in srgb,var(--dst--base-heading-color) 8%,transparent));pointer-events:none;user-select:none;margin:0;overflow:visible;white-space:nowrap}
+.c-heading.-center .c-heading__preamble{left:50%;transform:translate(-50%,-40%)}.c-heading__preamble>div{display:inline-block}.c-heading__preamble.is-animated>div{animation:dst-backtitle-drift 26s linear infinite}@keyframes dst-backtitle-drift{from{transform:translateX(0)}to{transform:translateX(-18%)}}.c-heading__pre{font-size:var(--dst--fs-pretitle,1.3rem);font-weight:var(--dst--pretitle-fw,600);letter-spacing:var(--dst--pretitle-ls,.14em);text-transform:var(--dst--pretitle-tt,uppercase);color:var(--dst--pretitle-color,var(--dst--base-link-color));margin-bottom:1.2em}
+/* heading measure: cap line length for readability but not so tight display headings wrap awkwardly.
+   ~28ch for h2/section titles, ~20ch for the big h1, ~62ch for body subtitle. */
+.c-heading__title{font-size:var(--dst--fs-h2,3.6rem);margin-bottom:.4em;max-width:28ch}
+/* typographic accents on a heading phrase (R81): colour / italic / weight / highlight marker.
+   color is set inline per-instance; italic=<em>, weight=<strong> inherit the display face. */
+.dst-accent{color:inherit}
+.dst-accent em,.c-heading__title em{font-style:italic}
+.dst-accent strong,.c-heading__title strong{font-weight:800}
+.dst-accent--highlight{background-color:transparent;background-image:linear-gradient(var(--dst-hl,var(--dst--primary-color2)),var(--dst-hl,var(--dst--primary-color2)));
+  background-repeat:no-repeat;background-position:0 88%;background-size:100% 34%;padding:0 .06em;color:inherit;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.c-heading .-h1{font-size:var(--dst--fs-h1,5.6rem);max-width:20ch}.c-heading .-h3{font-size:var(--dst--fs-h3,2.4rem)}.c-heading .-h4{font-size:var(--dst--fs-h4,2rem)}.c-heading .-h5{font-size:var(--dst--fs-h5,1.8rem)}.c-heading .-h6{font-size:var(--dst--fs-h6,1.6rem)}
+.c-heading__sub{font-size:var(--dst--fs-subtitle,1.9rem);color:var(--dst--subtitle-color,var(--dst--base-text-color));max-width:62ch;line-height:1.55}
+.c-heading__description{margin-top:2.4rem;display:flex;flex-direction:column;gap:2rem;align-items:flex-start}
+/* inverted remap (mirror theme) */
+.is-style-colors-inverted{--dst--base-text-color:var(--dst--base-text-color-alt);--dst--base-heading-color:var(--dst--base-heading-color-alt);
+    --dst--pretitle-color:var(--dst--pretitle-color-alt);--dst--subtitle-color:var(--dst--subtitle-color-alt);
+    --dst--backtitle-color:var(--dst--backtitle-color-alt,var(--dst--backtitle-color));color:var(--dst--base-text-color-alt)}
+.is-style-colors-inverted h1,.is-style-colors-inverted h2,.is-style-colors-inverted h3,.is-style-colors-inverted h4,.is-style-colors-inverted .c-heading__title,.is-style-colors-inverted p{color:var(--dst--base-heading-color-alt)}
+.is-style-colors-inverted .c-heading__sub,.is-style-colors-inverted .footer__col p,.is-style-colors-inverted .footer__col a{color:var(--dst--base-text-color-alt)}
+/* trust list */
+.trust-list{list-style:none;display:flex;flex-direction:column;gap:1.1rem}
+.trust-list li{display:flex;align-items:center;gap:1rem;font-size:1.5rem;color:inherit}
+.trust-list li::before{content:"✓";display:inline-flex;width:2.2rem;height:2.2rem;flex:0 0 auto;align-items:center;justify-content:center;border-radius:50%;background:var(--dst--base-link-color);color:var(--dst--body-bg);font-size:1.2rem;font-weight:700}
+.is-style-colors-inverted .trust-list li::before{color:var(--dst--primary-color1)}
+/* buttons */
+.dst-button-group{display:flex;gap:1.2rem;flex-wrap:wrap}
+.c-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-family:var(--dst--btn-ff,inherit);font-size:var(--dst--btn-fs,1.6rem);font-weight:var(--dst--btn-fw,700);border-radius:var(--dst--btn-br,10px);padding:var(--dst--btn-p,1.5rem 2.8rem);border:1px solid transparent;cursor:pointer;transition:.2s;line-height:1;color:var(--dst--base-heading-color,inherit)}
+.c-btn.-primary{color:var(--dst--btn-primary-c,#fff);background:var(--dst--btn-primary-bg,#333);border-color:var(--dst--btn-primary-bdc,transparent)}
+.c-btn.-primary:hover{color:var(--dst--btn-primary-c-hover,#fff);background:var(--dst--btn-primary-bg-hover,#000)}
+.c-btn.-secondary{color:var(--dst--btn-secondary-c,#333);background:var(--dst--btn-secondary-bg,transparent);border:1px solid var(--dst--btn-secondary-bdc,#ccc)}
+.c-btn.-secondary:hover{color:var(--dst--btn-secondary-c-hover,#fff);background:var(--dst--btn-secondary-bg-hover,#333);border-color:var(--dst--btn-secondary-bg-hover,#333)}
+.c-btn.-link{background:transparent;border:0;color:var(--dst--btn-link-c,var(--dst--base-link-color));padding-inline:0;text-decoration:underline;text-underline-offset:.3em}
+.c-btn.-secondary-inverted{color:var(--dst--btn-secondary-inverted-c,#fff);background:var(--dst--btn-secondary-inverted-bg,transparent);border:1px solid var(--dst--btn-secondary-inverted-bdc,rgba(255,255,255,.5))}
+.c-btn.-secondary-inverted:hover{color:var(--dst--btn-secondary-inverted-c-hover,#111);background:var(--dst--btn-secondary-inverted-bg-hover,#fff);border-color:var(--dst--btn-secondary-inverted-bdc-hover,var(--dst--btn-secondary-inverted-bg-hover,#fff))}
+.c-btn.-primary-inverted{color:var(--dst--btn-primary-inverted-c,#111);background:var(--dst--btn-primary-inverted-bg,#fff);border:1px solid var(--dst--btn-primary-inverted-bdc,transparent)}
+.c-btn.-primary-inverted:hover{color:var(--dst--btn-primary-inverted-c-hover,#111);background:var(--dst--btn-primary-inverted-bg-hover,#eee);border-color:var(--dst--btn-primary-inverted-bdc-hover,transparent)}
+.c-btn.-small{font-size:1.4rem;padding:1rem 2rem}.c-btn.-large{font-size:1.8rem;padding:1.7rem 3.4rem}
+/* header */
+.site-header{position:relative;z-index:50;border-bottom:1px solid color-mix(in srgb,var(--dst--base-text-color) 8%,transparent)}.site-header.is-sticky{position:sticky;top:0}.site-header.is-fixed{position:fixed;top:0;left:0;right:0}.site-header.is-static{position:relative}.site-header.has-glass{backdrop-filter:blur(10px) saturate(1.6);-webkit-backdrop-filter:blur(10px) saturate(1.6)}.site-header.logo-center .site-header__row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.site-header.logo-center .site-header__row>.site-header__logo{grid-column:2;justify-self:center}.site-header.logo-center .nav-menu{grid-column:1;grid-row:1;justify-self:start;margin-left:0}.site-header.logo-center .c-btn{grid-column:3;grid-row:1;justify-self:end}.site-footer{position:relative}.site-footer.has-wordmark{overflow:hidden}.footer__wordmark{position:absolute;left:0;right:0;pointer-events:none;user-select:none;font-family:var(--dst--font-secondary,inherit);font-weight:700;line-height:.78;white-space:nowrap;font-size:clamp(9rem,26vw,44rem);letter-spacing:-.03em;text-transform:none}.footer__wordmark.is-bottom{bottom:0;transform:translateY(38%);z-index:0;color:color-mix(in srgb,var(--dst--base-heading-color) calc(var(--wm-opacity,.14) * 100%),transparent)}.footer__wordmark.is-behind{top:50%;transform:translateY(-50%);z-index:0;color:color-mix(in srgb,var(--dst--base-heading-color) calc(var(--wm-opacity,.05) * 100%),transparent)}.site-footer.has-wordmark>.c-default{position:relative;z-index:1}.footer__top.is-cta{display:flex;flex-direction:column;align-items:flex-start;gap:1.6rem}.footer__top.is-cta .footer__nl-head{font-size:clamp(3.2rem,5vw,6.4rem);line-height:1.05}.footer__col .ph,.footer__col figure{margin:0}.site-header__ann{font-size:1.4rem;padding-block:.9rem;background:var(--dst--primary-color1);color:var(--dst--secondary-color2)}.site-header__ann>div{display:flex;align-items:center;justify-content:center;gap:1.2rem}.site-header__dismiss{background:none;border:0;color:inherit;font-size:1.8rem;line-height:1;cursor:pointer;opacity:.7}.site-header__top,.site-header__bot{font-size:1.3rem;padding-block:.8rem;opacity:.75;border-bottom:1px solid color-mix(in srgb,var(--dst--base-text-color) 6%,transparent)}.site-header[style*='--hdr-h'] .site-header__row{min-height:var(--hdr-h)}
+.site-header__row{display:flex;align-items:center;gap:2.4rem;padding-block:1.8rem}.site-header.is-stuck[style*='--hdr-sticky-bg']{background:var(--hdr-sticky-bg)!important}.site-header.is-stuck[style*='--hdr-sticky-c'] .nav-menu a,.site-header.is-stuck[style*='--hdr-sticky-c'] .site-header__logo{color:var(--hdr-sticky-c)}
+.site-header__logo{font-family:var(--dst--font-secondary);font-weight:700;font-size:2rem;color:var(--dst--base-heading-color)}
+.nav-menu{display:flex;gap:2.6rem;margin-left:auto}
+.nav-menu a{color:var(--dst--base-text-color);text-decoration:none;font-size:1.6rem;font-weight:500}
+.nav-menu a:hover{color:var(--dst--base-link-color)}
+@media(max-width:900px){.nav-menu{display:none}}
+/* banner */
+.dst-banner{position:relative;display:flex;align-items:center;overflow:hidden}
+.dst-banner.bh-full{min-height:100vh}.dst-banner.bh-md{min-height:56rem}.dst-banner.bh-sm{min-height:30rem}
+/* .bh-auto / .bh-custom intentionally carry no rule here — auto is natural/content height, and custom's
+   value is an inline min-height set per-node by r_banner() (attributes.bannerHeightCustom), R82. */
+.dst-banner .c-bg,.dst-banner .c-overlay{position:absolute;inset:0;z-index:0}
+.c-overlay{background:var(--overlayOpacityColor);mix-blend-mode:var(--overlayMixBlend,normal);
+backdrop-filter:var(--overlayFilter,none);-webkit-backdrop-filter:var(--overlayFilter,none)}.dst-banner>.c-decoration{z-index:0}
+/* R96 — layered bg media + overlay on any bg/decor section */
+.has-bg-media{position:relative;overflow:hidden}
+.has-bg-media>.c-bg,.has-bg-media>.c-overlay{position:absolute;inset:0;z-index:0}
+.has-bg-media>.c-bg .c-bg__item{position:absolute;inset:0}
+/* R130 — per-breakpoint background sizing/focal. bg_layers_html() sets the four custom props per layer from
+   the item's desktop/mobile blocks; these rules consume them so the preview crops exactly like WP. */
+.c-bg{background:var(--dst--bg-layer)}
+.c-bg__item{position:absolute;inset:0}
+.c-bg__item>picture{display:block;position:absolute;inset:0}
+.c-bg__item.has-overlay::after{content:'';position:absolute;inset:0;pointer-events:none;background:var(--c-bg__overlay,rgba(0,0,0,.5))}
+.c-bg__item.no-media-mobile>picture{display:block}
+@media(max-width:782px){.c-bg__item.no-media-mobile>picture{display:none}}
+.c-bg__media{width:100%;height:100%;object-fit:var(--dst--bg-desktop-size,cover);object-position:var(--dst--bg-desktop-focal,50% 50%)}
+@media(max-width:782px){.c-bg__media{object-fit:var(--dst--bg-mobile-size,var(--dst--bg-desktop-size,cover));
+  object-position:var(--dst--bg-mobile-focal,var(--dst--bg-desktop-focal,50% 50%))}}
+.has-bg-media>.dst-wrapper__content,.has-bg-media>.ds-row{position:relative;z-index:1}
+.dst-banner__container{position:relative;z-index:2;width:100%;max-width:var(--icw,var(--dst--default-container-width,1320px));margin-inline:auto;padding:7rem 2.4rem;display:flex;flex-direction:column;justify-content:center;align-items:var(--halign,flex-start)}
+.dst-banner__inner{max-width:var(--cw,100%);width:100%}
+.dst-banner__subject{position:absolute;bottom:var(--hs-bottom,0);width:var(--hs-w,38%);opacity:var(--hs-op,1);transform:rotate(var(--hs-rot,0deg));filter:var(--hs-shadow,none);pointer-events:none;user-select:none;z-index:1;line-height:0}.dst-banner__subject.is-right{right:0}.dst-banner__subject.is-left{left:0}.dst-banner__subject.is-center{left:50%;transform:translateX(-50%) rotate(var(--hs-rot,0deg))}.dst-banner__subject[style*='--hs-top']{top:var(--hs-top);bottom:auto}.dst-banner__subject img{display:block;width:100%;height:auto}.dst-banner__container{position:relative;z-index:2}@media(max-width:900px){.dst-banner__subject{width:min(70%,var(--hs-w,38%));opacity:calc(var(--hs-op,1)*.6)}}
+.dst-banner .dst-content2{padding:0}
+.dst-banner .dst-content2__block{align-items:center}
+.scroll-down{position:absolute !important;bottom:2.4rem;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.4rem;font-size:1.2rem;opacity:.85}
+.scroll-down.sd-left{left:3rem}.scroll-down.sd-center{left:50%;transform:translateX(-50%)}
+/* content-2 */
+.dst-content2__block{display:flex;gap:5rem;align-items:center}
+.dst-content2__col{flex:1;min-width:0}
+.dst-content2__col:first-child{flex:calc(var(--ratio,50)/50)}
+/* A column's picture is shown whole. It used to be capped at 62vh, which crops
+   a portrait image in a two-column band and shows the middle of it rather than
+   the composition — and there is no reason for a column's own media to be
+   measured against the viewport at all. */
+.dst-content2__col .dst-media,.dst-content2__col .ph{max-height:100%}
+@media(max-width:900px){.dst-content2__block{flex-direction:column!important;gap:3rem}.dst-content2__col .dst-media,.dst-content2__col .ph{max-height:none}}
+/* ds-columns (real multi-column layout, mirrors the theme .ds-row grid) */
+.ds-columns{position:relative}
+.ds-row{display:grid;gap:2rem;align-items:center}
+.ds-column{min-width:0}
+.ds-column .dst-media,.ds-column .ph{max-height:100%}
+@media(max-width:900px){.ds-row{grid-template-columns:1fr!important}.ds-column .dst-media,.ds-column .ph{max-height:none}}
+/* decoration image/blur variants */
+.dst-deco--image{position:absolute;pointer-events:none}
+.dst-deco--image img{display:block;max-width:none}
+.dst-deco--blur{position:absolute;border-radius:50%;pointer-events:none}
+@media(max-width:1024px){.dst-deco.deco-hide-tablet{display:none}}
+@media(max-width:640px){.dst-deco.deco-hide-mobile{display:none}}
+/* cards */
+.dst-cards__grid{display:grid;grid-template-columns:repeat(var(--col,3),1fr);gap:2.4rem;grid-auto-flow:row dense}
+.dst-cards__grid>.has-grid-col-span{grid-column:span var(--l-block__grid-col,1)}
+.dst-cards__grid>.has-grid-row-span{grid-row:span var(--l-block__grid-row,1)}
+.dst-cards__item{display:flex;min-width:0}
+.dst-cards__item>*{width:100%}
+.c-card-item.is-cpt-sample{border:1px dashed color-mix(in srgb,var(--dst--base-text-color) 28%,transparent);border-radius:var(--card-radius,var(--dst--default-radius,12px));padding:var(--card-pad,3rem 2rem);display:flex;flex-direction:column;gap:1.2rem;background:color-mix(in srgb,var(--dst--base-text-color) 4%,transparent)}.c-card-item.is-cpt-sample .c-card-item__text{margin:0;opacity:.85}.c-card-item.is-cpt-sample .c-card-item__title{margin:0;font-weight:600;opacity:.6;font-size:1.4rem}.dst-cards__src{font-size:1.3rem;opacity:.6;margin-bottom:1.6rem}
+.dst-card.is-quote{display:flex;flex-direction:column;gap:1.6rem}
+.dst-card .c-quote__icon{line-height:.7;color:var(--dst--primary-color2);opacity:.5;font-family:Georgia,serif}
+.dst-card .c-quote__profile{display:flex;align-items:center;gap:1.2rem;margin-top:auto}
+.dst-card .c-quote__photo{flex:0 0 auto;background:color-mix(in srgb,currentColor 12%,transparent);display:block}
+.dst-card .c-quote__author{display:flex;flex-direction:column;gap:.2rem}
+/* DST slider (2.15) — ported from the theme's _dst-slider.scss. The preview previously emitted
+   `is-slider` + `.dst-cards__dots`, neither of which exists in the theme, so an authored slider
+   rendered as a static grid. Class names, controls and settings now match the real contract. */
+.dst-cards:has(.dst-slider){position:relative;display:flex;flex-direction:column;gap:var(--dst-slider-gap,2rem)}
+.dst-cards.has-dst-slider-bleed-right{overflow:visible}
+/* 2.95 — WHERE THE BLEED IS CLIPPED IS THE WHOLE DEVICE.
+   This rule used to put `overflow:clip` on ANY ancestor holding a right-bleed slider. The track then
+   got cut at the CONTAINED container's edge — measured on willow-lane as a 2256px track inside a
+   1592px box with no partial card painted, so the slider read as a plain grid with dead arrows.
+   `probe_devices.py` called it inert for six sessions and the remedy it printed was the right one:
+   put the slider in a full-bleed band.
+
+   The bleed exists to show a sliver of the next card between the container edge and the VIEWPORT
+   edge. So the clip belongs at the full-bleed band, whose box already ends at the viewport — clipping
+   there kills the horizontal scrollbar (2.83's fix, still honoured) while leaving the sliver visible.
+   Every inner wrapper must stay out of the way.
+
+   `overflow-x:clip` with `overflow-y:visible` is the legal pair — `clip`, unlike `hidden`, does not
+   force the other axis, so a band can hold a hanging top wave and a bleeding slider at once. */
+.ds-columns:has(.has-right-bleed),.dst-banner:has(.has-right-bleed),
+.dst-wrapper:not(.c-full):has(.has-right-bleed),
+.ds-columns:has(.has-both-sides-bleed),.dst-banner:has(.has-both-sides-bleed),
+.dst-wrapper:not(.c-full):has(.has-both-sides-bleed){overflow:visible}
+.dst-wrapper.c-full:has(.has-right-bleed),
+.dst-wrapper.c-full:has(.has-both-sides-bleed){overflow-x:clip;overflow-y:visible}
+.dst-cards__grid.dst-slider{--dst-slider-visible-width:var(--dst-slider-base-width,100%);--dst-slider-bleed-right:max(var(--dst--page-gutter,1rem),var(--block__padding-inline,2.4rem),20vw);display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;cursor:grab}
+.dst-cards__grid.dst-slider::-webkit-scrollbar{display:none}
+.dst-cards__grid.dst-slider.has-right-bleed{margin-inline-end:calc(-1*var(--dst-slider-bleed-right));padding-inline-end:var(--dst-slider-bleed-right)}
+.dst-cards__grid.dst-slider.has-both-sides-bleed{margin-inline:calc(-1*var(--dst-slider-bleed-right));padding-inline:var(--dst-slider-bleed-right);scroll-padding-inline:var(--dst-slider-bleed-right)}
+.dst-cards__grid.dst-slider>*{flex:0 0 calc((var(--dst-slider-visible-width) - (var(--dst-slider-cols,3) - 1)*var(--block__padding-inline,2.4rem))/var(--dst-slider-cols,3));scroll-snap-align:start;min-width:0}
+@media (max-width:767px){.dst-cards__grid.dst-slider>*{flex:0 0 85%}}
+.dst-slider__controls{display:flex;pointer-events:none;gap:1rem;align-items:center;justify-content:center;margin-top:2.4rem;position:relative}
+.dst-slider__nav{display:flex;gap:.5rem;pointer-events:auto}
+.dst-slider__arrows{display:grid;place-items:center;background:var(--swiper-nav-bg,rgba(255,255,255,.9));color:var(--swiper-nav-icon-color,#000);width:var(--swiper-nav-size,5rem);height:var(--swiper-nav-size,5rem);border:0;border-radius:var(--swiper-nav-radius,50%);box-shadow:var(--swiper-nav-shadow,0 2px 8px rgba(0,0,0,.1));cursor:pointer;padding:0;pointer-events:auto;transition:.3s}
+.dst-slider__arrows svg{width:60%;height:60%;pointer-events:none}
+.dst-slider__arrows.-prev svg{transform:scaleX(-1)}
+.dst-slider__arrows[aria-disabled="true"]{opacity:.3;cursor:not-allowed}
+.dst-slider__bullets{width:fit-content;display:flex;gap:.5rem;align-items:center;pointer-events:auto}
+.dst-slider__bullets-item{width:var(--swiper-pagination-bullet-size,12px);height:var(--swiper-pagination-bullet-size,12px);border-radius:50%;background:var(--swiper-pagination-bullet-inactive-color,rgba(0,0,0,.3));border:1px solid var(--swiper-pagination-bullet-border,rgba(0,0,0,.3));cursor:pointer;padding:0}
+.dst-slider__bullets-item.is-active{background:var(--swiper-pagination-color,var(--dst--primary-color1,#000));border-color:var(--swiper-pagination-color,var(--dst--primary-color1,#000))}
+.dst-slider__progress{pointer-events:none;flex:1;position:relative;overflow:hidden}
+.dst-slider__progress::before{content:'';height:4px;background:var(--swiper-pagination-progressbar-bg-color,rgba(0,0,0,.1));position:absolute;width:100%;top:50%;left:0;transform:translateY(-50%)}
+.dst-slider__progress-fill{background:var(--swiper-pagination-color,var(--dst--primary-color1,#000));transform-origin:left;height:4px;position:relative}
+.dst-slider__fraction{line-height:1;font-variant-numeric:tabular-nums;pointer-events:none;white-space:nowrap;font-size:1.4rem}
+.dst-slider__controls[data-arrows-position="sides"] .dst-slider__nav{position:absolute;inset-inline:0;display:flex;justify-content:space-between;pointer-events:none}
+.dst-slider__controls[data-arrows-position="sides"] .dst-slider__arrows{pointer-events:auto;z-index:10}
+.dst-slider__controls[data-arrows-position="top"]{flex-direction:row-reverse}
+.dst-slider__controls[data-arrows-position="top"] .dst-slider__nav{position:absolute;right:0;top:0;transform:translateY(-100%)}
+.is-style-colors-inverted .dst-slider__arrows{background:var(--swiper-nav-bg-alt,rgba(255,255,255,.12));color:var(--swiper-nav-icon-color-alt,#fff)}
+.is-style-colors-inverted .dst-slider__bullets-item{background:var(--swiper-pagination-bullet-inactive-color-alt,rgba(255,255,255,.3));border-color:var(--swiper-pagination-bullet-border-alt,rgba(255,255,255,.3))}
+.is-style-colors-inverted .dst-slider__bullets-item.is-active,.is-style-colors-inverted .dst-slider__progress-fill{background:var(--swiper-pagination-color-alt,#fff)}
+.is-style-colors-inverted .dst-slider__progress::before{background:var(--swiper-pagination-progressbar-bg-color-alt,rgba(255,255,255,.15))}
+/* dst-card image modes (R57b): top = image above content; side = image beside; background = image behind */
+.dst-card--media-top .c-block__media{margin:-.4rem -.4rem 1.6rem;border-radius:calc(var(--dst--default-radius,14px) - .2rem)}
+.dst-card--media-side{display:flex;gap:1.6rem;align-items:center;text-align:left}
+.dst-card--media-side .c-block__media{flex:0 0 40%;margin:0}
+.dst-card--media-side.dst-card--flip{flex-direction:row-reverse}
+.dst-card--media-background{position:relative;overflow:hidden;isolation:isolate}
+.dst-card>.c-block__body{position:relative;flex:1;z-index:1;padding:var(--c-block__body-padding,0)}
+.dst-card>.c-block__media{position:relative;z-index:1}
+.dst-card--media-background>.c-block__media{position:absolute;inset:0;z-index:0}
+.dst-card--media-background>.c-block__body{position:absolute;left:0;width:100%;z-index:2;background:none}
+.align-top .dst-card--media-background>.c-block__body{top:0}
+.align-center .dst-card--media-background>.c-block__body{inset:0;display:flex;flex-direction:column;justify-content:center}
+.align-bottom .dst-card--media-background>.c-block__body{bottom:0}
+.dst-card--media-background>.c-block__media{position:absolute;inset:0;z-index:0;margin:0}
+/* R131 — the scrim is AUTHORED (mediaOverlay / backgroundOverlay), not invented here, and the body is
+   absolutely positioned over the image exactly as WP does it, so its inset comes from bodyPadding. */
+.dst-card--media-background>.c-block__media::after{content:"";position:absolute;inset:0;
+  background:var(--c-block__media-overlay-bg,none);opacity:var(--c-block__media-overlay-opacity,1)}
+.dst-card--media-background>*:not(.c-block__media){position:relative;z-index:1}
+.dst-card--media-background>.c-block__body{position:absolute;left:0;right:0;
+  padding:var(--c-block__body-padding,0)}
+.align-bottom .dst-card--media-background>.c-block__body{bottom:0}
+/* 2.23 — sticky cards (enableStickyCards). Each card pins in turn so a step sequence holds the
+   viewport instead of scrolling past as a stack. Matches the theme's .cards-sticky--top. */
+.dst-cards__grid.cards-sticky>*{position:sticky}
+.dst-cards__grid.cards-sticky--top>*{top:var(--sticky-offset,12vh)}
+.dst-cards__grid.cards-sticky--bottom>*{bottom:var(--sticky-offset,12vh)}
+.dst-cards__grid.cards-sticky>* .dst-card,.dst-cards__grid.cards-sticky>* .c-card-item{box-shadow:0 1.6rem 4rem rgba(0,0,0,.14)}
+@media (max-width:767px){.dst-cards__grid.cards-sticky>*{position:static}}
+/* horizontal cards: imageTextRatio drives the media track instead of a 50/50 guess */
+.dst-cards__grid.is-horizontal>*{display:block}
+.dst-cards__grid.is-horizontal .dst-card,.dst-cards__grid.is-horizontal .c-card-item{display:flex;flex-direction:row;align-items:center;gap:var(--c-block__gap,2rem)}
+.dst-cards__grid.is-horizontal .c-block__media,.dst-cards__grid.is-horizontal .c-card-item__media{flex:0 0 var(--c-block__ratio,50%);align-self:stretch}
+.dst-cards__grid.is-horizontal .c-block__media img,.dst-cards__grid.is-horizontal .c-card-item__media img{width:100%;height:100%;object-fit:cover}
+.dst-cards__grid.is-horizontal .c-block__body,.dst-cards__grid.is-horizontal .c-card-item__body{flex:1 1 auto;padding:var(--c-block__body-padding,2rem)}
+@media (max-width:767px){.dst-cards__grid.is-horizontal .dst-card,.dst-cards__grid.is-horizontal .c-card-item{flex-direction:column}
+.dst-cards__grid.is-horizontal .c-block__media,.dst-cards__grid.is-horizontal .c-card-item__media{flex:0 0 auto}}
+/* R164/2.20 — media ratio on image-backed cards. Without an aspect-ratio a mediaAsBg tile has no
+   intrinsic height and collapses to its copy; siblings in one row end up wildly uneven. */
+.dst-cards__grid .dst-card--media-background[style*="--card-ar"],.dst-cards__grid .c-card-item[style*="--card-ar"]{aspect-ratio:var(--card-ar);min-height:0}
+.c-block__scrim{position:absolute;inset:0;z-index:1;pointer-events:none}
+.dst-card--media-background>.c-block__body{z-index:2}
+.dst-cards__grid[style*="--card-ar"] .dst-card--media-background,
+.dst-cards__grid[style*="--card-ar"] .c-card-item{aspect-ratio:var(--card-ar);min-height:0}
+.dst-cards__grid[style*="--card-ar"] .c-card-item>.c-block__media,
+.dst-cards__grid[style*="--card-ar"] .dst-card--media-background>.c-block__media{position:absolute;inset:0;height:100%}
+.dst-cards__grid[style*="--card-ar"] .c-card-item>.c-block__media img{width:100%;height:100%;object-fit:cover}
+.align-top .dst-card--media-background>.c-block__body{top:0}
+.dst-cards__grid.text-center{text-align:center}.dst-cards__grid.text-center .c-block__icon{justify-content:center;display:flex}
+@media(max-width:1024px){.dst-cards__grid{grid-template-columns:repeat(var(--col-t,2),1fr)}}
+@media(max-width:680px){.dst-cards__grid{grid-template-columns:repeat(var(--col-m,1),1fr)}.dst-cards__grid>.has-grid-col-span,.dst-cards__grid>.has-grid-row-span{grid-column:auto!important;grid-row:auto!important}}
+.c-block{padding:var(--card-pad,3.2rem);background:var(--card-bg,transparent);border-radius:var(--card-radius,0);transition:.2s}
+.dst-cards__grid[style*="--flex-align"] .c-block{display:flex;flex-direction:column;align-items:var(--flex-align)}
+.dst-cards__grid.has-border .c-block{border:var(--card-bd,1px solid color-mix(in srgb,var(--dst--base-text-color) 14%,transparent))}
+.dst-cards__grid.has-border .c-block:hover{transform:translateY(-4px);border-color:var(--dst--base-link-color)}
+.c-block__icon{margin-bottom:2rem}
+.c-block__title{font-size:var(--dst--fs-h3,2.4rem);margin-bottom:1rem}
+/* counters default to the HEADING color (always AA); a concept MAY opt into an accent tone via the
+   optional counter-color / counter-color-alt slot — the validator enforces WCAG AA on it (R30). */
+.dst-cards[data-counter] .c-block__title{color:var(--dst--counter-color,var(--dst--base-heading-color));font-variant-numeric:tabular-nums}
+.dst-list[data-counter] .dst-list__hero{color:var(--dst--counter-color,var(--dst--base-heading-color))}
+.is-style-colors-inverted.dst-cards[data-counter] .c-block__title,.is-style-colors-inverted.dst-list[data-counter] .dst-list__hero{color:var(--dst--counter-color-alt,var(--dst--base-heading-color-alt))}
+.c-block__tagline{font-size:1.3rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dst--base-link-color);margin-bottom:1rem}
+.c-block__description{font-size:1.6rem;color:var(--dst--base-text-color);line-height:1.6}
+/* list */
+.dst-list__grid{list-style:none;display:grid;grid-template-columns:repeat(var(--dst-list__col,1),1fr);gap:var(--dst-list__row-gap,2.4rem)}/* 2.82 — an invented `is-timeline-x/-y` ruleset lived here and drew its OWN rail and dot on top
+   of the theme's, which is the doubled vertical line and the oversized blob in the review
+   screenshot. The theme owns this device; we render its classes and let its CSS draw it. */
+@media(max-width:980px){.dst-list__grid{grid-template-columns:repeat(var(--dst-list__col-tablet,2),1fr)}}
+@media(max-width:680px){.dst-list__grid{grid-template-columns:repeat(var(--dst-list__col-mobile,1),1fr)}}
+.dst-list__item{display:flex;gap:var(--dst-list__element-gap,1.8rem);padding:var(--item-pad,1.8rem 0)}
+.dst-list__grid.has-border .dst-list__item{border-bottom:var(--list-bd)}
+.dst-list__grid.has-border .dst-list__item:last-child{border-bottom:0}
+.dst-list__media{flex:0 0 auto}
+.dst-list__media .dst-ico{color:var(--dst-list__media-color,var(--dst--base-link-color))}
+.is-style-colors-inverted .dst-list__media .dst-ico{color:var(--dst-list__media-color,var(--dst--pretitle-color-alt,var(--dst--base-link-color)))}
+/* 2.85 — TWO obsolete rules deleted here: `.list-timeline .dst-list__item` (a 2px solid
+   border-left) and its `::before` (a 1.6rem dot). They were a COMPLETE PARALLEL TIMELINE,
+   home-grown before the theme's real CSS was vendored at 2.76, and never removed when it was.
+   Both implementations painted at once, so every timeline showed a solid rail AND a dashed one,
+   with two dots. Every automated gate passed the page it produced — 0 validator FAIL, 0 QA FAIL,
+   devices live, contrast AA — because none of them can see that a device is drawn twice. Olha
+   spotted it in a screenshot. That is what Stage 7b is for, and why critique_gate.py exists. */
+.list-timeline .dst-list__grid{gap:0}
+.dst-list__hero{flex:0 0 auto;min-width:4rem;font-size:clamp(3.6rem,4.5vw,5.6rem);font-weight:800;font-family:var(--dst--font-secondary);color:var(--dst--base-heading-color);line-height:1}
+.dst-list__title{font-size:2rem;font-weight:700;font-family:var(--dst--font-secondary);margin-bottom:.4rem;color:var(--dst--base-heading-color)}
+.dst-list__description{font-size:1.6rem;color:var(--dst--base-text-color);opacity:.9}
+/* marquee */
+.dst-marquee{overflow:hidden;padding-block:3rem}
+.dst-marquee__track{display:flex;gap:5rem;width:max-content;animation:marq var(--dur,24s) linear infinite;align-items:center}
+.dst-marquee__img{max-height:var(--marq-h,4rem);width:auto;object-fit:contain;opacity:.75;filter:var(--marq-filter,none)}
+/* A placeholder mark is drawn rather than fetched, in the band's own text colour,
+   so one set reads on a dark overlay and on a light one. */
+.dst-marquee__img.is-placeholder{display:inline-flex;align-items:center;height:var(--marq-h,4rem);color:currentColor;opacity:.8;filter:none}
+.dst-marquee__img.is-placeholder svg{height:2.6rem;width:auto;display:block}
+.dst-marquee__logo{font-family:var(--dst--font-secondary);font-weight:600;font-size:1.7rem;opacity:.6;white-space:nowrap}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* tabs */
+.dst-tabs__navbar{display:flex;gap:var(--tabs-labels-gap,1rem);justify-content:center;flex-wrap:wrap;margin-bottom:var(--tabs-inner-gap,2.4rem)}
+.ds-tab__radio{position:absolute;opacity:0;pointer-events:none}
+.dst-tabs__navbar-item{padding:var(--tabs-label-pad,1.2rem 2.4rem);border:1px solid color-mix(in srgb,var(--dst--base-text-color) 22%,transparent);border-radius:var(--tabs-label-radius,999px);cursor:pointer;font-size:1.6rem;font-weight:600;color:var(--tabs-label-c,inherit);background:var(--tabs-label-bg,transparent)}
+/* panel is a substantial framed block (not sparse centered text): border, padding, min-height, left text */
+.dst-tabs__panel{display:none;text-align:left;padding:var(--tabs-panel-pad,clamp(2.8rem,3.5vw,5.6rem));border:1px solid color-mix(in srgb,var(--dst--base-text-color) 14%,transparent);border-radius:var(--dst--default-radius,14px);min-height:22rem;background:color-mix(in srgb,var(--dst--base-text-color) 4%,transparent)}
+.dst-tabs__panel .c-heading__title{font-size:var(--dst--fs-h3,2.6rem)}
+.dst-tabs__panel .c-heading__sub{font-size:var(--dst--fs-lg,2rem);max-width:70ch}
+.ds-tab__radio:checked+.dst-tabs__navbar-item{background:var(--tabs-label-bg-active,var(--dst--base-link-color));color:var(--tabs-label-c-active,var(--dst--body-bg));border-color:transparent}
+.is-style-colors-inverted .ds-tab__radio:checked+.dst-tabs__navbar-item{color:var(--tabs-label-c-active,var(--dst--primary-color1))}
+.dst-tabs:has(.ds-tab__radio:nth-of-type(1):checked) .dst-tabs__panel:nth-of-type(1),
+.dst-tabs:has(.ds-tab__radio:nth-of-type(2):checked) .dst-tabs__panel:nth-of-type(2),
+.dst-tabs:has(.ds-tab__radio:nth-of-type(3):checked) .dst-tabs__panel:nth-of-type(3),
+.dst-tabs:has(.ds-tab__radio:nth-of-type(4):checked) .dst-tabs__panel:nth-of-type(4),
+.dst-tabs:has(.ds-tab__radio:nth-of-type(5):checked) .dst-tabs__panel:nth-of-type(5),
+.dst-tabs:has(.ds-tab__radio:nth-of-type(6):checked) .dst-tabs__panel:nth-of-type(6){display:block}
+/* accordion — fills the section container (no self-imposed width, so it aligns with the section heading).
+   Question typography/padding + separator now come from the JSON (questionTypography / questionStyles /
+   separatorBorder); inline styles from r_accordion win, these are the theme-default fallbacks. */
+.dst-accordion__item{border-bottom:var(--acc-sep,1px solid color-mix(in srgb,var(--dst--base-text-color) 15%,transparent))}
+.dst-accordion__item:last-child{border-bottom:0}
+.dst-accordion__q{cursor:pointer;font-family:var(--dst--font-secondary);font-size:2rem;font-weight:700;padding:2rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;list-style:none;color:var(--dst--base-heading-color)}
+.dst-accordion__q::-webkit-details-marker{display:none}
+.dst-accordion__q-t{flex:1 1 auto}
+.dst-accordion__ar{flex:0 0 auto;color:var(--dst--base-link-color);font-weight:400;transition:transform .2s ease;line-height:1}
+/* 2.84 — the marker took `base-link-color` on every ground. On an inverted band that is the rust
+   primary on near-black: measured 2.15:1, below AA for a 16-19px glyph. The theme already carries
+   the answer in `base-link-color-alt` (4.60:1 here) — the alt slot exists for exactly this and was
+   simply never wired to the accordion. Found by probe_contrast.py; no JSON gate could see it. */
+.is-style-colors-inverted .dst-accordion__ar{color:var(--dst--base-link-color-alt,var(--dst--base-text-color-alt))}
+details[open] .dst-accordion__ar.is-plus{transform:rotate(45deg)}
+details[open] .dst-accordion__ar.is-chevron{transform:rotate(180deg)}
+.dst-accordion__a{padding:0 2rem 2rem;font-size:1.7rem;color:var(--dst--base-text-color);opacity:.9;max-width:70ch}
+/* compare + testi */
+.dst-compare__pair{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.dst-compare__side{position:relative}.dst-compare__tag{position:absolute;top:1.2rem;left:1.2rem;background:var(--dst--base-link-color);color:var(--dst--body-bg);font-size:1.2rem;font-weight:700;padding:.4rem 1rem;border-radius:6px;text-transform:uppercase;letter-spacing:.06em}
+/* preview renders the slider's slides as a non-cropping responsive grid (the real slider runs in WP);
+   overflow-hidden crop + native scrollbar looked broken, so no horizontal clipping here */
+.dst-testi__track{display:grid;grid-template-columns:repeat(auto-fit,minmax(28rem,1fr));gap:2.4rem;align-items:start}
+.dst-testi__slide{padding:3.6rem;border-radius:var(--dst--default-radius,14px);border:1px solid color-mix(in srgb,var(--dst--base-text-color) 14%,transparent)}
+.dst-testi__slide blockquote{font-family:var(--dst--font-secondary);font-size:2.6rem;line-height:1.3;margin-bottom:2rem;color:var(--dst--base-heading-color)}
+.dst-testi__slide figcaption{display:flex;flex-direction:column}.dst-testi__slide b{font-size:1.6rem}.dst-testi__slide span{font-size:1.4rem;opacity:.7}
+/* footer */
+.site-footer{padding-block:var(--dst--desktop-vertical-gap,8.8vmin)}
+.footer__band{margin-bottom:4.8rem}.footer__band:last-child{margin-bottom:0}
+.footer__top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2.4rem 4rem}
+.footer__nl-head{font-size:2.8rem;line-height:1.2;color:var(--dst--base-heading-color)}
+.footer__nl-sub{font-size:1.6rem;opacity:.85;margin-top:.6rem}
+.footer__form{flex:1 1 32rem;max-width:44rem}
+.footer__form-cap{font-size:1.2rem;text-transform:uppercase;letter-spacing:.08em;opacity:.6;margin-bottom:.8rem}
+.footer__form-row{display:flex;gap:0}
+.footer__form-field{flex:1 1 auto;height:5.2rem;background:#fff;border:1px solid rgba(0,0,0,.25)}
+.footer__form-btn{flex:0 0 auto;display:flex;align-items:center;padding:0 2.4rem;background:var(--dst--btn-primary-bg,var(--dst--base-link-color));color:var(--dst--btn-primary-color,#fff);font-size:1.5rem;font-weight:600}
+.footer__cols{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:4rem}
+/* The split band must ESCAPE the footer's container: the bands render inside .c-default, whose
+   padding-inline left a 24px gutter down the left of the photograph — a framed picture, not half a
+   footer. This is the standard full-bleed break-out, so the media sits flush to the viewport edge. */
+.footer__split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0;
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.footer__split-media{position:relative;overflow:hidden}
+.footer__split-media .footer__col{height:100%;padding:0}
+.footer__split-media figure,.footer__split-media .ph{height:100%;margin:0}
+.footer__split-media img{width:100%;height:100%;object-fit:cover;display:block}
+.footer__split-body{padding:6rem 4rem 6rem 6rem;display:flex;align-items:center}
+.footer__split-body .footer__cols{width:100%}
+@media(max-width:782px){.footer__split{grid-template-columns:1fr}.footer__split-media{min-height:32rem}.footer__split-body{padding:4rem 2.4rem}}
+@media(max-width:782px){.footer__cols{grid-template-columns:1fr;gap:3rem}.footer__top{flex-direction:column;align-items:stretch;text-align:center}}
+.footer__col h4{font-size:1.8rem;margin-bottom:1.4rem;color:var(--dst--base-heading-color)}
+.footer__col ul{list-style:none}.footer__col a{color:inherit;text-decoration:none;line-height:2.2;font-size:1.6rem}.footer__col a:hover{color:var(--dst--base-link-color)}
+.footer__col p{font-size:1.6rem;opacity:.85;line-height:1.7}
+.footer__contact li{display:flex;align-items:center;gap:.8rem;font-size:1.6rem;line-height:2}
+.footer__contact .dst-ico{width:1.6rem;height:1.6rem;flex:0 0 auto;opacity:.85}
+.footer__logo{display:inline-flex;align-items:center;height:4.4rem;padding:0 1.6rem;border:1px dashed color-mix(in srgb,var(--dst--base-text-color) 35%,transparent);border-radius:6px;font-size:1.2rem;letter-spacing:.14em;opacity:.7;margin-bottom:1.8rem}
+.footer__soc-title{font-size:1.4rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-top:2.4rem}
+.footer__menu em,.footer__privacy em{font-style:italic;opacity:.55;font-size:1.4rem}
+.footer__bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.6rem 3rem;margin-top:3.2rem}
+.footer__legal{opacity:.7;font-size:1.4rem}
+.footer__privacy{display:flex;gap:2rem;list-style:none;font-size:1.4rem}
+/* 2.84 — `.footer__col a` and `.footer__credit a` were styled; `.footer__privacy a` never was, so
+   the privacy row rendered in the BROWSER DEFAULT link blue (#0000EE) — 1.71:1 on the dark footer.
+   Unstyled-anchor bugs are invisible to every JSON gate and to a quick look at a screenshot, since
+   a blue link reads as a link. Measured by probe_contrast.py. */
+.footer__privacy a{color:inherit;text-decoration:none}
+.footer__privacy a:hover{text-decoration:underline}
+.footer__credit{font-size:1.4rem;opacity:.8}.footer__credit a{color:inherit;text-decoration:underline}
+.footer__divider{margin:0}
+.dst-socials{display:flex;gap:1rem;margin-top:1.2rem}
+.dst-social{width:4rem;height:4rem;border:1px solid currentColor;border-radius:8px;display:flex;align-items:center;justify-content:center;text-transform:uppercase;font-size:1.2rem;opacity:.8}
+/* switcher */
+#switch{position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;gap:.6rem;background:#111;padding:.6rem;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+#switch button{border:0;width:4.4rem;height:4.4rem;border-radius:50%;background:#333;color:#fff;font-weight:700;cursor:pointer;font-size:1.4rem;transition:.15s}
+#switch button.on{background:#fff;color:#111}
+
+/* ===== MOTION LIBRARY — ported from theme _a-viewport.scss (1s ease-in-out, 60px) ===== */
+.has-inview-a [data-viewport-effect]>*{transition-duration:1s;transition-timing-function:ease-in-out}
+.has-inview-a [data-viewport-effect^="fade"]>*{opacity:0;transition-property:opacity,transform}
+.has-inview-a [data-viewport-effect^="fade"].in-view>*{opacity:1;transform:none}
+.has-inview-a [data-viewport-effect="fade-up"]>*{transform:translate3d(0,60px,0)}
+.has-inview-a [data-viewport-effect="fade-down"]>*{transform:translate3d(0,-60px,0)}
+.has-inview-a [data-viewport-effect="fade-right"]>*{transform:translate3d(-60px,0,0)}
+.has-inview-a [data-viewport-effect="fade-left"]>*{transform:translate3d(60px,0,0)}
+.has-inview-a [data-viewport-effect^="zoom"]>*{opacity:0;transition-property:opacity,transform}
+.has-inview-a [data-viewport-effect^="zoom"].in-view>*{opacity:1;transform:translate3d(0,0,0) scale(1)}
+.has-inview-a [data-viewport-effect="zoom-in"]>*{transform:scale(.6)}
+.has-inview-a [data-viewport-effect^="slide"]>*{transition-property:transform;visibility:hidden}
+.has-inview-a [data-viewport-effect^="slide"].in-view>*{visibility:visible;transform:translate3d(0,0,0)}
+.has-inview-a [data-viewport-effect="slide-up"]>*{transform:translate3d(0,100%,0)}
+.has-inview-a [data-viewport-effect="slide-down"]>*{transform:translate3d(0,-100%,0)}
+.has-inview-a [data-viewport-effect="slide-right"]>*{transform:translate3d(-100%,0,0)}
+.has-inview-a [data-viewport-effect="slide-left"]>*{transform:translate3d(100%,0,0)}
+/* fade-in-seq — staggered items (theme item classes + preview .dst-card/.dst-list__item) */
+.has-inview-a [data-viewport-effect="fade-in-seq"] .l-ccbl__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-tbnav__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-rcbl__col,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-team__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-counter__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .c-animated-list__item{transform:translateY(30px);opacity:0;transition:1s ease}
+.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item,.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item,.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col,.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item,.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item,.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item{opacity:1;transform:translateY(0)}
+.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(1),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(1),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(1),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(1),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(1),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(1){transition-delay:0.1s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(2),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(2),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(2),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(2),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(2),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(2){transition-delay:0.2s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(3),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(3),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(3),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(3),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(3),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(3){transition-delay:0.3s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(4),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(4),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(4),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(4),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(4),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(4){transition-delay:0.4s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(5),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(5),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(5),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(5),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(5),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(5){transition-delay:0.5s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(6),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(6),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(6),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(6),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(6),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(6){transition-delay:0.6s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(7),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(7),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(7),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(7),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(7),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(7){transition-delay:0.7s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(8),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(8),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(8),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(8),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(8),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(8){transition-delay:0.8s}.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-ccbl__item:nth-child(9),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-tbnav__item:nth-child(9),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-rcbl__col:nth-child(9),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-team__item:nth-child(9),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .l-counter__item:nth-child(9),.has-inview-a [data-viewport-effect="fade-in-seq"].in-view .c-animated-list__item:nth-child(9){transition-delay:0.9s}
+/* fade-in-slides — swiper reveal (parity; affects preview only when slides exist) */
+.has-inview-a [data-viewport-effect="fade-in-slides"] .swiper-slide{clip-path:circle(0% at 50% 50%);transition:.3s}
+.has-inview-a [data-viewport-effect="fade-in-slides"].in-view .swiper-slide{clip-path:circle(75% at 50% 50%)}
+/* animate-headings — clip-path + skew reveal, staggered (signature use only) */
+.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__pre,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__title,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__sub,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__description{clip-path:polygon(0 0,0 0,0 0);transition:.8s cubic-bezier(0.55,0.06,0.33,1.85);transform:translateX(-30px) scale(.86) skew(8deg)}
+.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__pre,.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__title,.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__sub,.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__description{clip-path:polygon(0 0,200% 0,0 200%);transform:translateX(0) scale(1) skew(0);transition:.8s cubic-bezier(0.55,0.06,0.33,1.85)}
+.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__title{transition-delay:.3s}
+.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__sub{transition-delay:.6s}
+.has-inview-a [data-viewport-effect="animate-headings"].in-view .c-heading__description{transition-delay:.9s}
+/* reduced-motion: reveal everything, no transforms (accessibility) */
+@media (prefers-reduced-motion: reduce){.has-inview-a [data-viewport-effect]>*,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-ccbl__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-tbnav__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-rcbl__col,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-team__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .l-counter__item,.has-inview-a [data-viewport-effect="fade-in-seq"] .c-animated-list__item,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__pre,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__title,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__sub,.has-inview-a [data-viewport-effect="animate-headings"] .c-heading__description,.has-inview-a [data-viewport-effect="fade-in-slides"] .swiper-slide{transition:none!important;opacity:1!important;transform:none!important;visibility:visible!important;clip-path:none!important}}
+.dst-wrapper.is-parallax,.dst-banner.is-parallax{clip-path:inset(0)}.dst-wrapper.is-parallax>.c-bg,.dst-banner.is-parallax>.c-bg{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:0}.dst-wrapper.is-parallax>.c-bg img,.dst-banner.is-parallax>.c-bg img{width:100%;height:100%;object-fit:cover}@media (prefers-reduced-motion:reduce){.dst-wrapper.is-parallax,.dst-banner.is-parallax{clip-path:none}.dst-wrapper.is-parallax>.c-bg,.dst-banner.is-parallax>.c-bg{position:absolute;height:100%}}
+/* ===== SCROLL-DRIVEN LIBRARY (native; in-view fallback below) ===== */
+@supports (animation-timeline: view()){
+@keyframes dst-bg-zoom-in{from{transform:scale(1)}to{transform:scale(1.3)}}
+@keyframes dst-bg-zoom-out{from{transform:scale(1.3)}to{transform:scale(1)}}
+@keyframes dst-parallax-bg{from{transform:translateY(-14%) scale(1.25)}to{transform:translateY(14%) scale(1.25)}}
+@keyframes dst-parallax-up{from{transform:translateY(70px)}to{transform:translateY(-70px)}}
+@keyframes dst-parallax-down{from{transform:translateY(-70px)}to{transform:translateY(70px)}}
+@keyframes dst-scroll-fade{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dst-reveal{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dst-zoom-scrub{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
+@keyframes dst-rotate-scrub{from{opacity:0;transform:rotate(-4deg) scale(.94)}to{opacity:1;transform:none}}
+.has-inview-a [data-scroll]{view-timeline-name:--dst-vt}
+.has-inview-a [data-scroll]>*{opacity:1;transform:none;visibility:visible;clip-path:none;transition:none}
+@media (prefers-reduced-motion: no-preference){
+.has-inview-a [data-scroll-effect="bg-zoom-in"] .c-bg{animation:dst-bg-zoom-in linear both;animation-timeline:--dst-vt;animation-range:var(--dst-scroll-range,cover)}
+.has-inview-a [data-scroll-effect="bg-zoom-out"] .c-bg{animation:dst-bg-zoom-out linear both;animation-timeline:--dst-vt;animation-range:var(--dst-scroll-range,cover)}
+.has-inview-a [data-scroll-effect="parallax-bg"] .c-bg{animation:dst-parallax-bg linear both;animation-timeline:--dst-vt;animation-range:var(--dst-scroll-range,cover)}
+.has-inview-a [data-scroll-effect="parallax-up"] >*{animation:dst-parallax-up linear both;animation-timeline:--dst-vt;animation-range:var(--dst-scroll-range,cover)}
+.has-inview-a [data-scroll-effect="parallax-down"] >*{animation:dst-parallax-down linear both;animation-timeline:--dst-vt;animation-range:var(--dst-scroll-range,cover)}
+.has-inview-a [data-scroll-effect="scroll-fade"]>*{animation:dst-scroll-fade linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 8% cover 45%)}
+.has-inview-a [data-scroll-effect="fade-scrub"]>*{animation:dst-scroll-fade linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 8% cover 45%)}
+.has-inview-a [data-scroll-effect="reveal"]>*{animation:dst-reveal linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 8% cover 50%)}
+.has-inview-a [data-scroll-effect="zoom-scrub"]>*{animation:dst-zoom-scrub linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 8% cover 48%)}
+.has-inview-a [data-scroll-effect="rotate-scrub"]>*{animation:dst-rotate-scrub linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 8% cover 52%)}
+@keyframes dst-cascade{from{opacity:0;transform:translateY(64px)}to{opacity:1;transform:none}}
+.has-inview-a [data-scroll-effect="cascade"] :is(.dst-list__item,.c-block,.dst-card){animation:dst-cascade linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 6% cover 30%)}
+@keyframes dst-highlight{from{background-size:0% 34%}to{background-size:100% 34%}}
+.has-inview-a [data-scroll-effect="highlight"] :is(.dst-accent--highlight){animation:dst-highlight linear both;animation-timeline:view();animation-range:var(--dst-scroll-range,entry 12% cover 40%)}
+.has-inview-a [data-scroll-effect="stack-cards"] .dst-cards__grid{display:block}
+.has-inview-a [data-scroll-effect="stack-cards"] :is(.dst-list__item,.c-block,.dst-card){position:sticky;top:var(--sbs-sticky-top,12rem);margin-bottom:2.4rem;box-shadow:0 1.6rem 4rem rgba(11,42,74,.14)}
+@keyframes dst-progress-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.has-inview-a [data-scroll-effect="progress-x"]>*{animation:dst-progress-x linear both;animation-timeline:scroll(root);transform-origin:left center}
+}
+}
+@media (prefers-reduced-motion: reduce){.has-inview-a [data-scroll]>*,.has-inview-a [data-scroll] .c-bg,.has-inview-a [data-scroll] :is(.dst-list__item,.c-block,.dst-card){animation:none!important;opacity:1!important;transform:none!important}.has-inview-a [data-scroll] :is(.dst-accent--highlight){animation:none!important;background-size:100% 34%!important}}
+
+/* Style DNA consumes only these code-owned custom properties. The mapper may
+   set values, but never selectors, source CSS, URLs, or executable content. */
+#sbs-site{
+  --sbs-motion-ease:cubic-bezier(.2,.7,.2,1);
+  --sbs-motion-duration:.28s;
+  --sbs-button-hover-y:-2px;
+  --sbs-card-hover-y:-3px;
+  --sbs-focus-ring-width:3px;
+  --sbs-focus-ring-offset:3px;
+  --sbs-focus-ring-color:var(--dst--base-link-color);
+  --sbs-card-shadow:none;
+  --sbs-card-radius:var(--dst--default-radius);
+  --sbs-card-surface:transparent;
+}
+#sbs-site .c-btn{transition-duration:var(--sbs-motion-duration);transition-timing-function:var(--sbs-motion-ease)}
+#sbs-site .c-btn:hover{transform:translateY(var(--sbs-button-hover-y))}
+#sbs-site .c-block{border-radius:var(--sbs-card-radius);box-shadow:var(--sbs-card-shadow);background:var(--sbs-card-surface);transition-duration:var(--sbs-motion-duration);transition-timing-function:var(--sbs-motion-ease)}
+#sbs-site .c-block:hover{transform:translateY(var(--sbs-card-hover-y))}
+#sbs-site :focus-visible{outline:var(--sbs-focus-ring-width) solid var(--sbs-focus-ring-color);outline-offset:var(--sbs-focus-ring-offset)}
+@media (prefers-reduced-motion: reduce){#sbs-site .c-btn,#sbs-site .c-block{transition:none!important;transform:none!important}}
+
+/* Moving media. A comp video is watched, never operated: it fills the same box
+   an image would, with the poster covering the gap before the first frame. */
+.ph--photo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.c-bg__item>video.c-bg__media{position:absolute;inset:0}

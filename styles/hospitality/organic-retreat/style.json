@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "organic-retreat",
+  "familyId": "hospitality",
+  "name": "Organic Retreat",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Earth greens and stone, soft edges, and photography of landscape and material.",
+  "philosophy": "Calm is made from natural material and slow rhythm. Nothing sharp, nothing loud.",
+  "polarity": "light",
+  "tags": [
+    "organic",
+    "green",
+    "soft",
+    "calm"
+  ],
+  "useCases": [
+    "Wellness retreat homepage",
+    "Programmes and stays page",
+    "Spa and treatments page"
+  ],
+  "industries": [
+    "hospitality",
+    "hotels",
+    "restaurants",
+    "travel"
+  ],
+  "palette": {
+    "bg": "#F5F6F0",
+    "ink": "#1E241C",
+    "accent": "#5F7A52",
+    "soft": "#E4E8DC",
+    "dark": "#161B15"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Inter",
+    "scale": 1.1,
+    "displayCase": "none",
+    "displayTracking": 0.01
+  },
+  "radius": "16px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 24,
+    "measure": 44,
+    "headline": 58,
+    "accent": 32,
+    "surface": 24,
+    "corner": 82,
+    "imagery": 76,
+    "motion": 26,
+    "expressiveness": 40
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "raised",
+    "asymmetry": 26,
+    "fullBleedBias": 50
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "full bleed",
+      "gallery",
+      "atmosphere",
+      "rounded",
+      "spacious"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense",
+      "brutal"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three",
+          "rounded"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "viewport": "animate-headings",
+      "decoration": "blob",
+      "decorationOpacity": 0.1
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Show material and landscape",
+    "Keep every edge soft"
+  ],
+  "donts": [
+    "Never use a hard square corner",
+    "Avoid urgent language"
+  ]
+}

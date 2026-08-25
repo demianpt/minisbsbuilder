@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "lifestyle-shop",
+  "familyId": "commerce",
+  "name": "Lifestyle Shop",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Friendly and bright: rounded surfaces, people in the pictures and a soft secondary colour.",
+  "philosophy": "The shop is a place you like being. Warmth first, product second.",
+  "polarity": "light",
+  "tags": [
+    "friendly",
+    "rounded",
+    "bright",
+    "people"
+  ],
+  "useCases": [
+    "Lifestyle brand homepage",
+    "Gift or bundle landing",
+    "Community and shop page"
+  ],
+  "industries": [
+    "retail",
+    "ecommerce",
+    "consumer-goods",
+    "dtc"
+  ],
+  "palette": {
+    "bg": "#FFFDF9",
+    "ink": "#242019",
+    "accent": "#E8792B",
+    "soft": "#FDEEDC",
+    "dark": "#1B1813"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Nunito Sans",
+    "body": "Nunito Sans",
+    "scale": 1.06,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "20px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 46,
+    "measure": 50,
+    "headline": 56,
+    "accent": 60,
+    "surface": 34,
+    "corner": 92,
+    "imagery": 68,
+    "motion": 44,
+    "expressiveness": 58
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "raised",
+    "asymmetry": 24,
+    "fullBleedBias": 32
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "large media",
+      "price",
+      "rounded",
+      "people",
+      "media",
+      "three",
+      "slider"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "brutal"
+    ],
+    "byFamily": {
+      "slider": {
+        "prefer": [
+          "media"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three",
+          "media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 3
+    },
+    "slider": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Put people in the photography",
+    "Keep corners generous"
+  ],
+  "donts": [
+    "Never use a hard-edged table",
+    "Avoid a cold palette"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "human-wellness",
+  "familyId": "health-wellness",
+  "name": "Human Wellness",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Warm and personal: sand and clay tones, rounded surfaces and photography of people.",
+  "philosophy": "Care is a relationship. Show faces, soften every edge, write in the second person.",
+  "polarity": "light",
+  "tags": [
+    "warm",
+    "people",
+    "rounded",
+    "approachable"
+  ],
+  "useCases": [
+    "Therapy or coaching practice",
+    "Practitioner profiles page",
+    "Programme enrolment page"
+  ],
+  "industries": [
+    "healthcare",
+    "wellness",
+    "clinics",
+    "biotech"
+  ],
+  "palette": {
+    "bg": "#FDFAF6",
+    "ink": "#231E1A",
+    "accent": "#C4715A",
+    "soft": "#F4E7DE",
+    "dark": "#1A1613"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Nunito Sans",
+    "body": "Nunito Sans",
+    "scale": 1.06,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "22px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 34,
+    "measure": 44,
+    "headline": 54,
+    "accent": 46,
+    "surface": 30,
+    "corner": 94,
+    "imagery": 66,
+    "motion": 34,
+    "expressiveness": 44
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "raised",
+    "asymmetry": 20,
+    "fullBleedBias": 26
+  },
+  "patternPreferences": {
+    "prefer": [
+      "clear",
+      "list",
+      "faq",
+      "split",
+      "people",
+      "rounded",
+      "testimonial",
+      "three"
+    ],
+    "avoid": [
+      "brutal",
+      "oversized",
+      "table"
+    ],
+    "byFamily": {
+      "team": {
+        "prefer": [
+          "people"
+        ],
+        "avoid": []
+      },
+      "testimonial": {
+        "prefer": [
+          "quote-led"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "team": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "testimonial": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Show the practitioners",
+    "Write to one person"
+  ],
+  "donts": [
+    "Never use a hard corner",
+    "Avoid clinical stock imagery"
+  ]
+}

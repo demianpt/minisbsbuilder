@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "newsroom-modern",
+  "familyId": "editorial",
+  "name": "Newsroom Modern",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Dense, dated, hierarchical — a front page that assumes there is a lot to say today.",
+  "philosophy": "Volume is the point. Many stories, ranked clearly, with rules doing the separating.",
+  "polarity": "light",
+  "tags": [
+    "newsroom",
+    "dense",
+    "bordered",
+    "columns"
+  ],
+  "useCases": [
+    "Newsroom front page",
+    "Press and media centre",
+    "High-volume content index"
+  ],
+  "industries": [
+    "media",
+    "publishing",
+    "culture",
+    "nonprofit"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#141619",
+    "accent": "#0B4FA8",
+    "soft": "#E9EBEE",
+    "dark": "#0B0D0F"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Libre Franklin",
+    "body": "Inter",
+    "scale": 0.98,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "2px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 76,
+    "measure": 62,
+    "headline": 48,
+    "accent": 36,
+    "surface": 58,
+    "corner": 8,
+    "imagery": 46,
+    "motion": 12,
+    "expressiveness": 34
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 24,
+    "fullBleedBias": 18
+  },
+  "patternPreferences": {
+    "prefer": [
+      "editorial",
+      "columns",
+      "quote-led",
+      "text-dominant",
+      "dense",
+      "list",
+      "bordered",
+      "feed"
+    ],
+    "avoid": [
+      "gradient",
+      "glass",
+      "spacious"
+    ],
+    "byFamily": {
+      "blog": {
+        "prefer": [
+          "dense",
+          "columns",
+          "three"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "four",
+          "six"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "viewport": ""
+    },
+    "blog": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 3
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "text": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default"
+    }
+  },
+  "dos": [
+    "Rank stories visibly",
+    "Separate with rules, not gaps"
+  ],
+  "donts": [
+    "Never leave a band with one item",
+    "Avoid oversized display type"
+  ]
+}

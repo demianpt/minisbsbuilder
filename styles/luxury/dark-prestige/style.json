@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "dark-prestige",
+  "familyId": "luxury",
+  "name": "Dark Prestige",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Near-black ground, a single metallic accent used sparingly, and photography lit like a product still.",
+  "philosophy": "Darkness makes one thing precious. The accent appears perhaps three times on the whole page and each time it means something.",
+  "polarity": "dark",
+  "tags": [
+    "dark",
+    "metallic",
+    "restrained",
+    "photographic"
+  ],
+  "useCases": [
+    "Jewellery or watch collection",
+    "Private client service",
+    "Limited edition launch"
+  ],
+  "industries": [
+    "luxury",
+    "fashion",
+    "jewellery",
+    "property"
+  ],
+  "palette": {
+    "bg": "#0D0C0B",
+    "ink": "#F1EDE6",
+    "accent": "#C9A227",
+    "soft": "#1A1917",
+    "dark": "#050505"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "scale": 1.18,
+    "displayCase": "none",
+    "displayTracking": 0.04
+  },
+  "radius": "0px",
+  "buttonStyle": "sweep-fill",
+  "dials": {
+    "density": 24,
+    "measure": 44,
+    "headline": 70,
+    "accent": 22,
+    "surface": 20,
+    "corner": 4,
+    "imagery": 74,
+    "motion": 28,
+    "expressiveness": 44
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 20,
+    "fullBleedBias": 66
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "spacious",
+      "centered",
+      "single",
+      "full bleed",
+      "overlay"
+    ],
+    "avoid": [
+      "dense",
+      "table",
+      "six",
+      "bordered",
+      "grid"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "background media",
+          "overlay"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cta": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Use the metallic three times, not thirty",
+    "Light the photography like an object"
+  ],
+  "donts": [
+    "Never lift the canvas to mid-grey",
+    "Avoid borders on a dark ground"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "premium-medical",
+  "familyId": "health-wellness",
+  "name": "Premium Medical",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Private-practice polish: deep neutrals, a serif display and very controlled photography.",
+  "philosophy": "Expertise at a price should look composed. Fewer claims, better set.",
+  "polarity": "light",
+  "tags": [
+    "premium",
+    "serif",
+    "controlled",
+    "tonal"
+  ],
+  "useCases": [
+    "Private practice homepage",
+    "Consultant profile page",
+    "Procedure detail page"
+  ],
+  "industries": [
+    "healthcare",
+    "wellness",
+    "clinics",
+    "biotech"
+  ],
+  "palette": {
+    "bg": "#F8F7F4",
+    "ink": "#191B1C",
+    "accent": "#1F4E4A",
+    "soft": "#E7E9E6",
+    "dark": "#101212"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Source Serif 4",
+    "body": "Inter",
+    "scale": 1.1,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "6px",
+  "buttonStyle": "sweep-fill",
+  "dials": {
+    "density": 30,
+    "measure": 44,
+    "headline": 60,
+    "accent": 26,
+    "surface": 30,
+    "corner": 30,
+    "imagery": 58,
+    "motion": 18,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 14,
+    "fullBleedBias": 28
+  },
+  "patternPreferences": {
+    "prefer": [
+      "clear",
+      "list",
+      "faq",
+      "split",
+      "people",
+      "spacious",
+      "three"
+    ],
+    "avoid": [
+      "brutal",
+      "oversized",
+      "dense",
+      "slider"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Make each claim carry weight",
+    "Keep photography controlled"
+  ],
+  "donts": [
+    "Never crowd the page",
+    "Avoid bright saturated colour"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "contemporary-magazine",
+  "familyId": "editorial",
+  "name": "Contemporary Magazine",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A modern feature well: multi-column text, pull quotes and photography that runs to the margin.",
+  "philosophy": "Pages that are read, not scanned. Give the words a measure they deserve and let the pictures interrupt at the right moments.",
+  "polarity": "light",
+  "tags": [
+    "magazine",
+    "columns",
+    "quote-led",
+    "photographic"
+  ],
+  "useCases": [
+    "Feature article",
+    "Long-form brand story",
+    "Content hub homepage"
+  ],
+  "industries": [
+    "media",
+    "publishing",
+    "culture",
+    "nonprofit"
+  ],
+  "palette": {
+    "bg": "#FDFCFA",
+    "ink": "#171514",
+    "accent": "#C2410C",
+    "soft": "#EEEAE4",
+    "dark": "#100F0E"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Source Serif 4",
+    "scale": 1.14,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "2px",
+  "buttonStyle": "offset-block",
+  "dials": {
+    "density": 46,
+    "measure": 50,
+    "headline": 72,
+    "accent": 38,
+    "surface": 22,
+    "corner": 8,
+    "imagery": 64,
+    "motion": 26,
+    "expressiveness": 54
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "flat",
+    "asymmetry": 42,
+    "fullBleedBias": 44
+  },
+  "patternPreferences": {
+    "prefer": [
+      "editorial",
+      "columns",
+      "quote-led",
+      "text-dominant",
+      "large media"
+    ],
+    "avoid": [
+      "gradient",
+      "glass",
+      "table"
+    ],
+    "byFamily": {
+      "blog": {
+        "prefer": [
+          "columns",
+          "three"
+        ],
+        "avoid": []
+      },
+      "testimonial": {
+        "prefer": [
+          "quote-led"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "default",
+      "viewport": "animate-headings"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "blog": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "testimonial": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Set a real reading measure",
+    "Use a pull quote to change pace"
+  ],
+  "donts": [
+    "Never let a headline run to 20 words",
+    "Avoid card grids where prose belongs"
+  ]
+}

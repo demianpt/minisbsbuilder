@@ -1,0 +1,299 @@
+/* ===== Brief Brain panels (Step 01 and Step 03) ===== */
+.brain-panel{background:var(--ui-paper);border:1px solid var(--ui-line);margin-bottom:14px;padding:17px}
+.brain-live{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
+.brain-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid #e9e7e2;margin-bottom:14px}
+.brain-kicker{display:block;font:500 9px/1 DM Mono,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ui-accent-dark);margin-bottom:8px}
+.brain-panel-head h2{font:600 20px/1.1 Source Serif 4,serif;margin:0 0 7px;letter-spacing:-.02em}
+.brain-panel-head p{font-size:11px;line-height:1.55;color:var(--ui-muted);margin:0;max-width:58ch}
+.brain-badge{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ui-line);background:#fbfaf7;padding:6px 9px;font:500 9px/1 DM Mono,monospace;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;border-radius:3px}
+.brain-badge:before{content:"";width:6px;height:6px;border-radius:50%;background:#a9adb2}
+.brain-badge.is-ready:before{background:var(--ui-green)}
+.brain-badge.is-working:before{background:var(--ui-yellow);animation:brain-pulse 1.1s ease-in-out infinite}
+.brain-badge.is-error:before{background:var(--ui-red)}
+@keyframes brain-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.brain-badge.is-working:before{animation:none}}
+
+.brain-provider{display:flex;align-items:center;gap:9px;border:1px solid var(--ui-line);background:#fbfaf7;padding:9px 11px;margin-bottom:13px;font-size:10px}
+.brain-provider i{width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:#a9adb2}
+.brain-provider.is-on i{background:#5cc58f;box-shadow:0 0 0 3px rgba(92,197,143,.14)}
+.brain-provider.is-warn i{background:#e0a83c;box-shadow:0 0 0 3px rgba(224,168,60,.16)}
+.brain-provider.is-off i{background:#b7bcc1}
+.brain-provider b{font-weight:600;flex:1;min-width:0}
+.brain-text-button{border:0;background:transparent;color:var(--ui-accent-dark);font:700 10px/1 Inter,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px 2px;white-space:nowrap}
+.brain-text-button:hover{color:var(--ui-ink)}
+.brain-text-button:disabled{opacity:.4;cursor:not-allowed;text-decoration:none}
+
+.brain-primary-button,.brain-secondary-button{height:36px;padding:0 14px;font:700 10px/1 Inter,sans-serif;letter-spacing:.02em;cursor:pointer;border-radius:4px;transition:.15s}
+.brain-primary-button{border:1px solid var(--ui-side);background:var(--ui-side);color:#fff}
+.brain-primary-button:hover:not(:disabled){background:#2c3238}
+.brain-secondary-button{border:1px solid var(--ui-line-2);background:#fff;color:var(--ui-ink)}
+.brain-secondary-button:hover:not(:disabled){border-color:#8e8a83;background:#faf9f6}
+.brain-primary-button:disabled,.brain-secondary-button:disabled{opacity:.42;cursor:not-allowed}
+.brain-icon-button{width:28px;height:28px;flex:0 0 28px;border:1px solid transparent;background:transparent;color:#7c8085;cursor:pointer;border-radius:3px;font-size:15px;line-height:1}
+.brain-icon-button:hover{background:#f2f0ec;border-color:#ddd9d2;color:var(--ui-red)}
+
+.brain-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.brain-hint{font-size:10px;line-height:1.55;color:var(--ui-muted);margin:8px 0 0}
+
+/* ------------------------------------------------------------------ *
+ * The one button's four jobs
+ *
+ * Reading the brief, writing the copy, finding the imagery and forking the
+ * three workspaces take most of a minute between them. Without a list saying
+ * which one is running, that reads as a hang; without the counts afterwards,
+ * there is nothing on screen to say what actually landed.
+ * ------------------------------------------------------------------ */
+.brain-stages{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 12px;padding:0}
+.brain-stages li{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 10px 5px 6px;border:1px solid #e4e1da;border-radius:99px;
+  font-size:10px;color:var(--ui-muted);background:#fbfaf7;
+}
+.brain-stages i{
+  width:15px;height:15px;flex:0 0 15px;display:grid;place-items:center;
+  border-radius:50%;background:#e7e4dd;color:#8b8781;
+  font:500 8px/1 DM Mono,monospace;font-style:normal;
+}
+.brain-stages li.is-done{color:var(--ui-ink)}
+.brain-stages li.is-done i{background:var(--ui-green,#4a7d54);color:#fff}
+.brain-stages li.is-live{border-color:var(--ui-accent);color:var(--ui-ink);background:#fdf5f2}
+.brain-stages li.is-live i{background:var(--ui-accent);color:#fff;animation:brain-stage-pulse 1.1s ease-in-out infinite}
+@keyframes brain-stage-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.brain-stages li.is-live i{animation:none}}
+
+.brain-report{margin:10px 0 4px;padding:11px 13px;background:#f6f4ef;border-left:2px solid var(--ui-green,#4a7d54)}
+.brain-report ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.brain-report li{font-size:11px;line-height:1.5;display:flex;gap:7px}
+.brain-report li:before{content:"✓";color:var(--ui-green,#4a7d54);font-size:10px}
+.brain-report .brain-hint{margin-top:7px}
+.brain-hint.is-warn{color:var(--ui-yellow);background:#fff9ee;border-left:2px solid var(--ui-yellow);padding:8px 10px}
+.brain-error{font-size:10px;line-height:1.5;color:var(--ui-red);background:#fdf1ef;border-left:2px solid var(--ui-red);padding:9px 11px;margin:0 0 12px}
+.brain-subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 0 10px;padding-top:16px;border-top:1px solid #ece9e3}
+.brain-subhead b{font-size:11px}
+.brain-subhead small{font:400 9px DM Mono,monospace;color:#93979c}
+
+.brain-readiness{border:1px solid var(--ui-line);background:#fbfaf7;padding:11px 12px}
+.brain-readiness-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:9px}
+.brain-readiness-head b{font-size:10px}
+.brain-readiness-head span{font:400 9px DM Mono,monospace;color:var(--ui-muted)}
+.brain-readiness ul{list-style:none;display:flex;flex-wrap:wrap;gap:5px;padding:0;margin:0}
+.brain-readiness li{display:inline-flex;align-items:center;gap:5px;font-size:9px;border:1px solid #e2ded7;background:#fff;padding:4px 7px;color:#8b8f94}
+.brain-readiness li span{font-size:8px;width:11px;text-align:center}
+.brain-readiness li.is-filled{color:var(--ui-green);border-color:#bcdccd;background:#f4fbf7}
+.brain-readiness li.is-missing{color:var(--ui-red);border-color:#e8cac4;background:#fdf4f2}
+
+.brain-readback{border:1px solid var(--ui-ink);background:#fff;padding:14px;margin-top:6px;box-shadow:inset 3px 0 0 var(--ui-accent)}
+.brain-readback dl{margin:12px 0 0;display:flex;flex-direction:column;gap:11px}
+.brain-readback dl>div{display:grid;grid-template-columns:1fr;gap:4px;padding-bottom:11px;border-bottom:1px solid #f0ede8}
+.brain-readback dl>div:last-child{border-bottom:0;padding-bottom:0}
+.brain-readback dl>div.is-empty dd b{color:var(--ui-yellow)}
+.brain-readback dt{font:700 9px/1 DM Mono,monospace;text-transform:uppercase;letter-spacing:.07em;color:#8b8f94}
+.brain-readback dd{margin:0}
+.brain-readback dd b{display:block;font:600 13px/1.45 Source Serif 4,serif;color:var(--ui-ink)}
+.brain-readback dd small{display:block;font-size:9px;line-height:1.45;color:#9a9ea3;margin-top:4px}
+.brain-confirm-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:13px;padding-top:12px;border-top:1px solid #f0ede8;font-size:10px}
+.brain-meter{width:74px;height:5px;background:#eae7e1;border-radius:99px;overflow:hidden;flex:0 0 74px}
+.brain-meter i{display:block;height:100%;width:var(--brain-meter,0%);background:var(--ui-green)}
+.brain-source{font:500 9px DM Mono,monospace;padding:3px 6px;border:1px solid var(--ui-line);background:#fbfaf7;color:#7d8186;margin-left:auto}
+.brain-source.is-ai{color:#25604a;border-color:#bcdccd;background:#f4fbf7}
+.brain-source.is-local{color:#8a6412;border-color:#e5d3ae;background:#fffcf5}
+
+.brain-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+.brain-chips span{font:400 8px DM Mono,monospace;text-transform:uppercase;letter-spacing:.04em;background:#f4f2ee;border:1px solid #e5e2dc;padding:3px 5px;color:#6f7378}
+.brain-chips.is-keywords span{text-transform:none;letter-spacing:0;font-family:Inter,sans-serif;font-size:9px;background:#fff;border-color:#ddd9d2}
+.brain-chips.is-buttons span{background:var(--ui-side);color:#fff;border-color:var(--ui-side);text-transform:none;font-family:Inter,sans-serif;font-size:9px}
+.brain-signals{margin-top:12px}
+.brain-signals b{display:block;font-size:10px;margin-bottom:6px}
+.brain-signals ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:5px}
+.brain-signals li{font-size:9px;border:1px solid #e2ded7;background:#fbfaf7;padding:4px 7px;color:#6f7378}
+
+.brain-recommendation{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border:1px solid var(--ui-line);background:#fff;padding:13px;margin-top:12px}
+.brain-recommendation h4{font:600 15px/1.2 Source Serif 4,serif;margin:0 0 6px}
+.brain-recommendation p{font-size:10px;line-height:1.5;color:var(--ui-muted);margin:0;max-width:54ch}
+
+.brain-flow-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.brain-flow-list li{display:grid;grid-template-columns:26px 1fr auto;gap:11px;align-items:start;border:1px solid var(--ui-line);background:#fff;padding:12px}
+.brain-flow-list li.is-active{border-color:var(--ui-ink);box-shadow:inset 3px 0 0 var(--ui-accent)}
+.brain-flow-rank{width:24px;height:24px;display:grid;place-items:center;background:var(--ui-side);color:#fff;font:500 10px/1 DM Mono,monospace;border-radius:50%}
+.brain-flow-copy{min-width:0}
+.brain-flow-copy b{display:block;font-size:12px;margin-bottom:5px}
+.brain-flow-copy b small{font:400 9px DM Mono,monospace;color:#9a9ea3;margin-left:5px}
+.brain-flow-copy p{font-size:10px;line-height:1.5;color:#4d5155;margin:0 0 5px;max-width:56ch}
+.brain-flow-tagline{color:var(--ui-muted)!important}
+.brain-flow-note{display:block;font-size:9px;color:#9a9ea3;margin-top:5px}
+.brain-flow-actions{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.brain-fit{font:500 10px DM Mono,monospace;color:var(--ui-green)}
+.brain-flow-list.is-compact li{grid-template-columns:22px 1fr auto;padding:9px 10px}
+.brain-flow-list.is-compact .brain-flow-copy p{font-size:9px}
+
+.brain-draft,.brain-plan{border:1px solid var(--ui-line);background:#fbfaf7;padding:12px;margin-top:10px}
+.brain-draft-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:10px}
+.brain-draft-head b{font-size:11px}
+.brain-draft ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.brain-draft ol>li{display:grid;grid-template-columns:88px 1fr;gap:10px;background:#fff;border:1px solid #e7e4de;padding:10px}
+.brain-draft-family{font:500 8px DM Mono,monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--ui-accent-dark);padding-top:2px}
+.brain-draft ol>li small{display:block;font:500 8px DM Mono,monospace;text-transform:uppercase;letter-spacing:.07em;color:#9a9ea3;margin-bottom:3px}
+.brain-draft ol>li b{display:block;font:600 13px/1.35 Source Serif 4,serif}
+.brain-draft ol>li p{font-size:10px;line-height:1.5;color:#4d5155;margin:5px 0 0}
+.brain-draft-items{list-style:none;padding:0;margin:7px 0 0;display:flex;flex-direction:column;gap:3px}
+.brain-draft-items li{font-size:9px;line-height:1.45;color:#6f7378;padding-left:9px;position:relative}
+.brain-draft-items li:before{content:"";position:absolute;left:0;top:6px;width:3px;height:3px;background:#c3bfb7}
+.brain-draft-items i{font-style:normal;font:500 9px DM Mono,monospace;color:var(--ui-accent-dark)}
+.brain-draft-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:11px;border-top:1px solid #e9e6e0}
+
+.brain-field{display:flex;flex-direction:column;gap:6px}
+.brain-field span{font-size:10px;font-weight:700;color:#34373b}
+.brain-field textarea{width:100%;border:1px solid var(--ui-line);background:#fff;border-radius:4px;padding:10px;font:400 12px/1.55 Inter,sans-serif;resize:vertical;min-height:92px;outline:none}
+.brain-field textarea:focus{border-color:#6d7176;box-shadow:0 0 0 2px rgba(24,26,29,.06)}
+
+.brain-plan-steps{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.brain-plan-steps li{display:grid;grid-template-columns:26px 1fr 168px 28px;gap:9px;align-items:center;background:#fff;border:1px solid #e7e4de;padding:9px 10px}
+.brain-plan-steps li.is-unresolved{border-color:#e0c899;background:#fffcf5}
+.brain-plan-index{font:500 9px DM Mono,monospace;color:#9a9ea3}
+.brain-plan-copy{min-width:0}
+.brain-plan-copy b{display:block;font-size:11px}
+.brain-plan-copy small{display:block;font-size:9px;color:#9a9ea3;margin-top:3px;line-height:1.4}
+.brain-step-family{height:32px;border:1px solid var(--ui-line);background:#fff;border-radius:3px;padding:0 8px;font-size:10px;width:100%}
+.brain-plan-added{margin-top:11px;border:1px dashed #c9c5bd;background:#fff;padding:10px}
+.brain-plan-added b{display:block;font-size:10px;margin-bottom:6px}
+.brain-plan-added ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+.brain-plan-added li{font-size:9px;line-height:1.45;color:#6f7378}
+
+@media(max-width:720px){
+  .brain-panel-head{display:block}
+  .brain-badge{margin-top:10px}
+  .brain-recommendation{grid-template-columns:1fr}
+  .brain-flow-list li,.brain-flow-list.is-compact li{grid-template-columns:22px 1fr}
+  .brain-flow-actions{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
+  .brain-draft ol>li{grid-template-columns:1fr}
+  .brain-plan-steps li{grid-template-columns:22px 1fr 28px}
+  .brain-step-family{grid-column:1/-1}
+}
+
+/* Stock imagery panel. The tiles are evidence, not a picker: the editor's own
+   media tab is where a picture gets changed. */
+.brain-media-summary{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.brain-asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:7px;margin-top:11px}
+.brain-asset{position:relative;margin:0;border:1px solid #e7e4de;background:#fff;overflow:hidden}
+.brain-asset img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;opacity:.55;transition:opacity .18s}
+.brain-asset.is-used img{opacity:1}
+.brain-asset figcaption{font:500 8px DM Mono,monospace;letter-spacing:.06em;text-transform:uppercase;color:#9a9ea3;padding:4px 6px}
+.brain-asset.is-used figcaption{color:#2f7a52}
+.brain-asset-kind{position:absolute;top:5px;left:5px;background:rgba(10,12,14,.82);color:#fff;font:500 8px DM Mono,monospace;letter-spacing:.06em;text-transform:uppercase;padding:2px 5px}
+
+/* The licence row. A comp nobody can trace back to an asset page is a picture
+   the client cannot buy, so the id and the shop link sit on the tile itself
+   rather than behind a hover or a details panel. */
+.brain-asset-licence{display:flex;align-items:center;justify-content:space-between;gap:4px;border-top:1px solid #efece6;padding:3px 5px}
+.brain-asset-id{border:0;background:transparent;padding:0;cursor:pointer;font:500 8px DM Mono,monospace;color:#7c8085;letter-spacing:.02em}
+.brain-asset-id:hover{color:var(--ui-ink);text-decoration:underline;text-underline-offset:2px}
+.brain-asset-buy{font:700 8px/1 Inter,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--ui-accent-dark);text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.brain-asset-buy:hover{text-decoration-thickness:2px}
+
+/* Add one asset by id: the escape hatch from "the search did not find it". */
+.brain-asset-add{margin-top:12px;padding:11px 12px;border:1px dashed #ddd9d2;background:#fbfaf7}
+.brain-asset-add>label{display:block;font:700 10px/1 Inter,sans-serif;color:#34373b;margin-bottom:7px}
+.brain-asset-add-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.brain-asset-add-row input{flex:1 1 190px;min-width:0;height:33px;border:1px solid var(--ui-line);border-radius:4px;background:#fff;padding:0 9px;font-size:11px;color:var(--ui-ink)}
+.brain-asset-add-row input:focus{outline:none;border-color:#6d7176;box-shadow:0 0 0 2px rgba(24,26,29,.06)}
+.brain-asset-add .brain-error{margin:9px 0 0}
+.brain-asset-add .brain-hint{margin-top:7px}
+
+/* ===== "The brain is working" =====================================
+   Three cues, layered, because one is never enough to read as alive: a light
+   sweeping the panel's top edge, an orbit of dots that says "thinking" rather
+   than "loading", and skeleton bars standing in for the answer that is coming.
+   All of it collapses to a static state under prefers-reduced-motion. */
+.brain-panel.is-thinking{position:relative;border-color:var(--ui-accent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ui-accent) 22%,transparent),0 14px 38px -22px color-mix(in srgb,var(--ui-accent) 55%,transparent)}
+.brain-panel.is-thinking:before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ui-accent),#fff,var(--ui-accent),transparent);background-size:55% 100%;background-repeat:no-repeat;animation:brain-sweep 1.65s cubic-bezier(.55,0,.45,1) infinite}
+
+/* The working cue is inline now, in the action row beside the button that
+   started the job, so it reads as that button's answer rather than as a banner
+   about the panel. Same orbit, same wording, a third of the footprint. */
+.brain-thinking{display:inline-flex;align-items:center;gap:9px;padding:5px 12px 5px 7px;border:1px solid color-mix(in srgb,var(--ui-accent) 30%,var(--ui-line));border-radius:99px;background:
+  radial-gradient(120% 160% at 6% 50%,color-mix(in srgb,var(--ui-accent) 11%,transparent),transparent 62%),
+  linear-gradient(180deg,#fffdfa,#fbf8f4);animation:brain-rise .32s ease-out both}
+
+/* The orbit. Three dots on one axis, rotated in thirds, each pulsing out of
+   phase — cheap to run and it reads as deliberate thought, not a spinner. */
+.brain-thinking-orb{position:relative;flex:0 0 auto;width:22px;height:22px;animation:brain-spin 3.1s linear infinite}
+.brain-thinking-orb i{position:absolute;inset:0;display:block}
+.brain-thinking-orb i:before{content:"";position:absolute;top:0;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--ui-accent);box-shadow:0 0 10px color-mix(in srgb,var(--ui-accent) 70%,transparent);animation:brain-breathe 1.5s ease-in-out infinite}
+.brain-thinking-orb i:nth-child(2){transform:rotate(120deg)}
+.brain-thinking-orb i:nth-child(2):before{animation-delay:.5s;background:var(--ui-accent-dark)}
+.brain-thinking-orb i:nth-child(3){transform:rotate(240deg)}
+.brain-thinking-orb i:nth-child(3):before{animation-delay:1s;opacity:.6}
+
+.brain-thinking-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1 1 auto}
+.brain-thinking-copy b{font-size:12px;font-weight:600;letter-spacing:-.01em;color:var(--ui-ink)}
+.brain-thinking-copy small{font:500 9px/1 DM Mono,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ui-accent-dark)}
+
+/* Skeleton bars: the shape of the answer, shimmering while it is fetched. */
+.brain-thinking-skeleton{display:none;flex:0 0 auto;gap:5px;width:104px;flex-direction:column}
+.brain-thinking-skeleton i{display:block;height:5px;border-radius:3px;background:linear-gradient(90deg,#eae6df 0%,#fff 50%,#eae6df 100%);background-size:220% 100%;animation:brain-shimmer 1.25s linear infinite}
+.brain-thinking-skeleton i:nth-child(2){width:76%;animation-delay:.16s}
+.brain-thinking-skeleton i:nth-child(3){width:52%;animation-delay:.32s}
+@media(min-width:560px){.brain-thinking-skeleton{display:flex}}
+
+/* The pressed button keeps its own spinner and its own words: it is the thing
+   being looked at, so it is the thing that answers. */
+.brain-primary-button.is-working,.brain-secondary-button.is-working{
+  display:inline-flex;align-items:center;gap:8px;cursor:progress;opacity:1;
+}
+.brain-btn-spin{
+  flex:0 0 auto;width:13px;height:13px;border-radius:50%;
+  border:2px solid color-mix(in srgb,currentColor 28%,transparent);border-top-color:currentColor;
+  animation:brain-spin .7s linear infinite;
+}
+
+/* The rest of a working panel's controls are disabled; make that legible rather
+   than dead — but never dim the button that is doing the work. */
+.brain-panel.is-thinking .brain-actions{opacity:.5}
+.brain-panel.is-thinking .brain-actions:has(.is-working),
+.brain-panel.is-thinking .brain-actions:has(.brain-thinking){opacity:1}
+.brain-panel.is-thinking .brain-asset-grid,.brain-panel.is-thinking .brain-draft,.brain-panel.is-thinking .brain-concept-grid{opacity:.45;transition:opacity .2s}
+
+@keyframes brain-sweep{0%{background-position:-60% 0}100%{background-position:160% 0}}
+@keyframes brain-spin{to{transform:rotate(360deg)}}
+@keyframes brain-breathe{0%,100%{transform:scale(.55);opacity:.35}50%{transform:scale(1.35);opacity:1}}
+@keyframes brain-shimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
+@keyframes brain-rise{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .brain-panel.is-thinking:before,.brain-thinking,.brain-thinking-orb,.brain-thinking-orb i:before,.brain-thinking-skeleton i,.brain-btn-spin{animation:none}
+  .brain-panel.is-thinking:before{background:var(--ui-accent)}
+  .brain-thinking-orb i:before{transform:scale(1);opacity:1}
+}
+
+/* What the brief pinned. Not a warning — a receipt: these parts of the design
+   were stated outright, so all three concepts share them by construction. */
+.brain-hint.is-pinned{
+  color:var(--ui-ink);background:#f3f7f4;border-left:2px solid var(--ui-green);
+  padding:8px 10px;font-weight:500;
+}
+
+/*
+ * The section reference under the typed outline.
+ *
+ * "The page will have…" over an empty box asks the strategist to guess the
+ * vocabulary. This lists every family the engine can build, with what each is for,
+ * and each one adds itself to the outline.
+ */
+.outline-reference{margin:-4px 0 14px;border:1px solid var(--ui-line,#dcd9d2);background:#fff}
+.outline-reference>summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 11px;cursor:pointer;list-style:none}
+.outline-reference>summary::-webkit-details-marker{display:none}
+.outline-reference>summary::after{content:'';margin-left:auto;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);opacity:.5;transition:transform .15s}
+.outline-reference[open]>summary::after{transform:rotate(-135deg)}
+.outline-reference>summary b{font-size:11px}
+.outline-reference>summary small{font:500 8px DM Mono,monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--ui-muted,#6f7175)}
+.outline-reference>.brain-hint{margin:0 11px 9px}
+.outline-sections{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:5px;padding:0 11px 11px}
+.outline-section{text-align:left;border:1px solid var(--ui-line,#dcd9d2);background:#fff;padding:7px 8px;cursor:pointer;transition:border-color .14s,background .14s}
+.outline-section:hover:not(:disabled){border-color:var(--ui-ink,#15181b);background:#faf9f7}
+.outline-section:disabled{opacity:.5;cursor:default}
+.outline-section b{display:block;font-size:10px;margin-bottom:2px}
+.outline-section span{display:block;font-size:9px;line-height:1.35;color:var(--ui-muted,#6f7175)}
+/* Already named in the outline. Still clickable: a flow may repeat a family. */
+.outline-section.is-used{border-color:var(--ui-accent,#B5412B);background:#fdf6f4}
+.outline-section.is-used b::after{content:' · in your outline';font:500 8px DM Mono,monospace;letter-spacing:.06em;color:var(--ui-accent,#B5412B);text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.outline-section,.outline-reference>summary::after{transition:none}}

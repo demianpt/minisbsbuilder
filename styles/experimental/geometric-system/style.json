@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "geometric-system",
+  "familyId": "experimental",
+  "name": "Geometric System",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Bauhaus grammar: flat primaries, circles and quadrants used as structure rather than decoration.",
+  "philosophy": "Shape carries meaning. A small set of forms and colours, repeated with discipline.",
+  "polarity": "light",
+  "tags": [
+    "geometric",
+    "primary",
+    "flat",
+    "systematic"
+  ],
+  "useCases": [
+    "Design system documentation front",
+    "Studio or agency homepage",
+    "Systematic brand page"
+  ],
+  "industries": [
+    "technology",
+    "culture",
+    "media",
+    "startups"
+  ],
+  "palette": {
+    "bg": "#F7F5F0",
+    "ink": "#111114",
+    "accent": "#E8B400",
+    "soft": "#E7E3D9",
+    "dark": "#0B0B0D"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Libre Franklin",
+    "body": "Work Sans",
+    "scale": 1.14,
+    "displayCase": "upper",
+    "displayTracking": 0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "corner-cut",
+  "dials": {
+    "density": 52,
+    "measure": 58,
+    "headline": 74,
+    "accent": 66,
+    "surface": 46,
+    "corner": 2,
+    "imagery": 40,
+    "motion": 30,
+    "expressiveness": 80
+  },
+  "composition": {
+    "alignment": "split",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 56,
+    "fullBleedBias": 44
+  },
+  "patternPreferences": {
+    "prefer": [
+      "asymmetric",
+      "oversized",
+      "flat",
+      "grid",
+      "split",
+      "columns"
+    ],
+    "avoid": [
+      "clear",
+      "table",
+      "photo overlay",
+      "gradient",
+      "rounded"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "grid",
+          "four"
+        ],
+        "avoid": []
+      },
+      "split": {
+        "prefer": [
+          "flat"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up",
+      "decoration": "diamond-grid",
+      "decorationOpacity": 0.12
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "split": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Repeat a small set of shapes",
+    "Use flat primaries as structure"
+  ],
+  "donts": [
+    "Never blur or gradient a shape",
+    "Avoid photographic ornament"
+  ]
+}

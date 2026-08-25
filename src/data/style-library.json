@@ -1,0 +1,6559 @@
+{
+  "schemaVersion": "sbs-style-library/1.0",
+  "styleSchemaVersion": "sbs-style/1.0",
+  "generatedAt": "2026-08-20T11:56:30.402Z",
+  "generatedFrom": "style-factory/style-seeds.json",
+  "families": [
+    {
+      "id": "technology",
+      "name": "Technology",
+      "blurb": "Product-led, precise, engineered.",
+      "styleIds": [
+        "product-keynote-minimal",
+        "precision-saas",
+        "glass-ai",
+        "technical-grid",
+        "dark-product-lab"
+      ]
+    },
+    {
+      "id": "luxury",
+      "name": "Luxury",
+      "blurb": "Restraint, materials, quiet confidence.",
+      "styleIds": [
+        "quiet-luxury",
+        "modern-heritage",
+        "editorial-luxury",
+        "dark-prestige",
+        "gallery-luxury"
+      ]
+    },
+    {
+      "id": "editorial",
+      "name": "Editorial",
+      "blurb": "Type-first, journalistic, read at length.",
+      "styleIds": [
+        "contemporary-magazine",
+        "swiss-editorial",
+        "culture-journal",
+        "oversized-editorial",
+        "newsroom-modern"
+      ]
+    },
+    {
+      "id": "corporate",
+      "name": "Corporate",
+      "blurb": "Institutional authority, clear structure.",
+      "styleIds": [
+        "executive-precision",
+        "human-corporate",
+        "financial-authority",
+        "global-consulting",
+        "institutional-modern"
+      ]
+    },
+    {
+      "id": "commerce",
+      "name": "Commerce",
+      "blurb": "Product forward, built to convert.",
+      "styleIds": [
+        "product-editorial",
+        "bold-retail",
+        "premium-commerce",
+        "lifestyle-shop",
+        "conversion-minimal"
+      ]
+    },
+    {
+      "id": "hospitality",
+      "name": "Hospitality",
+      "blurb": "Place, welcome, atmosphere.",
+      "styleIds": [
+        "boutique-escape",
+        "resort-editorial",
+        "culinary-luxury",
+        "urban-hotel",
+        "organic-retreat"
+      ]
+    },
+    {
+      "id": "automotive-mobility",
+      "name": "Automotive / Mobility",
+      "blurb": "Engineering, motion, machine presence.",
+      "styleIds": [
+        "performance-machine",
+        "grand-touring",
+        "technical-automotive",
+        "heritage-garage",
+        "future-mobility"
+      ]
+    },
+    {
+      "id": "health-wellness",
+      "name": "Health / Wellness",
+      "blurb": "Calm, clinical clarity, care.",
+      "styleIds": [
+        "clinical-calm",
+        "human-wellness",
+        "premium-medical",
+        "natural-health",
+        "precision-health"
+      ]
+    },
+    {
+      "id": "creative-culture",
+      "name": "Creative / Culture",
+      "blurb": "Work first, gallery discipline.",
+      "styleIds": [
+        "portfolio-minimal",
+        "art-gallery",
+        "studio-bold",
+        "cultural-experimental",
+        "motion-creative"
+      ]
+    },
+    {
+      "id": "experimental",
+      "name": "Experimental",
+      "blurb": "Deliberate rule-breaking, on purpose.",
+      "styleIds": [
+        "neo-brutalist",
+        "retro-future",
+        "digital-aurora",
+        "geometric-system",
+        "typographic-maximalist"
+      ]
+    }
+  ],
+  "styles": [
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "product-keynote-minimal",
+      "familyId": "technology",
+      "name": "Product Keynote Minimal",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "One product claim per screen, held in a wide field of white with the interface itself as the only ornament.",
+      "philosophy": "A keynote works because it refuses to show two things at once. Every band states one idea, gives the product room to be looked at, and moves on.",
+      "polarity": "light",
+      "tags": [
+        "minimal",
+        "product-led",
+        "spacious",
+        "keynote"
+      ],
+      "useCases": [
+        "Product launch",
+        "Platform homepage",
+        "Feature announcement"
+      ],
+      "industries": [
+        "saas",
+        "technology",
+        "developer-tools",
+        "ai"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#0B0D0F",
+        "accent": "#0A63F5",
+        "soft": "#F2F4F7",
+        "dark": "#0B0D0F"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Manrope",
+        "body": "Inter",
+        "scale": 1.2,
+        "displayCase": "none",
+        "displayTracking": -0.03
+      },
+      "radius": "10px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 22,
+        "measure": 46,
+        "headline": 78,
+        "accent": 34,
+        "surface": 24,
+        "corner": 58,
+        "imagery": 62,
+        "motion": 30,
+        "expressiveness": 40
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 10,
+        "fullBleedBias": 46
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "split",
+          "diagram",
+          "contained",
+          "large media",
+          "centered",
+          "single",
+          "screenshot"
+        ],
+        "avoid": [
+          "ornament",
+          "quote-led",
+          "dense",
+          "sidebar"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "centered",
+              "large media"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three",
+              "spacious"
+            ],
+            "avoid": [
+              "six"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": false,
+          "viewport": "animate-headings"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cta": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Give one claim the whole band",
+        "Let the product screenshot be the picture"
+      ],
+      "donts": [
+        "Never crowd two propositions into one band",
+        "Do not decorate what the product already shows"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "precision-saas",
+      "familyId": "technology",
+      "name": "Precision SaaS",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A tight, bordered grid where every claim is measurable and every surface has an edge you can see.",
+      "philosophy": "Trust in software is built from precision. Aligned edges, consistent rhythm and visible structure say the product was engineered by people who care about the same things.",
+      "polarity": "light",
+      "tags": [
+        "technical",
+        "bordered",
+        "dense",
+        "systematic"
+      ],
+      "useCases": [
+        "B2B SaaS homepage",
+        "Pricing and plans",
+        "Integration catalogue"
+      ],
+      "industries": [
+        "saas",
+        "technology",
+        "developer-tools",
+        "ai"
+      ],
+      "palette": {
+        "bg": "#FBFCFD",
+        "ink": "#111826",
+        "accent": "#2563D9",
+        "soft": "#E7EBF1",
+        "dark": "#0D1420"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Inter",
+        "body": "Inter",
+        "scale": 0.96,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "6px",
+      "buttonStyle": "depth-press",
+      "dials": {
+        "density": 64,
+        "measure": 54,
+        "headline": 46,
+        "accent": 44,
+        "surface": 74,
+        "corner": 32,
+        "imagery": 38,
+        "motion": 22,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 12,
+        "fullBleedBias": 16
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "split",
+          "diagram",
+          "contained",
+          "bordered",
+          "table",
+          "columns",
+          "dense",
+          "compare"
+        ],
+        "avoid": [
+          "ornament",
+          "quote-led",
+          "full bleed",
+          "photo overlay"
+        ],
+        "byFamily": {
+          "pricing": {
+            "prefer": [
+              "compare",
+              "table",
+              "three"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "four",
+              "six",
+              "grid"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": false,
+          "viewport": "fade-up"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4,
+          "columnsMobile": 1
+        },
+        "pricing": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        }
+      },
+      "dos": [
+        "Keep every column edge on the same grid",
+        "State numbers rather than adjectives"
+      ],
+      "donts": [
+        "Never let a band float without an edge",
+        "Avoid photography where a diagram is truer"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "glass-ai",
+      "familyId": "technology",
+      "name": "Glass AI",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Layered translucent surfaces over a deep gradient field, with type that floats rather than sits.",
+      "philosophy": "Software that infers should feel like depth rather than paper. Stacked translucency suggests a system with layers you cannot see all of at once.",
+      "polarity": "dark",
+      "tags": [
+        "glass",
+        "layered",
+        "dark",
+        "gradient",
+        "immersive"
+      ],
+      "useCases": [
+        "AI product homepage",
+        "Model or platform launch",
+        "Developer platform overview"
+      ],
+      "industries": [
+        "ai",
+        "technology",
+        "saas",
+        "data"
+      ],
+      "palette": {
+        "bg": "#0A0F1C",
+        "ink": "#F2F5FA",
+        "accent": "#7C6BFF",
+        "soft": "#18213A",
+        "dark": "#05080F"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "Inter",
+        "scale": 1.1,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "18px",
+      "buttonStyle": "neon-trace",
+      "dials": {
+        "density": 40,
+        "measure": 50,
+        "headline": 70,
+        "accent": 66,
+        "surface": 52,
+        "corner": 84,
+        "imagery": 58,
+        "motion": 72,
+        "expressiveness": 72
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "glass",
+        "asymmetry": 34,
+        "fullBleedBias": 62
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "split",
+          "diagram",
+          "contained",
+          "overlay",
+          "gradient",
+          "layered",
+          "centered",
+          "background media"
+        ],
+        "avoid": [
+          "ornament",
+          "quote-led",
+          "bordered",
+          "table"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "background media",
+              "overlay"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three",
+              "overlay"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings",
+          "decoration": "concentric-rings",
+          "decorationOpacity": 0.12
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "columns": 3
+        },
+        "stats": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Stack surfaces so depth reads as capability",
+        "Keep the accent for the one action that matters"
+      ],
+      "donts": [
+        "Never put a hard border on a glass surface",
+        "Do not let motion outlast the reading"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "technical-grid",
+      "familyId": "technology",
+      "name": "Technical Grid",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A blueprint sensibility: monospace labels, exposed grid lines and content that reads like documentation.",
+      "philosophy": "Some audiences are reassured by seeing the structure. The grid is not hidden behind the design — it is the design, annotated.",
+      "polarity": "light",
+      "tags": [
+        "blueprint",
+        "monospace",
+        "technical",
+        "flat",
+        "dense"
+      ],
+      "useCases": [
+        "Documentation front door",
+        "Infrastructure product page",
+        "Engineering-led homepage"
+      ],
+      "industries": [
+        "saas",
+        "technology",
+        "developer-tools",
+        "ai"
+      ],
+      "palette": {
+        "bg": "#F7F8F6",
+        "ink": "#14181A",
+        "accent": "#D8442F",
+        "soft": "#E4E7E2",
+        "dark": "#0F1213"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "IBM Plex Mono",
+        "body": "Barlow",
+        "scale": 0.94,
+        "displayCase": "upper",
+        "displayTracking": 0.06
+      },
+      "radius": "0px",
+      "buttonStyle": "corner-cut",
+      "dials": {
+        "density": 72,
+        "measure": 62,
+        "headline": 40,
+        "accent": 40,
+        "surface": 62,
+        "corner": 4,
+        "imagery": 30,
+        "motion": 14,
+        "expressiveness": 46
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 22,
+        "fullBleedBias": 20
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "split",
+          "diagram",
+          "contained",
+          "list",
+          "columns",
+          "dense",
+          "timeline"
+        ],
+        "avoid": [
+          "ornament",
+          "quote-led",
+          "photo overlay",
+          "rounded",
+          "slider"
+        ],
+        "byFamily": {
+          "timeline": {
+            "prefer": [
+              "numbered",
+              "list"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "grid",
+              "six",
+              "four"
+            ],
+            "avoid": [
+              "media"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "viewport": "",
+          "decoration": "blueprint-grid",
+          "decorationOpacity": 0.1
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4,
+          "columnsMobile": 1
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "timeline": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Label sections like drawings",
+        "Let the grid show"
+      ],
+      "donts": [
+        "Never round a corner",
+        "Avoid decorative photography"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "dark-product-lab",
+      "familyId": "technology",
+      "name": "Dark Product Lab",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A developer-console mood: near-black canvas, one signal colour and product surfaces lit from within.",
+      "philosophy": "The people who choose this product already work in the dark. The site should feel like the tool they will spend the day in, not the brochure about it.",
+      "polarity": "dark",
+      "tags": [
+        "dark",
+        "product-led",
+        "console",
+        "technical"
+      ],
+      "useCases": [
+        "Developer tool homepage",
+        "CLI or SDK product page",
+        "Changelog and releases"
+      ],
+      "industries": [
+        "developer-tools",
+        "technology",
+        "saas",
+        "infrastructure"
+      ],
+      "palette": {
+        "bg": "#0C0E10",
+        "ink": "#EDEFF2",
+        "accent": "#37E29A",
+        "soft": "#181B1F",
+        "dark": "#050607"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "IBM Plex Mono",
+        "scale": 1.02,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "8px",
+      "buttonStyle": "split-reveal",
+      "dials": {
+        "density": 58,
+        "measure": 52,
+        "headline": 56,
+        "accent": 58,
+        "surface": 58,
+        "corner": 40,
+        "imagery": 50,
+        "motion": 40,
+        "expressiveness": 54
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "raised",
+        "asymmetry": 26,
+        "fullBleedBias": 40
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "split",
+          "diagram",
+          "contained",
+          "code",
+          "tabs",
+          "screenshot"
+        ],
+        "avoid": [
+          "ornament",
+          "quote-led"
+        ],
+        "byFamily": {
+          "tabs": {
+            "prefer": [
+              "code",
+              "panel"
+            ],
+            "avoid": []
+          },
+          "hero": {
+            "prefer": [
+              "split",
+              "large media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "fade-up"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "inverted": true,
+          "columns": 3
+        },
+        "tabs": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cta": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Show the product doing the work",
+        "Keep one signal colour and mean it"
+      ],
+      "donts": [
+        "Never brighten the canvas to sell to a non-technical buyer",
+        "Avoid stock photography of people at laptops"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "quiet-luxury",
+      "familyId": "luxury",
+      "name": "Quiet Luxury",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Almost nothing on the page, and everything that is there has been chosen. Space is the material.",
+      "philosophy": "Confidence is what you leave out. One image, one sentence, an enormous amount of air.",
+      "polarity": "light",
+      "tags": [
+        "minimal",
+        "spacious",
+        "restrained",
+        "tonal"
+      ],
+      "useCases": [
+        "Luxury brand homepage",
+        "Single-product statement page",
+        "Made-to-order enquiry"
+      ],
+      "industries": [
+        "luxury",
+        "fashion",
+        "jewellery",
+        "property"
+      ],
+      "palette": {
+        "bg": "#F6F4EF",
+        "ink": "#1A1917",
+        "accent": "#8C7A5B",
+        "soft": "#EAE6DD",
+        "dark": "#141311"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Inter",
+        "scale": 1.22,
+        "displayCase": "none",
+        "displayTracking": 0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 12,
+        "measure": 40,
+        "headline": 74,
+        "accent": 18,
+        "surface": 12,
+        "corner": 6,
+        "imagery": 66,
+        "motion": 20,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 12,
+        "fullBleedBias": 40
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "spacious",
+          "centered",
+          "single"
+        ],
+        "avoid": [
+          "dense",
+          "table",
+          "six",
+          "grid",
+          "slider"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "spacious"
+            ],
+            "avoid": [
+              "four",
+              "six"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "viewport": "animate-headings"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cards": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Let one image carry a whole band",
+        "Keep the accent almost unused"
+      ],
+      "donts": [
+        "Never fill the space you just made",
+        "Avoid more than one weight of emphasis"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "modern-heritage",
+      "familyId": "luxury",
+      "name": "Modern Heritage",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A house with a history, set in warm neutrals with fine rules and a serif that has been trusted for a century.",
+      "philosophy": "Heritage is not nostalgia. Keep the craft signals — rules, small caps, generous measure — and set them in a contemporary grid.",
+      "polarity": "light",
+      "tags": [
+        "heritage",
+        "serif",
+        "warm",
+        "bordered"
+      ],
+      "useCases": [
+        "Heritage brand story",
+        "Family business homepage",
+        "Craft and provenance page"
+      ],
+      "industries": [
+        "luxury",
+        "fashion",
+        "jewellery",
+        "property"
+      ],
+      "palette": {
+        "bg": "#F4F1EA",
+        "ink": "#221F1A",
+        "accent": "#7A2E2B",
+        "soft": "#E5DFD3",
+        "dark": "#1A1714"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Lora",
+        "body": "Source Serif 4",
+        "scale": 1.1,
+        "displayCase": "none",
+        "displayTracking": 0
+      },
+      "radius": "2px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 36,
+        "measure": 46,
+        "headline": 58,
+        "accent": 30,
+        "surface": 44,
+        "corner": 10,
+        "imagery": 56,
+        "motion": 18,
+        "expressiveness": 34
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 18,
+        "fullBleedBias": 30
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "spacious",
+          "centered",
+          "single",
+          "bordered",
+          "editorial",
+          "timeline",
+          "split"
+        ],
+        "avoid": [
+          "dense",
+          "table",
+          "six",
+          "gradient",
+          "glass"
+        ],
+        "byFamily": {
+          "timeline": {
+            "prefer": [
+              "numbered"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "timeline": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "testimonial": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Use a fine rule where others would use a box",
+        "Set body copy at a reading measure"
+      ],
+      "donts": [
+        "Never use a gradient",
+        "Avoid rounded corners"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "editorial-luxury",
+      "familyId": "luxury",
+      "name": "Editorial Luxury",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Fashion-magazine composition: oversized display type crossing full-bleed imagery, asymmetric throughout.",
+      "philosophy": "Luxury can be loud if it is loud in one register. Enormous type against photography, and nothing else competing.",
+      "polarity": "light",
+      "tags": [
+        "editorial",
+        "oversized",
+        "asymmetric",
+        "photographic"
+      ],
+      "useCases": [
+        "Fashion campaign page",
+        "Seasonal lookbook",
+        "Brand manifesto"
+      ],
+      "industries": [
+        "luxury",
+        "fashion",
+        "jewellery",
+        "property"
+      ],
+      "palette": {
+        "bg": "#FAF8F5",
+        "ink": "#111010",
+        "accent": "#B3122F",
+        "soft": "#ECE7E1",
+        "dark": "#0B0A0A"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Fraunces",
+        "body": "Inter",
+        "scale": 1.3,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "magnetic-arrow",
+      "dials": {
+        "density": 30,
+        "measure": 62,
+        "headline": 92,
+        "accent": 40,
+        "surface": 16,
+        "corner": 4,
+        "imagery": 82,
+        "motion": 44,
+        "expressiveness": 74
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 74,
+        "fullBleedBias": 78
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "spacious",
+          "centered",
+          "single",
+          "full bleed",
+          "overlap",
+          "asymmetric",
+          "photo overlay"
+        ],
+        "avoid": [
+          "dense",
+          "table",
+          "six",
+          "bordered"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "full bleed",
+              "photo overlay"
+            ],
+            "avoid": []
+          },
+          "gallery": {
+            "prefer": [
+              "large media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        },
+        "split": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Let the headline cross the image",
+        "Break the axis on purpose"
+      ],
+      "donts": [
+        "Never centre everything",
+        "Avoid a second loud element in the same band"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "dark-prestige",
+      "familyId": "luxury",
+      "name": "Dark Prestige",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Near-black ground, a single metallic accent used sparingly, and photography lit like a product still.",
+      "philosophy": "Darkness makes one thing precious. The accent appears perhaps three times on the whole page and each time it means something.",
+      "polarity": "dark",
+      "tags": [
+        "dark",
+        "metallic",
+        "restrained",
+        "photographic"
+      ],
+      "useCases": [
+        "Jewellery or watch collection",
+        "Private client service",
+        "Limited edition launch"
+      ],
+      "industries": [
+        "luxury",
+        "fashion",
+        "jewellery",
+        "property"
+      ],
+      "palette": {
+        "bg": "#0D0C0B",
+        "ink": "#F1EDE6",
+        "accent": "#C9A227",
+        "soft": "#1A1917",
+        "dark": "#050505"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Inter",
+        "scale": 1.18,
+        "displayCase": "none",
+        "displayTracking": 0.04
+      },
+      "radius": "0px",
+      "buttonStyle": "sweep-fill",
+      "dials": {
+        "density": 24,
+        "measure": 44,
+        "headline": 70,
+        "accent": 22,
+        "surface": 20,
+        "corner": 4,
+        "imagery": 74,
+        "motion": 28,
+        "expressiveness": 44
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 20,
+        "fullBleedBias": 66
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "spacious",
+          "centered",
+          "single",
+          "full bleed",
+          "overlay"
+        ],
+        "avoid": [
+          "dense",
+          "table",
+          "six",
+          "bordered",
+          "grid"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "background media",
+              "overlay"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Use the metallic three times, not thirty",
+        "Light the photography like an object"
+      ],
+      "donts": [
+        "Never lift the canvas to mid-grey",
+        "Avoid borders on a dark ground"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "gallery-luxury",
+      "familyId": "luxury",
+      "name": "Gallery Luxury",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Museum discipline applied to a commercial page: white walls, hung work, and captions that know their place.",
+      "philosophy": "Treat the product as an exhibit. The page is the wall, not the frame, and the caption never shouts over the piece.",
+      "polarity": "light",
+      "tags": [
+        "gallery",
+        "white",
+        "spacious",
+        "tonal",
+        "photographic"
+      ],
+      "useCases": [
+        "Collection index",
+        "Showroom or atelier page",
+        "Curated product wall"
+      ],
+      "industries": [
+        "luxury",
+        "fashion",
+        "jewellery",
+        "property"
+      ],
+      "palette": {
+        "bg": "#FCFBF9",
+        "ink": "#17171A",
+        "accent": "#3F4A5C",
+        "soft": "#EFEDE9",
+        "dark": "#101013"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Source Serif 4",
+        "body": "Inter",
+        "scale": 1.08,
+        "displayCase": "none",
+        "displayTracking": 0.01
+      },
+      "radius": "0px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 18,
+        "measure": 42,
+        "headline": 54,
+        "accent": 20,
+        "surface": 14,
+        "corner": 4,
+        "imagery": 78,
+        "motion": 16,
+        "expressiveness": 26
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 24,
+        "fullBleedBias": 34
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "spacious",
+          "centered",
+          "single",
+          "gallery",
+          "caption"
+        ],
+        "avoid": [
+          "dense",
+          "table",
+          "six",
+          "slider",
+          "gradient"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "large media",
+              "grid"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Hang the work with space around it",
+        "Keep captions small and factual"
+      ],
+      "donts": [
+        "Never tint the wall",
+        "Avoid motion that competes with the work"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "contemporary-magazine",
+      "familyId": "editorial",
+      "name": "Contemporary Magazine",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A modern feature well: multi-column text, pull quotes and photography that runs to the margin.",
+      "philosophy": "Pages that are read, not scanned. Give the words a measure they deserve and let the pictures interrupt at the right moments.",
+      "polarity": "light",
+      "tags": [
+        "magazine",
+        "columns",
+        "quote-led",
+        "photographic"
+      ],
+      "useCases": [
+        "Feature article",
+        "Long-form brand story",
+        "Content hub homepage"
+      ],
+      "industries": [
+        "media",
+        "publishing",
+        "culture",
+        "nonprofit"
+      ],
+      "palette": {
+        "bg": "#FDFCFA",
+        "ink": "#171514",
+        "accent": "#C2410C",
+        "soft": "#EEEAE4",
+        "dark": "#100F0E"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Fraunces",
+        "body": "Source Serif 4",
+        "scale": 1.14,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "2px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 46,
+        "measure": 50,
+        "headline": 72,
+        "accent": 38,
+        "surface": 22,
+        "corner": 8,
+        "imagery": 64,
+        "motion": 26,
+        "expressiveness": 54
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "flat",
+        "asymmetry": 42,
+        "fullBleedBias": 44
+      },
+      "patternPreferences": {
+        "prefer": [
+          "editorial",
+          "columns",
+          "quote-led",
+          "text-dominant",
+          "large media"
+        ],
+        "avoid": [
+          "gradient",
+          "glass",
+          "table"
+        ],
+        "byFamily": {
+          "blog": {
+            "prefer": [
+              "columns",
+              "three"
+            ],
+            "avoid": []
+          },
+          "testimonial": {
+            "prefer": [
+              "quote-led"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "default",
+          "viewport": "animate-headings"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "blog": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "testimonial": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Set a real reading measure",
+        "Use a pull quote to change pace"
+      ],
+      "donts": [
+        "Never let a headline run to 20 words",
+        "Avoid card grids where prose belongs"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "swiss-editorial",
+      "familyId": "editorial",
+      "name": "Swiss Editorial",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Grid, flush-left sans, and nothing decorative. Information design applied to a marketing page.",
+      "philosophy": "The grid does the work. Hierarchy comes from size and position only, never from ornament or colour.",
+      "polarity": "light",
+      "tags": [
+        "swiss",
+        "grid",
+        "flat",
+        "systematic",
+        "text-dominant"
+      ],
+      "useCases": [
+        "Research or report page",
+        "Design studio index",
+        "Information-led homepage"
+      ],
+      "industries": [
+        "media",
+        "publishing",
+        "culture",
+        "nonprofit"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#101010",
+        "accent": "#E4002B",
+        "soft": "#EDEDED",
+        "dark": "#0A0A0A"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Libre Franklin",
+        "body": "Libre Franklin",
+        "scale": 1.06,
+        "displayCase": "none",
+        "displayTracking": -0.03
+      },
+      "radius": "0px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 58,
+        "measure": 56,
+        "headline": 66,
+        "accent": 32,
+        "surface": 10,
+        "corner": 2,
+        "imagery": 44,
+        "motion": 10,
+        "expressiveness": 38
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 20,
+        "fullBleedBias": 22
+      },
+      "patternPreferences": {
+        "prefer": [
+          "editorial",
+          "columns",
+          "quote-led",
+          "text-dominant",
+          "grid",
+          "list",
+          "flat"
+        ],
+        "avoid": [
+          "gradient",
+          "glass",
+          "photo overlay",
+          "rounded"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "grid",
+              "four"
+            ],
+            "avoid": [
+              "media"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": ""
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4,
+          "columnsMobile": 1
+        },
+        "text": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        }
+      },
+      "dos": [
+        "Align everything flush left",
+        "Let size carry hierarchy"
+      ],
+      "donts": [
+        "Never centre a paragraph",
+        "Avoid any decorative motif"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "culture-journal",
+      "familyId": "editorial",
+      "name": "Culture Journal",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A small-press feel: warm paper, generous leading, and imagery treated as plates rather than banners.",
+      "philosophy": "Written for people who will finish the sentence. Warmth in the paper, patience in the rhythm.",
+      "polarity": "light",
+      "tags": [
+        "journal",
+        "warm",
+        "text-dominant",
+        "spacious"
+      ],
+      "useCases": [
+        "Essay or journal page",
+        "Cultural institution homepage",
+        "Reading-led content hub"
+      ],
+      "industries": [
+        "media",
+        "publishing",
+        "culture",
+        "nonprofit"
+      ],
+      "palette": {
+        "bg": "#F7F4ED",
+        "ink": "#1E1B16",
+        "accent": "#4C6B54",
+        "soft": "#E8E2D6",
+        "dark": "#161410"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Lora",
+        "body": "Source Serif 4",
+        "scale": 1.08,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "2px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 34,
+        "measure": 42,
+        "headline": 52,
+        "accent": 28,
+        "surface": 26,
+        "corner": 10,
+        "imagery": 52,
+        "motion": 14,
+        "expressiveness": 32
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 26,
+        "fullBleedBias": 24
+      },
+      "patternPreferences": {
+        "prefer": [
+          "editorial",
+          "columns",
+          "quote-led",
+          "text-dominant",
+          "list"
+        ],
+        "avoid": [
+          "gradient",
+          "glass",
+          "slider",
+          "table"
+        ],
+        "byFamily": {
+          "blog": {
+            "prefer": [
+              "columns"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "blog": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "faq": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Give paragraphs room to breathe",
+        "Treat images as plates with captions"
+      ],
+      "donts": [
+        "Never run text edge to edge",
+        "Avoid banner-scale photography"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "oversized-editorial",
+      "familyId": "editorial",
+      "name": "Oversized Editorial",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Display type at poster scale, set against very little else, with words doing the composing.",
+      "philosophy": "If the sentence is the idea, set it at the size of the idea. Everything else steps back.",
+      "polarity": "light",
+      "tags": [
+        "oversized",
+        "typographic",
+        "asymmetric",
+        "flat"
+      ],
+      "useCases": [
+        "Manifesto page",
+        "Campaign statement",
+        "Conference or event front page"
+      ],
+      "industries": [
+        "media",
+        "publishing",
+        "culture",
+        "nonprofit"
+      ],
+      "palette": {
+        "bg": "#F2F0EB",
+        "ink": "#131313",
+        "accent": "#1F45FF",
+        "soft": "#E2DFD8",
+        "dark": "#0C0C0C"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Work Sans",
+        "scale": 1.34,
+        "displayCase": "none",
+        "displayTracking": -0.04
+      },
+      "radius": "0px",
+      "buttonStyle": "corner-cut",
+      "dials": {
+        "density": 26,
+        "measure": 66,
+        "headline": 98,
+        "accent": 44,
+        "surface": 12,
+        "corner": 2,
+        "imagery": 40,
+        "motion": 34,
+        "expressiveness": 82
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 72,
+        "fullBleedBias": 52
+      },
+      "patternPreferences": {
+        "prefer": [
+          "editorial",
+          "columns",
+          "quote-led",
+          "text-dominant",
+          "oversized",
+          "asymmetric",
+          "single"
+        ],
+        "avoid": [
+          "gradient",
+          "glass",
+          "dense",
+          "table",
+          "media"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "text-dominant",
+              "single"
+            ],
+            "avoid": [
+              "large media"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "animate-headings"
+        },
+        "text": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cta": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 2
+        }
+      },
+      "dos": [
+        "Let the headline be the picture",
+        "Keep the rest of the band nearly empty"
+      ],
+      "donts": [
+        "Never add a photograph to compete",
+        "Avoid four-across grids"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "newsroom-modern",
+      "familyId": "editorial",
+      "name": "Newsroom Modern",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Dense, dated, hierarchical — a front page that assumes there is a lot to say today.",
+      "philosophy": "Volume is the point. Many stories, ranked clearly, with rules doing the separating.",
+      "polarity": "light",
+      "tags": [
+        "newsroom",
+        "dense",
+        "bordered",
+        "columns"
+      ],
+      "useCases": [
+        "Newsroom front page",
+        "Press and media centre",
+        "High-volume content index"
+      ],
+      "industries": [
+        "media",
+        "publishing",
+        "culture",
+        "nonprofit"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#141619",
+        "accent": "#0B4FA8",
+        "soft": "#E9EBEE",
+        "dark": "#0B0D0F"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Libre Franklin",
+        "body": "Inter",
+        "scale": 0.98,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "2px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 76,
+        "measure": 62,
+        "headline": 48,
+        "accent": 36,
+        "surface": 58,
+        "corner": 8,
+        "imagery": 46,
+        "motion": 12,
+        "expressiveness": 34
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 24,
+        "fullBleedBias": 18
+      },
+      "patternPreferences": {
+        "prefer": [
+          "editorial",
+          "columns",
+          "quote-led",
+          "text-dominant",
+          "dense",
+          "list",
+          "bordered",
+          "feed"
+        ],
+        "avoid": [
+          "gradient",
+          "glass",
+          "spacious"
+        ],
+        "byFamily": {
+          "blog": {
+            "prefer": [
+              "dense",
+              "columns",
+              "three"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "four",
+              "six"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "viewport": ""
+        },
+        "blog": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "text": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default"
+        }
+      },
+      "dos": [
+        "Rank stories visibly",
+        "Separate with rules, not gaps"
+      ],
+      "donts": [
+        "Never leave a band with one item",
+        "Avoid oversized display type"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "executive-precision",
+      "familyId": "corporate",
+      "name": "Executive Precision",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Boardroom clarity: navy and ink, tight columns, numbers stated plainly.",
+      "philosophy": "Written for someone with ten minutes. Structure first, proof second, nothing ornamental.",
+      "polarity": "light",
+      "tags": [
+        "authoritative",
+        "structured",
+        "navy",
+        "flat"
+      ],
+      "useCases": [
+        "Consulting firm homepage",
+        "Capability overview",
+        "Investor-facing page"
+      ],
+      "industries": [
+        "consulting",
+        "finance",
+        "professional-services",
+        "enterprise"
+      ],
+      "palette": {
+        "bg": "#FBFCFD",
+        "ink": "#0E1B2C",
+        "accent": "#1B4B8F",
+        "soft": "#E6EBF1",
+        "dark": "#0A1420"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Inter",
+        "body": "Inter",
+        "scale": 0.98,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "4px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 56,
+        "measure": 52,
+        "headline": 48,
+        "accent": 36,
+        "surface": 60,
+        "corner": 20,
+        "imagery": 40,
+        "motion": 16,
+        "expressiveness": 24
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 10,
+        "fullBleedBias": 18
+      },
+      "patternPreferences": {
+        "prefer": [
+          "structured",
+          "columns",
+          "stats",
+          "split",
+          "bordered"
+        ],
+        "avoid": [
+          "ornament",
+          "gradient",
+          "photo overlay",
+          "slider"
+        ],
+        "byFamily": {
+          "stats": {
+            "prefer": [
+              "four",
+              "numbered"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Lead with the conclusion",
+        "State figures, not adjectives"
+      ],
+      "donts": [
+        "Never use decorative photography",
+        "Avoid motion on a proof band"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "human-corporate",
+      "familyId": "corporate",
+      "name": "Human Corporate",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Institutional structure warmed by real photography of people and softer surfaces.",
+      "philosophy": "Large organisations are still made of people. Keep the rigour, lose the coldness.",
+      "polarity": "light",
+      "tags": [
+        "warm",
+        "photographic",
+        "approachable",
+        "raised"
+      ],
+      "useCases": [
+        "Careers and culture page",
+        "Services overview",
+        "About and leadership"
+      ],
+      "industries": [
+        "consulting",
+        "finance",
+        "professional-services",
+        "enterprise"
+      ],
+      "palette": {
+        "bg": "#FBF9F6",
+        "ink": "#1D2126",
+        "accent": "#2E7D6B",
+        "soft": "#E9E4DC",
+        "dark": "#171A1E"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Manrope",
+        "body": "Inter",
+        "scale": 1.04,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "14px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 44,
+        "measure": 48,
+        "headline": 54,
+        "accent": 44,
+        "surface": 40,
+        "corner": 76,
+        "imagery": 62,
+        "motion": 34,
+        "expressiveness": 42
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "raised",
+        "asymmetry": 22,
+        "fullBleedBias": 30
+      },
+      "patternPreferences": {
+        "prefer": [
+          "structured",
+          "columns",
+          "stats",
+          "split",
+          "people",
+          "testimonial",
+          "rounded"
+        ],
+        "avoid": [
+          "ornament",
+          "gradient",
+          "table",
+          "brutal"
+        ],
+        "byFamily": {
+          "team": {
+            "prefer": [
+              "people",
+              "three"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "team": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "testimonial": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Show real people doing real work",
+        "Soften surfaces without losing the grid"
+      ],
+      "donts": [
+        "Never use stock handshakes",
+        "Avoid hard-edged dense tables"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "financial-authority",
+      "familyId": "corporate",
+      "name": "Financial Authority",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Dense, data-led and conservative: tables, figures and a restrained single accent.",
+      "philosophy": "Money is trusted where nothing is hidden. Show the numbers at full density and let precision persuade.",
+      "polarity": "light",
+      "tags": [
+        "dense",
+        "data",
+        "conservative",
+        "bordered"
+      ],
+      "useCases": [
+        "Financial services homepage",
+        "Fees and terms page",
+        "Fund or product factsheet"
+      ],
+      "industries": [
+        "consulting",
+        "finance",
+        "professional-services",
+        "enterprise"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#101418",
+        "accent": "#0E5C4A",
+        "soft": "#E8EDEB",
+        "dark": "#0A0E11"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Source Serif 4",
+        "body": "Inter",
+        "scale": 0.96,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "2px",
+      "buttonStyle": "depth-press",
+      "dials": {
+        "density": 74,
+        "measure": 58,
+        "headline": 40,
+        "accent": 28,
+        "surface": 72,
+        "corner": 8,
+        "imagery": 26,
+        "motion": 8,
+        "expressiveness": 20
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "none",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 8,
+        "fullBleedBias": 10
+      },
+      "patternPreferences": {
+        "prefer": [
+          "structured",
+          "columns",
+          "stats",
+          "split",
+          "table",
+          "dense",
+          "list",
+          "compare"
+        ],
+        "avoid": [
+          "ornament",
+          "gradient",
+          "photo overlay",
+          "full bleed",
+          "slider"
+        ],
+        "byFamily": {
+          "pricing": {
+            "prefer": [
+              "table",
+              "compare"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "viewport": ""
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "pricing": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Show the whole table",
+        "Keep one accent for the single action"
+      ],
+      "donts": [
+        "Never illustrate a number with a photograph",
+        "Avoid animation on financial data"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "global-consulting",
+      "familyId": "corporate",
+      "name": "Global Consulting",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Wide, systematic, and evidence-heavy, with a cool palette and a strong horizontal rhythm.",
+      "philosophy": "Breadth is the proposition. Show many capabilities in a legible system rather than one story.",
+      "polarity": "light",
+      "tags": [
+        "systematic",
+        "wide",
+        "cool",
+        "structured"
+      ],
+      "useCases": [
+        "Multi-practice capability index",
+        "Industries overview",
+        "Global firm homepage"
+      ],
+      "industries": [
+        "consulting",
+        "finance",
+        "professional-services",
+        "enterprise"
+      ],
+      "palette": {
+        "bg": "#F8FAFB",
+        "ink": "#12181F",
+        "accent": "#00629B",
+        "soft": "#E3E9ED",
+        "dark": "#0C1218"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Work Sans",
+        "body": "Inter",
+        "scale": 1,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "6px",
+      "buttonStyle": "sweep-fill",
+      "dials": {
+        "density": 62,
+        "measure": 60,
+        "headline": 50,
+        "accent": 38,
+        "surface": 56,
+        "corner": 28,
+        "imagery": 44,
+        "motion": 22,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 16,
+        "fullBleedBias": 26
+      },
+      "patternPreferences": {
+        "prefer": [
+          "structured",
+          "columns",
+          "stats",
+          "split",
+          "grid",
+          "tabs"
+        ],
+        "avoid": [
+          "ornament",
+          "gradient",
+          "oversized",
+          "brutal"
+        ],
+        "byFamily": {
+          "tabs": {
+            "prefer": [
+              "panel",
+              "columns"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "four",
+              "six"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "default",
+          "viewport": "fade-up"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "tabs": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Group capabilities so breadth is scannable",
+        "Repeat the horizontal rhythm"
+      ],
+      "donts": [
+        "Never lead with one narrow story",
+        "Avoid oversized display type"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "institutional-modern",
+      "familyId": "corporate",
+      "name": "Institutional Modern",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Civic weight: stone neutrals, a serif masthead and architecture-led photography.",
+      "philosophy": "Institutions endure. Materials and proportion say so before any sentence does.",
+      "polarity": "light",
+      "tags": [
+        "civic",
+        "stone",
+        "serif",
+        "architectural"
+      ],
+      "useCases": [
+        "University or civic homepage",
+        "Foundation or trust page",
+        "Annual report landing"
+      ],
+      "industries": [
+        "consulting",
+        "finance",
+        "professional-services",
+        "enterprise"
+      ],
+      "palette": {
+        "bg": "#F5F5F2",
+        "ink": "#1B1D1C",
+        "accent": "#6B4E2E",
+        "soft": "#E4E4DF",
+        "dark": "#141615"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Inter",
+        "scale": 1.12,
+        "displayCase": "none",
+        "displayTracking": 0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 40,
+        "measure": 46,
+        "headline": 62,
+        "accent": 26,
+        "surface": 34,
+        "corner": 4,
+        "imagery": 58,
+        "motion": 14,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "flat",
+        "asymmetry": 18,
+        "fullBleedBias": 38
+      },
+      "patternPreferences": {
+        "prefer": [
+          "structured",
+          "columns",
+          "stats",
+          "split",
+          "architectural",
+          "large media",
+          "timeline"
+        ],
+        "avoid": [
+          "ornament",
+          "gradient",
+          "rounded"
+        ],
+        "byFamily": {
+          "timeline": {
+            "prefer": [
+              "numbered"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "timeline": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Use proportion to signal permanence",
+        "Photograph the building and the work"
+      ],
+      "donts": [
+        "Never round a corner",
+        "Avoid bright saturated accents"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "product-editorial",
+      "familyId": "commerce",
+      "name": "Product Editorial",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Catalogue as magazine: products photographed as stories, set in a generous editorial grid.",
+      "philosophy": "People buy the world around the object. Photograph the world, then name the object.",
+      "polarity": "light",
+      "tags": [
+        "editorial",
+        "photographic",
+        "spacious",
+        "product-led"
+      ],
+      "useCases": [
+        "Seasonal collection page",
+        "Product story landing",
+        "Brand and range homepage"
+      ],
+      "industries": [
+        "retail",
+        "ecommerce",
+        "consumer-goods",
+        "dtc"
+      ],
+      "palette": {
+        "bg": "#FBF9F6",
+        "ink": "#181614",
+        "accent": "#9C3B2E",
+        "soft": "#EDE7DF",
+        "dark": "#110F0E"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Fraunces",
+        "body": "Inter",
+        "scale": 1.18,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "2px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 32,
+        "measure": 48,
+        "headline": 70,
+        "accent": 34,
+        "surface": 18,
+        "corner": 8,
+        "imagery": 78,
+        "motion": 26,
+        "expressiveness": 56
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 54,
+        "fullBleedBias": 60
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "large media",
+          "price",
+          "full bleed",
+          "editorial",
+          "gallery"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "large media"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three",
+              "media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Photograph the product in use",
+        "Give each product room"
+      ],
+      "donts": [
+        "Never show a six-across grid of cut-outs",
+        "Avoid price-first hierarchy"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "bold-retail",
+      "familyId": "commerce",
+      "name": "Bold Retail",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Loud, saturated and fast: big type, strong blocks and an offer you cannot miss.",
+      "philosophy": "Retail attention lasts a second. Say the offer at full volume and repeat it.",
+      "polarity": "light",
+      "tags": [
+        "bold",
+        "saturated",
+        "dense",
+        "conversion"
+      ],
+      "useCases": [
+        "Promotion or sale page",
+        "Category landing page",
+        "High-street brand homepage"
+      ],
+      "industries": [
+        "retail",
+        "ecommerce",
+        "consumer-goods",
+        "dtc"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#141414",
+        "accent": "#FF3B1F",
+        "soft": "#FFE9E4",
+        "dark": "#101010"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Work Sans",
+        "scale": 1.2,
+        "displayCase": "upper",
+        "displayTracking": -0.02
+      },
+      "radius": "4px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 64,
+        "measure": 56,
+        "headline": 84,
+        "accent": 78,
+        "surface": 44,
+        "corner": 16,
+        "imagery": 62,
+        "motion": 46,
+        "expressiveness": 74
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 26,
+        "fullBleedBias": 44
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "large media",
+          "price",
+          "banner",
+          "four"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "spacious",
+          "quote-led"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "four",
+              "six"
+            ],
+            "avoid": []
+          },
+          "cta": {
+            "prefer": [
+              "banner"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Put the offer above the fold and again at the end",
+        "Use the accent at full strength"
+      ],
+      "donts": [
+        "Never bury the price",
+        "Avoid long paragraphs"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "premium-commerce",
+      "familyId": "commerce",
+      "name": "Premium Commerce",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Considered retail: dark accents on warm neutrals, one product per band, quiet urgency.",
+      "philosophy": "Premium sells by making the decision feel unhurried. Fewer things, better lit.",
+      "polarity": "light",
+      "tags": [
+        "premium",
+        "restrained",
+        "photographic",
+        "tonal"
+      ],
+      "useCases": [
+        "Considered-purchase product page",
+        "Direct-to-consumer homepage",
+        "Collection launch"
+      ],
+      "industries": [
+        "retail",
+        "ecommerce",
+        "consumer-goods",
+        "dtc"
+      ],
+      "palette": {
+        "bg": "#F7F5F2",
+        "ink": "#1A1A19",
+        "accent": "#2F4A3C",
+        "soft": "#E8E5E0",
+        "dark": "#121211"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Manrope",
+        "body": "Inter",
+        "scale": 1.08,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "8px",
+      "buttonStyle": "sweep-fill",
+      "dials": {
+        "density": 30,
+        "measure": 46,
+        "headline": 62,
+        "accent": 30,
+        "surface": 26,
+        "corner": 44,
+        "imagery": 72,
+        "motion": 26,
+        "expressiveness": 40
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 22,
+        "fullBleedBias": 42
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "large media",
+          "price",
+          "three",
+          "spacious"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "six"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three"
+            ],
+            "avoid": [
+              "six"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "viewport": "animate-headings"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Show one product at a time",
+        "Keep the palette tonal"
+      ],
+      "donts": [
+        "Never shout a discount",
+        "Avoid dense grids"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "lifestyle-shop",
+      "familyId": "commerce",
+      "name": "Lifestyle Shop",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Friendly and bright: rounded surfaces, people in the pictures and a soft secondary colour.",
+      "philosophy": "The shop is a place you like being. Warmth first, product second.",
+      "polarity": "light",
+      "tags": [
+        "friendly",
+        "rounded",
+        "bright",
+        "people"
+      ],
+      "useCases": [
+        "Lifestyle brand homepage",
+        "Gift or bundle landing",
+        "Community and shop page"
+      ],
+      "industries": [
+        "retail",
+        "ecommerce",
+        "consumer-goods",
+        "dtc"
+      ],
+      "palette": {
+        "bg": "#FFFDF9",
+        "ink": "#242019",
+        "accent": "#E8792B",
+        "soft": "#FDEEDC",
+        "dark": "#1B1813"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Nunito Sans",
+        "body": "Nunito Sans",
+        "scale": 1.06,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "20px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 46,
+        "measure": 50,
+        "headline": 56,
+        "accent": 60,
+        "surface": 34,
+        "corner": 92,
+        "imagery": 68,
+        "motion": 44,
+        "expressiveness": 58
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "raised",
+        "asymmetry": 24,
+        "fullBleedBias": 32
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "large media",
+          "price",
+          "rounded",
+          "people",
+          "media",
+          "three",
+          "slider"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "brutal"
+        ],
+        "byFamily": {
+          "slider": {
+            "prefer": [
+              "media"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three",
+              "media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        },
+        "slider": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Put people in the photography",
+        "Keep corners generous"
+      ],
+      "donts": [
+        "Never use a hard-edged table",
+        "Avoid a cold palette"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "conversion-minimal",
+      "familyId": "commerce",
+      "name": "Conversion Minimal",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "One path, no distractions: a single column, one action repeated, everything else removed.",
+      "philosophy": "Every element that is not the action is competing with it. Remove the competition.",
+      "polarity": "light",
+      "tags": [
+        "minimal",
+        "conversion",
+        "single",
+        "flat"
+      ],
+      "useCases": [
+        "Single-offer landing page",
+        "Signup or trial page",
+        "Paid campaign destination"
+      ],
+      "industries": [
+        "retail",
+        "ecommerce",
+        "consumer-goods",
+        "dtc"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#111315",
+        "accent": "#0F62FE",
+        "soft": "#EEF1F5",
+        "dark": "#0B0D0F"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Inter",
+        "body": "Inter",
+        "scale": 1.06,
+        "displayCase": "none",
+        "displayTracking": -0.03
+      },
+      "radius": "8px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 28,
+        "measure": 38,
+        "headline": 66,
+        "accent": 56,
+        "surface": 24,
+        "corner": 46,
+        "imagery": 40,
+        "motion": 20,
+        "expressiveness": 28
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 8,
+        "fullBleedBias": 20
+      },
+      "patternPreferences": {
+        "prefer": [
+          "product",
+          "grid",
+          "large media",
+          "price",
+          "single",
+          "centered",
+          "form-led"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "gallery",
+          "slider"
+        ],
+        "byFamily": {
+          "contact": {
+            "prefer": [
+              "form-led",
+              "centered"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "contact": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cta": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Repeat one action, nothing else",
+        "Keep the column narrow"
+      ],
+      "donts": [
+        "Never add a second competing path",
+        "Avoid galleries and sliders"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "boutique-escape",
+      "familyId": "hospitality",
+      "name": "Boutique Escape",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A small property with a point of view: warm sand tones, intimate photography, unhurried pacing.",
+      "philosophy": "Small places sell intimacy. Show rooms and corners, not lobbies and logos.",
+      "polarity": "light",
+      "tags": [
+        "warm",
+        "intimate",
+        "photographic",
+        "spacious"
+      ],
+      "useCases": [
+        "Boutique hotel homepage",
+        "Rooms and rates page",
+        "Direct booking landing"
+      ],
+      "industries": [
+        "hospitality",
+        "hotels",
+        "restaurants",
+        "travel"
+      ],
+      "palette": {
+        "bg": "#F8F4ED",
+        "ink": "#221E19",
+        "accent": "#A8623C",
+        "soft": "#EDE4D6",
+        "dark": "#191612"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Lora",
+        "body": "Inter",
+        "scale": 1.12,
+        "displayCase": "none",
+        "displayTracking": 0.01
+      },
+      "radius": "4px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 26,
+        "measure": 44,
+        "headline": 62,
+        "accent": 30,
+        "surface": 20,
+        "corner": 20,
+        "imagery": 82,
+        "motion": 24,
+        "expressiveness": 44
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 28,
+        "fullBleedBias": 56
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "full bleed",
+          "gallery",
+          "atmosphere",
+          "split",
+          "spacious"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "grid"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "large media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Photograph corners and details",
+        "Let bands breathe"
+      ],
+      "donts": [
+        "Never show an empty lobby",
+        "Avoid dense feature grids"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "resort-editorial",
+      "familyId": "hospitality",
+      "name": "Resort Editorial",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Wide horizons and cool light: full-bleed landscape imagery with restrained type laid over it.",
+      "philosophy": "The place is the product. Give the horizon the full width and stay out of the way.",
+      "polarity": "light",
+      "tags": [
+        "immersive",
+        "landscape",
+        "cool",
+        "photographic"
+      ],
+      "useCases": [
+        "Resort homepage",
+        "Destination and experiences page",
+        "Seasonal offer landing"
+      ],
+      "industries": [
+        "hospitality",
+        "hotels",
+        "restaurants",
+        "travel"
+      ],
+      "palette": {
+        "bg": "#F4F7F8",
+        "ink": "#12262B",
+        "accent": "#1E7A8C",
+        "soft": "#DFE9EB",
+        "dark": "#0C1A1E"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Source Serif 4",
+        "body": "Inter",
+        "scale": 1.14,
+        "displayCase": "none",
+        "displayTracking": 0.01
+      },
+      "radius": "0px",
+      "buttonStyle": "magnetic-arrow",
+      "dials": {
+        "density": 26,
+        "measure": 66,
+        "headline": 62,
+        "accent": 26,
+        "surface": 22,
+        "corner": 4,
+        "imagery": 90,
+        "motion": 30,
+        "expressiveness": 46
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 30,
+        "fullBleedBias": 80
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "full bleed",
+          "gallery",
+          "atmosphere",
+          "background media",
+          "overlay"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "bordered"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "background media",
+              "full bleed"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Run imagery to both edges",
+        "Keep type light over photography"
+      ],
+      "donts": [
+        "Never box a landscape",
+        "Avoid busy overlays"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "culinary-luxury",
+      "familyId": "hospitality",
+      "name": "Culinary Luxury",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Dark, close-lit food photography with a fine serif and almost no chrome.",
+      "philosophy": "Appetite comes from light on a surface. Darken everything else.",
+      "polarity": "dark",
+      "tags": [
+        "dark",
+        "photographic",
+        "restrained",
+        "close"
+      ],
+      "useCases": [
+        "Restaurant homepage",
+        "Menu and tasting page",
+        "Reservations landing"
+      ],
+      "industries": [
+        "hospitality",
+        "hotels",
+        "restaurants",
+        "travel"
+      ],
+      "palette": {
+        "bg": "#0F0D0C",
+        "ink": "#F3EDE4",
+        "accent": "#B8853A",
+        "soft": "#1C1917",
+        "dark": "#070606"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Lora",
+        "body": "Inter",
+        "scale": 1.08,
+        "displayCase": "none",
+        "displayTracking": 0.01
+      },
+      "radius": "0px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 38,
+        "measure": 38,
+        "headline": 54,
+        "accent": 26,
+        "surface": 32,
+        "corner": 4,
+        "imagery": 90,
+        "motion": 22,
+        "expressiveness": 44
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 36,
+        "fullBleedBias": 60
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "full bleed",
+          "gallery",
+          "atmosphere",
+          "overlay"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "bordered",
+          "grid"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "large media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Light the plate, darken the room",
+        "Keep the menu type quiet"
+      ],
+      "donts": [
+        "Never brighten the canvas",
+        "Avoid grids of small food images"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "urban-hotel",
+      "familyId": "hospitality",
+      "name": "Urban Hotel",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "City confidence: crisp neutrals, architectural photography and a tighter, more functional rhythm.",
+      "philosophy": "A city guest is booking a base, not a retreat. Be handsome and efficient.",
+      "polarity": "light",
+      "tags": [
+        "urban",
+        "architectural",
+        "crisp",
+        "functional"
+      ],
+      "useCases": [
+        "City hotel homepage",
+        "Meetings and events page",
+        "Location and transport page"
+      ],
+      "industries": [
+        "hospitality",
+        "hotels",
+        "restaurants",
+        "travel"
+      ],
+      "palette": {
+        "bg": "#F7F7F5",
+        "ink": "#16181A",
+        "accent": "#3B4A63",
+        "soft": "#E5E6E4",
+        "dark": "#0F1113"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Work Sans",
+        "body": "Inter",
+        "scale": 1.04,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "4px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 44,
+        "measure": 50,
+        "headline": 54,
+        "accent": 34,
+        "surface": 40,
+        "corner": 18,
+        "imagery": 68,
+        "motion": 24,
+        "expressiveness": 34
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 18,
+        "fullBleedBias": 42
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "full bleed",
+          "gallery",
+          "atmosphere",
+          "architectural",
+          "split",
+          "grid"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "ornament",
+          "gradient"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "fade-up"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        },
+        "contact": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Photograph the building and the street",
+        "Make booking the obvious next step"
+      ],
+      "donts": [
+        "Never bury the location",
+        "Avoid resort-scale romanticism"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "organic-retreat",
+      "familyId": "hospitality",
+      "name": "Organic Retreat",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Earth greens and stone, soft edges, and photography of landscape and material.",
+      "philosophy": "Calm is made from natural material and slow rhythm. Nothing sharp, nothing loud.",
+      "polarity": "light",
+      "tags": [
+        "organic",
+        "green",
+        "soft",
+        "calm"
+      ],
+      "useCases": [
+        "Wellness retreat homepage",
+        "Programmes and stays page",
+        "Spa and treatments page"
+      ],
+      "industries": [
+        "hospitality",
+        "hotels",
+        "restaurants",
+        "travel"
+      ],
+      "palette": {
+        "bg": "#F5F6F0",
+        "ink": "#1E241C",
+        "accent": "#5F7A52",
+        "soft": "#E4E8DC",
+        "dark": "#161B15"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Fraunces",
+        "body": "Inter",
+        "scale": 1.1,
+        "displayCase": "none",
+        "displayTracking": 0.01
+      },
+      "radius": "16px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 24,
+        "measure": 44,
+        "headline": 58,
+        "accent": 32,
+        "surface": 24,
+        "corner": 82,
+        "imagery": 76,
+        "motion": 26,
+        "expressiveness": 40
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "raised",
+        "asymmetry": 26,
+        "fullBleedBias": 50
+      },
+      "patternPreferences": {
+        "prefer": [
+          "large media",
+          "full bleed",
+          "gallery",
+          "atmosphere",
+          "rounded",
+          "spacious"
+        ],
+        "avoid": [
+          "table",
+          "diagram",
+          "dense",
+          "brutal"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "rounded"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "viewport": "animate-headings",
+          "decoration": "blob",
+          "decorationOpacity": 0.1
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Show material and landscape",
+        "Keep every edge soft"
+      ],
+      "donts": [
+        "Never use a hard square corner",
+        "Avoid urgent language"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "performance-machine",
+      "familyId": "automotive-mobility",
+      "name": "Performance Machine",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Near-black, high-contrast and fast: the machine full-bleed, figures stated like telemetry.",
+      "philosophy": "Performance is proved by numbers next to a photograph of the thing. Both at full scale.",
+      "polarity": "dark",
+      "tags": [
+        "dark",
+        "high-contrast",
+        "immersive",
+        "technical"
+      ],
+      "useCases": [
+        "Performance model page",
+        "Motorcycle or car launch",
+        "Track and spec page"
+      ],
+      "industries": [
+        "automotive",
+        "mobility",
+        "motorcycles",
+        "engineering"
+      ],
+      "palette": {
+        "bg": "#0B0B0C",
+        "ink": "#F4F5F6",
+        "accent": "#E01B2E",
+        "soft": "#17181A",
+        "dark": "#050506"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Barlow",
+        "scale": 1.22,
+        "displayCase": "upper",
+        "displayTracking": 0.04
+      },
+      "radius": "0px",
+      "buttonStyle": "split-reveal",
+      "dials": {
+        "density": 42,
+        "measure": 58,
+        "headline": 88,
+        "accent": 62,
+        "surface": 26,
+        "corner": 2,
+        "imagery": 88,
+        "motion": 62,
+        "expressiveness": 78
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 40,
+        "fullBleedBias": 84
+      },
+      "patternPreferences": {
+        "prefer": [
+          "full bleed",
+          "large media",
+          "stats",
+          "product",
+          "background media",
+          "overlay",
+          "number-led"
+        ],
+        "avoid": [
+          "quote-led",
+          "table",
+          "rounded"
+        ],
+        "byFamily": {
+          "stats": {
+            "prefer": [
+              "number-led",
+              "four"
+            ],
+            "avoid": []
+          },
+          "hero": {
+            "prefer": [
+              "background media",
+              "full bleed"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "columns": 4
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        }
+      },
+      "dos": [
+        "Run the machine to both edges",
+        "State performance as figures"
+      ],
+      "donts": [
+        "Never round a corner",
+        "Avoid testimonial-led proof"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "grand-touring",
+      "familyId": "automotive-mobility",
+      "name": "Grand Touring",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Long-distance luxury: warm dark neutrals, a serif display and landscape photography.",
+      "philosophy": "Touring is about the journey. Slower pacing, warmer light, more horizon.",
+      "polarity": "dark",
+      "tags": [
+        "luxury",
+        "warm",
+        "landscape",
+        "restrained"
+      ],
+      "useCases": [
+        "Touring model page",
+        "Ownership experience page",
+        "Brand journey story"
+      ],
+      "industries": [
+        "automotive",
+        "mobility",
+        "motorcycles",
+        "engineering"
+      ],
+      "palette": {
+        "bg": "#131110",
+        "ink": "#F2EEE8",
+        "accent": "#B08D57",
+        "soft": "#211D1B",
+        "dark": "#0A0908"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Inter",
+        "scale": 1.18,
+        "displayCase": "none",
+        "displayTracking": 0.03
+      },
+      "radius": "2px",
+      "buttonStyle": "sweep-fill",
+      "dials": {
+        "density": 26,
+        "measure": 48,
+        "headline": 68,
+        "accent": 28,
+        "surface": 20,
+        "corner": 8,
+        "imagery": 84,
+        "motion": 34,
+        "expressiveness": 48
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "flat",
+        "asymmetry": 22,
+        "fullBleedBias": 72
+      },
+      "patternPreferences": {
+        "prefer": [
+          "full bleed",
+          "large media",
+          "stats",
+          "product",
+          "split",
+          "spacious"
+        ],
+        "avoid": [
+          "quote-led",
+          "table",
+          "dense"
+        ],
+        "byFamily": {
+          "split": {
+            "prefer": [
+              "large media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "split": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Photograph the road as much as the car",
+        "Keep the metallic accent sparing"
+      ],
+      "donts": [
+        "Never shout a spec",
+        "Avoid dense comparison grids"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "technical-automotive",
+      "familyId": "automotive-mobility",
+      "name": "Technical Automotive",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Engineering-forward: exploded diagrams, monospace annotation and a measured grid.",
+      "philosophy": "For buyers who read the spec sheet first. Show the mechanism, annotate it, do not romanticise it.",
+      "polarity": "light",
+      "tags": [
+        "technical",
+        "diagram",
+        "monospace",
+        "dense"
+      ],
+      "useCases": [
+        "Specification and engineering page",
+        "Component or platform page",
+        "Fleet and technical buyer page"
+      ],
+      "industries": [
+        "automotive",
+        "mobility",
+        "motorcycles",
+        "engineering"
+      ],
+      "palette": {
+        "bg": "#F4F5F6",
+        "ink": "#14171A",
+        "accent": "#1D4ED8",
+        "soft": "#E3E6E9",
+        "dark": "#0D1013"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Work Sans",
+        "body": "Barlow",
+        "scale": 1.06,
+        "displayCase": "upper",
+        "displayTracking": 0.04
+      },
+      "radius": "2px",
+      "buttonStyle": "depth-press",
+      "dials": {
+        "density": 62,
+        "measure": 60,
+        "headline": 52,
+        "accent": 40,
+        "surface": 66,
+        "corner": 2,
+        "imagery": 60,
+        "motion": 24,
+        "expressiveness": 38
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 28,
+        "fullBleedBias": 36
+      },
+      "patternPreferences": {
+        "prefer": [
+          "full bleed",
+          "large media",
+          "stats",
+          "product",
+          "diagram",
+          "grid",
+          "list",
+          "compare"
+        ],
+        "avoid": [
+          "quote-led",
+          "table",
+          "photo overlay",
+          "rounded"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "grid",
+              "four"
+            ],
+            "avoid": []
+          },
+          "stats": {
+            "prefer": [
+              "number-led"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "decoration": "blueprint-grid",
+          "decorationOpacity": 0.1
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        }
+      },
+      "dos": [
+        "Annotate the mechanism",
+        "Keep the grid visible"
+      ],
+      "donts": [
+        "Never lead with lifestyle photography",
+        "Avoid rounded surfaces"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "heritage-garage",
+      "familyId": "automotive-mobility",
+      "name": "Heritage Garage",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Workshop warmth: oil-and-paper neutrals, a condensed display and archival photography.",
+      "philosophy": "Made by hand, over time. The page should feel like a workshop wall, not a configurator.",
+      "polarity": "light",
+      "tags": [
+        "heritage",
+        "workshop",
+        "warm",
+        "archival"
+      ],
+      "useCases": [
+        "Restoration workshop homepage",
+        "Marque history page",
+        "Custom build gallery"
+      ],
+      "industries": [
+        "automotive",
+        "mobility",
+        "motorcycles",
+        "engineering"
+      ],
+      "palette": {
+        "bg": "#F2EEE7",
+        "ink": "#1C1815",
+        "accent": "#8A3A22",
+        "soft": "#E1DAD0",
+        "dark": "#131110"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Barlow",
+        "scale": 1.1,
+        "displayCase": "upper",
+        "displayTracking": 0.03
+      },
+      "radius": "0px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 46,
+        "measure": 52,
+        "headline": 64,
+        "accent": 40,
+        "surface": 48,
+        "corner": 4,
+        "imagery": 70,
+        "motion": 20,
+        "expressiveness": 54
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 34,
+        "fullBleedBias": 38
+      },
+      "patternPreferences": {
+        "prefer": [
+          "full bleed",
+          "large media",
+          "stats",
+          "product",
+          "timeline",
+          "gallery",
+          "split",
+          "bordered"
+        ],
+        "avoid": [
+          "quote-led",
+          "table",
+          "gradient",
+          "glass"
+        ],
+        "byFamily": {
+          "timeline": {
+            "prefer": [
+              "numbered"
+            ],
+            "avoid": []
+          },
+          "gallery": {
+            "prefer": [
+              "grid"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "timeline": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Use archival photography",
+        "Date the work"
+      ],
+      "donts": [
+        "Never use a gradient",
+        "Avoid glossy configurator language"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "future-mobility",
+      "familyId": "automotive-mobility",
+      "name": "Future Mobility",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Clean electric optimism: bright surfaces, soft gradients and generous rounded geometry.",
+      "philosophy": "New mobility sells calm, not noise. Light, quiet surfaces and a great deal of space.",
+      "polarity": "light",
+      "tags": [
+        "electric",
+        "bright",
+        "rounded",
+        "spacious"
+      ],
+      "useCases": [
+        "Electric model page",
+        "Charging or network page",
+        "New mobility brand homepage"
+      ],
+      "industries": [
+        "automotive",
+        "mobility",
+        "motorcycles",
+        "engineering"
+      ],
+      "palette": {
+        "bg": "#F7FAFB",
+        "ink": "#101A1F",
+        "accent": "#00B3A4",
+        "soft": "#E1F0F1",
+        "dark": "#0A1216"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Manrope",
+        "body": "Inter",
+        "scale": 1.14,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "22px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 24,
+        "measure": 46,
+        "headline": 74,
+        "accent": 48,
+        "surface": 22,
+        "corner": 90,
+        "imagery": 74,
+        "motion": 48,
+        "expressiveness": 56
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "layered",
+        "asymmetry": 20,
+        "fullBleedBias": 56
+      },
+      "patternPreferences": {
+        "prefer": [
+          "full bleed",
+          "large media",
+          "stats",
+          "product",
+          "rounded",
+          "centered",
+          "spacious"
+        ],
+        "avoid": [
+          "quote-led",
+          "table",
+          "dense",
+          "brutal"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "rounded"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "viewport": "animate-headings",
+          "decoration": "concentric-rings",
+          "decorationOpacity": 0.09
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "stats": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Keep surfaces light and quiet",
+        "Use very generous corners"
+      ],
+      "donts": [
+        "Never use aggressive red accents",
+        "Avoid dense spec tables"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "clinical-calm",
+      "familyId": "health-wellness",
+      "name": "Clinical Calm",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Cool, orderly and reassuring: pale blues, clear lists and nothing that raises the pulse.",
+      "philosophy": "An anxious reader needs order. Short bands, plain language, obvious next step.",
+      "polarity": "light",
+      "tags": [
+        "calm",
+        "clear",
+        "cool",
+        "clinical"
+      ],
+      "useCases": [
+        "Clinic homepage",
+        "Treatments and conditions page",
+        "Appointment booking page"
+      ],
+      "industries": [
+        "healthcare",
+        "wellness",
+        "clinics",
+        "biotech"
+      ],
+      "palette": {
+        "bg": "#FAFCFD",
+        "ink": "#152029",
+        "accent": "#2E7BB8",
+        "soft": "#E6F0F6",
+        "dark": "#0F1820"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Inter",
+        "body": "Inter",
+        "scale": 1,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "10px",
+      "buttonStyle": "solid-shift",
+      "dials": {
+        "density": 40,
+        "measure": 44,
+        "headline": 46,
+        "accent": 40,
+        "surface": 40,
+        "corner": 56,
+        "imagery": 44,
+        "motion": 14,
+        "expressiveness": 22
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "raised",
+        "asymmetry": 8,
+        "fullBleedBias": 16
+      },
+      "patternPreferences": {
+        "prefer": [
+          "clear",
+          "list",
+          "faq",
+          "split",
+          "people",
+          "three"
+        ],
+        "avoid": [
+          "brutal",
+          "oversized",
+          "full bleed",
+          "slider"
+        ],
+        "byFamily": {
+          "faq": {
+            "prefer": [
+              "accordion",
+              "list"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "faq": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Answer the worry before the sell",
+        "Keep bands short"
+      ],
+      "donts": [
+        "Never use urgent language",
+        "Avoid full-bleed drama"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "human-wellness",
+      "familyId": "health-wellness",
+      "name": "Human Wellness",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Warm and personal: sand and clay tones, rounded surfaces and photography of people.",
+      "philosophy": "Care is a relationship. Show faces, soften every edge, write in the second person.",
+      "polarity": "light",
+      "tags": [
+        "warm",
+        "people",
+        "rounded",
+        "approachable"
+      ],
+      "useCases": [
+        "Therapy or coaching practice",
+        "Practitioner profiles page",
+        "Programme enrolment page"
+      ],
+      "industries": [
+        "healthcare",
+        "wellness",
+        "clinics",
+        "biotech"
+      ],
+      "palette": {
+        "bg": "#FDFAF6",
+        "ink": "#231E1A",
+        "accent": "#C4715A",
+        "soft": "#F4E7DE",
+        "dark": "#1A1613"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Nunito Sans",
+        "body": "Nunito Sans",
+        "scale": 1.06,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "22px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 34,
+        "measure": 44,
+        "headline": 54,
+        "accent": 46,
+        "surface": 30,
+        "corner": 94,
+        "imagery": 66,
+        "motion": 34,
+        "expressiveness": 44
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "raised",
+        "asymmetry": 20,
+        "fullBleedBias": 26
+      },
+      "patternPreferences": {
+        "prefer": [
+          "clear",
+          "list",
+          "faq",
+          "split",
+          "people",
+          "rounded",
+          "testimonial",
+          "three"
+        ],
+        "avoid": [
+          "brutal",
+          "oversized",
+          "table"
+        ],
+        "byFamily": {
+          "team": {
+            "prefer": [
+              "people"
+            ],
+            "avoid": []
+          },
+          "testimonial": {
+            "prefer": [
+              "quote-led"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "team": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "testimonial": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Show the practitioners",
+        "Write to one person"
+      ],
+      "donts": [
+        "Never use a hard corner",
+        "Avoid clinical stock imagery"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "premium-medical",
+      "familyId": "health-wellness",
+      "name": "Premium Medical",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Private-practice polish: deep neutrals, a serif display and very controlled photography.",
+      "philosophy": "Expertise at a price should look composed. Fewer claims, better set.",
+      "polarity": "light",
+      "tags": [
+        "premium",
+        "serif",
+        "controlled",
+        "tonal"
+      ],
+      "useCases": [
+        "Private practice homepage",
+        "Consultant profile page",
+        "Procedure detail page"
+      ],
+      "industries": [
+        "healthcare",
+        "wellness",
+        "clinics",
+        "biotech"
+      ],
+      "palette": {
+        "bg": "#F8F7F4",
+        "ink": "#191B1C",
+        "accent": "#1F4E4A",
+        "soft": "#E7E9E6",
+        "dark": "#101212"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Source Serif 4",
+        "body": "Inter",
+        "scale": 1.1,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "6px",
+      "buttonStyle": "sweep-fill",
+      "dials": {
+        "density": 30,
+        "measure": 44,
+        "headline": 60,
+        "accent": 26,
+        "surface": 30,
+        "corner": 30,
+        "imagery": 58,
+        "motion": 18,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 14,
+        "fullBleedBias": 28
+      },
+      "patternPreferences": {
+        "prefer": [
+          "clear",
+          "list",
+          "faq",
+          "split",
+          "people",
+          "spacious",
+          "three"
+        ],
+        "avoid": [
+          "brutal",
+          "oversized",
+          "dense",
+          "slider"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up"
+        },
+        "split": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Make each claim carry weight",
+        "Keep photography controlled"
+      ],
+      "donts": [
+        "Never crowd the page",
+        "Avoid bright saturated colour"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "natural-health",
+      "familyId": "health-wellness",
+      "name": "Natural Health",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Botanical and calm: greens and stone, soft shapes, imagery of plants and light.",
+      "philosophy": "Natural credibility is built from material and restraint, not from claims.",
+      "polarity": "light",
+      "tags": [
+        "botanical",
+        "green",
+        "soft",
+        "calm"
+      ],
+      "useCases": [
+        "Supplement or remedy brand",
+        "Nutrition programme page",
+        "Practice and philosophy page"
+      ],
+      "industries": [
+        "healthcare",
+        "wellness",
+        "clinics",
+        "biotech"
+      ],
+      "palette": {
+        "bg": "#F6F8F3",
+        "ink": "#1D2620",
+        "accent": "#4E8156",
+        "soft": "#E3EBDF",
+        "dark": "#141A17"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Fraunces",
+        "body": "Inter",
+        "scale": 1.08,
+        "displayCase": "none",
+        "displayTracking": -0.01
+      },
+      "radius": "18px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 28,
+        "measure": 44,
+        "headline": 56,
+        "accent": 34,
+        "surface": 26,
+        "corner": 84,
+        "imagery": 68,
+        "motion": 24,
+        "expressiveness": 38
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "default",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "raised",
+        "asymmetry": 24,
+        "fullBleedBias": 40
+      },
+      "patternPreferences": {
+        "prefer": [
+          "clear",
+          "list",
+          "faq",
+          "split",
+          "people",
+          "large media",
+          "rounded",
+          "spacious"
+        ],
+        "avoid": [
+          "brutal",
+          "oversized",
+          "table",
+          "dense"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "rounded"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "viewport": "animate-headings",
+          "decoration": "blob",
+          "decorationOpacity": 0.1
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "columns": 3
+        },
+        "faq": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Photograph material and light",
+        "Keep shapes soft"
+      ],
+      "donts": [
+        "Never make a medical claim look like a slogan",
+        "Avoid hard grids"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "precision-health",
+      "familyId": "health-wellness",
+      "name": "Precision Health",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Data-led medicine: clean white ground, a technical accent and numbers doing the persuading.",
+      "philosophy": "Evidence is the pitch. Present it like a study, not a brochure.",
+      "polarity": "light",
+      "tags": [
+        "data",
+        "clinical",
+        "flat",
+        "systematic"
+      ],
+      "useCases": [
+        "Diagnostics product page",
+        "Clinical evidence page",
+        "Health data platform homepage"
+      ],
+      "industries": [
+        "healthcare",
+        "wellness",
+        "clinics",
+        "biotech"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "ink": "#0F1417",
+        "accent": "#5B37E0",
+        "soft": "#EDEBFA",
+        "dark": "#0A0E10"
+      },
+      "brandMapping": {
+        "strategy": "accentAndSurface",
+        "protectedRoles": [
+          "bg"
+        ]
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "Inter",
+        "scale": 1,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "8px",
+      "buttonStyle": "depth-press",
+      "dials": {
+        "density": 58,
+        "measure": 52,
+        "headline": 48,
+        "accent": 44,
+        "surface": 62,
+        "corner": 40,
+        "imagery": 34,
+        "motion": 18,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 12,
+        "fullBleedBias": 18
+      },
+      "patternPreferences": {
+        "prefer": [
+          "clear",
+          "list",
+          "faq",
+          "split",
+          "people",
+          "stats",
+          "grid",
+          "diagram",
+          "compare"
+        ],
+        "avoid": [
+          "brutal",
+          "oversized",
+          "full bleed",
+          "photo overlay"
+        ],
+        "byFamily": {
+          "stats": {
+            "prefer": [
+              "number-led",
+              "four"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "default",
+          "viewport": "fade-up"
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        }
+      },
+      "dos": [
+        "Cite the number",
+        "Keep the ground white"
+      ],
+      "donts": [
+        "Never lead with lifestyle photography",
+        "Avoid soft romantic language"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "portfolio-minimal",
+      "familyId": "creative-culture",
+      "name": "Portfolio Minimal",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "The work, a caption, and nothing else. A studio index rather than a marketing page.",
+      "philosophy": "A portfolio persuades by sequence, not by argument. Show the work in the right order and stop talking.",
+      "polarity": "light",
+      "tags": [
+        "minimal",
+        "portfolio",
+        "spacious",
+        "caption"
+      ],
+      "useCases": [
+        "Studio portfolio index",
+        "Single project case study",
+        "Photographer portfolio"
+      ],
+      "industries": [
+        "design",
+        "arts",
+        "culture",
+        "photography"
+      ],
+      "palette": {
+        "bg": "#FCFCFB",
+        "ink": "#131313",
+        "accent": "#2B2B2B",
+        "soft": "#EFEFED",
+        "dark": "#0C0C0C"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Inter",
+        "body": "Inter",
+        "scale": 1,
+        "displayCase": "none",
+        "displayTracking": -0.03
+      },
+      "radius": "0px",
+      "buttonStyle": "magnetic-arrow",
+      "dials": {
+        "density": 20,
+        "measure": 44,
+        "headline": 50,
+        "accent": 14,
+        "surface": 8,
+        "corner": 2,
+        "imagery": 84,
+        "motion": 20,
+        "expressiveness": 30
+      },
+      "composition": {
+        "alignment": "left",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "flat",
+        "asymmetry": 30,
+        "fullBleedBias": 40
+      },
+      "patternPreferences": {
+        "prefer": [
+          "gallery",
+          "large media",
+          "caption",
+          "asymmetric",
+          "grid"
+        ],
+        "avoid": [
+          "table",
+          "price",
+          "stats"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "grid",
+              "large media"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "default",
+          "viewport": "fade-up"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "large"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Sequence the work deliberately",
+        "Keep captions factual"
+      ],
+      "donts": [
+        "Never add a statistic band",
+        "Avoid decorative motifs"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "art-gallery",
+      "familyId": "creative-culture",
+      "name": "Art Gallery",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "White walls, fine rules, quiet navigation and artwork given the whole room.",
+      "philosophy": "The room exists for the work. Everything the page adds must be smaller than what it frames.",
+      "polarity": "light",
+      "tags": [
+        "gallery",
+        "white",
+        "fine-rule",
+        "spacious",
+        "quiet"
+      ],
+      "useCases": [
+        "Gallery homepage",
+        "Exhibition page",
+        "Artist representation index"
+      ],
+      "industries": [
+        "design",
+        "arts",
+        "culture",
+        "photography"
+      ],
+      "palette": {
+        "bg": "#FDFDFC",
+        "ink": "#151515",
+        "accent": "#7A1F1F",
+        "soft": "#F0EFEC",
+        "dark": "#0D0D0D"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Cormorant Garamond",
+        "body": "Inter",
+        "scale": 1.16,
+        "displayCase": "none",
+        "displayTracking": 0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "ink-wipe",
+      "dials": {
+        "density": 16,
+        "measure": 42,
+        "headline": 58,
+        "accent": 16,
+        "surface": 18,
+        "corner": 2,
+        "imagery": 86,
+        "motion": 14,
+        "expressiveness": 28
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "dominant",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 22,
+        "fullBleedBias": 30
+      },
+      "patternPreferences": {
+        "prefer": [
+          "gallery",
+          "large media",
+          "caption",
+          "asymmetric",
+          "spacious",
+          "bordered"
+        ],
+        "avoid": [
+          "table",
+          "price",
+          "dense",
+          "gradient",
+          "slider"
+        ],
+        "byFamily": {
+          "gallery": {
+            "prefer": [
+              "large media",
+              "grid"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "three"
+            ],
+            "avoid": [
+              "six"
+            ]
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "testimonial": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        }
+      },
+      "dos": [
+        "Hang the work with air around it",
+        "Use a hairline rule instead of a box"
+      ],
+      "donts": [
+        "Never tint the wall",
+        "Avoid animation that competes with the work"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "studio-bold",
+      "familyId": "creative-culture",
+      "name": "Studio Bold",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "A studio with opinions: heavy display type, flat colour blocks and confident asymmetry.",
+      "philosophy": "A studio should show taste by taking a position. Big type, hard colour, no hedging.",
+      "polarity": "light",
+      "tags": [
+        "bold",
+        "flat-colour",
+        "asymmetric",
+        "typographic"
+      ],
+      "useCases": [
+        "Design studio homepage",
+        "Capabilities and work page",
+        "Studio manifesto"
+      ],
+      "industries": [
+        "design",
+        "arts",
+        "culture",
+        "photography"
+      ],
+      "palette": {
+        "bg": "#F4F2ED",
+        "ink": "#111111",
+        "accent": "#FF4D2E",
+        "soft": "#E4E1D9",
+        "dark": "#0B0B0B"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Work Sans",
+        "scale": 1.26,
+        "displayCase": "upper",
+        "displayTracking": -0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "corner-cut",
+      "dials": {
+        "density": 40,
+        "measure": 60,
+        "headline": 92,
+        "accent": 70,
+        "surface": 22,
+        "corner": 2,
+        "imagery": 62,
+        "motion": 46,
+        "expressiveness": 88
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "flat",
+        "asymmetry": 80,
+        "fullBleedBias": 58
+      },
+      "patternPreferences": {
+        "prefer": [
+          "gallery",
+          "large media",
+          "caption",
+          "asymmetric",
+          "oversized",
+          "flat",
+          "overlap",
+          "text-dominant"
+        ],
+        "avoid": [
+          "table",
+          "price",
+          "rounded",
+          "glass"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "text-dominant",
+              "asymmetric"
+            ],
+            "avoid": []
+          },
+          "cards": {
+            "prefer": [
+              "two",
+              "three"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "animate-headings"
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 2
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        },
+        "cta": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Let type block out the band",
+        "Break the axis deliberately"
+      ],
+      "donts": [
+        "Never centre everything",
+        "Avoid soft rounded surfaces"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "cultural-experimental",
+      "familyId": "creative-culture",
+      "name": "Cultural Experimental",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Programme-poster energy: overlapping layers, rotated type and a palette that argues with itself.",
+      "philosophy": "Cultural work is allowed to be difficult. Layer, overlap, and let the eye find its own route.",
+      "polarity": "light",
+      "tags": [
+        "experimental",
+        "overlap",
+        "layered",
+        "loud"
+      ],
+      "useCases": [
+        "Festival or programme page",
+        "Arts organisation homepage",
+        "Exhibition campaign"
+      ],
+      "industries": [
+        "design",
+        "arts",
+        "culture",
+        "photography"
+      ],
+      "palette": {
+        "bg": "#EFE9F5",
+        "ink": "#161122",
+        "accent": "#7B2CFF",
+        "soft": "#DCD2EC",
+        "dark": "#0F0B18"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "Work Sans",
+        "scale": 1.24,
+        "displayCase": "upper",
+        "displayTracking": 0.03
+      },
+      "radius": "0px",
+      "buttonStyle": "split-reveal",
+      "dials": {
+        "density": 54,
+        "measure": 64,
+        "headline": 86,
+        "accent": 78,
+        "surface": 34,
+        "corner": 4,
+        "imagery": 66,
+        "motion": 76,
+        "expressiveness": 96
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "layered",
+        "asymmetry": 92,
+        "fullBleedBias": 66
+      },
+      "patternPreferences": {
+        "prefer": [
+          "gallery",
+          "large media",
+          "caption",
+          "asymmetric",
+          "overlap",
+          "layered",
+          "oversized",
+          "haccordion"
+        ],
+        "avoid": [
+          "table",
+          "price",
+          "clear",
+          "centered"
+        ],
+        "byFamily": {
+          "haccordion": {
+            "prefer": [
+              "layered"
+            ],
+            "avoid": []
+          },
+          "gallery": {
+            "prefer": [
+              "overlap"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings",
+          "decoration": "concentric-hexagons",
+          "decorationOpacity": 0.18
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        },
+        "haccordion": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "cta": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Overlap layers on purpose",
+        "Let the palette be uncomfortable"
+      ],
+      "donts": [
+        "Never resolve into a neat grid",
+        "Avoid corporate reassurance"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "motion-creative",
+      "familyId": "creative-culture",
+      "name": "Motion Creative",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Built around movement: sequenced reveals, video-first bands and type that arrives.",
+      "philosophy": "If the studio's craft is motion, the site has to move. Every band earns its animation.",
+      "polarity": "dark",
+      "tags": [
+        "motion",
+        "video",
+        "sequenced",
+        "dark"
+      ],
+      "useCases": [
+        "Motion studio showreel",
+        "Production company homepage",
+        "Campaign case study"
+      ],
+      "industries": [
+        "design",
+        "arts",
+        "culture",
+        "photography"
+      ],
+      "palette": {
+        "bg": "#0D0C10",
+        "ink": "#F4F2F7",
+        "accent": "#00E5A0",
+        "soft": "#1A1820",
+        "dark": "#060509"
+      },
+      "brandMapping": {
+        "strategy": "accentOnly",
+        "protectedRoles": [
+          "bg",
+          "soft"
+        ]
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "Inter",
+        "scale": 1.18,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "12px",
+      "buttonStyle": "neon-trace",
+      "dials": {
+        "density": 34,
+        "measure": 54,
+        "headline": 78,
+        "accent": 64,
+        "surface": 30,
+        "corner": 62,
+        "imagery": 84,
+        "motion": 94,
+        "expressiveness": 82
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "immersive",
+        "surfaceTreatment": "layered",
+        "asymmetry": 44,
+        "fullBleedBias": 74
+      },
+      "patternPreferences": {
+        "prefer": [
+          "gallery",
+          "large media",
+          "caption",
+          "asymmetric",
+          "background media",
+          "full bleed",
+          "slider",
+          "overlay",
+          "sequenced"
+        ],
+        "avoid": [
+          "table",
+          "price",
+          "dense",
+          "bordered"
+        ],
+        "byFamily": {
+          "slider": {
+            "prefer": [
+              "media"
+            ],
+            "avoid": []
+          },
+          "hero": {
+            "prefer": [
+              "background media"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "gallery": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none"
+        },
+        "slider": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "viewport": "fade-in-seq",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Use video where a still would undersell",
+        "Sequence reveals down the page"
+      ],
+      "donts": [
+        "Never animate without a reason",
+        "Avoid a light canvas"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "neo-brutalist",
+      "familyId": "experimental",
+      "name": "Neo Brutalist",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Raw structure on show: black rules, hard shadows, unmodulated colour and no rounding at all.",
+      "philosophy": "Honesty about the medium. Boxes are boxes, links look like links, nothing pretends to be a material it is not.",
+      "polarity": "light",
+      "tags": [
+        "brutal",
+        "flat",
+        "hard-edge",
+        "high-contrast"
+      ],
+      "useCases": [
+        "Startup homepage with attitude",
+        "Developer community page",
+        "Product manifesto"
+      ],
+      "industries": [
+        "technology",
+        "culture",
+        "media",
+        "startups"
+      ],
+      "palette": {
+        "bg": "#F5F3EA",
+        "ink": "#0A0A0A",
+        "accent": "#1F1FE0",
+        "soft": "#E6E3D6",
+        "dark": "#000000"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Barlow",
+        "scale": 1.22,
+        "displayCase": "upper",
+        "displayTracking": -0.01
+      },
+      "radius": "0px",
+      "buttonStyle": "offset-block",
+      "dials": {
+        "density": 62,
+        "measure": 62,
+        "headline": 88,
+        "accent": 72,
+        "surface": 92,
+        "corner": 0,
+        "imagery": 44,
+        "motion": 12,
+        "expressiveness": 90
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "bordered",
+        "asymmetry": 62,
+        "fullBleedBias": 34
+      },
+      "patternPreferences": {
+        "prefer": [
+          "asymmetric",
+          "oversized",
+          "flat",
+          "bordered",
+          "grid",
+          "list"
+        ],
+        "avoid": [
+          "clear",
+          "table",
+          "rounded",
+          "gradient",
+          "glass",
+          "photo overlay"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "grid",
+              "four"
+            ],
+            "avoid": []
+          },
+          "hero": {
+            "prefer": [
+              "text-dominant"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": ""
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "text": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default"
+        },
+        "cta": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Show every border",
+        "Let colour be unmodulated"
+      ],
+      "donts": [
+        "Never round anything",
+        "Avoid gradients and blur"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "retro-future",
+      "familyId": "experimental",
+      "name": "Retro Future",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Eighties optimism rebuilt: chrome-adjacent gradients, grid horizons and a saturated duotone.",
+      "philosophy": "Nostalgia for a future that never arrived. Use its grammar without becoming a pastiche.",
+      "polarity": "dark",
+      "tags": [
+        "retro",
+        "gradient",
+        "duotone",
+        "dark"
+      ],
+      "useCases": [
+        "Games or entertainment launch",
+        "Music or event page",
+        "Retro-brand campaign"
+      ],
+      "industries": [
+        "technology",
+        "culture",
+        "media",
+        "startups"
+      ],
+      "palette": {
+        "bg": "#0E0A1F",
+        "ink": "#F5EEFF",
+        "accent": "#FF2D95",
+        "soft": "#1E1440",
+        "dark": "#070417"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Space Grotesk",
+        "body": "Work Sans",
+        "scale": 1.2,
+        "displayCase": "upper",
+        "displayTracking": 0.06
+      },
+      "radius": "4px",
+      "buttonStyle": "neon-trace",
+      "dials": {
+        "density": 46,
+        "measure": 58,
+        "headline": 82,
+        "accent": 82,
+        "surface": 40,
+        "corner": 18,
+        "imagery": 62,
+        "motion": 74,
+        "expressiveness": 92
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "balanced",
+        "surfaceTreatment": "layered",
+        "asymmetry": 40,
+        "fullBleedBias": 62
+      },
+      "patternPreferences": {
+        "prefer": [
+          "asymmetric",
+          "oversized",
+          "flat",
+          "gradient",
+          "overlay",
+          "centered",
+          "background media"
+        ],
+        "avoid": [
+          "clear",
+          "table",
+          "bordered"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "background media",
+              "overlay"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings",
+          "decoration": "dot-grid",
+          "decorationOpacity": 0.16
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "columns": 3
+        },
+        "stats": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cta": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Use the grid horizon once",
+        "Keep the duotone consistent"
+      ],
+      "donts": [
+        "Never add a third loud hue",
+        "Avoid parody"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "digital-aurora",
+      "familyId": "experimental",
+      "name": "Digital Aurora",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Soft mesh gradients drifting behind pale type, with everything slightly out of focus.",
+      "philosophy": "Atmosphere as the message. Colour fields do the work that photography usually would.",
+      "polarity": "dark",
+      "tags": [
+        "gradient",
+        "atmospheric",
+        "soft",
+        "dark"
+      ],
+      "useCases": [
+        "Platform brand homepage",
+        "Waitlist or teaser page",
+        "Atmospheric product launch"
+      ],
+      "industries": [
+        "technology",
+        "culture",
+        "media",
+        "startups"
+      ],
+      "palette": {
+        "bg": "#0A1420",
+        "ink": "#EAF2FA",
+        "accent": "#4FD1FF",
+        "soft": "#14243A",
+        "dark": "#050C14"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Manrope",
+        "body": "Inter",
+        "scale": 1.16,
+        "displayCase": "none",
+        "displayTracking": -0.02
+      },
+      "radius": "24px",
+      "buttonStyle": "pill-glow",
+      "dials": {
+        "density": 28,
+        "measure": 50,
+        "headline": 76,
+        "accent": 58,
+        "surface": 26,
+        "corner": 96,
+        "imagery": 54,
+        "motion": 78,
+        "expressiveness": 76
+      },
+      "composition": {
+        "alignment": "centered",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "glass",
+        "asymmetry": 36,
+        "fullBleedBias": 70
+      },
+      "patternPreferences": {
+        "prefer": [
+          "asymmetric",
+          "oversized",
+          "flat",
+          "gradient",
+          "overlay",
+          "centered",
+          "rounded",
+          "spacious"
+        ],
+        "avoid": [
+          "clear",
+          "table",
+          "bordered",
+          "dense"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "three",
+              "rounded"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "full",
+          "paddingTop": "none",
+          "paddingBottom": "none",
+          "inverted": true,
+          "viewport": "animate-headings",
+          "decoration": "concentric-rings",
+          "decorationOpacity": 0.14
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "columns": 3
+        },
+        "text": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        },
+        "cta": {
+          "container": "default",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Let the gradient be the image",
+        "Keep corners very soft"
+      ],
+      "donts": [
+        "Never add a hard border",
+        "Avoid dense information bands"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "geometric-system",
+      "familyId": "experimental",
+      "name": "Geometric System",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Bauhaus grammar: flat primaries, circles and quadrants used as structure rather than decoration.",
+      "philosophy": "Shape carries meaning. A small set of forms and colours, repeated with discipline.",
+      "polarity": "light",
+      "tags": [
+        "geometric",
+        "primary",
+        "flat",
+        "systematic"
+      ],
+      "useCases": [
+        "Design system documentation front",
+        "Studio or agency homepage",
+        "Systematic brand page"
+      ],
+      "industries": [
+        "technology",
+        "culture",
+        "media",
+        "startups"
+      ],
+      "palette": {
+        "bg": "#F7F5F0",
+        "ink": "#111114",
+        "accent": "#E8B400",
+        "soft": "#E7E3D9",
+        "dark": "#0B0B0D"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Libre Franklin",
+        "body": "Work Sans",
+        "scale": 1.14,
+        "displayCase": "upper",
+        "displayTracking": 0.02
+      },
+      "radius": "0px",
+      "buttonStyle": "corner-cut",
+      "dials": {
+        "density": 52,
+        "measure": 58,
+        "headline": 74,
+        "accent": 66,
+        "surface": 46,
+        "corner": 2,
+        "imagery": 40,
+        "motion": 30,
+        "expressiveness": 80
+      },
+      "composition": {
+        "alignment": "split",
+        "containerBias": "wide",
+        "mediaDominance": "supporting",
+        "surfaceTreatment": "flat",
+        "asymmetry": 56,
+        "fullBleedBias": 44
+      },
+      "patternPreferences": {
+        "prefer": [
+          "asymmetric",
+          "oversized",
+          "flat",
+          "grid",
+          "split",
+          "columns"
+        ],
+        "avoid": [
+          "clear",
+          "table",
+          "photo overlay",
+          "gradient",
+          "rounded"
+        ],
+        "byFamily": {
+          "cards": {
+            "prefer": [
+              "grid",
+              "four"
+            ],
+            "avoid": []
+          },
+          "split": {
+            "prefer": [
+              "flat"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "viewport": "fade-up",
+          "decoration": "diamond-grid",
+          "decorationOpacity": 0.12
+        },
+        "cards": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 4
+        },
+        "split": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large"
+        },
+        "stats": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "columns": 3
+        }
+      },
+      "dos": [
+        "Repeat a small set of shapes",
+        "Use flat primaries as structure"
+      ],
+      "donts": [
+        "Never blur or gradient a shape",
+        "Avoid photographic ornament"
+      ]
+    },
+    {
+      "schemaVersion": "sbs-style/1.0",
+      "id": "typographic-maximalist",
+      "familyId": "experimental",
+      "name": "Typographic Maximalist",
+      "version": "1.0.0",
+      "status": "production",
+      "description": "Type everywhere, at every scale: the page is set rather than laid out.",
+      "philosophy": "Words are the material. Let scale, weight and density do everything an image would.",
+      "polarity": "dark",
+      "tags": [
+        "typographic",
+        "maximal",
+        "dense",
+        "oversized"
+      ],
+      "useCases": [
+        "Poster-style campaign page",
+        "Conference homepage",
+        "Editorial statement page"
+      ],
+      "industries": [
+        "technology",
+        "culture",
+        "media",
+        "startups"
+      ],
+      "palette": {
+        "bg": "#111010",
+        "ink": "#F7F4EF",
+        "accent": "#FFE046",
+        "soft": "#1E1C1A",
+        "dark": "#070606"
+      },
+      "brandMapping": {
+        "strategy": "full",
+        "protectedRoles": []
+      },
+      "typography": {
+        "display": "Archivo Black",
+        "body": "Barlow",
+        "scale": 1.32,
+        "displayCase": "upper",
+        "displayTracking": -0.03
+      },
+      "radius": "0px",
+      "buttonStyle": "split-reveal",
+      "dials": {
+        "density": 78,
+        "measure": 68,
+        "headline": 100,
+        "accent": 74,
+        "surface": 30,
+        "corner": 0,
+        "imagery": 22,
+        "motion": 40,
+        "expressiveness": 98
+      },
+      "composition": {
+        "alignment": "asymmetric",
+        "containerBias": "wide",
+        "mediaDominance": "none",
+        "surfaceTreatment": "flat",
+        "asymmetry": 88,
+        "fullBleedBias": 56
+      },
+      "patternPreferences": {
+        "prefer": [
+          "asymmetric",
+          "oversized",
+          "flat",
+          "text-dominant",
+          "dense",
+          "list",
+          "marquee"
+        ],
+        "avoid": [
+          "clear",
+          "table",
+          "large media",
+          "gallery",
+          "photo overlay"
+        ],
+        "byFamily": {
+          "hero": {
+            "prefer": [
+              "text-dominant"
+            ],
+            "avoid": [
+              "large media"
+            ]
+          },
+          "logo": {
+            "prefer": [
+              "marquee"
+            ],
+            "avoid": []
+          }
+        }
+      },
+      "componentRecipes": {
+        "hero": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true,
+          "viewport": "animate-headings"
+        },
+        "text": {
+          "container": "wide",
+          "paddingTop": "default",
+          "paddingBottom": "default",
+          "inverted": true
+        },
+        "logo": {
+          "container": "full",
+          "paddingTop": "small",
+          "paddingBottom": "small",
+          "inverted": true
+        },
+        "cta": {
+          "container": "wide",
+          "paddingTop": "large",
+          "paddingBottom": "large",
+          "inverted": true
+        }
+      },
+      "dos": [
+        "Set the page like a poster",
+        "Use scale as the only hierarchy"
+      ],
+      "donts": [
+        "Never rely on a photograph",
+        "Avoid neat symmetrical bands"
+      ]
+    }
+  ]
+}

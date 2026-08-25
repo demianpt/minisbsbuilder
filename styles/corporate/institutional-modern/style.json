@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "institutional-modern",
+  "familyId": "corporate",
+  "name": "Institutional Modern",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Civic weight: stone neutrals, a serif masthead and architecture-led photography.",
+  "philosophy": "Institutions endure. Materials and proportion say so before any sentence does.",
+  "polarity": "light",
+  "tags": [
+    "civic",
+    "stone",
+    "serif",
+    "architectural"
+  ],
+  "useCases": [
+    "University or civic homepage",
+    "Foundation or trust page",
+    "Annual report landing"
+  ],
+  "industries": [
+    "consulting",
+    "finance",
+    "professional-services",
+    "enterprise"
+  ],
+  "palette": {
+    "bg": "#F5F5F2",
+    "ink": "#1B1D1C",
+    "accent": "#6B4E2E",
+    "soft": "#E4E4DF",
+    "dark": "#141615"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "scale": 1.12,
+    "displayCase": "none",
+    "displayTracking": 0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "offset-block",
+  "dials": {
+    "density": 40,
+    "measure": 46,
+    "headline": 62,
+    "accent": 26,
+    "surface": 34,
+    "corner": 4,
+    "imagery": 58,
+    "motion": 14,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "flat",
+    "asymmetry": 18,
+    "fullBleedBias": 38
+  },
+  "patternPreferences": {
+    "prefer": [
+      "structured",
+      "columns",
+      "stats",
+      "split",
+      "architectural",
+      "large media",
+      "timeline"
+    ],
+    "avoid": [
+      "ornament",
+      "gradient",
+      "rounded"
+    ],
+    "byFamily": {
+      "timeline": {
+        "prefer": [
+          "numbered"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "timeline": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Use proportion to signal permanence",
+    "Photograph the building and the work"
+  ],
+  "donts": [
+    "Never round a corner",
+    "Avoid bright saturated accents"
+  ]
+}

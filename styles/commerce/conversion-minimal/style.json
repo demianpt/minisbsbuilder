@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "conversion-minimal",
+  "familyId": "commerce",
+  "name": "Conversion Minimal",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "One path, no distractions: a single column, one action repeated, everything else removed.",
+  "philosophy": "Every element that is not the action is competing with it. Remove the competition.",
+  "polarity": "light",
+  "tags": [
+    "minimal",
+    "conversion",
+    "single",
+    "flat"
+  ],
+  "useCases": [
+    "Single-offer landing page",
+    "Signup or trial page",
+    "Paid campaign destination"
+  ],
+  "industries": [
+    "retail",
+    "ecommerce",
+    "consumer-goods",
+    "dtc"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#111315",
+    "accent": "#0F62FE",
+    "soft": "#EEF1F5",
+    "dark": "#0B0D0F"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "scale": 1.06,
+    "displayCase": "none",
+    "displayTracking": -0.03
+  },
+  "radius": "8px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 28,
+    "measure": 38,
+    "headline": 66,
+    "accent": 56,
+    "surface": 24,
+    "corner": 46,
+    "imagery": 40,
+    "motion": 20,
+    "expressiveness": 28
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 8,
+    "fullBleedBias": 20
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "large media",
+      "price",
+      "single",
+      "centered",
+      "form-led"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense",
+      "gallery",
+      "slider"
+    ],
+    "byFamily": {
+      "contact": {
+        "prefer": [
+          "form-led",
+          "centered"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "contact": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cta": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Repeat one action, nothing else",
+    "Keep the column narrow"
+  ],
+  "donts": [
+    "Never add a second competing path",
+    "Avoid galleries and sliders"
+  ]
+}

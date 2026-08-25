@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "gallery-luxury",
+  "familyId": "luxury",
+  "name": "Gallery Luxury",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Museum discipline applied to a commercial page: white walls, hung work, and captions that know their place.",
+  "philosophy": "Treat the product as an exhibit. The page is the wall, not the frame, and the caption never shouts over the piece.",
+  "polarity": "light",
+  "tags": [
+    "gallery",
+    "white",
+    "spacious",
+    "tonal",
+    "photographic"
+  ],
+  "useCases": [
+    "Collection index",
+    "Showroom or atelier page",
+    "Curated product wall"
+  ],
+  "industries": [
+    "luxury",
+    "fashion",
+    "jewellery",
+    "property"
+  ],
+  "palette": {
+    "bg": "#FCFBF9",
+    "ink": "#17171A",
+    "accent": "#3F4A5C",
+    "soft": "#EFEDE9",
+    "dark": "#101013"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Source Serif 4",
+    "body": "Inter",
+    "scale": 1.08,
+    "displayCase": "none",
+    "displayTracking": 0.01
+  },
+  "radius": "0px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 18,
+    "measure": 42,
+    "headline": 54,
+    "accent": 20,
+    "surface": 14,
+    "corner": 4,
+    "imagery": 78,
+    "motion": 16,
+    "expressiveness": 26
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 24,
+    "fullBleedBias": 34
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "spacious",
+      "centered",
+      "single",
+      "gallery",
+      "caption"
+    ],
+    "avoid": [
+      "dense",
+      "table",
+      "six",
+      "slider",
+      "gradient"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "large media",
+          "grid"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Hang the work with space around it",
+    "Keep captions small and factual"
+  ],
+  "donts": [
+    "Never tint the wall",
+    "Avoid motion that competes with the work"
+  ]
+}

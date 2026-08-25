@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "glass-ai",
+  "familyId": "technology",
+  "name": "Glass AI",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Layered translucent surfaces over a deep gradient field, with type that floats rather than sits.",
+  "philosophy": "Software that infers should feel like depth rather than paper. Stacked translucency suggests a system with layers you cannot see all of at once.",
+  "polarity": "dark",
+  "tags": [
+    "glass",
+    "layered",
+    "dark",
+    "gradient",
+    "immersive"
+  ],
+  "useCases": [
+    "AI product homepage",
+    "Model or platform launch",
+    "Developer platform overview"
+  ],
+  "industries": [
+    "ai",
+    "technology",
+    "saas",
+    "data"
+  ],
+  "palette": {
+    "bg": "#0A0F1C",
+    "ink": "#F2F5FA",
+    "accent": "#7C6BFF",
+    "soft": "#18213A",
+    "dark": "#05080F"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "scale": 1.1,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "18px",
+  "buttonStyle": "neon-trace",
+  "dials": {
+    "density": 40,
+    "measure": 50,
+    "headline": 70,
+    "accent": 66,
+    "surface": 52,
+    "corner": 84,
+    "imagery": 58,
+    "motion": 72,
+    "expressiveness": 72
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "glass",
+    "asymmetry": 34,
+    "fullBleedBias": 62
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "split",
+      "diagram",
+      "contained",
+      "overlay",
+      "gradient",
+      "layered",
+      "centered",
+      "background media"
+    ],
+    "avoid": [
+      "ornament",
+      "quote-led",
+      "bordered",
+      "table"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "background media",
+          "overlay"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three",
+          "overlay"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings",
+      "decoration": "concentric-rings",
+      "decorationOpacity": 0.12
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true,
+      "columns": 3
+    },
+    "stats": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cta": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Stack surfaces so depth reads as capability",
+    "Keep the accent for the one action that matters"
+  ],
+  "donts": [
+    "Never put a hard border on a glass surface",
+    "Do not let motion outlast the reading"
+  ]
+}

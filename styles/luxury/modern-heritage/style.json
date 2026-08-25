@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "modern-heritage",
+  "familyId": "luxury",
+  "name": "Modern Heritage",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A house with a history, set in warm neutrals with fine rules and a serif that has been trusted for a century.",
+  "philosophy": "Heritage is not nostalgia. Keep the craft signals — rules, small caps, generous measure — and set them in a contemporary grid.",
+  "polarity": "light",
+  "tags": [
+    "heritage",
+    "serif",
+    "warm",
+    "bordered"
+  ],
+  "useCases": [
+    "Heritage brand story",
+    "Family business homepage",
+    "Craft and provenance page"
+  ],
+  "industries": [
+    "luxury",
+    "fashion",
+    "jewellery",
+    "property"
+  ],
+  "palette": {
+    "bg": "#F4F1EA",
+    "ink": "#221F1A",
+    "accent": "#7A2E2B",
+    "soft": "#E5DFD3",
+    "dark": "#1A1714"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Lora",
+    "body": "Source Serif 4",
+    "scale": 1.1,
+    "displayCase": "none",
+    "displayTracking": 0
+  },
+  "radius": "2px",
+  "buttonStyle": "offset-block",
+  "dials": {
+    "density": 36,
+    "measure": 46,
+    "headline": 58,
+    "accent": 30,
+    "surface": 44,
+    "corner": 10,
+    "imagery": 56,
+    "motion": 18,
+    "expressiveness": 34
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 18,
+    "fullBleedBias": 30
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "spacious",
+      "centered",
+      "single",
+      "bordered",
+      "editorial",
+      "timeline",
+      "split"
+    ],
+    "avoid": [
+      "dense",
+      "table",
+      "six",
+      "gradient",
+      "glass"
+    ],
+    "byFamily": {
+      "timeline": {
+        "prefer": [
+          "numbered"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "timeline": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "testimonial": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Use a fine rule where others would use a box",
+    "Set body copy at a reading measure"
+  ],
+  "donts": [
+    "Never use a gradient",
+    "Avoid rounded corners"
+  ]
+}

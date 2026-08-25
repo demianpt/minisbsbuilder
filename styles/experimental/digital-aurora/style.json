@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "digital-aurora",
+  "familyId": "experimental",
+  "name": "Digital Aurora",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Soft mesh gradients drifting behind pale type, with everything slightly out of focus.",
+  "philosophy": "Atmosphere as the message. Colour fields do the work that photography usually would.",
+  "polarity": "dark",
+  "tags": [
+    "gradient",
+    "atmospheric",
+    "soft",
+    "dark"
+  ],
+  "useCases": [
+    "Platform brand homepage",
+    "Waitlist or teaser page",
+    "Atmospheric product launch"
+  ],
+  "industries": [
+    "technology",
+    "culture",
+    "media",
+    "startups"
+  ],
+  "palette": {
+    "bg": "#0A1420",
+    "ink": "#EAF2FA",
+    "accent": "#4FD1FF",
+    "soft": "#14243A",
+    "dark": "#050C14"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Manrope",
+    "body": "Inter",
+    "scale": 1.16,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "24px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 28,
+    "measure": 50,
+    "headline": 76,
+    "accent": 58,
+    "surface": 26,
+    "corner": 96,
+    "imagery": 54,
+    "motion": 78,
+    "expressiveness": 76
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "glass",
+    "asymmetry": 36,
+    "fullBleedBias": 70
+  },
+  "patternPreferences": {
+    "prefer": [
+      "asymmetric",
+      "oversized",
+      "flat",
+      "gradient",
+      "overlay",
+      "centered",
+      "rounded",
+      "spacious"
+    ],
+    "avoid": [
+      "clear",
+      "table",
+      "bordered",
+      "dense"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three",
+          "rounded"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings",
+      "decoration": "concentric-rings",
+      "decorationOpacity": 0.14
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true,
+      "columns": 3
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cta": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Let the gradient be the image",
+    "Keep corners very soft"
+  ],
+  "donts": [
+    "Never add a hard border",
+    "Avoid dense information bands"
+  ]
+}

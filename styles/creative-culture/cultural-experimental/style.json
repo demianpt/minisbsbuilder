@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "cultural-experimental",
+  "familyId": "creative-culture",
+  "name": "Cultural Experimental",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Programme-poster energy: overlapping layers, rotated type and a palette that argues with itself.",
+  "philosophy": "Cultural work is allowed to be difficult. Layer, overlap, and let the eye find its own route.",
+  "polarity": "light",
+  "tags": [
+    "experimental",
+    "overlap",
+    "layered",
+    "loud"
+  ],
+  "useCases": [
+    "Festival or programme page",
+    "Arts organisation homepage",
+    "Exhibition campaign"
+  ],
+  "industries": [
+    "design",
+    "arts",
+    "culture",
+    "photography"
+  ],
+  "palette": {
+    "bg": "#EFE9F5",
+    "ink": "#161122",
+    "accent": "#7B2CFF",
+    "soft": "#DCD2EC",
+    "dark": "#0F0B18"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Work Sans",
+    "scale": 1.24,
+    "displayCase": "upper",
+    "displayTracking": 0.03
+  },
+  "radius": "0px",
+  "buttonStyle": "split-reveal",
+  "dials": {
+    "density": 54,
+    "measure": 64,
+    "headline": 86,
+    "accent": 78,
+    "surface": 34,
+    "corner": 4,
+    "imagery": 66,
+    "motion": 76,
+    "expressiveness": 96
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "balanced",
+    "surfaceTreatment": "layered",
+    "asymmetry": 92,
+    "fullBleedBias": 66
+  },
+  "patternPreferences": {
+    "prefer": [
+      "gallery",
+      "large media",
+      "caption",
+      "asymmetric",
+      "overlap",
+      "layered",
+      "oversized",
+      "haccordion"
+    ],
+    "avoid": [
+      "table",
+      "price",
+      "clear",
+      "centered"
+    ],
+    "byFamily": {
+      "haccordion": {
+        "prefer": [
+          "layered"
+        ],
+        "avoid": []
+      },
+      "gallery": {
+        "prefer": [
+          "overlap"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings",
+      "decoration": "concentric-hexagons",
+      "decorationOpacity": 0.18
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    },
+    "haccordion": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cta": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Overlap layers on purpose",
+    "Let the palette be uncomfortable"
+  ],
+  "donts": [
+    "Never resolve into a neat grid",
+    "Avoid corporate reassurance"
+  ]
+}

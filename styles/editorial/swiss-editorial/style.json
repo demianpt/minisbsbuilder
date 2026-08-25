@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "swiss-editorial",
+  "familyId": "editorial",
+  "name": "Swiss Editorial",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Grid, flush-left sans, and nothing decorative. Information design applied to a marketing page.",
+  "philosophy": "The grid does the work. Hierarchy comes from size and position only, never from ornament or colour.",
+  "polarity": "light",
+  "tags": [
+    "swiss",
+    "grid",
+    "flat",
+    "systematic",
+    "text-dominant"
+  ],
+  "useCases": [
+    "Research or report page",
+    "Design studio index",
+    "Information-led homepage"
+  ],
+  "industries": [
+    "media",
+    "publishing",
+    "culture",
+    "nonprofit"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#101010",
+    "accent": "#E4002B",
+    "soft": "#EDEDED",
+    "dark": "#0A0A0A"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Libre Franklin",
+    "body": "Libre Franklin",
+    "scale": 1.06,
+    "displayCase": "none",
+    "displayTracking": -0.03
+  },
+  "radius": "0px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 58,
+    "measure": 56,
+    "headline": 66,
+    "accent": 32,
+    "surface": 10,
+    "corner": 2,
+    "imagery": 44,
+    "motion": 10,
+    "expressiveness": 38
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 20,
+    "fullBleedBias": 22
+  },
+  "patternPreferences": {
+    "prefer": [
+      "editorial",
+      "columns",
+      "quote-led",
+      "text-dominant",
+      "grid",
+      "list",
+      "flat"
+    ],
+    "avoid": [
+      "gradient",
+      "glass",
+      "photo overlay",
+      "rounded"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "grid",
+          "four"
+        ],
+        "avoid": [
+          "media"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": ""
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4,
+      "columnsMobile": 1
+    },
+    "text": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    }
+  },
+  "dos": [
+    "Align everything flush left",
+    "Let size carry hierarchy"
+  ],
+  "donts": [
+    "Never centre a paragraph",
+    "Avoid any decorative motif"
+  ]
+}

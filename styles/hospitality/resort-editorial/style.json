@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "resort-editorial",
+  "familyId": "hospitality",
+  "name": "Resort Editorial",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Wide horizons and cool light: full-bleed landscape imagery with restrained type laid over it.",
+  "philosophy": "The place is the product. Give the horizon the full width and stay out of the way.",
+  "polarity": "light",
+  "tags": [
+    "immersive",
+    "landscape",
+    "cool",
+    "photographic"
+  ],
+  "useCases": [
+    "Resort homepage",
+    "Destination and experiences page",
+    "Seasonal offer landing"
+  ],
+  "industries": [
+    "hospitality",
+    "hotels",
+    "restaurants",
+    "travel"
+  ],
+  "palette": {
+    "bg": "#F4F7F8",
+    "ink": "#12262B",
+    "accent": "#1E7A8C",
+    "soft": "#DFE9EB",
+    "dark": "#0C1A1E"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Source Serif 4",
+    "body": "Inter",
+    "scale": 1.14,
+    "displayCase": "none",
+    "displayTracking": 0.01
+  },
+  "radius": "0px",
+  "buttonStyle": "magnetic-arrow",
+  "dials": {
+    "density": 26,
+    "measure": 66,
+    "headline": 62,
+    "accent": 26,
+    "surface": 22,
+    "corner": 4,
+    "imagery": 90,
+    "motion": 30,
+    "expressiveness": 46
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 30,
+    "fullBleedBias": 80
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "full bleed",
+      "gallery",
+      "atmosphere",
+      "background media",
+      "overlay"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense",
+      "bordered"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "background media",
+          "full bleed"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    },
+    "cta": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Run imagery to both edges",
+    "Keep type light over photography"
+  ],
+  "donts": [
+    "Never box a landscape",
+    "Avoid busy overlays"
+  ]
+}

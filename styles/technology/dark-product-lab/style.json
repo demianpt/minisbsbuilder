@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "dark-product-lab",
+  "familyId": "technology",
+  "name": "Dark Product Lab",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A developer-console mood: near-black canvas, one signal colour and product surfaces lit from within.",
+  "philosophy": "The people who choose this product already work in the dark. The site should feel like the tool they will spend the day in, not the brochure about it.",
+  "polarity": "dark",
+  "tags": [
+    "dark",
+    "product-led",
+    "console",
+    "technical"
+  ],
+  "useCases": [
+    "Developer tool homepage",
+    "CLI or SDK product page",
+    "Changelog and releases"
+  ],
+  "industries": [
+    "developer-tools",
+    "technology",
+    "saas",
+    "infrastructure"
+  ],
+  "palette": {
+    "bg": "#0C0E10",
+    "ink": "#EDEFF2",
+    "accent": "#37E29A",
+    "soft": "#181B1F",
+    "dark": "#050607"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "IBM Plex Mono",
+    "scale": 1.02,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "8px",
+  "buttonStyle": "split-reveal",
+  "dials": {
+    "density": 58,
+    "measure": 52,
+    "headline": 56,
+    "accent": 58,
+    "surface": 58,
+    "corner": 40,
+    "imagery": 50,
+    "motion": 40,
+    "expressiveness": 54
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "raised",
+    "asymmetry": 26,
+    "fullBleedBias": 40
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "split",
+      "diagram",
+      "contained",
+      "code",
+      "tabs",
+      "screenshot"
+    ],
+    "avoid": [
+      "ornament",
+      "quote-led"
+    ],
+    "byFamily": {
+      "tabs": {
+        "prefer": [
+          "code",
+          "panel"
+        ],
+        "avoid": []
+      },
+      "hero": {
+        "prefer": [
+          "split",
+          "large media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "fade-up"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "inverted": true,
+      "columns": 3
+    },
+    "tabs": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "cta": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Show the product doing the work",
+    "Keep one signal colour and mean it"
+  ],
+  "donts": [
+    "Never brighten the canvas to sell to a non-technical buyer",
+    "Avoid stock photography of people at laptops"
+  ]
+}

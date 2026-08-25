@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "bold-retail",
+  "familyId": "commerce",
+  "name": "Bold Retail",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Loud, saturated and fast: big type, strong blocks and an offer you cannot miss.",
+  "philosophy": "Retail attention lasts a second. Say the offer at full volume and repeat it.",
+  "polarity": "light",
+  "tags": [
+    "bold",
+    "saturated",
+    "dense",
+    "conversion"
+  ],
+  "useCases": [
+    "Promotion or sale page",
+    "Category landing page",
+    "High-street brand homepage"
+  ],
+  "industries": [
+    "retail",
+    "ecommerce",
+    "consumer-goods",
+    "dtc"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#141414",
+    "accent": "#FF3B1F",
+    "soft": "#FFE9E4",
+    "dark": "#101010"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Work Sans",
+    "scale": 1.2,
+    "displayCase": "upper",
+    "displayTracking": -0.02
+  },
+  "radius": "4px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 64,
+    "measure": 56,
+    "headline": 84,
+    "accent": 78,
+    "surface": 44,
+    "corner": 16,
+    "imagery": 62,
+    "motion": 46,
+    "expressiveness": 74
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 26,
+    "fullBleedBias": 44
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "large media",
+      "price",
+      "banner",
+      "four"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "spacious",
+      "quote-led"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "four",
+          "six"
+        ],
+        "avoid": []
+      },
+      "cta": {
+        "prefer": [
+          "banner"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "cta": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Put the offer above the fold and again at the end",
+    "Use the accent at full strength"
+  ],
+  "donts": [
+    "Never bury the price",
+    "Avoid long paragraphs"
+  ]
+}

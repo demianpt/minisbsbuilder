@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "boutique-escape",
+  "familyId": "hospitality",
+  "name": "Boutique Escape",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A small property with a point of view: warm sand tones, intimate photography, unhurried pacing.",
+  "philosophy": "Small places sell intimacy. Show rooms and corners, not lobbies and logos.",
+  "polarity": "light",
+  "tags": [
+    "warm",
+    "intimate",
+    "photographic",
+    "spacious"
+  ],
+  "useCases": [
+    "Boutique hotel homepage",
+    "Rooms and rates page",
+    "Direct booking landing"
+  ],
+  "industries": [
+    "hospitality",
+    "hotels",
+    "restaurants",
+    "travel"
+  ],
+  "palette": {
+    "bg": "#F8F4ED",
+    "ink": "#221E19",
+    "accent": "#A8623C",
+    "soft": "#EDE4D6",
+    "dark": "#191612"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Lora",
+    "body": "Inter",
+    "scale": 1.12,
+    "displayCase": "none",
+    "displayTracking": 0.01
+  },
+  "radius": "4px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 26,
+    "measure": 44,
+    "headline": 62,
+    "accent": 30,
+    "surface": 20,
+    "corner": 20,
+    "imagery": 82,
+    "motion": 24,
+    "expressiveness": 44
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 28,
+    "fullBleedBias": 56
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "full bleed",
+      "gallery",
+      "atmosphere",
+      "split",
+      "spacious"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense",
+      "grid"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "large media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Photograph corners and details",
+    "Let bands breathe"
+  ],
+  "donts": [
+    "Never show an empty lobby",
+    "Avoid dense feature grids"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "technical-grid",
+  "familyId": "technology",
+  "name": "Technical Grid",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A blueprint sensibility: monospace labels, exposed grid lines and content that reads like documentation.",
+  "philosophy": "Some audiences are reassured by seeing the structure. The grid is not hidden behind the design — it is the design, annotated.",
+  "polarity": "light",
+  "tags": [
+    "blueprint",
+    "monospace",
+    "technical",
+    "flat",
+    "dense"
+  ],
+  "useCases": [
+    "Documentation front door",
+    "Infrastructure product page",
+    "Engineering-led homepage"
+  ],
+  "industries": [
+    "saas",
+    "technology",
+    "developer-tools",
+    "ai"
+  ],
+  "palette": {
+    "bg": "#F7F8F6",
+    "ink": "#14181A",
+    "accent": "#D8442F",
+    "soft": "#E4E7E2",
+    "dark": "#0F1213"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "IBM Plex Mono",
+    "body": "Barlow",
+    "scale": 0.94,
+    "displayCase": "upper",
+    "displayTracking": 0.06
+  },
+  "radius": "0px",
+  "buttonStyle": "corner-cut",
+  "dials": {
+    "density": 72,
+    "measure": 62,
+    "headline": 40,
+    "accent": 40,
+    "surface": 62,
+    "corner": 4,
+    "imagery": 30,
+    "motion": 14,
+    "expressiveness": 46
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 22,
+    "fullBleedBias": 20
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "split",
+      "diagram",
+      "contained",
+      "list",
+      "columns",
+      "dense",
+      "timeline"
+    ],
+    "avoid": [
+      "ornament",
+      "quote-led",
+      "photo overlay",
+      "rounded",
+      "slider"
+    ],
+    "byFamily": {
+      "timeline": {
+        "prefer": [
+          "numbered",
+          "list"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "grid",
+          "six",
+          "four"
+        ],
+        "avoid": [
+          "media"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "viewport": "",
+      "decoration": "blueprint-grid",
+      "decorationOpacity": 0.1
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4,
+      "columnsMobile": 1
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "timeline": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Label sections like drawings",
+    "Let the grid show"
+  ],
+  "donts": [
+    "Never round a corner",
+    "Avoid decorative photography"
+  ]
+}

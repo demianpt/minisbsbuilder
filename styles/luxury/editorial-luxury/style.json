@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "editorial-luxury",
+  "familyId": "luxury",
+  "name": "Editorial Luxury",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Fashion-magazine composition: oversized display type crossing full-bleed imagery, asymmetric throughout.",
+  "philosophy": "Luxury can be loud if it is loud in one register. Enormous type against photography, and nothing else competing.",
+  "polarity": "light",
+  "tags": [
+    "editorial",
+    "oversized",
+    "asymmetric",
+    "photographic"
+  ],
+  "useCases": [
+    "Fashion campaign page",
+    "Seasonal lookbook",
+    "Brand manifesto"
+  ],
+  "industries": [
+    "luxury",
+    "fashion",
+    "jewellery",
+    "property"
+  ],
+  "palette": {
+    "bg": "#FAF8F5",
+    "ink": "#111010",
+    "accent": "#B3122F",
+    "soft": "#ECE7E1",
+    "dark": "#0B0A0A"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Inter",
+    "scale": 1.3,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "magnetic-arrow",
+  "dials": {
+    "density": 30,
+    "measure": 62,
+    "headline": 92,
+    "accent": 40,
+    "surface": 16,
+    "corner": 4,
+    "imagery": 82,
+    "motion": 44,
+    "expressiveness": 74
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 74,
+    "fullBleedBias": 78
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "spacious",
+      "centered",
+      "single",
+      "full bleed",
+      "overlap",
+      "asymmetric",
+      "photo overlay"
+    ],
+    "avoid": [
+      "dense",
+      "table",
+      "six",
+      "bordered"
+    ],
+    "byFamily": {
+      "hero": {
+        "prefer": [
+          "full bleed",
+          "photo overlay"
+        ],
+        "avoid": []
+      },
+      "gallery": {
+        "prefer": [
+          "large media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    },
+    "split": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cta": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Let the headline cross the image",
+    "Break the axis on purpose"
+  ],
+  "donts": [
+    "Never centre everything",
+    "Avoid a second loud element in the same band"
+  ]
+}

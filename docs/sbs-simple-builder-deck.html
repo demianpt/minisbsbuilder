@@ -1,0 +1,1181 @@
+<title>Inside the SBS Simple Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* ---------------------------------------------------------------- *
+   * Tokens. Light is the base; both dark paths redefine only these.
+   * ---------------------------------------------------------------- */
+  :root{
+    --paper:#EFF3F3;
+    --card:#FFFFFF;
+    --card-2:#F7FAFA;
+    --rule:#C6D2D4;
+    --rule-soft:#DEE6E7;
+    --ink:#0B1113;
+    --ink-2:#39494D;
+    --ink-3:#6C7E83;
+    --deep:#0B3A46;
+    --deep-ink:#F2F7F7;
+    --accent:#C7431F;
+    --accent-soft:#FBEAE4;
+    --ok:#0F6B4F;
+    --ok-soft:#E3F0EB;
+    --warn:#8A5A00;
+    --warn-soft:#F7EEDB;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0C1113;
+      --card:#141B1E;
+      --card-2:#111819;
+      --rule:#2B383C;
+      --rule-soft:#1F2A2D;
+      --ink:#EAF1F2;
+      --ink-2:#B0C0C4;
+      --ink-3:#7C8F94;
+      --deep:#9FD3E0;
+      --deep-ink:#0C1113;
+      --accent:#F57C57;
+      --accent-soft:#31190F;
+      --ok:#6FC7A5;
+      --ok-soft:#122620;
+      --warn:#E0B45F;
+      --warn-soft:#2A2211;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0C1113;
+    --card:#141B1E;
+    --card-2:#111819;
+    --rule:#2B383C;
+    --rule-soft:#1F2A2D;
+    --ink:#EAF1F2;
+    --ink-2:#B0C0C4;
+    --ink-3:#7C8F94;
+    --deep:#9FD3E0;
+    --deep-ink:#0C1113;
+    --accent:#F57C57;
+    --accent-soft:#31190F;
+    --ok:#6FC7A5;
+    --ok-soft:#122620;
+    --warn:#E0B45F;
+    --warn-soft:#2A2211;
+  }
+
+  :root{
+    --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --body:"Source Serif 4","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --slide-w:1280px;
+    --slide-h:720px;
+  }
+
+  *{box-sizing:border-box}
+  html{background:var(--paper)}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------------------------------------------------------------- *
+   * The slide frame. 16:9 on screen; the same box is the printed page.
+   * ---------------------------------------------------------------- */
+  .deck{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+    padding:22px 22px 60px;
+  }
+  .slide{
+    position:relative;
+    width:var(--slide-w);
+    height:var(--slide-h);
+    flex:none;
+    background:var(--card);
+    border:1px solid var(--rule);
+    padding:44px 56px 48px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  .slide.is-deep{background:var(--deep);border-color:var(--deep);color:var(--deep-ink)}
+  .slide.is-deep .eyebrow,.slide.is-deep .num{color:rgba(242,247,247,.62)}
+  .slide.is-deep .rail{border-color:rgba(242,247,247,.24)}
+  .slide.is-deep h2,.slide.is-deep h1{color:var(--deep-ink)}
+  .slide.is-deep p{color:rgba(242,247,247,.86)}
+
+  .rail{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:9px;
+    margin-bottom:26px;
+    flex:none;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    margin:0;
+  }
+  .eyebrow b{color:var(--accent);font-weight:700}
+  .num{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.1em;
+    color:var(--ink-3);
+    font-variant-numeric:tabular-nums;
+  }
+
+  h1{
+    font-family:var(--display);
+    font-weight:800;
+    letter-spacing:-.035em;
+    font-size:78px;
+    line-height:.94;
+    margin:0;
+    text-wrap:balance;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:700;
+    letter-spacing:-.022em;
+    font-size:38px;
+    line-height:1.04;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+  h3{
+    font-family:var(--display);
+    font-weight:700;
+    letter-spacing:-.01em;
+    font-size:17px;
+    line-height:1.2;
+    margin:0 0 6px;
+    text-wrap:balance;
+  }
+  p{margin:0 0 12px;font-size:16.5px;line-height:1.52;color:var(--ink-2);max-width:70ch}
+  p:last-child{margin-bottom:0}
+  .lead{font-size:20px;line-height:1.42;color:var(--ink-2);max-width:62ch}
+  strong{color:var(--ink);font-weight:600}
+  code,.mono{font-family:var(--mono);font-size:.86em;font-variant-ligatures:none}
+  code{background:var(--card-2);border:1px solid var(--rule-soft);padding:.06em .32em;color:var(--ink);white-space:nowrap}
+  .slide.is-deep code{background:rgba(242,247,247,.09);border-color:rgba(242,247,247,.18);color:var(--deep-ink)}
+
+  .body{flex:1;min-height:0;display:flex;flex-direction:column;gap:18px}
+  .cols{display:grid;gap:26px;align-items:start}
+  .c2{grid-template-columns:1fr 1fr}
+  .c3{grid-template-columns:repeat(3,1fr)}
+  .c4{grid-template-columns:repeat(4,1fr)}
+  .c-38{grid-template-columns:38% 1fr}
+  .c-60{grid-template-columns:1.5fr 1fr}
+
+  /* ---------------------------------------------------------------- *
+   * Numbered steps. The builder's four steps are a real sequence, so
+   * the numbers carry order rather than decorate.
+   * ---------------------------------------------------------------- */
+  .stack{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule-soft)}
+  .row{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:0 18px;
+    padding:13px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .row .n{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:700;
+    color:var(--accent);
+    font-variant-numeric:tabular-nums;
+    padding-top:3px;
+  }
+  .row p{font-size:15px;margin:2px 0 0;max-width:74ch}
+
+  .panel{
+    background:var(--card-2);
+    border:1px solid var(--rule-soft);
+    padding:16px 18px;
+  }
+  .panel.accent{background:var(--accent-soft);border-color:var(--accent)}
+  .panel.ok{background:var(--ok-soft);border-color:var(--ok)}
+  .panel h3{margin-bottom:8px}
+  .panel p{font-size:14.5px;margin:0}
+  .panel p + p{margin-top:8px}
+
+  .kv{font-family:var(--mono);font-size:12.5px;line-height:1.75;color:var(--ink-2);font-variant-numeric:tabular-nums}
+  .kv b{color:var(--ink);font-weight:700}
+  .kv .a{color:var(--accent);font-weight:700}
+
+  .figures{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .fig{padding:16px 20px 18px;border-right:1px solid var(--rule-soft)}
+  .fig:last-child{border-right:0}
+  .fig b{
+    display:block;
+    font-family:var(--display);
+    font-weight:800;
+    font-size:44px;
+    line-height:1;
+    letter-spacing:-.03em;
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .fig span{
+    display:block;
+    margin-top:7px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    line-height:1.45;
+  }
+  .slide.is-deep .figures{border-color:rgba(242,247,247,.24)}
+  .slide.is-deep .fig{border-color:rgba(242,247,247,.14)}
+  .slide.is-deep .fig b{color:var(--deep-ink)}
+  .slide.is-deep .fig span{color:rgba(242,247,247,.6)}
+
+  table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12.5px}
+  th,td{text-align:left;padding:7px 12px 7px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+  th{
+    font-weight:700;
+    font-size:10px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    border-bottom:1px solid var(--rule);
+  }
+  td.k{color:var(--ink);font-weight:500;white-space:nowrap}
+  td.w{font-family:var(--body);font-size:14px;color:var(--ink-2);white-space:normal;padding-right:0}
+  /* A ten-row table needs tighter rhythm than a five-row one, or it runs into
+     the footer rail. Declared once and asked for, rather than nudged per cell. */
+  table.tight th,table.tight td{padding:4.5px 12px 4.5px 0}
+  table.tight td.k{font-size:11.5px}
+  table.tight td.w{font-size:12.8px;line-height:1.38}
+  tr:last-child td{border-bottom:0}
+
+  figure{margin:0;display:flex;flex-direction:column;gap:9px;min-height:0}
+  figure svg{width:100%;height:auto;max-height:100%;display:block;color:var(--ink-2)}
+  figcaption{
+    font-family:var(--mono);
+    font-size:11px;
+    line-height:1.6;
+    color:var(--ink-3);
+    letter-spacing:.01em;
+  }
+  .slide.is-deep figure svg{color:rgba(242,247,247,.8)}
+  .slide.is-deep figcaption{color:rgba(242,247,247,.58)}
+  .dg-box{fill:var(--card);stroke:currentColor;stroke-width:1.1}
+  .dg-box-2{fill:var(--card-2);stroke:currentColor;stroke-width:1.1}
+  .dg-hot{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.4}
+  .dg-line{stroke:currentColor;stroke-width:1.1;fill:none}
+  .dg-hotline{stroke:var(--accent);stroke-width:1.6;fill:none}
+  .dg-dash{stroke:currentColor;stroke-width:1.1;fill:none;stroke-dasharray:5 4}
+  .dg-t{font-family:var(--mono);font-size:12px;fill:var(--ink)}
+  .dg-t-s{font-family:var(--mono);font-size:10.5px;fill:var(--ink-3)}
+  .dg-t-a{font-family:var(--mono);font-size:10.5px;fill:var(--accent);font-weight:700}
+  .dg-t-b{font-family:var(--mono);font-size:12px;fill:var(--ink);font-weight:700}
+  .slide.is-deep .dg-box{fill:rgba(242,247,247,.07)}
+  .slide.is-deep .dg-box-2{fill:rgba(242,247,247,.03)}
+  .slide.is-deep .dg-t,.slide.is-deep .dg-t-b{fill:var(--deep-ink)}
+  .slide.is-deep .dg-t-s{fill:rgba(242,247,247,.62)}
+
+  .foot{
+    flex:none;
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid var(--rule-soft);
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-3);
+    display:flex;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .slide.is-deep .foot{border-color:rgba(242,247,247,.18);color:rgba(242,247,247,.58)}
+
+  .chip{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:3px 7px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border:1px solid var(--accent);
+  }
+  .chip.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+  .chip.plain{background:var(--card-2);color:var(--ink-3);border-color:var(--rule)}
+
+  ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+  ul li{
+    position:relative;
+    padding-left:16px;
+    font-size:15px;
+    line-height:1.48;
+    color:var(--ink-2);
+  }
+  ul li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:.62em;
+    width:6px;
+    height:1px;
+    background:var(--accent);
+  }
+  .slide.is-deep ul li{color:rgba(242,247,247,.86)}
+
+  /* ---------------------------------------------------------------- *
+   * Print: the slide box *is* the page, so a printed PDF is the deck
+   * rather than a reflowed document.
+   * ---------------------------------------------------------------- */
+  @page{size:1280px 720px;margin:0}
+  @media print{
+    html,body{background:#fff}
+    .deck{display:block;padding:0;gap:0}
+    .slide{
+      width:1280px;
+      height:720px;
+      border:0;
+      break-after:page;
+      page-break-after:always;
+      break-inside:avoid;
+    }
+    .slide:last-child{break-after:auto;page-break-after:auto}
+  }
+  /* `screen and`, deliberately: without it this matched under print too — the
+     print block sets the deck's padding to zero and this one, coming later, put
+     54px back, which is two extra blank pages in an 18-slide PDF. */
+  @media screen and (max-width:1360px){
+    /* Scaled rather than reflowed: a slide that reflows stops being a slide. */
+    .deck{padding:14px 14px 40px}
+    .slide{transform-origin:top center}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="deck">
+
+<!-- ============================================================ 01 -->
+<section class="slide is-deep">
+  <div class="rail">
+    <p class="eyebrow">Digital Silk · SBS DST Page Builder · v2.9.0</p>
+    <span class="num">01 / 18</span>
+  </div>
+  <div class="body" style="justify-content:center;gap:26px">
+    <h1>Inside the<br>Simple Builder</h1>
+    <p class="lead" style="max-width:56ch">One paragraph of brief becomes three complete, WordPress-ready page concepts — copy written, imagery placed, blocks composed from the registered DST library. This is how.</p>
+    <div class="figures" style="margin-top:8px">
+      <div class="fig"><b>4</b><span>steps in the<br>simple builder</span></div>
+      <div class="fig"><b>1</b><span>button does the<br>whole first pass</span></div>
+      <div class="fig"><b>156</b><span>registered<br>DST patterns</span></div>
+      <div class="fig"><b>3</b><span>isolated concept<br>workspaces</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Technical walk-through for the engineering team</span><span>Landscape deck · also in the repo as PDF</span></div>
+</section>
+
+<!-- ============================================================ 02 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The claim</b> · what the machine is for</p>
+    <span class="num">02 / 18</span>
+  </div>
+  <div class="body">
+    <h2>A strategist writes one paragraph. A client sees three finished pages.</h2>
+    <div class="cols c-60">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p>Everything between those two facts is this application. It reads the brief, decides which of 156 registered DST patterns the page should be built from, writes the copy for every band, finds and places the imagery, and renders the result as a live page you can edit — then exports it as block JSON a WordPress plugin turns into real, editable Gutenberg blocks.</p>
+        <p>It runs <strong>entirely in the browser</strong>. The only server is a thin proxy in front of a language model and a stock-image API: no database, no build step per project, no session state. A project is one JSON object in <code>localStorage</code>.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel accent">
+          <h3>The design constraint that shapes everything</h3>
+          <p>The preview is not a mock-up of the output. It is rendered from <em>the same node tree</em> the export serialises. When they disagree, that is a bug with a name — and there is a test for it.</p>
+        </div>
+        <div class="panel">
+          <h3>Two front doors, one engine</h3>
+          <p>The <strong>simple builder</strong> is four steps and plain language. The <strong>advanced builder</strong> is five steps over the same project, exposing every registered DST attribute. Switching between them loses nothing, because there is only one project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>src/runtime/builder.js · 8,803 lines</span><span>src/features/brief-brain · 1,986 lines</span></div>
+</section>
+
+<!-- ============================================================ 03 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Architecture</b> · the whole system on one page</p>
+    <span class="num">03 / 18</span>
+  </div>
+  <div class="body">
+    <figure>
+      <svg viewBox="0 0 1160 470" role="img" aria-label="The browser holds the builder and the preview; an Express proxy sits between it and the language model and stock imagery; the export becomes WordPress blocks.">
+        <defs>
+          <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+          <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="var(--accent)"/>
+          </marker>
+        </defs>
+
+        <!-- browser -->
+        <rect class="dg-box-2" x="10" y="20" width="410" height="430"/>
+        <text class="dg-t-s" x="24" y="42">THE BROWSER — no server state</text>
+        <rect class="dg-hot" x="30" y="58" width="180" height="66"/>
+        <text class="dg-t-b" x="42" y="84">builder.js</text>
+        <text class="dg-t-s" x="42" y="102">renderer · editor</text>
+        <text class="dg-t-s" x="42" y="116">export · state</text>
+        <rect class="dg-box" x="228" y="58" width="176" height="66"/>
+        <text class="dg-t-b" x="240" y="84">brief-brain</text>
+        <text class="dg-t-s" x="240" y="102">panels · handlers</text>
+        <text class="dg-t-s" x="240" y="116">state · api client</text>
+        <rect class="dg-box" x="30" y="152" width="180" height="58"/>
+        <text class="dg-t" x="42" y="176">dst-data.json</text>
+        <text class="dg-t-s" x="42" y="194">156 patterns · registry</text>
+        <rect class="dg-box" x="228" y="152" width="176" height="58"/>
+        <text class="dg-t" x="240" y="176">localStorage</text>
+        <text class="dg-t-s" x="240" y="194">one project object</text>
+        <rect class="dg-box" x="30" y="238" width="374" height="192"/>
+        <text class="dg-t-b" x="42" y="262">&lt;iframe srcdoc&gt; — the live preview</text>
+        <text class="dg-t-s" x="42" y="282">buildSiteDocument(project) → one whole HTML document</text>
+        <text class="dg-t-s" x="42" y="300">rendered from the same node tree the export serialises</text>
+        <text class="dg-t-s" x="42" y="340">a property change repaints one section in place;</text>
+        <text class="dg-t-s" x="42" y="358">only a design dial rebuilds the document</text>
+        <text class="dg-t-s" x="42" y="390">the export reads this same tree, which is what</text>
+        <text class="dg-t-s" x="42" y="408">makes preview and WordPress the same page</text>
+
+        <!-- server -->
+        <rect class="dg-box-2" x="470" y="20" width="240" height="222"/>
+        <text class="dg-t-s" x="484" y="42">NODE · EXPRESS</text>
+        <rect class="dg-box" x="486" y="58" width="208" height="164"/>
+        <text class="dg-t-b" x="498" y="82">/api/brief/*</text>
+        <text class="dg-t-s" x="498" y="104">status · understand</text>
+        <text class="dg-t-s" x="498" y="120">concepts · content</text>
+        <text class="dg-t-s" x="498" y="136">outline · expand</text>
+        <text class="dg-t-s" x="498" y="152">media · media/asset</text>
+        <text class="dg-t-s" x="498" y="176">zod in, zod out —</text>
+        <text class="dg-t-s" x="498" y="192">a bad reply is an</text>
+        <text class="dg-t-s" x="498" y="208">error, not a page</text>
+
+        <!-- providers -->
+        <rect class="dg-box" x="770" y="44" width="180" height="62"/>
+        <text class="dg-t-b" x="782" y="68">Ollama Cloud</text>
+        <text class="dg-t-s" x="782" y="88">7 versioned prompts</text>
+        <rect class="dg-box" x="770" y="128" width="180" height="62"/>
+        <text class="dg-t-b" x="782" y="152">Shutterstock</text>
+        <text class="dg-t-s" x="782" y="172">watermarked previews</text>
+
+        <!-- wordpress -->
+        <rect class="dg-box-2" x="770" y="268" width="380" height="182"/>
+        <text class="dg-t-s" x="784" y="290">WORDPRESS</text>
+        <rect class="dg-hot" x="786" y="308" width="164" height="112"/>
+        <text class="dg-t-b" x="798" y="334">Importer 2.0.0</text>
+        <text class="dg-t-s" x="798" y="356">block converter</text>
+        <text class="dg-t-s" x="798" y="378">menus · media</text>
+        <text class="dg-t-s" x="798" y="400">template parts</text>
+        <rect class="dg-box" x="968" y="308" width="166" height="112"/>
+        <text class="dg-t" x="980" y="334">Gutenberg</text>
+        <text class="dg-t-s" x="980" y="356">ds-blocks/*</text>
+        <text class="dg-t-s" x="980" y="378">editable, with every</text>
+        <text class="dg-t-s" x="980" y="400">control intact</text>
+
+        <!-- arrows -->
+        <line class="dg-hotline" x1="420" y1="92" x2="482" y2="92" marker-end="url(#a2)"/>
+        <text class="dg-t-a" x="424" y="82">POST</text>
+        <line class="dg-line" x1="710" y1="76" x2="764" y2="76" marker-end="url(#a1)"/>
+        <text class="dg-t-s" x="712" y="66">chat</text>
+        <line class="dg-line" x1="710" y1="160" x2="764" y2="160" marker-end="url(#a1)"/>
+        <text class="dg-t-s" x="712" y="150">search</text>
+        <line class="dg-dash" x1="215" y1="124" x2="215" y2="148" marker-end="url(#a1)"/>
+        <line class="dg-dash" x1="316" y1="124" x2="316" y2="148" marker-end="url(#a1)"/>
+        <line class="dg-line" x1="215" y1="212" x2="215" y2="234" marker-end="url(#a1)"/>
+        <text class="dg-t-s" x="222" y="228">renders</text>
+        <line class="dg-hotline" x1="410" y1="352" x2="780" y2="352" marker-end="url(#a2)"/>
+        <text class="dg-t-a" x="432" y="342">export → page.json · navigation.json · footer.json</text>
+        <line class="dg-hotline" x1="952" y1="364" x2="964" y2="364" marker-end="url(#a2)"/>
+      </svg>
+      <figcaption>One request path (accent) carries the brief out and the concepts back; a second carries the finished project into WordPress. Everything else stays in the tab. Dashed lines are reads.</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>No database · no per-project build · no session</span><span>The server holds credentials and schemas, nothing else</span></div>
+</section>
+
+<!-- ============================================================ 04 -->
+<section class="slide is-deep">
+  <div class="rail">
+    <p class="eyebrow">The four steps · <b>walk-through begins</b></p>
+    <span class="num">04 / 18</span>
+  </div>
+  <div class="body" style="justify-content:center">
+    <h2 style="font-size:52px">Four steps, and the first one does most of the work.</h2>
+    <div class="cols c4" style="margin-top:10px">
+      <div><span class="chip">Step 01</span><h3 style="margin-top:12px;color:var(--deep-ink)">Brief &amp; Direction</h3><p style="font-size:14.5px">One paragraph in. Three concepts, all the copy and all the imagery out.</p></div>
+      <div><span class="chip plain">Step 02</span><h3 style="margin-top:12px;color:var(--deep-ink)">Page flow</h3><p style="font-size:14.5px">Which bands the page is made of, and in what order.</p></div>
+      <div><span class="chip plain">Step 03</span><h3 style="margin-top:12px;color:var(--deep-ink)">Modules</h3><p style="font-size:14.5px">Per-band content, media and layout — in plain language.</p></div>
+      <div><span class="chip plain">Step 04</span><h3 style="margin-top:12px;color:var(--deep-ink)">Review &amp; export</h3><p style="font-size:14.5px">Preflight, then the artifacts WordPress consumes.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>SIMPLE_STEPS · src/runtime/builder.js</span><span>The advanced builder is the same project over five steps</span></div>
+</section>
+
+<!-- ============================================================ 05 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 01</b> · Brief and Direction</p>
+    <span class="num">05 / 18</span>
+  </div>
+  <div class="body">
+    <h2>The brief arrives as a paragraph, a PDF, or both.</h2>
+    <div class="cols c-38">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel">
+          <h3>Typed</h3>
+          <p>A textarea, capped at 16,000 characters. The counter and the button's gate both measure the <em>whole</em> brief.</p>
+        </div>
+        <div class="panel">
+          <h3>Attached</h3>
+          <p>Drop a PDF, <code>.docx</code>, <code>.rtf</code> or any text file anywhere on the window. It is read <strong>in the browser</strong> — nothing is uploaded — and shows as a named attachment, not as pasted text.</p>
+        </div>
+        <div class="panel ok">
+          <h3>briefSourceText()</h3>
+          <p>One function decides what "the brief" is: the paragraph, then each document announced by its own file name. Every consumer reads it, so they cannot disagree.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p>The PDF reader is written from scratch and has no dependency: <code>DecompressionStream</code> for the Flate streams, a table walk for <code>/ObjStm</code> object streams, and a <code>/ToUnicode</code> CMap resolver for <code>Identity-H</code> CID fonts — which is what Word and Chrome actually export. A PDF stores no spaces and no lines, so word gaps are inferred from kerning and line breaks from pen position.</p>
+        <div class="stack">
+          <div class="row"><span class="n">→</span><div><h3>What the reader handles</h3><p>WinAnsi TrueType and Identity-H CIDFontType2 in the same file; PDF 1.5+ compressed object streams; DOCX as a ZIP with a deflated <code>word/document.xml</code>; RTF control-word groups; HTML.</p></div></div>
+          <div class="row"><span class="n">→</span><div><h3>What it refuses, by name</h3><p>A scan. If less than 55% of the extracted characters are letters, it says so and asks for the text instead of handing the model noise.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>shared/brief/pdf.mjs · documents.mjs · bytes.mjs</span><span>16,000-character limit stated once, consumed in six places</span></div>
+</section>
+
+<!-- ============================================================ 06 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 01</b> · the one button, in four stages</p>
+    <span class="num">06 / 18</span>
+  </div>
+  <div class="body">
+    <figure>
+      <svg viewBox="0 0 1160 330" role="img" aria-label="One press runs four stages in order: read the brief, write the copy, find the imagery, then fork the three concepts.">
+        <defs>
+          <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="var(--accent)"/>
+          </marker>
+        </defs>
+        <rect class="dg-hot" x="10" y="120" width="150" height="70"/>
+        <text class="dg-t-b" x="24" y="150">One press</text>
+        <text class="dg-t-s" x="24" y="170">build-concepts</text>
+
+        <rect class="dg-box" x="212" y="96" width="200" height="120"/>
+        <text class="dg-t-a" x="226" y="120">STAGE 1</text>
+        <text class="dg-t-b" x="226" y="142">Read the brief</text>
+        <text class="dg-t-s" x="226" y="164">POST /concepts</text>
+        <text class="dg-t-s" x="226" y="180">→ fields, readback,</text>
+        <text class="dg-t-s" x="226" y="196">3 designs, 5 flows</text>
+
+        <rect class="dg-box" x="452" y="96" width="200" height="120"/>
+        <text class="dg-t-a" x="466" y="120">STAGE 2</text>
+        <text class="dg-t-b" x="466" y="142">Write the copy</text>
+        <text class="dg-t-s" x="466" y="164">POST /content</text>
+        <text class="dg-t-s" x="466" y="180">→ per-band copy,</text>
+        <text class="dg-t-s" x="466" y="196">applied to the page</text>
+
+        <rect class="dg-box" x="692" y="96" width="200" height="120"/>
+        <text class="dg-t-a" x="706" y="120">STAGE 3</text>
+        <text class="dg-t-b" x="706" y="142">Find the imagery</text>
+        <text class="dg-t-s" x="706" y="164">POST /media</text>
+        <text class="dg-t-s" x="706" y="180">→ previews matched</text>
+        <text class="dg-t-s" x="706" y="196">to real media slots</text>
+
+        <rect class="dg-hot" x="932" y="96" width="216" height="120"/>
+        <text class="dg-t-a" x="946" y="120">STAGE 4</text>
+        <text class="dg-t-b" x="946" y="142">Fork the concepts</text>
+        <text class="dg-t-s" x="946" y="164">V1 · V2 · V3 cloned</text>
+        <text class="dg-t-s" x="946" y="180">from the dressed page,</text>
+        <text class="dg-t-s" x="946" y="196">so all three compare</text>
+
+        <line class="dg-hotline" x1="162" y1="155" x2="206" y2="155" marker-end="url(#a3)"/>
+        <line class="dg-hotline" x1="414" y1="155" x2="446" y2="155" marker-end="url(#a3)"/>
+        <line class="dg-hotline" x1="654" y1="155" x2="686" y2="155" marker-end="url(#a3)"/>
+        <line class="dg-hotline" x1="894" y1="155" x2="926" y2="155" marker-end="url(#a3)"/>
+
+        <text class="dg-t-s" x="452" y="266">Stages 2 and 3 are best-effort by design: a brief that produced three concepts is</text>
+        <text class="dg-t-s" x="452" y="284">worth keeping even when the copywriter timed out, and stock imagery is a separately</text>
+        <text class="dg-t-s" x="452" y="302">configured service most servers do not have. Both say what happened, in counts.</text>
+        <line class="dg-dash" x1="552" y1="220" x2="552" y2="248"/>
+        <line class="dg-dash" x1="792" y1="220" x2="792" y2="248"/>
+      </svg>
+      <figcaption>Order is the whole point: the page is dressed with copy and pictures <em>before</em> it forks, so the three concepts differ only in design and are genuinely comparable.</figcaption>
+    </figure>
+    <div class="cols c3">
+      <div class="panel"><h3>What the panel reports</h3><p>Concepts built, sections written, pictures placed — and a note for anything that did not happen, rather than a toast that has already gone.</p></div>
+      <div class="panel"><h3>Staleness is tracked</h3><p>Editing the paragraph or removing an attachment marks the concepts stale, with the reason on the panel.</p></div>
+      <div class="panel"><h3>No second button</h3><p>Applying copy and applying imagery used to be two more presses. They are stages now; the buttons are gone from the code, not hidden.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>runConcepts() · src/features/brief-brain/event-handlers.js</span><span>RUN_STAGES drives the progress list the operator sees</span></div>
+</section>
+
+<!-- ============================================================ 07 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 01</b> · what a concept actually is</p>
+    <span class="num">07 / 18</span>
+  </div>
+  <div class="body">
+    <div class="cols c-60">
+      <figure>
+        <svg viewBox="0 0 700 330" role="img" aria-label="A project holds one shared brief and three concept workspaces; the live project is an accessor view of whichever concept is active.">
+          <defs>
+            <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+            </marker>
+          </defs>
+          <rect class="dg-box-2" x="8" y="14" width="300" height="140"/>
+          <text class="dg-t-s" x="22" y="36">SHARED — one copy, all three concepts</text>
+          <text class="dg-t" x="22" y="62">brief</text><text class="dg-t-s" x="118" y="62">fields, attachments</text>
+          <text class="dg-t" x="22" y="84">simple</text><text class="dg-t-s" x="118" y="84">paragraph, concepts</text>
+          <text class="dg-t" x="22" y="106">brain</text><text class="dg-t-s" x="118" y="106">job state</text>
+          <text class="dg-t" x="22" y="128">media</text><text class="dg-t-s" x="118" y="128">the imagery pool</text>
+
+          <rect class="dg-hot" x="8" y="182" width="96" height="122"/>
+          <text class="dg-t-b" x="20" y="206">V1</text>
+          <text class="dg-t-s" x="20" y="228">design</text>
+          <text class="dg-t-s" x="20" y="246">sections</text>
+          <text class="dg-t-s" x="20" y="264">header</text>
+          <text class="dg-t-s" x="20" y="282">footer</text>
+          <text class="dg-t-s" x="20" y="300">flow</text>
+          <rect class="dg-box" x="110" y="182" width="96" height="122"/>
+          <text class="dg-t-b" x="122" y="206">V2</text>
+          <text class="dg-t-s" x="122" y="228">its own</text>
+          <text class="dg-t-s" x="122" y="246">copy of</text>
+          <text class="dg-t-s" x="122" y="264">all of it</text>
+          <rect class="dg-box" x="212" y="182" width="96" height="122"/>
+          <text class="dg-t-b" x="224" y="206">V3</text>
+          <text class="dg-t-s" x="224" y="228">its own</text>
+          <text class="dg-t-s" x="224" y="246">copy of</text>
+          <text class="dg-t-s" x="224" y="264">all of it</text>
+
+          <rect class="dg-box" x="392" y="120" width="290" height="96"/>
+          <text class="dg-t-b" x="406" y="146">state.project</text>
+          <text class="dg-t-s" x="406" y="168">enumerable accessors — every read and</text>
+          <text class="dg-t-s" x="406" y="184">every write resolves through</text>
+          <text class="dg-t-s" x="406" y="200">conceptSet.activeConceptId</text>
+
+          <line class="dg-line" x1="312" y1="84" x2="386" y2="140" marker-end="url(#a4)"/>
+          <line class="dg-line" x1="312" y1="240" x2="386" y2="186" marker-end="url(#a4)"/>
+          <text class="dg-t-s" x="322" y="112">read straight</text>
+          <text class="dg-t-s" x="318" y="228">resolved live</text>
+          <text class="dg-t-s" x="392" y="256">There is no moment at which an edit exists on the</text>
+          <text class="dg-t-s" x="392" y="274">project but not yet in a concept. That is what</text>
+          <text class="dg-t-s" x="392" y="292">replaced capture-on-switch — and the bug class</text>
+          <text class="dg-t-s" x="392" y="310">where switching a pill lost somebody's work.</text>
+        </svg>
+        <figcaption>A concept is a <em>design</em>, not a page. Switching V1/V2/V3 replaces the design slice and can never disturb content, flow or globals.</figcaption>
+      </figure>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <h2 style="font-size:30px">Three workspaces, one brief.</h2>
+        <p>Each concept holds its own design, sections, header, footer and flow. The brief, the imagery pool and the job state are shared, because they belong to the project rather than to a proposal.</p>
+        <div class="panel">
+          <h3>What the pills guarantee</h3>
+          <p>Switching a concept is not an undoable edit, and undo is per concept. A design edit stays with the concept it was made on. All of it survives a reload.</p>
+        </div>
+        <div class="panel">
+          <h3>Where the design comes from</h3>
+          <p>Nine numeric dials — density, imagery, expressiveness, motion, measure and the rest — plus a palette, two typefaces and a button family. A concept is those values; the page is what they resolve to.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>shared/concepts/workspace.mjs · PROJECT_SHARED_KEYS</span><span>50 production styles across 10 families feed the dials</span></div>
+</section>
+
+<!-- ============================================================ 08 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 02</b> · Page flow</p>
+    <span class="num">08 / 18</span>
+  </div>
+  <div class="body">
+    <h2>Which bands the page is made of, and why those.</h2>
+    <div class="cols c2">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p>A flow is an ordered list of section families — <code>hero · text · split · cards · stats · testimonial · faq · cta</code> and so on. The library holds <strong>35</strong> of them, and the model ranks every one against the brief, returning the five that fit with a reason for each.</p>
+        <p>The strategist can also describe the page in their own words; that goes to <code>/outline</code> and comes back as a custom sequence.</p>
+        <div class="panel accent">
+          <h3>The flow decides families. Something else decides patterns.</h3>
+          <p>Choosing a flow does not choose a design. Each family has many registered patterns, and which one a band gets is scored separately — see the next slide.</p>
+        </div>
+      </div>
+      <div>
+        <table class="tight">
+          <thead><tr><th>Family</th><th>Patterns</th><th class="w">What it is</th></tr></thead>
+          <tbody>
+            <tr><td class="k">cards</td><td>34</td><td class="w">Repeating offer or capability cards</td></tr>
+            <tr><td class="k">contact</td><td>16</td><td class="w">Form bands, ten of them embedding Gravity&nbsp;Forms</td></tr>
+            <tr><td class="k">faq</td><td>12</td><td class="w">Accordion question sets</td></tr>
+            <tr><td class="k">hero</td><td>11</td><td class="w">Page openers, mostly photo-backed</td></tr>
+            <tr><td class="k">timeline</td><td>11</td><td class="w">Ordered process or history</td></tr>
+            <tr><td class="k">split</td><td>9</td><td class="w">Media beside text</td></tr>
+            <tr><td class="k">stats</td><td>9</td><td class="w">Metric bands with illustrative figures</td></tr>
+            <tr><td class="k">team · slider</td><td>7 · 7</td><td class="w">People, and horizontal sets</td></tr>
+            <tr><td class="k">testimonial · cta · text</td><td>6 each</td><td class="w">Quotes, the closing ask, statements</td></tr>
+            <tr><td class="k">blog · pricing · tabs · logo</td><td>5 · 4 · 4 · 4</td><td class="w">Resources, tiers, panels, proof strip</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>FLOW_CATALOG · 35 flows · 19 families</span><span>__SBS_TEST_API.patternChoice() returns the ranking with reasons</span></div>
+</section>
+
+<!-- ============================================================ 09 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The library</b> · how a band gets its pattern</p>
+    <span class="num">09 / 18</span>
+  </div>
+  <div class="body">
+    <div class="figures">
+      <div class="fig"><b>156</b><span>registered<br>patterns</span></div>
+      <div class="fig"><b>52</b><span>DST block types<br>in the registry</span></div>
+      <div class="fig"><b>1,270</b><span>block attributes<br>the export knows</span></div>
+      <div class="fig"><b>58</b><span>decorative<br>motifs</span></div>
+    </div>
+    <div class="cols c-60">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p>Every pattern is a real WordPress export — a tree of <code>ds-blocks/*</code> nodes with their attributes. Picking one is arithmetic and it is inspectable: the catalogue describes each pattern's look, what it is best for and what it holds; the brief and the nine design dials describe what this page needs. Matching the two produces a ranking with reasons.</p>
+        <p>Two properties matter as much as the ranking. It is <strong>deterministic</strong> — the same brief and dials give the same page every time, because a layout that reshuffles on each press is a slot machine, not a recommendation. And it <strong>varies with the concept</strong>, because the dials do: the calm concept gets contained bands, the bold one reaches for the photo-backed and full-bleed members of the same families.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel ok">
+          <h3>Self-description is derived, not shipped</h3>
+          <p>Each pattern's item counts, capability flags and one-line description are recomputed at boot <em>from its own tree</em>. They used to be stored, and they had drifted on two thirds of the library — which mattered, because pattern selection reads them.</p>
+        </div>
+        <div class="panel">
+          <h3>The registry comes from the theme</h3>
+          <p><code>npm run sync:registry</code> reads the digitalsilk theme's own <code>block.json</code> manifests plus the attributes its editor HOCs inject. The export validates against that, so an imported block is editable with every control the builder used.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>v8Score() · deterministic, inspectable, concept-aware</span><span>scripts/sync-dst-registry.mjs · scripts/clean-patterns.mjs</span></div>
+</section>
+
+<!-- ============================================================ 10 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 03</b> · Modules</p>
+    <span class="num">10 / 18</span>
+  </div>
+  <div class="body">
+    <h2>Per-band editing, in plain language.</h2>
+    <div class="cols c3">
+      <div class="panel"><h3>Content</h3><p>Pretitle, title, subtitle, body, the repeated items and the buttons. Typing patches the band in the live document as you type.</p></div>
+      <div class="panel"><h3>Media</h3><p>Every slot the pattern actually renders, the found imagery, project assets and the placeholder library. Drag a tile onto the band to place it.</p></div>
+      <div class="panel"><h3>Layout + effects</h3><p>Background, content width, spacing above and below, items per row, arrival effect, overlay and a decorative motif.</p></div>
+    </div>
+    <div class="cols c2">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel accent">
+          <h3>Every control lands in the export</h3>
+          <p>A property you can change in the builder and cannot find in WordPress is worse than a missing control: the page was approved with it. So a test drives <em>every</em> binding the module editor renders — all 19 families, both views, a real input event each — and asserts the exported artifact changed.</p>
+        </div>
+        <p>It found five controls that changed nothing, each fixed at its cause. One was withdrawn rather than fixed: <code>c-heading</code> has a single alignment pair, so a separate supporting-text alignment had no attribute to become. It moved the preview and vanished on export.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel">
+          <h3>Editing never moves the preview</h3>
+          <p>A rebuilt <code>srcdoc</code> is a new document: it opens at scroll 0 and the restore walks it back down, taking the band you are editing with it. So a property change swaps <em>one section</em> in place and cancels the rebuild queued behind it. Repaints coalesce to one per frame, so dragging a slider patches the band per frame rather than rebuilding the page per pixel.</p>
+        </div>
+        <div class="panel">
+          <h3>Two counters make it provable</h3>
+          <p><code>paint.painted()</code> and <code>paint.rebuilt()</code>. A repaint that silently degraded into a rebuild is the failure this exists to prevent, and a test asserting only "the change landed" cannot tell the two apart.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>editor-properties.spec.mjs · every binding, every family</span><span>v6RepaintSection() + __sbsBind(next, {reveal:true})</span></div>
+</section>
+
+<!-- ============================================================ 11 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The preview</b> · why a change does not move the page</p>
+    <span class="num">11 / 18</span>
+  </div>
+  <div class="body">
+    <figure>
+      <svg viewBox="0 0 1160 430" role="img" aria-label="A rebuild replaces the whole srcdoc and returns to scroll zero; an in-place repaint swaps one section and leaves the scroll position untouched.">
+        <defs>
+          <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="currentColor"/>
+          </marker>
+          <marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="var(--accent)"/>
+          </marker>
+        </defs>
+        <text class="dg-t-s" x="10" y="22">BEFORE — every change rebuilt the document</text>
+        <rect class="dg-box" x="10" y="36" width="120" height="52"/><text class="dg-t" x="24" y="67">change</text>
+        <rect class="dg-box" x="176" y="36" width="150" height="52"/><text class="dg-t" x="190" y="60">queuePreview</text><text class="dg-t-s" x="190" y="78">110 ms debounce</text>
+        <rect class="dg-box" x="372" y="36" width="170" height="52"/><text class="dg-t" x="386" y="60">srcdoc = build(...)</text><text class="dg-t-s" x="386" y="78">a NEW document</text>
+        <rect class="dg-box-2" x="588" y="36" width="150" height="52"/><text class="dg-t" x="602" y="60">scroll = 0</text><text class="dg-t-s" x="602" y="78">then restored</text>
+        <rect class="dg-box-2" x="784" y="36" width="366" height="52"/>
+        <text class="dg-t" x="798" y="60">the page leaves and glides back</text>
+        <text class="dg-t-s" x="798" y="78">with the band you were editing somewhere in the journey</text>
+        <line class="dg-line" x1="132" y1="62" x2="170" y2="62" marker-end="url(#a5)"/>
+        <line class="dg-line" x1="328" y1="62" x2="366" y2="62" marker-end="url(#a5)"/>
+        <line class="dg-line" x1="544" y1="62" x2="582" y2="62" marker-end="url(#a5)"/>
+        <line class="dg-line" x1="740" y1="62" x2="778" y2="62" marker-end="url(#a5)"/>
+
+        <line class="dg-dash" x1="10" y1="126" x2="1150" y2="126"/>
+
+        <text class="dg-t-a" x="10" y="164">NOW — one section is swapped in place</text>
+        <rect class="dg-hot" x="10" y="178" width="120" height="52"/><text class="dg-t" x="24" y="209">change</text>
+        <rect class="dg-hot" x="176" y="178" width="150" height="52"/><text class="dg-t" x="190" y="202">v12QueuePaint</text><text class="dg-t-s" x="190" y="220">one per frame</text>
+        <rect class="dg-hot" x="372" y="178" width="170" height="52"/><text class="dg-t" x="386" y="202">renderSection(one)</text><text class="dg-t-s" x="386" y="220">replaceWith(next)</text>
+        <rect class="dg-hot" x="588" y="178" width="150" height="52"/><text class="dg-t" x="602" y="202">__sbsBind</text><text class="dg-t-s" x="602" y="220">reveal: true</text>
+        <rect class="dg-box-2" x="784" y="178" width="366" height="52"/>
+        <text class="dg-t" x="798" y="202">nothing moves · no reload · no replay</text>
+        <text class="dg-t-s" x="798" y="220">the queued rebuild is cancelled as the change lands</text>
+        <line class="dg-hotline" x1="132" y1="204" x2="170" y2="204" marker-end="url(#a6)"/>
+        <line class="dg-hotline" x1="328" y1="204" x2="366" y2="204" marker-end="url(#a6)"/>
+        <line class="dg-hotline" x1="544" y1="204" x2="582" y2="204" marker-end="url(#a6)"/>
+        <line class="dg-hotline" x1="740" y1="204" x2="778" y2="204" marker-end="url(#a6)"/>
+
+        <text class="dg-t-s" x="10" y="306">A design dial still rebuilds, on purpose: it rewrites the document stylesheet and is not one band. A torn-down frame or a</text>
+        <text class="dg-t-s" x="10" y="324">hidden band also falls back — moving the page is better than showing a stale one.</text>
+        <line class="dg-dash" x1="10" y1="356" x2="1150" y2="356"/>
+        <text class="dg-t-a" x="10" y="392">MEASURED, NOT ASSUMED</text>
+        <text class="dg-t-s" x="230" y="392">frame load count stays at 0 · scroll position unchanged to the pixel · paint.rebuilt() stays at 0</text>
+        <text class="dg-t-s" x="230" y="414">A repaint that silently degraded into a rebuild is the failure this exists to prevent.</text>
+      </svg>
+      <figcaption><code>reveal: true</code> is what makes the swap invisible: it marks every viewport effect in the new section as already seen, so the band does not replay its entrance under the cursor.</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>The section is re-bound immediately: its slider scrolls, its tabs switch</span><span>Asserted by load count and by scroll position, to the pixel</span></div>
+</section>
+
+<!-- ============================================================ 12 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Step 04</b> · Review and export</p>
+    <span class="num">12 / 18</span>
+  </div>
+  <div class="body">
+    <h2>Preflight first, then four artifacts.</h2>
+    <div class="cols c-38">
+      <div>
+        <table>
+          <thead><tr><th>Artifact</th><th class="w">What it carries</th></tr></thead>
+          <tbody>
+            <tr><td class="k">page.json</td><td class="w">The page: every band as a DST node tree, plus the resolved theme</td></tr>
+            <tr><td class="k">navigation.json</td><td class="w">The header as a real <code>dst-navigation</code> tree, plus the menus to build</td></tr>
+            <tr><td class="k">footer.json</td><td class="w">The footer as a real <code>dst-footer</code> tree, three sections</td></tr>
+            <tr><td class="k">website.html</td><td class="w">The whole rendered page, standalone — for review and sign-off</td></tr>
+            <tr><td class="k">complete-project<wbr>.json</td><td class="w">All of the above in one file, plus all three concepts</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel">
+          <h3>The preflight gates</h3>
+          <p>One clear hero · a complete sequence · pattern provenance intact · every image has alt text · the palette passes contrast · <em>and</em> the rendered page passes contrast, which is a different question with a different answer.</p>
+        </div>
+        <div class="panel ok">
+          <h3>The theme travels with the page</h3>
+          <p>Not the slider numbers — the <strong>resolved token set</strong>: radii, container widths, vertical rhythm, the full type scale, motion duration and distance. WordPress consumes the exact values the preview used rather than reconstructing an approximation.</p>
+        </div>
+        <p>Every concept can be exported on its own, or all three at once. The concept JSON round-trips: it imports back into the advanced builder with every edit, field and concept intact.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>buildPageExport · buildNavigationExport · buildFooterExport · buildCompleteExport</span><span>Bundled as one zip by the browser, no server involved</span></div>
+</section>
+
+<!-- ============================================================ 13 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The crossing</b> · builder to WordPress</p>
+    <span class="num">13 / 18</span>
+  </div>
+  <div class="body">
+    <figure>
+      <svg viewBox="0 0 1160 470" role="img" aria-label="A node tree is normalised, validated against the theme registry, serialised to block comments, then imported as a page, two template parts and three menus.">
+        <defs>
+          <marker id="a7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,1 9,5 0,9" fill="var(--accent)"/>
+          </marker>
+        </defs>
+        <rect class="dg-box" x="8" y="70" width="150" height="96"/>
+        <text class="dg-t-b" x="22" y="94">node tree</text>
+        <text class="dg-t-s" x="22" y="116">the same tree the</text>
+        <text class="dg-t-s" x="22" y="132">preview rendered</text>
+
+        <rect class="dg-box" x="204" y="70" width="176" height="96"/>
+        <text class="dg-t-b" x="218" y="94">normalise</text>
+        <text class="dg-t-s" x="218" y="116">DST media shapes</text>
+        <text class="dg-t-s" x="218" y="132">overlay folded into</text>
+        <text class="dg-t-s" x="218" y="148">the colour</text>
+
+        <rect class="dg-hot" x="426" y="70" width="176" height="96"/>
+        <text class="dg-t-b" x="440" y="94">registry check</text>
+        <text class="dg-t-s" x="440" y="116">an attribute the theme</text>
+        <text class="dg-t-s" x="440" y="132">does not declare is</text>
+        <text class="dg-t-s" x="440" y="148">deleted, not shipped</text>
+
+        <rect class="dg-box" x="648" y="70" width="176" height="96"/>
+        <text class="dg-t-b" x="662" y="94">serialise</text>
+        <text class="dg-t-s" x="662" y="116">&lt;!-- wp:ds-blocks/… --&gt;</text>
+        <text class="dg-t-s" x="662" y="132">via WordPress's own</text>
+        <text class="dg-t-s" x="662" y="148">serialize_blocks</text>
+
+        <rect class="dg-box-2" x="856" y="34" width="296" height="60"/>
+        <text class="dg-t" x="870" y="58">a page</text>
+        <text class="dg-t-s" x="870" y="78">draft, publish or private</text>
+        <rect class="dg-box-2" x="856" y="106" width="296" height="60"/>
+        <text class="dg-t" x="870" y="130">two template parts</text>
+        <text class="dg-t-s" x="870" y="150">header · footer, in the site editor</text>
+        <rect class="dg-box-2" x="856" y="178" width="296" height="60"/>
+        <text class="dg-t" x="870" y="202">three menus</text>
+        <text class="dg-t-s" x="870" y="222">assigned to the location each block reads</text>
+        <rect class="dg-box-2" x="856" y="250" width="296" height="60"/>
+        <text class="dg-t" x="870" y="274">media, sideloaded</text>
+        <text class="dg-t-s" x="870" y="294">attachment ids written back in</text>
+
+        <line class="dg-hotline" x1="160" y1="118" x2="198" y2="118" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="382" y1="118" x2="420" y2="118" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="604" y1="118" x2="642" y2="118" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="826" y1="118" x2="850" y2="64" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="826" y1="118" x2="850" y2="136" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="826" y1="118" x2="850" y2="208" marker-end="url(#a7)"/>
+        <line class="dg-hotline" x1="826" y1="118" x2="850" y2="280" marker-end="url(#a7)"/>
+        <text class="dg-t-s" x="8" y="210">The first three steps run in the browser. The fourth is the plugin.</text>
+        <text class="dg-t-s" x="8" y="230">Everything the plugin writes is a real Gutenberg block with its</text>
+        <text class="dg-t-s" x="8" y="250">own controls, which is the whole point: the imported page is not</text>
+        <text class="dg-t-s" x="8" y="270">a snapshot to look at, it is a page to keep working on.</text>
+        <line class="dg-dash" x1="8" y1="316" x2="1152" y2="316"/>
+        <text class="dg-t-a" x="8" y="352">WHAT MAKES IT EXACT</text>
+        <text class="dg-t-s" x="8" y="382">The preview and the export read the same node tree, and every attribute in it is looked up in the theme&#8217;s own block</text>
+        <text class="dg-t-s" x="8" y="402">manifests before it ships. 194 blocks and 1,080 attributes checked; nothing the theme cannot render leaves the builder.</text>
+        <text class="dg-t-s" x="8" y="434">Overlay strength is folded into the colour, because the theme carries opacity inside the colour and declares no opacity</text>
+        <text class="dg-t-s" x="8" y="454">attribute — exported beside it, every scrim landed at full strength.</text>
+      </svg>
+      <figcaption>The registry check is the load-bearing step. An attribute WordPress does not know is kept in the markup and silently ignored — a setting somebody made that the page does not have.</figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span>wordpress-plugin/ · SBS Website Importer 2.0.0 · built by npm run build:plugin</span><span>node scripts/verify-against-theme.mjs names the block and the attribute</span></div>
+</section>
+
+<!-- ============================================================ 14 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The AI layer</b> · what the model is and is not asked</p>
+    <span class="num">14 / 18</span>
+  </div>
+  <div class="body">
+    <div class="cols c-60">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p>Seven prompts, each a versioned file in <code>server/ai/prompts/</code> rather than a string in the code. Every response is validated by a Zod schema before it reaches the page: a reply that does not match is an <em>error with a code</em>, not a half-built page.</p>
+        <table class="tight">
+          <thead><tr><th>Prompt</th><th class="w">Its one job</th></tr></thead>
+          <tbody>
+            <tr><td class="k">brief-architect</td><td class="w">Read the paragraph into brief fields and a readback</td></tr>
+            <tr><td class="k">concept-designer</td><td class="w">Three design directions, each with dials and a palette</td></tr>
+            <tr><td class="k">flow-outline</td><td class="w">Rank the 35 flows; or turn a described page into a sequence</td></tr>
+            <tr><td class="k">content-writer</td><td class="w">The copy for every band, in order, respecting item counts</td></tr>
+            <tr><td class="k">media-director</td><td class="w">What each media slot should show</td></tr>
+            <tr><td class="k">media-search</td><td class="w">The search terms to find it</td></tr>
+            <tr><td class="k">brief-expander</td><td class="w">Split a pasted brief into the advanced builder's fields</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="panel accent">
+          <h3>Never invent verifiable facts</h3>
+          <p>No prices, client names, years in business, certifications, awards, review counts or staff names. Where a section structurally needs one, the model writes an instruction the strategist replaces.</p>
+        </div>
+        <div class="panel">
+          <h3>One narrow exception, stated out loud</h3>
+          <p>A stats band reading "add the measured figure" three times is a template, not a concept. So the model writes an <em>illustrative</em> figure in the unit the trade uses — <code>2,000 km</code>, <code>48 hrs</code>, <code>12 sites</code> — and the band's own body says the figures are illustrative and to be confirmed.</p>
+        </div>
+        <div class="panel">
+          <h3>Degradation is visible</h3>
+          <p>No provider configured, a timeout, a refusal: each returns a typed error and the panel says which. A built-in planner covers the flow ranking so the page still builds, and the panel labels it as the built-in planner rather than the model.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Ollama Cloud · gemma4:31b · JSON-schema-constrained responses</span><span>Credentials live only on the server; nothing is exposed to the tab</span></div>
+</section>
+
+<!-- ============================================================ 15 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The stack</b> · and why it is this small</p>
+    <span class="num">15 / 18</span>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div>
+        <table class="tight">
+          <thead><tr><th>Layer</th><th>Choice</th><th class="w">Why</th></tr></thead>
+          <tbody>
+            <tr><td class="k">UI</td><td>vanilla JS</td><td class="w">No framework. The renderer is a pure function from project to HTML string, which is what lets the preview and the export share it.</td></tr>
+            <tr><td class="k">Build</td><td>Vite 7</td><td class="w">ES modules in dev, one bundle out. No transpiler config.</td></tr>
+            <tr><td class="k">Server</td><td>Express 5</td><td class="w">Eight routes. Holds credentials and schemas; owns no state.</td></tr>
+            <tr><td class="k">Validation</td><td>Zod 3</td><td class="w">Every model reply, in and out. Shared with the client.</td></tr>
+            <tr><td class="k">Model</td><td>Ollama Cloud</td><td class="w">Cloud only, by policy. JSON-schema-constrained decoding.</td></tr>
+            <tr><td class="k">Imagery</td><td>Shutterstock</td><td class="w">Watermarked previews only; nothing is licensed automatically.</td></tr>
+            <tr><td class="k">Storage</td><td>localStorage</td><td class="w">One project object, debounced, flushed on page-hide.</td></tr>
+            <tr><td class="k">Documents</td><td>none</td><td class="w">PDF, DOCX, RTF and ZIP read with platform APIs only.</td></tr>
+            <tr><td class="k">Tests</td><td>Vitest · Playwright · PHP</td><td class="w">Unit, real-browser, and the importer against the theme.</td></tr>
+            <tr><td class="k">Import</td><td>PHP plugin</td><td class="w">Source in the repo, artifact built by a script.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:22px">Four runtime dependencies.</h3>
+        <p><code>express</code>, <code>zod</code>, <code>dotenv</code>, <code>playwright</code>. That is the whole list. The PDF reader, the ZIP reader, the deflate, the diagrams and the export are all platform APIs.</p>
+        <div class="panel">
+          <h3>How the monolith is organised</h3>
+          <p><code>builder.js</code> is one IIFE with <strong>21 numbered layers</strong>, each a dated commentary on what it changed and why. A layer reassigns the bindings it needs to change — <code>renderPreview</code>, <code>updateBinding</code>, <code>syncSectionNode</code> — so the history of every behaviour is readable in one file, in order.</p>
+        </div>
+        <div class="panel">
+          <h3>What lives in <code>shared/</code></h3>
+          <p>19 ES modules used by the browser, the server <em>and</em> the tests: the design dials, the palette repair, the concept workspace, the brief schemas, the document readers, the style compiler. One statement of each rule.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>15,299 lines across builder, features and shared</span><span>No database · no ORM · no state manager · no CSS framework</span></div>
+</section>
+
+<!-- ============================================================ 16 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>Verification</b> · what stops a regression reaching a client</p>
+    <span class="num">16 / 18</span>
+  </div>
+  <div class="body">
+    <div class="figures">
+      <div class="fig"><b>328</b><span>real-browser<br>tests</span></div>
+      <div class="fig"><b>301</b><span>unit<br>tests</span></div>
+      <div class="fig"><b>36</b><span>WordPress importer<br>assertions</span></div>
+      <div class="fig"><b>0</b><span>attributes the theme<br>does not know</span></div>
+    </div>
+    <div class="cols c2">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p>Several of these are instruments rather than coverage. Each asserts a <em>property of the product</em> that a reasonable change could break silently, and each states in its own comment what went wrong before it existed.</p>
+        <div class="stack">
+          <div class="row"><span class="n">01</span><div><h3>Every editor property reaches the export</h3><p>All 19 families, both views, a real input event per control, every select option, both slider directions.</p></div></div>
+          <div class="row"><span class="n">02</span><div><h3>Every pattern describes itself truthfully</h3><p>Counts, flags and description checked against the pattern's own tree — per pattern, not in aggregate.</p></div></div>
+          <div class="row"><span class="n">03</span><div><h3>Nothing points at the exporting site</h3><p>No rendered URL, link or attribute names the staging install the patterns came from.</p></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="stack">
+          <div class="row"><span class="n">04</span><div><h3>The rendered page is readable</h3><p>Not the palette — the pixels, measured against each line's own ground, with a negative control that proves the instrument still fails.</p></div></div>
+          <div class="row"><span class="n">05</span><div><h3>The preview never moves</h3><p>Frame load count stays at zero and the scroll position is unchanged <em>to the pixel</em>.</p></div></div>
+          <div class="row"><span class="n">06</span><div><h3>The export exists in the theme</h3><p>Every block and attribute looked up in the theme's own manifests. Skipped, not faked, when no theme is checked out.</p></div></div>
+        </div>
+        <div class="panel ok">
+          <h3>The fixtures are generated, not remembered</h3>
+          <p><code>npm run record:wordpress</code> drives the real app in a real browser and writes what the Export button produces. They were recordings, and stale — so the importer tests passed against a page the builder no longer made.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>npm run test:all · npm run test:handoff · npm run verify:export</span><span>A fixture that does not match the product is worse than none: it reports success</span></div>
+</section>
+
+<!-- ============================================================ 17 -->
+<section class="slide">
+  <div class="rail">
+    <p class="eyebrow"><b>The repo</b> · where to look for what</p>
+    <span class="num">17 / 18</span>
+  </div>
+  <div class="body">
+    <div class="cols c2">
+      <div>
+        <table class="tight">
+          <thead><tr><th>Path</th><th class="w">What is in it</th></tr></thead>
+          <tbody>
+            <tr><td class="k">src/runtime/builder.js</td><td class="w">The application: state, renderer, editor, preview, export. 21 layers, in order.</td></tr>
+            <tr><td class="k">src/features/brief-brain/</td><td class="w">The AI panels, the job state, the request builders and the API client.</td></tr>
+            <tr><td class="k">src/data/dst-data.json</td><td class="w">156 patterns, the component registry, flows, archetypes, motifs.</td></tr>
+            <tr><td class="k">shared/</td><td class="w">19 modules used by browser, server and tests alike.</td></tr>
+            <tr><td class="k">server/</td><td class="w">Express app, eight routes, the provider, seven prompt files.</td></tr>
+            <tr><td class="k">patternsSBS/</td><td class="w">The 169 source pattern exports the library is ingested from.</td></tr>
+            <tr><td class="k">wordpress-plugin/</td><td class="w">The importer's PHP source.</td></tr>
+            <tr><td class="k">tests/</td><td class="w">36 browser specs, 14 unit specs, the PHP importer suite, fixtures.</td></tr>
+            <tr><td class="k">scripts/</td><td class="w">Registry sync, pattern cleaning and ingest, fixture recording, theme verification, plugin build.</td></tr>
+            <tr><td class="k">RELEASE-NOTES.md</td><td class="w">Every change, with the reasoning. Start here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <h3 style="font-size:22px">Three things to know before extending it</h3>
+        <div class="panel">
+          <h3>The IIFE boundary is real</h3>
+          <p>Code before <code>builder.js:729</code> cannot see functions declared inside the layered section. Calling one from a listener throws a <code>ReferenceError</code> the browser swallows — the mutation applies, the repaint does not, and nothing is reported. Add to a layer, not above one.</p>
+        </div>
+        <div class="panel">
+          <h3>The renderer is the contract</h3>
+          <p>The preview and the export read the same node tree. Any change to one that is not a change to the other is the bug the whole verification stack exists to catch.</p>
+        </div>
+        <div class="panel">
+          <h3>The theme is the authority</h3>
+          <p>Not the pattern files, not the registry snapshot: the theme's <code>block.json</code> manifests plus the attributes its editor HOCs inject. Re-sync when the theme moves, and the export follows.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Do not run npm run migrate:legacy — it overwrites the maintained source</span><span>Ollama Cloud only, by policy</span></div>
+</section>
+
+<!-- ============================================================ 18 -->
+<section class="slide is-deep">
+  <div class="rail">
+    <p class="eyebrow">SBS DST Page Builder · <b>v2.9.0</b></p>
+    <span class="num">18 / 18</span>
+  </div>
+  <div class="body" style="justify-content:center;gap:24px">
+    <h2 style="font-size:46px;max-width:24ch">One paragraph in. A page you can keep working on out.</h2>
+    <div class="cols c3">
+      <div><span class="chip">Today</span><p style="font-size:15px;margin-top:12px">Four steps, one press, three comparable concepts. Real DST blocks, editable in WordPress with every control intact.</p></div>
+      <div><span class="chip plain">Verified</span><p style="font-size:15px;margin-top:12px">665 automated checks, every exported block and attribute looked up in the theme that has to render it.</p></div>
+      <div><span class="chip plain">Next</span><p style="font-size:15px;margin-top:12px">Review &amp; share with public URLs and frozen snapshots; the megamenu family; server-side project storage.</p></div>
+    </div>
+    <div class="kv" style="margin-top:6px">
+      <b>Run it</b> &nbsp;<span style="color:rgba(242,247,247,.66)">npm install · npm run dev · http://127.0.0.1:5173</span><br>
+      <b>Check it</b> &nbsp;<span style="color:rgba(242,247,247,.66)">npm run test:all · npm run test:handoff · npm run verify:export</span><br>
+      <b>Ship it</b> &nbsp;<span style="color:rgba(242,247,247,.66)">npm run build · npm run build:plugin</span>
+    </div>
+  </div>
+  <div class="foot"><span>Deck source: docs/sbs-simple-builder-deck.html</span><span>Regenerate the PDF: npm run build:deck</span></div>
+</section>
+
+</div>

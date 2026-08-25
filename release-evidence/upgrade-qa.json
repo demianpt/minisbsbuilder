@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "version": "2.9.0",
+  "assertions": [
+    {
+      "label": "Shutterstock full URL extracts the path asset id, not the tracking id",
+      "passed": true,
+      "urlAssetId": "2651493041",
+      "bareAssetId": "2282637127"
+    },
+    {
+      "label": "Shutterstock asset lookup returns the watermarked image preview and avoids an unnecessary video request",
+      "passed": true,
+      "calls": 1,
+      "assetId": "2651493041",
+      "src": "https://cdn.test/watermarked-2651493041.jpg"
+    },
+    {
+      "label": "Brief Brain returns five unique flow recommendations",
+      "passed": true,
+      "flowIds": [
+        "E2",
+        "E1",
+        "E3",
+        "E4",
+        "B10"
+      ]
+    },
+    {
+      "label": "Flow catalogue is the data file, with five richer 10+ module journeys",
+      "passed": true,
+      "catalogFlows": 35,
+      "runtimeInjectedFlows": 0,
+      "richFlows": [
+        {
+          "id": "E1",
+          "modules": 10
+        },
+        {
+          "id": "E2",
+          "modules": 10
+        },
+        {
+          "id": "E3",
+          "modules": 10
+        },
+        {
+          "id": "E4",
+          "modules": 11
+        },
+        {
+          "id": "E5",
+          "modules": 10
+        }
+      ]
+    },
+    {
+      "label": "Brief Understanding schema accepts five recommendations",
+      "passed": true,
+      "flows": 5
+    },
+    {
+      "label": "Concept schema still caps concepts at three while allowing five flows",
+      "passed": true,
+      "concepts": 3,
+      "flows": 5
+    },
+    {
+      "label": "Simple builder renders the same design dial controls and WordPress export actions as Advanced",
+      "passed": true,
+      "dialUi": true,
+      "exports": [
+        "navigation",
+        "footer",
+        "page",
+        "html",
+        "bundle"
+      ]
+    },
+    {
+      "label": "Page export embeds raw dials plus the complete resolved design-dial token contract",
+      "passed": true,
+      "schema": "sbs-design-dials/1.0"
+    },
+    {
+      "label": "WordPress importer consumes the resolved design-dial tokens through an allowlisted mapping",
+      "passed": true,
+      "importerVersion": "1.0.1"
+    },
+    {
+      "label": "AI Brain prompt explicitly asks for exactly five flows",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "failed": 0
+  }
+}

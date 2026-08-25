@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "performance-machine",
+  "familyId": "automotive-mobility",
+  "name": "Performance Machine",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Near-black, high-contrast and fast: the machine full-bleed, figures stated like telemetry.",
+  "philosophy": "Performance is proved by numbers next to a photograph of the thing. Both at full scale.",
+  "polarity": "dark",
+  "tags": [
+    "dark",
+    "high-contrast",
+    "immersive",
+    "technical"
+  ],
+  "useCases": [
+    "Performance model page",
+    "Motorcycle or car launch",
+    "Track and spec page"
+  ],
+  "industries": [
+    "automotive",
+    "mobility",
+    "motorcycles",
+    "engineering"
+  ],
+  "palette": {
+    "bg": "#0B0B0C",
+    "ink": "#F4F5F6",
+    "accent": "#E01B2E",
+    "soft": "#17181A",
+    "dark": "#050506"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Barlow",
+    "scale": 1.22,
+    "displayCase": "upper",
+    "displayTracking": 0.04
+  },
+  "radius": "0px",
+  "buttonStyle": "split-reveal",
+  "dials": {
+    "density": 42,
+    "measure": 58,
+    "headline": 88,
+    "accent": 62,
+    "surface": 26,
+    "corner": 2,
+    "imagery": 88,
+    "motion": 62,
+    "expressiveness": 78
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 40,
+    "fullBleedBias": 84
+  },
+  "patternPreferences": {
+    "prefer": [
+      "full bleed",
+      "large media",
+      "stats",
+      "product",
+      "background media",
+      "overlay",
+      "number-led"
+    ],
+    "avoid": [
+      "quote-led",
+      "table",
+      "rounded"
+    ],
+    "byFamily": {
+      "stats": {
+        "prefer": [
+          "number-led",
+          "four"
+        ],
+        "avoid": []
+      },
+      "hero": {
+        "prefer": [
+          "background media",
+          "full bleed"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true,
+      "columns": 4
+    },
+    "gallery": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none"
+    }
+  },
+  "dos": [
+    "Run the machine to both edges",
+    "State performance as figures"
+  ],
+  "donts": [
+    "Never round a corner",
+    "Avoid testimonial-led proof"
+  ]
+}

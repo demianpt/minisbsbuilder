@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "heritage-garage",
+  "familyId": "automotive-mobility",
+  "name": "Heritage Garage",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Workshop warmth: oil-and-paper neutrals, a condensed display and archival photography.",
+  "philosophy": "Made by hand, over time. The page should feel like a workshop wall, not a configurator.",
+  "polarity": "light",
+  "tags": [
+    "heritage",
+    "workshop",
+    "warm",
+    "archival"
+  ],
+  "useCases": [
+    "Restoration workshop homepage",
+    "Marque history page",
+    "Custom build gallery"
+  ],
+  "industries": [
+    "automotive",
+    "mobility",
+    "motorcycles",
+    "engineering"
+  ],
+  "palette": {
+    "bg": "#F2EEE7",
+    "ink": "#1C1815",
+    "accent": "#8A3A22",
+    "soft": "#E1DAD0",
+    "dark": "#131110"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Archivo Black",
+    "body": "Barlow",
+    "scale": 1.1,
+    "displayCase": "upper",
+    "displayTracking": 0.03
+  },
+  "radius": "0px",
+  "buttonStyle": "offset-block",
+  "dials": {
+    "density": 46,
+    "measure": 52,
+    "headline": 64,
+    "accent": 40,
+    "surface": 48,
+    "corner": 4,
+    "imagery": 70,
+    "motion": 20,
+    "expressiveness": 54
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 34,
+    "fullBleedBias": 38
+  },
+  "patternPreferences": {
+    "prefer": [
+      "full bleed",
+      "large media",
+      "stats",
+      "product",
+      "timeline",
+      "gallery",
+      "split",
+      "bordered"
+    ],
+    "avoid": [
+      "quote-led",
+      "table",
+      "gradient",
+      "glass"
+    ],
+    "byFamily": {
+      "timeline": {
+        "prefer": [
+          "numbered"
+        ],
+        "avoid": []
+      },
+      "gallery": {
+        "prefer": [
+          "grid"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "timeline": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Use archival photography",
+    "Date the work"
+  ],
+  "donts": [
+    "Never use a gradient",
+    "Avoid glossy configurator language"
+  ]
+}

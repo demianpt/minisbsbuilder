@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "technical-automotive",
+  "familyId": "automotive-mobility",
+  "name": "Technical Automotive",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Engineering-forward: exploded diagrams, monospace annotation and a measured grid.",
+  "philosophy": "For buyers who read the spec sheet first. Show the mechanism, annotate it, do not romanticise it.",
+  "polarity": "light",
+  "tags": [
+    "technical",
+    "diagram",
+    "monospace",
+    "dense"
+  ],
+  "useCases": [
+    "Specification and engineering page",
+    "Component or platform page",
+    "Fleet and technical buyer page"
+  ],
+  "industries": [
+    "automotive",
+    "mobility",
+    "motorcycles",
+    "engineering"
+  ],
+  "palette": {
+    "bg": "#F4F5F6",
+    "ink": "#14171A",
+    "accent": "#1D4ED8",
+    "soft": "#E3E6E9",
+    "dark": "#0D1013"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Work Sans",
+    "body": "Barlow",
+    "scale": 1.06,
+    "displayCase": "upper",
+    "displayTracking": 0.04
+  },
+  "radius": "2px",
+  "buttonStyle": "depth-press",
+  "dials": {
+    "density": 62,
+    "measure": 60,
+    "headline": 52,
+    "accent": 40,
+    "surface": 66,
+    "corner": 2,
+    "imagery": 60,
+    "motion": 24,
+    "expressiveness": 38
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 28,
+    "fullBleedBias": 36
+  },
+  "patternPreferences": {
+    "prefer": [
+      "full bleed",
+      "large media",
+      "stats",
+      "product",
+      "diagram",
+      "grid",
+      "list",
+      "compare"
+    ],
+    "avoid": [
+      "quote-led",
+      "table",
+      "photo overlay",
+      "rounded"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "grid",
+          "four"
+        ],
+        "avoid": []
+      },
+      "stats": {
+        "prefer": [
+          "number-led"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "decoration": "blueprint-grid",
+      "decorationOpacity": 0.1
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    }
+  },
+  "dos": [
+    "Annotate the mechanism",
+    "Keep the grid visible"
+  ],
+  "donts": [
+    "Never lead with lifestyle photography",
+    "Avoid rounded surfaces"
+  ]
+}

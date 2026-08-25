@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "culture-journal",
+  "familyId": "editorial",
+  "name": "Culture Journal",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A small-press feel: warm paper, generous leading, and imagery treated as plates rather than banners.",
+  "philosophy": "Written for people who will finish the sentence. Warmth in the paper, patience in the rhythm.",
+  "polarity": "light",
+  "tags": [
+    "journal",
+    "warm",
+    "text-dominant",
+    "spacious"
+  ],
+  "useCases": [
+    "Essay or journal page",
+    "Cultural institution homepage",
+    "Reading-led content hub"
+  ],
+  "industries": [
+    "media",
+    "publishing",
+    "culture",
+    "nonprofit"
+  ],
+  "palette": {
+    "bg": "#F7F4ED",
+    "ink": "#1E1B16",
+    "accent": "#4C6B54",
+    "soft": "#E8E2D6",
+    "dark": "#161410"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Lora",
+    "body": "Source Serif 4",
+    "scale": 1.08,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "2px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 34,
+    "measure": 42,
+    "headline": 52,
+    "accent": 28,
+    "surface": 26,
+    "corner": 10,
+    "imagery": 52,
+    "motion": 14,
+    "expressiveness": 32
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "flat",
+    "asymmetry": 26,
+    "fullBleedBias": 24
+  },
+  "patternPreferences": {
+    "prefer": [
+      "editorial",
+      "columns",
+      "quote-led",
+      "text-dominant",
+      "list"
+    ],
+    "avoid": [
+      "gradient",
+      "glass",
+      "slider",
+      "table"
+    ],
+    "byFamily": {
+      "blog": {
+        "prefer": [
+          "columns"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "blog": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "faq": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Give paragraphs room to breathe",
+    "Treat images as plates with captions"
+  ],
+  "donts": [
+    "Never run text edge to edge",
+    "Avoid banner-scale photography"
+  ]
+}

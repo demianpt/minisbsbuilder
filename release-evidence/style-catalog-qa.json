@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "sbs-style-catalog-qa/1.0",
+  "generatedAt": "2026-08-20T11:56:30.402Z",
+  "totals": {
+    "families": 10,
+    "styles": 50,
+    "perFamily": {
+      "technology": 5,
+      "luxury": 5,
+      "editorial": 5,
+      "corporate": 5,
+      "commerce": 5,
+      "hospitality": 5,
+      "automotive-mobility": 5,
+      "health-wellness": 5,
+      "creative-culture": 5,
+      "experimental": 5
+    },
+    "production": 50
+  },
+  "checks": [
+    {
+      "name": "every family has exactly five styles",
+      "detail": "technology:5 luxury:5 editorial:5 corporate:5 commerce:5 hospitality:5 automotive-mobility:5 health-wellness:5 creative-culture:5 experimental:5",
+      "status": "pass"
+    },
+    {
+      "name": "the catalogue holds fifty styles",
+      "detail": "50 profiles",
+      "status": "pass"
+    },
+    {
+      "name": "every style id is unique",
+      "detail": "50 unique keys",
+      "status": "pass"
+    },
+    {
+      "name": "every component recipe names a real section family",
+      "detail": "all recipes resolve",
+      "status": "pass"
+    },
+    {
+      "name": "every decoration motif exists in the catalogue",
+      "detail": "all motifs resolve",
+      "status": "pass"
+    },
+    {
+      "name": "every style sets all nine dials",
+      "detail": "all nine set on all fifty",
+      "status": "pass"
+    },
+    {
+      "name": "no two styles are near-clones",
+      "detail": "closest pair luxury/quiet-luxury / creative-culture/art-gallery at 0.212",
+      "status": "pass"
+    }
+  ]
+}

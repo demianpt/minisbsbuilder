@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "premium-commerce",
+  "familyId": "commerce",
+  "name": "Premium Commerce",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Considered retail: dark accents on warm neutrals, one product per band, quiet urgency.",
+  "philosophy": "Premium sells by making the decision feel unhurried. Fewer things, better lit.",
+  "polarity": "light",
+  "tags": [
+    "premium",
+    "restrained",
+    "photographic",
+    "tonal"
+  ],
+  "useCases": [
+    "Considered-purchase product page",
+    "Direct-to-consumer homepage",
+    "Collection launch"
+  ],
+  "industries": [
+    "retail",
+    "ecommerce",
+    "consumer-goods",
+    "dtc"
+  ],
+  "palette": {
+    "bg": "#F7F5F2",
+    "ink": "#1A1A19",
+    "accent": "#2F4A3C",
+    "soft": "#E8E5E0",
+    "dark": "#121211"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Manrope",
+    "body": "Inter",
+    "scale": 1.08,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "8px",
+  "buttonStyle": "sweep-fill",
+  "dials": {
+    "density": 30,
+    "measure": 46,
+    "headline": 62,
+    "accent": 30,
+    "surface": 26,
+    "corner": 44,
+    "imagery": 72,
+    "motion": 26,
+    "expressiveness": 40
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 22,
+    "fullBleedBias": 42
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "large media",
+      "price",
+      "three",
+      "spacious"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "six"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three"
+        ],
+        "avoid": [
+          "six"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "viewport": "animate-headings"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "split": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Show one product at a time",
+    "Keep the palette tonal"
+  ],
+  "donts": [
+    "Never shout a discount",
+    "Avoid dense grids"
+  ]
+}

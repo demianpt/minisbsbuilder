@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "portfolio-minimal",
+  "familyId": "creative-culture",
+  "name": "Portfolio Minimal",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "The work, a caption, and nothing else. A studio index rather than a marketing page.",
+  "philosophy": "A portfolio persuades by sequence, not by argument. Show the work in the right order and stop talking.",
+  "polarity": "light",
+  "tags": [
+    "minimal",
+    "portfolio",
+    "spacious",
+    "caption"
+  ],
+  "useCases": [
+    "Studio portfolio index",
+    "Single project case study",
+    "Photographer portfolio"
+  ],
+  "industries": [
+    "design",
+    "arts",
+    "culture",
+    "photography"
+  ],
+  "palette": {
+    "bg": "#FCFCFB",
+    "ink": "#131313",
+    "accent": "#2B2B2B",
+    "soft": "#EFEFED",
+    "dark": "#0C0C0C"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "scale": 1,
+    "displayCase": "none",
+    "displayTracking": -0.03
+  },
+  "radius": "0px",
+  "buttonStyle": "magnetic-arrow",
+  "dials": {
+    "density": 20,
+    "measure": 44,
+    "headline": 50,
+    "accent": 14,
+    "surface": 8,
+    "corner": 2,
+    "imagery": 84,
+    "motion": 20,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 30,
+    "fullBleedBias": 40
+  },
+  "patternPreferences": {
+    "prefer": [
+      "gallery",
+      "large media",
+      "caption",
+      "asymmetric",
+      "grid"
+    ],
+    "avoid": [
+      "table",
+      "price",
+      "stats"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "grid",
+          "large media"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "default",
+      "viewport": "fade-up"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "large"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Sequence the work deliberately",
+    "Keep captions factual"
+  ],
+  "donts": [
+    "Never add a statistic band",
+    "Avoid decorative motifs"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "executive-precision",
+  "familyId": "corporate",
+  "name": "Executive Precision",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Boardroom clarity: navy and ink, tight columns, numbers stated plainly.",
+  "philosophy": "Written for someone with ten minutes. Structure first, proof second, nothing ornamental.",
+  "polarity": "light",
+  "tags": [
+    "authoritative",
+    "structured",
+    "navy",
+    "flat"
+  ],
+  "useCases": [
+    "Consulting firm homepage",
+    "Capability overview",
+    "Investor-facing page"
+  ],
+  "industries": [
+    "consulting",
+    "finance",
+    "professional-services",
+    "enterprise"
+  ],
+  "palette": {
+    "bg": "#FBFCFD",
+    "ink": "#0E1B2C",
+    "accent": "#1B4B8F",
+    "soft": "#E6EBF1",
+    "dark": "#0A1420"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "scale": 0.98,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "4px",
+  "buttonStyle": "solid-shift",
+  "dials": {
+    "density": 56,
+    "measure": 52,
+    "headline": 48,
+    "accent": 36,
+    "surface": 60,
+    "corner": 20,
+    "imagery": 40,
+    "motion": 16,
+    "expressiveness": 24
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 10,
+    "fullBleedBias": 18
+  },
+  "patternPreferences": {
+    "prefer": [
+      "structured",
+      "columns",
+      "stats",
+      "split",
+      "bordered"
+    ],
+    "avoid": [
+      "ornament",
+      "gradient",
+      "photo overlay",
+      "slider"
+    ],
+    "byFamily": {
+      "stats": {
+        "prefer": [
+          "four",
+          "numbered"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "viewport": "fade-up"
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Lead with the conclusion",
+    "State figures, not adjectives"
+  ],
+  "donts": [
+    "Never use decorative photography",
+    "Avoid motion on a proof band"
+  ]
+}

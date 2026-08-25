@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "output": "/mnt/data/sbs-builder-testenv/test-results/sbs-complete-project.zip",
+  "bytes": 342942,
+  "expectedEntries": [
+    "navigation.json",
+    "footer.json",
+    "page.json",
+    "website.html"
+  ]
+}

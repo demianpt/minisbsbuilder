@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "product-editorial",
+  "familyId": "commerce",
+  "name": "Product Editorial",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Catalogue as magazine: products photographed as stories, set in a generous editorial grid.",
+  "philosophy": "People buy the world around the object. Photograph the world, then name the object.",
+  "polarity": "light",
+  "tags": [
+    "editorial",
+    "photographic",
+    "spacious",
+    "product-led"
+  ],
+  "useCases": [
+    "Seasonal collection page",
+    "Product story landing",
+    "Brand and range homepage"
+  ],
+  "industries": [
+    "retail",
+    "ecommerce",
+    "consumer-goods",
+    "dtc"
+  ],
+  "palette": {
+    "bg": "#FBF9F6",
+    "ink": "#181614",
+    "accent": "#9C3B2E",
+    "soft": "#EDE7DF",
+    "dark": "#110F0E"
+  },
+  "brandMapping": {
+    "strategy": "full",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "Inter",
+    "scale": 1.18,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "2px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 32,
+    "measure": 48,
+    "headline": 70,
+    "accent": 34,
+    "surface": 18,
+    "corner": 8,
+    "imagery": 78,
+    "motion": 26,
+    "expressiveness": 56
+  },
+  "composition": {
+    "alignment": "asymmetric",
+    "containerBias": "wide",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "flat",
+    "asymmetry": 54,
+    "fullBleedBias": 60
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "large media",
+      "price",
+      "full bleed",
+      "editorial",
+      "gallery"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "large media"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "three",
+          "media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Photograph the product in use",
+    "Give each product room"
+  ],
+  "donts": [
+    "Never show a six-across grid of cut-outs",
+    "Avoid price-first hierarchy"
+  ]
+}

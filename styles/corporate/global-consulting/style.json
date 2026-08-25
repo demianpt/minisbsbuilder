@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "global-consulting",
+  "familyId": "corporate",
+  "name": "Global Consulting",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Wide, systematic, and evidence-heavy, with a cool palette and a strong horizontal rhythm.",
+  "philosophy": "Breadth is the proposition. Show many capabilities in a legible system rather than one story.",
+  "polarity": "light",
+  "tags": [
+    "systematic",
+    "wide",
+    "cool",
+    "structured"
+  ],
+  "useCases": [
+    "Multi-practice capability index",
+    "Industries overview",
+    "Global firm homepage"
+  ],
+  "industries": [
+    "consulting",
+    "finance",
+    "professional-services",
+    "enterprise"
+  ],
+  "palette": {
+    "bg": "#F8FAFB",
+    "ink": "#12181F",
+    "accent": "#00629B",
+    "soft": "#E3E9ED",
+    "dark": "#0C1218"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Work Sans",
+    "body": "Inter",
+    "scale": 1,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "6px",
+  "buttonStyle": "sweep-fill",
+  "dials": {
+    "density": 62,
+    "measure": 60,
+    "headline": 50,
+    "accent": 38,
+    "surface": 56,
+    "corner": 28,
+    "imagery": 44,
+    "motion": 22,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 16,
+    "fullBleedBias": 26
+  },
+  "patternPreferences": {
+    "prefer": [
+      "structured",
+      "columns",
+      "stats",
+      "split",
+      "grid",
+      "tabs"
+    ],
+    "avoid": [
+      "ornament",
+      "gradient",
+      "oversized",
+      "brutal"
+    ],
+    "byFamily": {
+      "tabs": {
+        "prefer": [
+          "panel",
+          "columns"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "four",
+          "six"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "default",
+      "viewport": "fade-up"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "tabs": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Group capabilities so breadth is scannable",
+    "Repeat the horizontal rhythm"
+  ],
+  "donts": [
+    "Never lead with one narrow story",
+    "Avoid oversized display type"
+  ]
+}

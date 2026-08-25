@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "precision-saas",
+  "familyId": "technology",
+  "name": "Precision SaaS",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "A tight, bordered grid where every claim is measurable and every surface has an edge you can see.",
+  "philosophy": "Trust in software is built from precision. Aligned edges, consistent rhythm and visible structure say the product was engineered by people who care about the same things.",
+  "polarity": "light",
+  "tags": [
+    "technical",
+    "bordered",
+    "dense",
+    "systematic"
+  ],
+  "useCases": [
+    "B2B SaaS homepage",
+    "Pricing and plans",
+    "Integration catalogue"
+  ],
+  "industries": [
+    "saas",
+    "technology",
+    "developer-tools",
+    "ai"
+  ],
+  "palette": {
+    "bg": "#FBFCFD",
+    "ink": "#111826",
+    "accent": "#2563D9",
+    "soft": "#E7EBF1",
+    "dark": "#0D1420"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "scale": 0.96,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "6px",
+  "buttonStyle": "depth-press",
+  "dials": {
+    "density": 64,
+    "measure": 54,
+    "headline": 46,
+    "accent": 44,
+    "surface": 74,
+    "corner": 32,
+    "imagery": 38,
+    "motion": 22,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "supporting",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 12,
+    "fullBleedBias": 16
+  },
+  "patternPreferences": {
+    "prefer": [
+      "product",
+      "grid",
+      "split",
+      "diagram",
+      "contained",
+      "bordered",
+      "table",
+      "columns",
+      "dense",
+      "compare"
+    ],
+    "avoid": [
+      "ornament",
+      "quote-led",
+      "full bleed",
+      "photo overlay"
+    ],
+    "byFamily": {
+      "pricing": {
+        "prefer": [
+          "compare",
+          "table",
+          "three"
+        ],
+        "avoid": []
+      },
+      "cards": {
+        "prefer": [
+          "four",
+          "six",
+          "grid"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": false,
+      "viewport": "fade-up"
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4,
+      "columnsMobile": 1
+    },
+    "pricing": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    }
+  },
+  "dos": [
+    "Keep every column edge on the same grid",
+    "State numbers rather than adjectives"
+  ],
+  "donts": [
+    "Never let a band float without an edge",
+    "Avoid photography where a diagram is truer"
+  ]
+}

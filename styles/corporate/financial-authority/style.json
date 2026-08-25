@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "financial-authority",
+  "familyId": "corporate",
+  "name": "Financial Authority",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Dense, data-led and conservative: tables, figures and a restrained single accent.",
+  "philosophy": "Money is trusted where nothing is hidden. Show the numbers at full density and let precision persuade.",
+  "polarity": "light",
+  "tags": [
+    "dense",
+    "data",
+    "conservative",
+    "bordered"
+  ],
+  "useCases": [
+    "Financial services homepage",
+    "Fees and terms page",
+    "Fund or product factsheet"
+  ],
+  "industries": [
+    "consulting",
+    "finance",
+    "professional-services",
+    "enterprise"
+  ],
+  "palette": {
+    "bg": "#FFFFFF",
+    "ink": "#101418",
+    "accent": "#0E5C4A",
+    "soft": "#E8EDEB",
+    "dark": "#0A0E11"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Source Serif 4",
+    "body": "Inter",
+    "scale": 0.96,
+    "displayCase": "none",
+    "displayTracking": -0.01
+  },
+  "radius": "2px",
+  "buttonStyle": "depth-press",
+  "dials": {
+    "density": 74,
+    "measure": 58,
+    "headline": 40,
+    "accent": 28,
+    "surface": 72,
+    "corner": 8,
+    "imagery": 26,
+    "motion": 8,
+    "expressiveness": 20
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "wide",
+    "mediaDominance": "none",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 8,
+    "fullBleedBias": 10
+  },
+  "patternPreferences": {
+    "prefer": [
+      "structured",
+      "columns",
+      "stats",
+      "split",
+      "table",
+      "dense",
+      "list",
+      "compare"
+    ],
+    "avoid": [
+      "ornament",
+      "gradient",
+      "photo overlay",
+      "full bleed",
+      "slider"
+    ],
+    "byFamily": {
+      "pricing": {
+        "prefer": [
+          "table",
+          "compare"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "viewport": ""
+    },
+    "stats": {
+      "container": "wide",
+      "paddingTop": "default",
+      "paddingBottom": "default",
+      "columns": 4
+    },
+    "pricing": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Show the whole table",
+    "Keep one accent for the single action"
+  ],
+  "donts": [
+    "Never illustrate a number with a photograph",
+    "Avoid animation on financial data"
+  ]
+}

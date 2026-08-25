@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A guided SBS page builder powered by the complete DST concept pattern library." />
+    <title>SBS Page Builder — DST Concept Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">SBS</div><div class="brand-copy"><b>DST Page Builder</b><span>Concept Studio</span></div></div>
+    <input id="projectTitle" class="project-title" value="Vision Continuity" aria-label="Project name">
+    <!-- Which builder you are in is the single most consequential thing on this
+         bar, so it is a labelled two-state control rather than a menu item. -->
+    <div class="mode-switch" role="group" aria-label="Builder mode">
+      <span class="mode-switch-label">Builder</span>
+      <button type="button" class="mode-btn" data-builder-mode="simple" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h7v5H4zM13 6h7v5h-7zM4 13h7v5H4zM13 13h7v5h-7z"/></svg>
+        <span>Simple</span>
+      </button>
+      <button type="button" class="mode-btn" data-builder-mode="advanced" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><path d="M9 4v6M15 11v6"/></svg>
+        <span>Advanced</span>
+      </button>
+    </div>
+    <div class="top-spacer"></div>
+    <div class="top-group optional">
+      <button class="icon-btn" id="undoBtn" aria-label="Undo" title="Undo"><svg viewBox="0 0 24 24"><path d="M9 7 4 12l5 5"/><path d="M5 12h8a6 6 0 0 1 6 6"/></svg></button>
+      <button class="icon-btn" id="redoBtn" aria-label="Redo" title="Redo"><svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5"/><path d="M19 12h-8a6 6 0 0 0-6 6"/></svg></button>
+    </div>
+    <button class="top-btn preview-only" id="openPreviewBtn"><svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"/></svg><span>Open preview</span></button>
+    <!-- Exporting belongs at the end of the flow, not on the chrome. The node is
+         kept so the existing keyboard shortcut and label wiring stay intact. -->
+    <button class="top-btn primary is-retired" id="topExportBtn" hidden tabindex="-1" aria-hidden="true"><span>Export page JSON</span></button>
+  </header>
+
+  <aside class="sidebar">
+    <div class="side-head">
+      <div class="side-kicker" id="sideKicker">Guided build</div>
+      <h2 id="sideTitle">From brief to import.</h2>
+      <p id="sideBlurb">Every module remains a real, registered DST component.</p>
+    </div>
+    <ol id="stepNav" class="steps"></ol>
+    <div class="side-foot">
+      <div class="library-count"><div class="library-stat"><b id="patternCount">156</b><span>Patterns</span></div><div class="library-stat"><b id="componentCount">32</b><span>DST blocks</span></div></div>
+      <div class="skill-pill"><i></i><span>Skill library loaded · catalog v4</span></div>
+    </div>
+  </aside>
+
+  <main class="editor"><div id="editorInner" class="editor-inner"></div></main>
+
+  <!-- Floating, bottom right, over everything: the pill reports the local save
+       and then gets out of the way. -->
+  <div id="saveStatus" class="save-pill" role="status" aria-live="polite" hidden>Saved</div>
+
+  <section class="preview">
+    <div class="preview-bar">
+      <span class="preview-title">Live page</span><span id="previewUrl" class="preview-url">vision-continuity.local</span>
+      <div class="device-group" aria-label="Preview device">
+        <button class="device-btn active" data-device="desktop" title="Desktop"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1"/><path d="M8 21h8M12 17v4"/></svg></button>
+        <button class="device-btn" data-device="tablet" title="Tablet"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></button>
+        <button class="device-btn" data-device="mobile" title="Mobile"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></button>
+      </div>
+      <button class="icon-btn" id="zoomOutBtn" title="Zoom out">−</button><span id="zoomLabel" class="zoom">67%</span><button class="icon-btn" id="zoomInBtn" title="Zoom in">+</button>
+    </div>
+    <div class="preview-stage"><div id="deviceShell" class="device-shell desktop"><iframe id="sitePreview" class="site-frame" title="Generated page preview"></iframe></div></div>
+    <!-- Concept switcher. Floats over the preview in the simple builder so the
+         three options stay one click away at every step. -->
+    <div id="conceptBar" class="concept-bar" hidden>
+      <span class="concept-bar-title">Concept</span>
+      <div id="conceptPills" class="concept-pills" role="group" aria-label="Design concept"></div>
+      <span id="conceptBarName" class="concept-bar-name"></span>
+    </div>
+  </section>
+</div>
+
+<div id="patternModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="patternModalTitle">
+  <div class="modal-card">
+    <div class="modal-head"><div><h2 id="patternModalTitle">Choose a DST pattern</h2><p>All <span id="modalPatternCount">156</span> registered SBS patterns. Changing a pattern preserves your module content.</p></div><button id="closePatternModal" class="close-btn" aria-label="Close">×</button></div>
+    <div class="modal-tools"><input id="patternSearch" type="search" placeholder="Search by title, family, category or visual character…"><select id="patternFamily"></select><select id="patternSort"><option value="recommended">Recommended first</option><option value="title">Title A–Z</option><option value="family">Family</option></select></div>
+    <div id="patternGrid" class="pattern-grid"></div>
+  </div>
+</div>
+<div id="toast" class="toast" role="status"><i></i><span id="toastText">Saved</span></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

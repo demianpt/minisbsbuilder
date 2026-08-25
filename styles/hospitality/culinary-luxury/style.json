@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "culinary-luxury",
+  "familyId": "hospitality",
+  "name": "Culinary Luxury",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Dark, close-lit food photography with a fine serif and almost no chrome.",
+  "philosophy": "Appetite comes from light on a surface. Darken everything else.",
+  "polarity": "dark",
+  "tags": [
+    "dark",
+    "photographic",
+    "restrained",
+    "close"
+  ],
+  "useCases": [
+    "Restaurant homepage",
+    "Menu and tasting page",
+    "Reservations landing"
+  ],
+  "industries": [
+    "hospitality",
+    "hotels",
+    "restaurants",
+    "travel"
+  ],
+  "palette": {
+    "bg": "#0F0D0C",
+    "ink": "#F3EDE4",
+    "accent": "#B8853A",
+    "soft": "#1C1917",
+    "dark": "#070606"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": [
+      "bg"
+    ]
+  },
+  "typography": {
+    "display": "Lora",
+    "body": "Inter",
+    "scale": 1.08,
+    "displayCase": "none",
+    "displayTracking": 0.01
+  },
+  "radius": "0px",
+  "buttonStyle": "offset-block",
+  "dials": {
+    "density": 38,
+    "measure": 38,
+    "headline": 54,
+    "accent": 26,
+    "surface": 32,
+    "corner": 4,
+    "imagery": 90,
+    "motion": 22,
+    "expressiveness": 44
+  },
+  "composition": {
+    "alignment": "left",
+    "containerBias": "default",
+    "mediaDominance": "immersive",
+    "surfaceTreatment": "bordered",
+    "asymmetry": 36,
+    "fullBleedBias": 60
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "full bleed",
+      "gallery",
+      "atmosphere",
+      "overlay"
+    ],
+    "avoid": [
+      "table",
+      "diagram",
+      "dense",
+      "bordered",
+      "grid"
+    ],
+    "byFamily": {
+      "gallery": {
+        "prefer": [
+          "large media"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "inverted": true,
+      "viewport": "animate-headings"
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "inverted": true
+    }
+  },
+  "dos": [
+    "Light the plate, darken the room",
+    "Keep the menu type quiet"
+  ],
+  "donts": [
+    "Never brighten the canvas",
+    "Avoid grids of small food images"
+  ]
+}

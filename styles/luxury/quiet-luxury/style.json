@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "quiet-luxury",
+  "familyId": "luxury",
+  "name": "Quiet Luxury",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Almost nothing on the page, and everything that is there has been chosen. Space is the material.",
+  "philosophy": "Confidence is what you leave out. One image, one sentence, an enormous amount of air.",
+  "polarity": "light",
+  "tags": [
+    "minimal",
+    "spacious",
+    "restrained",
+    "tonal"
+  ],
+  "useCases": [
+    "Luxury brand homepage",
+    "Single-product statement page",
+    "Made-to-order enquiry"
+  ],
+  "industries": [
+    "luxury",
+    "fashion",
+    "jewellery",
+    "property"
+  ],
+  "palette": {
+    "bg": "#F6F4EF",
+    "ink": "#1A1917",
+    "accent": "#8C7A5B",
+    "soft": "#EAE6DD",
+    "dark": "#141311"
+  },
+  "brandMapping": {
+    "strategy": "accentOnly",
+    "protectedRoles": [
+      "bg",
+      "soft"
+    ]
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Inter",
+    "scale": 1.22,
+    "displayCase": "none",
+    "displayTracking": 0.02
+  },
+  "radius": "0px",
+  "buttonStyle": "ink-wipe",
+  "dials": {
+    "density": 12,
+    "measure": 40,
+    "headline": 74,
+    "accent": 18,
+    "surface": 12,
+    "corner": 6,
+    "imagery": 66,
+    "motion": 20,
+    "expressiveness": 30
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "default",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "flat",
+    "asymmetry": 12,
+    "fullBleedBias": 40
+  },
+  "patternPreferences": {
+    "prefer": [
+      "large media",
+      "spacious",
+      "centered",
+      "single"
+    ],
+    "avoid": [
+      "dense",
+      "table",
+      "six",
+      "grid",
+      "slider"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three",
+          "spacious"
+        ],
+        "avoid": [
+          "four",
+          "six"
+        ]
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "viewport": "animate-headings"
+    },
+    "text": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    },
+    "cards": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "gallery": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large"
+    }
+  },
+  "dos": [
+    "Let one image carry a whole band",
+    "Keep the accent almost unused"
+  ],
+  "donts": [
+    "Never fill the space you just made",
+    "Avoid more than one weight of emphasis"
+  ]
+}

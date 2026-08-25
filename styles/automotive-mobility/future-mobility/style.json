@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "sbs-style/1.0",
+  "id": "future-mobility",
+  "familyId": "automotive-mobility",
+  "name": "Future Mobility",
+  "version": "1.0.0",
+  "status": "production",
+  "description": "Clean electric optimism: bright surfaces, soft gradients and generous rounded geometry.",
+  "philosophy": "New mobility sells calm, not noise. Light, quiet surfaces and a great deal of space.",
+  "polarity": "light",
+  "tags": [
+    "electric",
+    "bright",
+    "rounded",
+    "spacious"
+  ],
+  "useCases": [
+    "Electric model page",
+    "Charging or network page",
+    "New mobility brand homepage"
+  ],
+  "industries": [
+    "automotive",
+    "mobility",
+    "motorcycles",
+    "engineering"
+  ],
+  "palette": {
+    "bg": "#F7FAFB",
+    "ink": "#101A1F",
+    "accent": "#00B3A4",
+    "soft": "#E1F0F1",
+    "dark": "#0A1216"
+  },
+  "brandMapping": {
+    "strategy": "accentAndSurface",
+    "protectedRoles": []
+  },
+  "typography": {
+    "display": "Manrope",
+    "body": "Inter",
+    "scale": 1.14,
+    "displayCase": "none",
+    "displayTracking": -0.02
+  },
+  "radius": "22px",
+  "buttonStyle": "pill-glow",
+  "dials": {
+    "density": 24,
+    "measure": 46,
+    "headline": 74,
+    "accent": 48,
+    "surface": 22,
+    "corner": 90,
+    "imagery": 74,
+    "motion": 48,
+    "expressiveness": 56
+  },
+  "composition": {
+    "alignment": "centered",
+    "containerBias": "wide",
+    "mediaDominance": "dominant",
+    "surfaceTreatment": "layered",
+    "asymmetry": 20,
+    "fullBleedBias": 56
+  },
+  "patternPreferences": {
+    "prefer": [
+      "full bleed",
+      "large media",
+      "stats",
+      "product",
+      "rounded",
+      "centered",
+      "spacious"
+    ],
+    "avoid": [
+      "quote-led",
+      "table",
+      "dense",
+      "brutal"
+    ],
+    "byFamily": {
+      "cards": {
+        "prefer": [
+          "three",
+          "rounded"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "componentRecipes": {
+    "hero": {
+      "container": "full",
+      "paddingTop": "none",
+      "paddingBottom": "none",
+      "viewport": "animate-headings",
+      "decoration": "concentric-rings",
+      "decorationOpacity": 0.09
+    },
+    "cards": {
+      "container": "wide",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    },
+    "stats": {
+      "container": "default",
+      "paddingTop": "large",
+      "paddingBottom": "large",
+      "columns": 3
+    }
+  },
+  "dos": [
+    "Keep surfaces light and quiet",
+    "Use very generous corners"
+  ],
+  "donts": [
+    "Never use aggressive red accents",
+    "Avoid dense spec tables"
+  ]
+}
