@@ -1616,7 +1616,7 @@ function v2BaseEnvelope(project,name,type){var arch=DATA.archetypes[project.desi
 function v2NavigationChildren(project){var h=project.header,cta=h.cta&&h.cta.text?[{id:'site-header-cta-group',component:'ds-blocks/button-group',usage:'header-cta-group',confidence:'confirmed',attributes:{justifyContent:'right',justifyContentMobile:'center',alignment:'horizontal',gapBetween:10},children:[{id:'site-header-cta',component:'ds-blocks/c-btn',usage:'header-cta',confidence:'confirmed',attributes:{text:h.cta.text,link:{url:normalizeLink(h.cta.link),opensInNewTab:false,title:''},btnType:'primary',btnSize:'small',hasIcon:false,iconPosition:'row-reverse'},children:[]}]}]:[];var mainContent={id:'site-header-main-content',component:'ds-blocks/dst-navigation-content',usage:'main-navigation-content',confidence:'confirmed',attributes:{navigationArea:'main',isInitialized:true},children:[{id:'site-header-logo',component:'ds-blocks/dst-navigation-logo',usage:'site-logo',confidence:'confirmed',attributes:{inlineSvgLogo:false,logoWidth:'',logoHeight:''},content:{text:h.logoText,mark:h.logoMark,url:h.logoUrl||''},children:[]},{id:'site-header-menu',component:'ds-blocks/dst-navigation-menu',usage:'primary-menu',confidence:'confirmed',attributes:{menuValue:'primary-menu',isBurgerMenu:false},menuItems:h.nav.map(function(x){return {label:x[0],url:normalizeLink(x[1])}}),children:[]}].concat(cta)};var mobileContent={id:'site-header-mobile-content',component:'ds-blocks/dst-navigation-content',usage:'mobile-navigation-content',confidence:'confirmed',attributes:{navigationArea:'mobile',isInitialized:true},children:[{id:'site-header-mobile-logo',component:'ds-blocks/dst-navigation-logo',usage:'mobile-site-logo',confidence:'confirmed',attributes:{inlineSvgLogo:false,logoWidth:'',logoHeight:''},content:{text:h.logoText,mark:h.logoMark,url:h.logoUrl||''},children:[]},{id:'site-header-mobile-menu',component:'ds-blocks/dst-navigation-menu',usage:'mobile-primary-menu',confidence:'confirmed',attributes:{menuValue:'primary-menu',isBurgerMenu:true},menuItems:h.nav.map(function(x){return {label:x[0],url:normalizeLink(x[1])}}),children:[]}].concat(cta)};var children=[];if(h.announcement)children.push({id:'site-header-announcement',component:'ds-blocks/dst-navigation-announcement',usage:'announcement',confidence:'confirmed',attributes:{},content:{text:h.announcement,dismissible:!!h.announcementDismissible},children:[]});children.push({id:'site-header-main',component:'ds-blocks/dst-navigation-main',usage:'main-navigation',confidence:'confirmed',attributes:{},children:[mainContent]});children.push({id:'site-header-mobile',component:'ds-blocks/dst-navigation-mobile',usage:'mobile-navigation',confidence:'confirmed',attributes:{menuStyle:mobileMenuStyle(h.mobileMenu)},children:[mobileContent]});return children}
 headerExport=function(project){v2EnsureProject(project);var h=project.header;return {id:'site-header',component:'ds-blocks/dst-navigation',usage:'header',role:'header',confidence:'confirmed',importerShorthand:true,note:'Global DST navigation export. The nav shorthand carries authored content; children preserve the registered navigation block composition.',layout:{container:h.container||'default',background:{kind:'slot',slot:'body-bg'}},attributes:{dsContainer:'',dsContainerCustom:'',dsContainerSideGap:true,dsContainerAlign:'center',displayType:h.position||'sticky',hideOnScrollDown:!!h.hideOnScrollDown,innerContainerWidth:'container',innerContainerWidthCustom:'',useAnnouncementBar:!!h.announcement,announcementBarDismissible:!!h.announcementDismissible,useCustomHeaderHeight:false,disableHeaderHeightFallback:false,frostedGlass:!!h.frostedGlass,mobileMenuStyle:mobileMenuStyle(h.mobileMenu),backgroundColor:h.bgColor||'var(--dst--body-bg)',backgroundOpacity:Number(h.bgOpacity),textColor:h.textColor||'',linkHoverColor:h.linkHoverColor||'',borderColor:h.borderColor||''},linkTypography:{ref:'theme.elements.navigation.mainLink'},nav:{variant:headerVariant(h.variant),mobileMenu:mobileMenuStyle(h.mobileMenu),logo:{text:h.logoText,mark:h.logoMark,url:h.logoUrl||'',alt:h.logoAlt||h.logoText||'',description:h.logoDescription||'',hideText:!!cleanText(h.logoUrl)},menu:h.nav.map(function(x){return {label:x[0],url:normalizeLink(x[1])}}),cta:{label:h.cta.text,url:normalizeLink(h.cta.link),btnType:'primary'}},children:v2NavigationChildren(project)}};
 footerExport=function(project){v2EnsureProject(project);var f=project.footer;return {id:'site-footer',component:'ds-blocks/dst-wrapper',usage:'footer',role:'footer',confidence:'confirmed',inverted:true,importerShorthand:true,note:'Global three-band DST footer template-part export.',layout:{padding:{top:'default',bottom:'default'},container:'full',background:{kind:'slot',slot:'body-bg-alt'},fullWidthWrapper:true},attributes:{fullWidthWrapper:true,backgroundColor:'var(--dst--body-bg-alt)'},footer:{variant:'footer-'+footerVariant(f.variant),brand:{text:f.logoText,mark:f.logoMark,url:f.logoUrl||'',alt:f.logoAlt||f.logoText||'',description:f.logoDescription||'',hideText:!!cleanText(f.logoUrl),wordmark:f.wordmark},top:{heading:f.statement,subheading:f.description,cta:{label:f.cta.text,url:normalizeLink(f.cta.link),btnType:'primary-inverted'}},columns:[{kind:'brand',logo:true,socialsTitle:'Connect',body:project.brief.offer}].concat(f.columns.map(function(c){return {kind:'menu',heading:c.title,menuLocation:c.menuLocation||'footer-menu',links:c.links.map(function(x){return {label:x[0],url:normalizeLink(x[1])}})}})),columnWidths:['1.6fr'].concat(f.columns.map(function(){return '1fr'})),columnsTablet:2,columnsMobile:1,bottom:{copyright:f.legal,privacyMenu:{menuLocation:'privacy-menu',links:f.privacyLinks.map(function(x){return {label:x[0],url:normalizeLink(x[1])}})}},headingTypography:{tag:'div',preset:'h4-style',fontFamily:'var(--dst--font-primary)',textTransform:'uppercase',letterSpacing:'.08em',fontSize:'1.4rem',fontWeight:700},backgroundColor:f.bgColor||'var(--dst--body-bg-alt)',textColor:f.textColor||'var(--dst--base-text-color-alt)',headingColor:f.headingColor||'var(--dst--base-heading-color-alt)',linkColor:f.linkColor||'var(--dst--base-link-color-alt)',iconColor:f.accentColor||'var(--dst--primary-color2)',legalColor:f.textColor||'var(--dst--base-text-color-alt)',dividerColor:'rgba(255,255,255,.18)'},children:[{id:'footer-socials',component:'ds-blocks/dst-social-networks',usage:'socials',confidence:'confirmed',attributes:{socialSource:'custom',layoutDirection:'horizontal',alignDesktop:'flex-start',alignMobile:'flex-start',socialNetworks:f.socials.map(function(s,i){return {id:s.id||s.network||'social-'+i,network:s.network||'link',label:s.label||s.network||'Social',url:normalizeLink(s.url||'#')}}),showCaptions:false,socialIconGap:'1.2rem'}}],decorations:[{kind:'motif',motif:'tick-scale',color:'secondary-color1',position:'right',opacity:.1,scale:.9,rationale:'A measured edge rail reinforces the global footer without obscuring content.'}]}}
-buildTheme=function(project){v2EnsureProject(project);var d=project.design,p=d.palette,den=clamp(Number(d.density)||0,0,100)/100,exp=clamp(Number(d.expressiveness)||0,0,100)/100,mot=clamp(Number(d.motion)||0,0,100)/100,darkGround=relativeLum(p.bg)<.42,inverseTitle=darkGround?(relativeLum(p.dark)<.3?p.dark:'#080A0E'):'#FFFFFF',altGround=darkGround?'#F7F7F3':p.dark;return {theme:'builder-'+d.archetype.toLowerCase(),designDials:{density:d.density,expressiveness:d.expressiveness,motion:d.motion},colors:{'primary-color1':p.ink,'primary-color2':p.accent,'primary-color3':p.dark,'secondary-color1':inverseTitle,'secondary-color2':p.bg,'secondary-color3':p.soft,'secondary-color4':p.accent,'secondary-color5':p.soft,'secondary-color6':p.accent,'secondary-color7':darkGround?altGround:'#FFFFFF','secondary-color8':p.accent,'body-bg':'secondary-color2','body-bg-alt':darkGround?'secondary-color7':'primary-color3','base-text-color':'primary-color1','base-text-color-alt':'secondary-color1','base-heading-color':'primary-color1','base-heading-color-alt':'secondary-color1','base-link-color':'primary-color2','base-link-color-alt':'secondary-color1','border-color':'secondary-color5','border-color-alt':'rgba(255,255,255,0.28)','pretitle-color':'primary-color2','pretitle-color-alt':'secondary-color1','subtitle-color':'primary-color1','subtitle-color-alt':'secondary-color1','backtitle-color-alt':'rgba(255,255,255,0.08)','counter-color':'primary-color2','counter-color-alt':'secondary-color1'},layout:{'default-radius':d.radius,'default-radius-mobile':d.radius,'default-container-width':'1440px','wide-container-width':'1780px','alt-container-width':'1060px','desktop-vertical-gap':(12.6-6.2*den).toFixed(2)+'vmin','mobile-vertical-gap':Math.round(64-20*den)+'px','desktop-gutter':'2.4rem','header-height':Math.round(96-24*den)+'px','header-height-mobile':'70px','card-padding':(4.6-2.3*den).toFixed(2)+'rem','grid-gap':(3.6-2*den).toFixed(2)+'rem'},backgrounds:{'grad-1':'linear-gradient(135deg, '+altGround+', '+p.ink+')','grad-2':'linear-gradient(135deg, '+p.accent+', '+altGround+')'},typography:{fonts:{primary:{family:d.fontBody,google:true,fallback:'system-ui, sans-serif'},secondary:{family:d.fontDisplay,google:true,fallback:'Georgia, serif'}},headings:{h1:{min:'42px',max:(7.6+5.2*exp).toFixed(1)+'rem',ff:'secondary',fw:600,lh:'0.98',ls:'-0.035em',tt:'none',mb:'0.35em'},h2:{min:'32px',max:(5.2+2.8*exp).toFixed(1)+'rem',ff:'secondary',fw:600,lh:'1.02',ls:'-0.03em',tt:'none',mb:'0.4em'},h3:{min:'22px',max:'3.6rem',ff:'secondary',fw:600,lh:'1.12',tt:'none',mb:'0.5em'},h4:{min:'18px',max:'2.4rem',ff:'primary',fw:600,lh:'1.25',tt:'none',mb:'0.5em'},pretitle:{min:'11px',max:'1.4rem',ff:'primary',fw:600,lh:'1.2',ls:'0.18em',tt:'uppercase',mb:'0.9em',color:'pretitle-color'},subtitle:{min:'18px',max:'2.2rem',ff:'primary',fw:400,lh:'1.55',tt:'none',color:'base-text-color'},backtitle:{min:'60px',max:(10+6*exp).toFixed(1)+'rem',ff:'secondary',fw:600,tt:'none',color:'secondary-color2'}},body:{base:{ff:'primary',fw:400,lh:(1.72-.16*den).toFixed(2),ls:'0'},scale:{sm:{min:'14px',max:'1.5rem'},base:{min:'16px',max:'1.8rem'},lg:{min:'19px',max:'2.3rem'}},presets:[]}},elements:{navigation:{mainLink:{ff:'primary',fs:'1.6rem',fw:600,tt:'none',ls:'0',color:'primary-color1',colorHover:'primary-color2'},mobileLink:{ff:'primary',fs:'2rem',fw:600,color:'primary-color1'}},buttons:{shared:{ff:'primary',fs:'1.5rem',fw:650,tt:'none',ls:'0',radius:d.radius,padding:'1.55rem 2.7rem',gap:'.9em',iconSize:'1.4rem'},primary:{c:'secondary-color1',bg:'primary-color2',bdc:'primary-color2',bdw:'0',cHover:'secondary-color1',bgHover:'primary-color3',bdcHover:'primary-color3'},primaryInverted:{c:'primary-color1',bg:'secondary-color1',bdc:'secondary-color1',bdw:'0',cHover:'secondary-color1',bgHover:'primary-color2',bdcHover:'primary-color2'},secondary:{c:'primary-color1',bg:'transparent',bdc:'primary-color1',bdw:'1px',cHover:'secondary-color1',bgHover:'primary-color1',bdcHover:'primary-color1'},secondaryInverted:{c:'secondary-color1',bg:'transparent',bdc:'secondary-color1',bdw:'1px',cHover:'primary-color1',bgHover:'secondary-color1',bdcHover:'secondary-color1'},link:{c:'primary-color1',cHover:'primary-color2',iconColor:'primary-color1'},icon:{enabled:true,linkEnabled:true,icon:'lib-icon-arrow2',position:'row-reverse'}},forms:{},testimonials:{},socials:{},sliders:{},wysiwyg:{}},motion:{level:mot<.05?'none':mot<.45?'subtle':mot<.75?'active':'dynamic',duration:mot<.05?'0s':(.22+.52*mot).toFixed(2)+'s',distance:Math.round(8+54*mot)+'px',prefersReducedMotionFallback:true,customEffects:{}}}}
+buildTheme=function(project){v2EnsureProject(project);var d=project.design,p=d.palette,den=clamp(Number(d.density)||0,0,100)/100,exp=clamp(Number(d.expressiveness)||0,0,100)/100,mot=clamp(Number(d.motion)||0,0,100)/100,darkGround=relativeLum(p.bg)<.42,inverseTitle=darkGround?(relativeLum(p.dark)<.3?p.dark:'#080A0E'):'#FFFFFF',altGround=darkGround?'#F7F7F3':p.dark;return {theme:'builder-'+d.archetype.toLowerCase(),designDials:{density:d.density,expressiveness:d.expressiveness,motion:d.motion},colors:{'primary-color1':p.ink,'primary-color2':p.accent,'primary-color3':p.dark,'secondary-color1':inverseTitle,'secondary-color2':p.bg,'secondary-color3':p.soft,'secondary-color4':p.accent,'secondary-color5':p.soft,'secondary-color6':p.accent,'secondary-color7':darkGround?altGround:'#FFFFFF','secondary-color8':p.accent,'body-bg':'secondary-color2','body-bg-alt':darkGround?'secondary-color7':'primary-color3','base-text-color':'primary-color1','base-text-color-alt':'secondary-color1','base-heading-color':'primary-color1','base-heading-color-alt':'secondary-color1','base-link-color':'primary-color2','base-link-color-alt':'secondary-color1','border-color':'secondary-color5','border-color-alt':'rgba(255,255,255,0.28)','pretitle-color':'primary-color2','pretitle-color-alt':'secondary-color1','subtitle-color':'primary-color1','subtitle-color-alt':'secondary-color1','backtitle-color-alt':'rgba(255,255,255,0.08)','counter-color':'primary-color2','counter-color-alt':'secondary-color1'},layout:{'default-radius':d.radius,'default-radius-mobile':d.radius,'default-container-width':'1440px','wide-container-width':'1780px','alt-container-width':'1060px','desktop-vertical-gap':(12.6-6.2*den).toFixed(2)+'vmin','mobile-vertical-gap':Math.round(64-20*den)+'px','desktop-gutter':'2.4rem','header-height':Math.round(96-24*den)+'px','header-height-mobile':'70px','card-padding':(4.6-2.3*den).toFixed(2)+'rem','grid-gap':(3.6-2*den).toFixed(2)+'rem'},backgrounds:{'grad-1':'linear-gradient(135deg, '+altGround+', '+p.ink+')','grad-2':'linear-gradient(135deg, '+p.accent+', '+altGround+')'},typography:{fonts:{primary:{family:d.fontBody,google:true,fallback:'system-ui, sans-serif'},secondary:{family:d.fontDisplay,google:true,fallback:'Georgia, serif'}},headings:{h1:{min:'42px',max:(7.6+5.2*exp).toFixed(1)+'rem',ff:'secondary',fw:600,lh:'0.98',ls:'-0.035em',tt:'none',mb:'0.35em'},h2:{min:'32px',max:(5.2+2.8*exp).toFixed(1)+'rem',ff:'secondary',fw:600,lh:'1.02',ls:'-0.03em',tt:'none',mb:'0.4em'},h3:{min:'22px',max:'3.6rem',ff:'secondary',fw:600,lh:'1.12',tt:'none',mb:'0.5em'},h4:{min:'18px',max:'2.4rem',ff:'primary',fw:600,lh:'1.25',tt:'none',mb:'0.5em'},pretitle:{min:'11px',max:'1.4rem',ff:'primary',fw:600,lh:'1.2',ls:'0.18em',tt:'uppercase',mb:'0.9em',color:'pretitle-color'},subtitle:{min:'18px',max:'2.2rem',ff:'primary',fw:400,lh:'1.55',tt:'none',color:'base-text-color'},backtitle:{min:'60px',max:(10+6*exp).toFixed(1)+'rem',ff:'secondary',fw:600,tt:'none',color:'secondary-color2'}},body:{base:{ff:'primary',fw:400,lh:(1.72-.16*den).toFixed(2),ls:'0'},scale:{sm:{min:'14px',max:'1.5rem'},base:{min:'16px',max:'1.8rem'},lg:{min:'19px',max:'2.3rem'}},presets:[]}},elements:{navigation:{mainLink:{ff:'primary',fs:'1.6rem',fw:600,tt:'none',ls:'0',color:'primary-color1',colorHover:'primary-color2'},mobileLink:{ff:'primary',fs:'2rem',fw:600,color:'primary-color1'}},buttons:{shared:{ff:'primary',fs:'1.5rem',fw:650,lh:'1',tt:'none',ls:'0',radius:d.radius,padding:'1.55rem 2.7rem',gap:'.9em',iconSize:'1.4rem'},primary:{c:'secondary-color1',bg:'primary-color2',bdc:'primary-color2',bdw:'0',cHover:'secondary-color1',bgHover:'primary-color3',bdcHover:'primary-color3'},primaryInverted:{c:'primary-color1',bg:'secondary-color1',bdc:'secondary-color1',bdw:'0',cHover:'secondary-color1',bgHover:'primary-color2',bdcHover:'primary-color2'},secondary:{c:'primary-color1',bg:'transparent',bdc:'primary-color1',bdw:'1px',cHover:'secondary-color1',bgHover:'primary-color1',bdcHover:'primary-color1'},secondaryInverted:{c:'secondary-color1',bg:'transparent',bdc:'secondary-color1',bdw:'1px',cHover:'primary-color1',bgHover:'secondary-color1',bdcHover:'secondary-color1'},link:{c:'primary-color1',cHover:'primary-color2',iconColor:'primary-color1'},icon:{enabled:true,linkEnabled:true,icon:'lib-icon-arrow2',position:'row-reverse'}},forms:{},testimonials:{},socials:{},sliders:{},wysiwyg:{}},motion:{level:mot<.05?'none':mot<.45?'subtle':mot<.75?'active':'dynamic',duration:mot<.05?'0s':(.22+.52*mot).toFixed(2)+'s',distance:Math.round(8+54*mot)+'px',prefersReducedMotionFallback:true,customEffects:{}}}}
 function buildPageExport(project){v2EnsureProject(project);project.sections.forEach(syncSectionNode);var out=v2BaseEnvelope(project,(project.brief.projectName||'Untitled')+' — Page','page');out.concept.page={title:project.brief.projectName,slug:slugify(project.brief.projectName),flow:{id:project.flowId,name:(flowById(project.flowId,project)||{}).name||'Custom',rationale:(flowById(project.flowId,project)||{}).tagline||'Custom sequence'},sections:project.sections.filter(function(s){return s.visible!==false}).map(normalizeExportSection)};out.__status.validation=validateProject();return out}
 function buildNavigationExport(project){var out=v2BaseEnvelope(project,(project.brief.clientName||project.brief.projectName)+' — Navigation','navigation');out.concept.global={navigation:headerExport(project)};out.concept.templateParts={navigation:out.concept.global.navigation};return out}
 function buildFooterExport(project){var out=v2BaseEnvelope(project,(project.brief.clientName||project.brief.projectName)+' — Footer','footer');out.concept.global={footer:footerExport(project)};out.concept.templateParts={footer:out.concept.global.footer};return out}
@@ -9192,11 +9192,14 @@ function v24BannerAlignment(node){
     if(!heading&&child!==node&&child.component==='ds-blocks/c-heading')heading=child;
   });
   if(!heading)return;
-  var h=heading.attributes||{},desktop=String(h.alignment||h.alignmentDesktop||'').trim();
+  var h=heading.attributes||{};
+  var desktop=String(h.alignment||h.alignmentDesktop||'').trim();
   var mobile=String(h.alignmentMobile||desktop||'').trim();
-  var allowed=['left','center','right'];
-  if(!attrs.horizontalAlign&&allowed.indexOf(desktop)>=0)attrs.horizontalAlign=desktop;
-  if(!attrs.horizontalAlignMobile&&allowed.indexOf(mobile)>=0)attrs.horizontalAlignMobile=mobile;
+  // The union, not an override: a banner that asked to be centred stays centred
+  // over a left-aligned heading, exactly as `.align-center>.dst-banner__inner`
+  // does in the preview.
+  if(desktop==='center'||desktop==='right')attrs.horizontalAlign=desktop;
+  if(mobile==='center'||mobile==='right')attrs.horizontalAlignMobile=mobile;
 }
 
 /**
@@ -9233,15 +9236,569 @@ function v24HeadingPreset(node){
   delete typo.fontSizeMobile;
 }
 
+/**
+ * A heading that carries blocks has to admit it.
+ *
+ * `dst-heading` renders its inner blocks into one slot and gates that slot on a
+ * flag: `$attributes['_description_html'] = $show_description ? $content : ''`.
+ * Its own README says so — "the frontend receives rendered inner block content
+ * ... when `showDescription` is true". The export nested the copy and the
+ * buttons under the heading and left the flag at `false`, so WordPress threw
+ * them away and reported a clean import.
+ *
+ * Thirty-two of the hundred and fifty-six patterns did this: twenty-five button
+ * groups, twenty paragraphs of body copy and six lists. Every call to action in
+ * the library lost its buttons.
+ *
+ * The preview draws the children whatever the flag says, which is why nobody
+ * saw it there. Having children *is* the intent to show them, so the flag is
+ * set from the tree rather than trusted from the pattern.
+ */
+function v24HeadingDescription(node){
+  if(!node||node.component!=='ds-blocks/c-heading')return;
+  if(!Array.isArray(node.children)||!node.children.length)return;
+  node.attributes=node.attributes||{};
+  node.attributes.showDescription=true;
+}
+
+/**
+ * The accented word in a headline, written into the headline.
+ *
+ * The preview marks one phrase per family — "holds", "actually run" — and draws
+ * it in italic, bold or under a highlight. `titleAccents` is a builder key on
+ * the node; `dst-heading` has no attribute for it and never will, because the
+ * theme's answer to a styled phrase is markup inside the title. `acf_title`
+ * passes the title through `wp_kses_post`, which keeps `span`, `em`, `strong`
+ * and their classes, so the markup the preview already generates is exactly
+ * what the block wants — it just has to travel inside the string.
+ *
+ * The class names come with it, and the plugin ships the four lines of CSS that
+ * style them, so the emphasis survives the crossing instead of arriving as a
+ * flat sentence.
+ */
+function v24TitleAccents(node){
+  if(!node||node.component!=='ds-blocks/c-heading')return;
+  var accents=node.titleAccents;
+  if(!Array.isArray(accents)||!accents.length)return;
+  var attrs=node.attributes=node.attributes||{},title=String(attrs.title||'');
+  if(!title||/<[a-z]/i.test(title))return;
+  var marked=accentTitle(title,accents);
+  if(marked&&marked!==esc(title))attrs.title=marked;
+}
+
+/**
+ * The word under the scroll cue.
+ *
+ * `dst-banner` reads `scrollDownText` and falls back to its own default,
+ * "Scroll". The preview says "Explore" and the export never mentioned it, so
+ * the one word under the hero changed on the way over.
+ */
+function v24ScrollLabel(node){
+  if(!node||node.component!=='ds-blocks/dst-banner')return;
+  var attrs=node.attributes=node.attributes||{};
+  if(!attrs.showScrollDown)return;
+  if(!String(attrs.scrollDownText||'').trim())attrs.scrollDownText='Explore';
+}
+
+/**
+ * A list only shows the second line if it is told to.
+ *
+ * `c-list` gates each part of an item behind a flag — `showTitle`,
+ * `showSubtitle`, `showHeroText` — and the pattern library sets the subtitle
+ * text without setting the flag. The preview draws `listSubTitle` whenever it
+ * is there, so the supporting line under each list item read perfectly in the
+ * builder and was simply absent in WordPress. Same shape as the heading that
+ * would not show its own children.
+ */
+function v24ListVisibility(node){
+  if(!node||node.component!=='ds-blocks/c-list')return;
+  var attrs=node.attributes=node.attributes||{},has={};
+  (node.children||[]).forEach(function(child){
+    var a=child&&child.attributes||{};
+    if(String(a.listSubTitle||'').trim())has.showSubtitle=true;
+    if(String(a.listTitle||'').trim())has.showTitle=true;
+    if(String(a.heroText||'').trim())has.showHeroText=true;
+  });
+  for(var flag in has)if(attrs[flag]!==true)attrs[flag]=true;
+}
+
+/**
+ * A panel's copy, as the block that holds it wants it.
+ *
+ * The builder keeps a horizontal-accordion panel's text in a `description`
+ * attribute. `dst-hacc-item` has no such attribute — its five are `title`,
+ * `defaultOpen`, `showMedia`, `mediaType` and `media` — so the registry filter
+ * dropped it on the way out and the panels imported as a title and a picture
+ * with nothing to read. The block takes inner blocks, which is where the theme
+ * puts panel content, so that is where the copy goes.
+ */
+function v24HaccPanelCopy(node,source){
+  if(!node||node.component!=='ds-blocks/dst-hacc-item')return;
+  var attrs=node.attributes||{};
+  // `description` is not one of the block's five attributes, so the registry
+  // filter has already deleted it by the time this runs. The pattern's own node
+  // still has it, which is why the copy is read from there.
+  var said=(source&&node.id&&source[node.id])||{};
+  var copy=String(attrs.description||attrs.text||said.description||said.text||'').trim();
+  if(!copy)return;
+  delete attrs.description;
+  delete attrs.text;
+  node.children=Array.isArray(node.children)?node.children:[];
+  var already=node.children.some(function(child){
+    return child&&child.component==='core/paragraph'&&String(child.text||'').trim()===copy;
+  });
+  if(already)return;
+  node.children.unshift({
+    id:(node.id||'hacc-item')+'-copy',
+    component:'core/paragraph',
+    usage:'content',
+    confidence:'confirmed',
+    attributes:{},
+    layout:{},
+    text:copy,
+    children:[]
+  });
+}
+
 var normalizeExportSectionBeforeV24=normalizeExportSection;
 normalizeExportSection=function(section){
   var node=normalizeExportSectionBeforeV24(section),family=section&&section.family;
+  var said={};
+  if(section&&section.node)v24Walk(section.node,function(child){if(child.id&&child.attributes)said[child.id]=child.attributes});
   v24Walk(node,function(child){
     v24CardSlider(child,family);
     v24BannerAlignment(child);
     v24HeadingPreset(child);
+    v24HeadingDescription(child);
+    v24TitleAccents(child);
+    v24ScrollLabel(child);
+    v24ListVisibility(child);
+    v24HaccPanelCopy(child,said);
   });
   return node;
+};
+
+
+/* ================================================================== *
+ * v25 — The export states what the preview drew
+ *
+ * The preview and the block package reach a page by two different routes, and
+ * for structure that is fine: v24 wrote down the things the preview inferred so
+ * the blocks could be told. Typography does not decompose that way. The preview
+ * is a concept stylesheet — it sizes a testimonial quote at 4.9rem of the
+ * display face because that is what a pull quote looks like — and the theme is
+ * a token system, where a card's copy is whatever `--dst-cards__text-fs` says.
+ * Measured across nineteen families, only twelve of a hundred and fifty-one
+ * pieces of text matched: sizes off by anything from 0.3x to 3.4x, the display
+ * face replaced by the body face twenty times, weight 700 rendering as 600
+ * thirty-eight times. No token mapping closes that, because the two systems do
+ * not disagree about a value, they disagree about which values exist.
+ *
+ * So the export stops describing the design and starts recording it. The
+ * preview is rendered off-screen at a desktop and a phone width, the computed
+ * typography of each block's own text is read back, and it is written into the
+ * block attributes the theme already has for exactly this — `titleTypography`,
+ * `textTypography`, `pretitleTypography` and their siblings, which become CSS
+ * variables on the block. What the strategist approved is what WordPress is
+ * told, in numbers, with nothing left to reinterpret.
+ *
+ * Three things make it safe to do at export time:
+ *
+ *   - it is measurement, not authorship: if the preview is right the export is
+ *     right, and if the preview is wrong this changes nothing about that;
+ *   - `fontSizeMobile` exists, so the phone measurement rides along and the
+ *     page does not arrive frozen at its desktop size;
+ *   - it cannot fail the export. Every step is wrapped, and a failure returns
+ *     the artifact untouched — the same one that would have been written
+ *     before.
+ * ================================================================== */
+
+/**
+ * Which element carries which typography attribute, per block.
+ *
+ * The attribute lives on the *container* — `c-cards` holds `titleTypography`
+ * for every card in it, the way the theme's own CSS variables do — so a
+ * representative descendant is measured and the answer written to the parent.
+ */
+var V25_ROLES={
+  'ds-blocks/c-heading':{roles:[
+    ['pretitleTypography','pretitle'],
+    ['titleTypography','title'],
+    ['subtitleTypography','subtitle'],
+    ['backtitleTypography','backtitle']
+  ]},
+  // The typography attribute sits on the container the way the theme's own CSS
+  // variables do — `--dst-cards__title-fw` is set by `c-cards`, not by a card —
+  // so a representative child supplies the text and the answer is written to
+  // the parent.
+  'ds-blocks/c-cards':{roles:[
+    ['taglineTypography','pretitle','ds-blocks/c-card-item'],
+    ['titleTypography','title','ds-blocks/c-card-item'],
+    ['textTypography','description','ds-blocks/c-card-item']
+  ]},
+  'ds-blocks/c-list':{roles:[
+    ['heroTextTypography','heroText','ds-blocks/c-list-item'],
+    ['titleTypography','listTitle','ds-blocks/c-list-item'],
+    ['subtitleTypography','listSubTitle','ds-blocks/c-list-item']
+  ]},
+  'ds-blocks/c-accordion':{roles:[
+    ['questionTypography','title','ds-blocks/c-accordion-item'],
+    // An answer is a paragraph under the item, or — when the pattern used the
+    // block's own repeater — the first entry in `faqItems`.
+    ['answerTypography','#text','core/paragraph'],
+    ['answerTypography','#text']
+  ]},
+  'ds-blocks/dst-block-title':{roles:[['titleTypography','text']]},
+  'ds-blocks/dst-hacc':{roles:[['itemTitleTypography','title','ds-blocks/dst-hacc-item']]},
+  'ds-blocks/images-group':{roles:[['captionTypography','caption','ds-blocks/dst-media']]},
+  /*
+   * Body copy has nowhere else to go.
+   *
+   * `simple-text` is a container with no typography attribute and no colour or
+   * typography `supports` — it holds paragraphs and the theme sizes them from
+   * `--dst--fs-base`, one size for every piece of prose on the page. The
+   * preview uses three. `core/paragraph` supports typography the WordPress way,
+   * so the measurement is written there instead, as `style.typography`, which
+   * core renders as an inline style on the paragraph itself.
+   */
+  'core/paragraph':{style:true,roles:[['style','#text']]},
+  // A bulleted list is core blocks too, and the preview sets it at a size of
+  // its own; without this every list item on the page fell back to
+  // `--dst--fs-base` along with the rest of the prose.
+  'core/list-item':{style:true,roles:[['style','#text']]},
+  'ds-blocks/ds-tabs':{roles:[['labelsTypography','#tabLabel']]}
+};
+
+/** Keys the theme reads on a typography object, and what they are called. */
+var V25_FIELDS=[
+  ['fontSize','fontSize'],['fontFamily','fontFamily'],['fontWeight','fontWeight'],
+  ['lineHeight','lineHeight'],['letterSpacing','letterSpacing'],['textTransform','textTransform']
+];
+
+/** A number the theme can use, or nothing at all. */
+function v25Clean(name,value){
+  var v=String(value==null?'':value).trim();
+  if(!v||v==='normal'&&name!=='letterSpacing')return '';
+  if(name==='letterSpacing'&&v==='normal')return '0';
+  if(name==='fontFamily')return v;
+  return v;
+}
+
+/** The typography of one element, as the theme spells it. */
+function v25Measure(el){
+  if(!el)return null;
+  var cs=el.ownerDocument.defaultView.getComputedStyle(el),out={};
+  V25_FIELDS.forEach(function(pair){
+    var value=v25Clean(pair[0],cs[pair[0]]);
+    if(value)out[pair[1]]=value;
+  });
+  // A ratio travels; an absolute line-height would have to be re-derived every
+  // time the size changed, and the theme accepts either.
+  var lh=parseFloat(cs.lineHeight),fs=parseFloat(cs.fontSize);
+  if(lh&&fs)out.lineHeight=String(Math.round(lh/fs*1000)/1000);
+  return Object.keys(out).length?out:null;
+}
+
+/** The preview, rendered off-screen at a chosen width. */
+function v25Frame(html,width){
+  return new Promise(function(resolve){
+    var frame=document.createElement('iframe');
+    frame.setAttribute('aria-hidden','true');
+    frame.setAttribute('tabindex','-1');
+    frame.style.cssText='position:fixed;left:-20000px;top:0;border:0;width:'+width+'px;height:2400px;visibility:hidden';
+    var settled=false;
+    var done=function(){
+      if(settled)return; settled=true;
+      var doc=null;
+      try{doc=frame.contentDocument}catch(e){doc=null}
+      resolve({doc:doc,frame:frame});
+    };
+    frame.onload=function(){
+      var doc=null;
+      try{doc=frame.contentDocument}catch(e){doc=null}
+      // Appending an iframe fires `load` for its own `about:blank` before the
+      // `srcdoc` is parsed. Settling on that one measured an empty document and
+      // reported, quite correctly, that there was nothing to measure.
+      if(!doc||!doc.querySelector('[data-sbs-node]'))return;
+      var win=frame.contentWindow;
+      // Fonts change metrics, and a fallback face measured as the real one is
+      // worse than not measuring at all.
+      if(win&&win.document&&win.document.fonts&&win.document.fonts.ready){
+        win.document.fonts.ready.then(function(){setTimeout(done,60)},done);
+      }else setTimeout(done,120);
+    };
+    // Nothing here is allowed to hang an export.
+    setTimeout(done,6000);
+    document.body.appendChild(frame);
+    frame.srcdoc=html;
+  });
+}
+
+/** Plain words, as both a pattern attribute and a rendered element give them. */
+function v25Words(value){
+  return String(value==null?'':value).replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+}
+
+/**
+ * The element showing a particular piece of the pattern's text.
+ *
+ * Matching on class names does not survive the library: the preview draws a
+ * testimonial as a bare `<blockquote>` with a `<b>` and a `<span>` under it and
+ * no classes at all, so a selector written for `.c-block__title` measured
+ * nothing and the quote exported at the theme's default size. The text is the
+ * one thing both sides agree on, so the text is what is matched.
+ *
+ * The tightest element wins: a heading's own `<h2>` rather than the wrapper
+ * that also contains it, which would report the wrapper's inherited styling.
+ */
+function v25Element(host,text){
+  var want=v25Words(text);
+  if(!want||want.length<2)return null;
+  /*
+   * The host counts as a candidate.
+   *
+   * For a heading or a card the text sits in a descendant, but a paragraph and
+   * a list item *are* the element that holds their words — searching only
+   * inside them found nothing, so every piece of body copy on the page went
+   * unmeasured while everything around it was measured correctly.
+   */
+  var best=null,bestSize=Infinity,all=[host].concat(Array.prototype.slice.call(host.querySelectorAll('*')));
+  for(var i=0;i<all.length;i++){
+    var el=all[i];
+    if(v25Words(el.textContent)!==want)continue;
+    var size=el.getElementsByTagName('*').length;
+    if(size<bestSize){best=el;bestSize=size}
+  }
+  return best;
+}
+
+/** The first descendant node of a given component, for text to measure. */
+function v25FirstOfKind(node,component){
+  var found=null;
+  v24Walk(node,function(child){if(!found&&child!==node&&child.component===component)found=child});
+  return found;
+}
+
+/**
+ * A node's own words, wherever this node happens to keep them.
+ *
+ * `normalizeExportNode` moves a paragraph's copy from `attributes.content` to
+ * `node.text`, but the measurement reads the *project's* tree — the one the
+ * preview renders — where it is still an attribute. Looking in one place found
+ * nothing, so every paragraph on the page went unmeasured and body copy came
+ * out at the theme's single default size.
+ */
+function v25OwnText(node){
+  if(!node)return '';
+  var attrs=node.attributes||{};
+  var first=(Array.isArray(attrs.faqItems)&&attrs.faqItems.length)?attrs.faqItems[0]:null;
+  return node.text||attrs.content||attrs.text||(first&&(first.answer||first.content))||'';
+}
+
+/** The first tab's label, which `ds-tabs` keeps in a numbered repeater. */
+function v25TabLabel(node){
+  var items=(node.attributes||{}).tabItem;
+  if(!items||typeof items!=='object')return '';
+  var first=items['1']||items[Object.keys(items)[0]];
+  return first?(first.content||first.title||''):'';
+}
+
+/** Does this block have somewhere to put this measurement? */
+function v25Accepts(component,attribute){
+  var entry=DATA.registry[component];
+  if(!entry||!Array.isArray(entry.attributes))return false;
+  for(var i=0;i<entry.attributes.length;i++)if(entry.attributes[i].name===attribute)return true;
+  return false;
+}
+
+/** Every measurable node in one rendered document, by the id the export uses. */
+function v25Collect(doc,nodesById){
+  var byNode={};
+  if(!doc)return byNode;
+  var hosts=doc.querySelectorAll('[data-sbs-node]');
+  for(var i=0;i<hosts.length;i++){
+    var host=hosts[i],id=host.getAttribute('data-sbs-node');
+    var component=host.getAttribute('data-sbs-component')||host.getAttribute('data-dst-component')||'';
+    var spec=V25_ROLES[component],node=id&&nodesById[id];
+    if(!spec||!node)continue;
+    var measured={};
+    for(var r=0;r<spec.roles.length;r++){
+      var attribute=spec.roles[r][0],field=spec.roles[r][1],from=spec.roles[r][2];
+      // A name the block does not have is a measurement WordPress will ignore
+      // and the strategist will be warned about. `c-cards` calls its eyebrow
+      // `taglineTypography`, not `pretitleTypography`, and guessing cost an
+      // import warning and an unstyled line of type.
+      if(!spec.style&&!v25Accepts(component,attribute))continue;
+      var source=from?v25FirstOfKind(node,from):node;
+      if(!source)continue;
+      var text=field==='#text'?v25OwnText(source):field==='#tabLabel'?v25TabLabel(source):(source.attributes||{})[field];
+      var el=v25Element(host,text);
+      var style=el?v25Measure(el):null;
+      if(style)measured[attribute]=style;
+    }
+    if(Object.keys(measured).length)byNode[id]=measured;
+  }
+  return byNode;
+}
+
+/** Every node in the project's section trees, by id — what the preview drew. */
+function v25NodesById(project){
+  var out={};
+  (project&&project.sections||[]).forEach(function(section){
+    if(section&&section.visible!==false&&section.node)v24Walk(section.node,function(node){if(node.id)out[node.id]=node});
+  });
+  return out;
+}
+
+/**
+ * The last measurement, and the project it was taken from.
+ *
+ * Measuring needs a rendered document and a rendered document needs a turn of
+ * the event loop, but `buildPageExport` is synchronous and is called by the
+ * tests, the catalogue sweep and the theme checks, none of which have a DOM.
+ * So the measurement is kept beside the builder rather than inside the export:
+ * refreshed on demand before a real export, consulted synchronously when one is
+ * built, and simply absent everywhere else — where absent means the artifact is
+ * exactly what it was before any of this existed.
+ */
+var V25_CACHE={desktop:{},mobile:{},signature:''};
+
+/** Enough of the project to know whether a measurement is still good for it. */
+function v25Signature(project){
+  try{
+    var design=project.design||{};
+    return JSON.stringify([
+      (project.sections||[]).map(function(section){return [section.id,section.patternId,section.visible!==false,section.layout&&section.layout.inverted]}),
+      design.palette,design.fontBody,design.fontDisplay,
+      DIAL_KEYS.map(function(key){return design[key]})
+    ]);
+  }catch(error){return String(Math.random())}
+}
+
+/**
+ * Re-measures the preview, unless the last measurement still describes it.
+ *
+ * Returns true when a usable measurement is in hand. Every failure — no
+ * document, no markup, a browser that will not render an off-screen frame —
+ * returns false and leaves the cache alone, and the caller exports the design
+ * as written.
+ */
+async function v25Refresh(project,force){
+  project=project||state.project;
+  var signature=v25Signature(project);
+  if(!force&&signature===V25_CACHE.signature&&Object.keys(V25_CACHE.desktop).length)return true;
+  var frames=[];
+  try{
+    if(typeof document==='undefined'||!document.body)return false;
+    var html=buildSiteDocument(project,{includePreview:false});
+    if(!html)return false;
+    var wide=await v25Frame(html,1440);
+    frames.push(wide.frame);
+    var nodes=v25NodesById(project);
+    var desktop=v25Collect(wide.doc,nodes);
+    if(!Object.keys(desktop).length)return false;
+    var narrow=await v25Frame(html,430);
+    frames.push(narrow.frame);
+    V25_CACHE={desktop:desktop,mobile:v25Collect(narrow.doc,nodes),signature:signature};
+    return true;
+  }catch(error){
+    console.warn('Typography could not be measured; exporting the design as written.',error);
+    return false;
+  }finally{
+    frames.forEach(function(frame){try{frame.remove()}catch(e){}});
+  }
+}
+
+/**
+ * Writes the measurements onto an artifact.
+ *
+ * Only the keys that were measured are touched, so anything the pattern said
+ * that the preview does not express — a colour, a line clamp, the preset name
+ * the editor shows in its sidebar — is left exactly as it was.
+ */
+function v25Apply(node,desktop,mobile){
+  if(!node||typeof node!=='object')return;
+  /*
+   * The id has to belong to a block of the kind that was measured.
+   *
+   * `makeFullBleedBand` gives the band it wraps around a section the same id as
+   * the node inside it, so a heading's measurement was landing on a
+   * `dst-wrapper` as well — which does not have `titleTypography`, and said so
+   * in an import warning.
+   */
+  var measured=node.id&&V25_ROLES[node.component]?desktop[node.id]:null;
+  if(measured&&V25_ROLES[node.component].style){
+    /*
+     * A core block wears its typography as an inline style, not as a named
+     * attribute, so the same measurement is written in WordPress's own shape.
+     */
+    var core=measured.style||{},typography={};
+    if(core.fontSize)typography.fontSize=core.fontSize;
+    if(core.fontWeight)typography.fontWeight=core.fontWeight;
+    if(core.lineHeight)typography.lineHeight=core.lineHeight;
+    if(core.letterSpacing)typography.letterSpacing=core.letterSpacing;
+    if(core.textTransform&&core.textTransform!=='none')typography.textTransform=core.textTransform;
+    if(core.fontFamily)typography.fontFamily=core.fontFamily;
+    if(Object.keys(typography).length){
+      node.attributes=node.attributes||{};
+      var existing=(node.attributes.style&&typeof node.attributes.style==='object')?node.attributes.style:{};
+      existing.typography=Object.assign({},existing.typography||{},typography);
+      var phoneCore=mobile[node.id]&&mobile[node.id].style;
+      if(phoneCore&&phoneCore.fontSize)existing.typography.fontSizeMobile=phoneCore.fontSize;
+      node.attributes.style=existing;
+    }
+  }else if(measured){
+    node.attributes=node.attributes||{};
+    for(var attribute in measured){
+      var current=node.attributes[attribute];
+      var next=(current&&typeof current==='object')?current:{};
+      var style=measured[attribute];
+      for(var key in style)next[key]=style[key];
+      var phone=mobile[node.id]&&mobile[node.id][attribute];
+      if(phone&&phone.fontSize)next.fontSizeMobile=phone.fontSize;
+      node.attributes[attribute]=next;
+    }
+  }
+  (Array.isArray(node.children)?node.children:[]).forEach(function(child){v25Apply(child,desktop,mobile)});
+}
+
+/** Applies whatever measurement is in hand to a freshly built artifact. */
+function v25Bake(artifact){
+  try{
+    var sections=artifact&&artifact.concept&&artifact.concept.page&&artifact.concept.page.sections;
+    if(!Array.isArray(sections)||!Object.keys(V25_CACHE.desktop).length)return artifact;
+    sections.forEach(function(section){v25Apply(section,V25_CACHE.desktop,V25_CACHE.mobile)});
+  }catch(error){console.warn('Measured typography could not be applied.',error)}
+  return artifact;
+}
+
+var buildPageExportBeforeV25=buildPageExport;
+buildPageExport=function(project){return v25Bake(buildPageExportBeforeV25(project))};
+
+var buildExportBeforeV25=buildExport;
+buildExport=function(project){return v25Bake(buildExportBeforeV25(project))};
+
+/*
+ * Every download goes through `handleExport`, and it is already async, so the
+ * measurement is taken before it runs and the artifact builders below it stay
+ * synchronous. If the measurement fails the export still happens.
+ */
+var handleExportBeforeV25=handleExport;
+handleExport=async function(type){
+  try{await v25Refresh()}catch(error){}
+  return handleExportBeforeV25(type);
+};
+
+var renderNodeBeforeV25=renderNode;
+renderNode=function(node,ctx){
+  var html=renderNodeBeforeV25(node,ctx);
+  if(!node||!node.id||typeof html!=='string'||!html)return html;
+  /* The component name is stamped here rather than read from
+     `data-dst-component`: several branches — `c-heading` among them, which is
+     most of the text on a page — never write that attribute, so keying the
+     measurement on it measured nothing and reported the preview unmeasurable. */
+  var stamp=' data-sbs-node="'+escAttr(node.id)+'" data-sbs-component="'+escAttr(node.component||'')+'"';
+  return html.replace(/^(\s*<[a-zA-Z][a-zA-Z0-9-]*)(?=[\s>])/,'$1'+stamp);
 };
 
 
@@ -9280,6 +9837,11 @@ v2EnsureProject(state.project);state.project.sections.forEach(function(s){ensure
 // control can sabotage exactly what the instrument looks at, rather than a
 // hand-copied list of elements that drifts away from it.
 legibilityTextSelector:V9_TEXT_SELECTOR,
+// The download path measures the preview before it writes anything; a check
+// that skipped that would be testing a different artifact than the one the
+// client receives.
+refreshTypography:function(p,force){return v25Refresh(p||state.project,force!==false)},
+measuredTypography:function(){return V25_CACHE},
 state:state};if(typeof briefBrainFeature.initBriefBrain==='function')briefBrainFeature.initBriefBrain(v3BrainContext());v4RenderModeChrome();renderAll();setTimeout(function(){updateDevice();renderPreview()},80);
 })();
 

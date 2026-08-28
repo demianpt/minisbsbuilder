@@ -159,7 +159,7 @@ final class SBS_Importer_Theme {
 
 		$buttons = $theme['elements']['buttons'] ?? array();
 		$shared = $buttons['shared'] ?? array();
-		$shared_map = array( 'ff' => 'ff', 'fs' => 'fs', 'fw' => 'fw', 'tt' => 'tt', 'ls' => 'ls', 'radius' => 'br', 'padding' => 'p', 'gap' => 'gap', 'iconSize' => 'icon-size' );
+		$shared_map = array( 'ff' => 'ff', 'fs' => 'fs', 'fw' => 'fw', 'lh' => 'lh', 'tt' => 'tt', 'ls' => 'ls', 'radius' => 'br', 'padding' => 'p', 'gap' => 'gap', 'iconSize' => 'icon-size' );
 		foreach ( $shared_map as $source => $suffix ) {
 			if ( isset( $shared[ $source ] ) ) {
 				$value = $shared[ $source ];
@@ -256,8 +256,43 @@ final class SBS_Importer_Theme {
 			self::scoped( '', 'line-height:var(--sbs-body-lh,inherit)' ) .
 			self::scoped( '.sbs-rich-text', 'max-width:var(--sbs-measure,none)' ) .
 			self::scoped( '.c-heading__sub,.c-heading__description p', 'max-width:var(--sbs-measure,none)' ) .
-			self::scoped( '.c-heading__title', 'letter-spacing:var(--sbs-title-tracking,inherit);line-height:var(--sbs-title-lh,inherit);text-wrap:balance' ) .
-			self::scoped( '.c-heading__pre', 'letter-spacing:var(--sbs-pretitle-ls,inherit)' ) .
+			/*
+			 * The dial is the fallback, not the answer.
+			 *
+			 * These used to set letter-spacing and line-height outright, which beat
+			 * the `var(--dst--title-ls, …)` the theme reads and therefore beat the
+			 * block's own inline value — so a heading whose spacing had been
+			 * measured from the preview was overwritten by the dial a moment
+			 * later. Asking for the block's variable first puts them back in the
+			 * right order: what the block was told, then the dial, then inherit.
+			 */
+			self::scoped( '.c-heading__title', 'letter-spacing:var(--dst--title-ls,var(--sbs-title-tracking,inherit));line-height:var(--dst--title-lh,var(--sbs-title-lh,inherit));text-wrap:balance' ) .
+			self::scoped( '.c-heading__pre', 'letter-spacing:var(--dst--pretitle-ls,var(--sbs-pretitle-ls,inherit))' ) .
+			/*
+			 * A button's leading, which the theme fixes at 1.2 on the inner span.
+			 *
+			 * There is no `--dst--btn-lh` in the block package and no rule on
+			 * `.c-btn` at all, so setting it on the button alone changed nothing:
+			 * `.c-btn__txt{line-height:1.2}` names the element that holds the words
+			 * and inheritance never reaches it. Both are set, so a design drawn on
+			 * a tighter button arrives on one.
+			 */
+			self::scoped( '.c-btn,.c-btn__txt', 'line-height:var(--dst--btn-lh,inherit)' ) .
+			/*
+			 * The accented phrase inside a headline.
+			 *
+			 * The export writes the preview's own markup into the title, because
+			 * `acf_title` runs it through `wp_kses_post` and a span with a class is
+			 * the only way the block can carry emphasis. These are the styles that
+			 * markup expects; without them the phrase arrives correctly marked and
+			 * completely unstyled.
+			 */
+			self::scoped( '.dst-accent', 'color:inherit' ) .
+			self::scoped( '.dst-accent em,.c-heading__title em', 'font-style:italic' ) .
+			self::scoped( '.dst-accent strong,.c-heading__title strong', 'font-weight:800' ) .
+			// The preview reveals the highlight on scroll; a page can be printed,
+			// screenshotted or read with motion off, so here it is simply drawn.
+			self::scoped( '.dst-accent--highlight', 'background-image:linear-gradient(var(--dst-hl,var(--dst--primary-color2)),var(--dst-hl,var(--dst--primary-color2)));background-repeat:no-repeat;background-position:0 88%;background-size:100% 34%' ) .
 			self::scoped( '.c-block', 'box-shadow:var(--sbs-card-shadow,none);border-width:var(--sbs-border-width,0);transition-duration:var(--sbs-motion-duration,0s);transition-timing-function:var(--sbs-motion-ease,ease)' ) .
 			self::scoped( '.ph,.c-block__media', 'border-radius:var(--dst--default-radius,0);overflow:hidden' ) .
 			self::scoped( '.ph img,.c-bg__layer', 'filter:saturate(var(--sbs-media-saturate,1)) contrast(var(--sbs-media-contrast,1));transition:transform var(--sbs-motion-duration,0s) var(--sbs-motion-ease,ease)' ) .

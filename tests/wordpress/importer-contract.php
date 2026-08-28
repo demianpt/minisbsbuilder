@@ -240,6 +240,54 @@ $assert( 'the editor-only container class is gone', ! str_contains( $wide_conten
 
 $registry->forget_fixture( 'ds-blocks/dst-wrapper' );
 
+/*
+ * A heading holding a button group.
+ *
+ * `dst-heading/render.php` hands its inner blocks to the template only when
+ * `showDescription` is true. The pattern library says `false` and nests the
+ * buttons anyway, so they rendered nowhere and the import reported success.
+ */
+$registry->register_fixture(
+	'ds-blocks/c-heading',
+	array( 'title' => true, 'showDescription' => true ),
+	array( 'anchor' => true )
+);
+$registry->register_fixture( 'ds-blocks/button-group', array( 'justifyContent' => true ), array( 'anchor' => true ) );
+
+$heading      = new SBS_Importer_Block_Converter();
+$heading_page = $heading->page_to_content(
+	array(
+		'concept' => array(
+			'page' => array(
+				'sections' => array(
+					array(
+						'id'         => 'section-heading',
+						'component'  => 'ds-blocks/c-heading',
+						'attributes' => array( 'title' => 'Talk to us', 'showDescription' => false ),
+						'children'   => array(
+							array( 'id' => 'btns', 'component' => 'ds-blocks/button-group', 'attributes' => array( 'justifyContent' => 'flex-start' ), 'children' => array() ),
+						),
+					),
+					array(
+						'id'         => 'section-heading-empty',
+						'component'  => 'ds-blocks/c-heading',
+						'attributes' => array( 'title' => 'Nothing under me', 'showDescription' => false ),
+						'children'   => array(),
+					),
+				),
+			),
+		),
+	)
+);
+$heading_content = is_array( $heading_page ) ? (string) $heading_page['content'] : '';
+
+$assert( 'a heading that holds blocks renders them', str_contains( $heading_content, '"showDescription":true' ) );
+$assert( 'the button group survives the heading', str_contains( $heading_content, 'ds-blocks/button-group' ) );
+$assert( 'a heading holding nothing is left as it was', str_contains( $heading_content, '"showDescription":false' ) );
+
+$registry->forget_fixture( 'ds-blocks/button-group' );
+$registry->forget_fixture( 'ds-blocks/c-heading' );
+
 $failed = array_values( array_filter( $results, static fn( array $r ): bool => ! $r['passed'] ) );
 echo wp_json_encode(
 	array(

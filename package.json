@@ -41,7 +41,8 @@
     "verify:catalog": "node scripts/verify-catalog-against-theme.mjs",
     "audit:coverage": "node scripts/audit-export-coverage.mjs",
     "audit:legibility": "node scripts/audit-pattern-legibility.mjs",
-    "audit:legibility:pixels": "node scripts/audit-pattern-legibility-pixels.mjs"
+    "audit:legibility:pixels": "node scripts/audit-pattern-legibility-pixels.mjs",
+    "qa:parity": "node scripts/qa-parity.mjs"
   },
   "dependencies": {
     "compression": "^1.8.1",

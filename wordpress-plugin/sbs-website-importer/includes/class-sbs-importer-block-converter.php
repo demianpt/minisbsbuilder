@@ -184,6 +184,22 @@ final class SBS_Importer_Block_Converter {
 			}
 		}
 
+		/*
+		 * A heading only renders what it contains if it says it does.
+		 *
+		 * `dst-heading/render.php` passes its inner blocks to the template as
+		 * `$show_description ? $content : ''`, so a heading holding a button group
+		 * and carrying `showDescription: false` renders the buttons nowhere and
+		 * reports nothing wrong. Older bundles are full of it — thirty-two of the
+		 * hundred and fifty-six patterns, every call to action among them.
+		 *
+		 * The builder states the flag correctly now. This is for the bundles that
+		 * were exported before it did: having children is the intent to show them.
+		 */
+		if ( 'ds-blocks/c-heading' === $name && $children && empty( $attrs['showDescription'] ) ) {
+			$attrs['showDescription'] = true;
+		}
+
 		if ( str_starts_with( $name, 'core/' ) ) {
 			return $this->core_block( $name, $attrs, $children, $node );
 		}
@@ -377,7 +393,7 @@ final class SBS_Importer_Block_Converter {
 				$content = $this->safe_rich_text( $node['text'] ?? $attrs['content'] ?? $node['content']['text'] ?? '' );
 				unset( $attrs['content'], $attrs['placeholder'] );
 				$class = ! empty( $attrs['className'] ) ? ' class="' . esc_attr( $attrs['className'] ) . '"' : '';
-				$html = '<p' . $class . '>' . $content . '</p>';
+				$html = '<p' . $class . $this->inline_typography( $attrs ) . '>' . $content . '</p>';
 				return $this->static_block( $name, $attrs, $html );
 			case 'core/heading':
 				$content = $this->safe_rich_text( $node['text'] ?? $attrs['content'] ?? '' );
@@ -388,7 +404,7 @@ final class SBS_Importer_Block_Converter {
 			case 'core/list-item':
 				$content = $this->safe_rich_text( $node['text'] ?? $attrs['content'] ?? $node['content']['text'] ?? '' );
 				unset( $attrs['content'] );
-				$html = '<li>' . $content . '</li>';
+				$html = '<li' . $this->inline_typography( $attrs ) . '>' . $content . '</li>';
 				return $this->static_block( $name, $attrs, $html );
 			case 'core/list':
 				$tag = ! empty( $attrs['ordered'] ) ? 'ol' : 'ul';
@@ -452,6 +468,46 @@ final class SBS_Importer_Block_Converter {
 			},
 			$value
 		);
+	}
+
+	/**
+	 * A core block's typography, where a core block actually keeps it.
+	 *
+	 * `core/paragraph` and `core/list-item` are static blocks: WordPress renders
+	 * the HTML that was saved, not the attributes in the comment. So a
+	 * `style.typography` written into the block comment — which is exactly where
+	 * the editor puts it — renders nothing at all on a page assembled this way.
+	 * The editor still reads the attribute, so both are written and the two agree.
+	 *
+	 * Only the properties the export measured are emitted, and each is checked
+	 * against a CSS length or keyword before it goes anywhere near the markup.
+	 */
+	private function inline_typography( array $attrs ): string {
+		$typography = $attrs['style']['typography'] ?? null;
+		if ( ! is_array( $typography ) ) {
+			return '';
+		}
+		$map  = array(
+			'fontSize'      => 'font-size',
+			'fontWeight'    => 'font-weight',
+			'lineHeight'    => 'line-height',
+			'letterSpacing' => 'letter-spacing',
+			'textTransform' => 'text-transform',
+			'fontFamily'    => 'font-family',
+		);
+		$rules = array();
+		foreach ( $map as $key => $property ) {
+			if ( ! isset( $typography[ $key ] ) || ! is_scalar( $typography[ $key ] ) ) {
+				continue;
+			}
+			$value = trim( (string) $typography[ $key ] );
+			// Lengths, unitless numbers, keywords and quoted family names only.
+			if ( '' === $value || ! preg_match( '/^[\w\s.,%\-\'"]+$/u', $value ) ) {
+				continue;
+			}
+			$rules[] = $property . ':' . $value;
+		}
+		return $rules ? ' style="' . esc_attr( implode( ';', $rules ) ) . '"' : '';
 	}
 
 	private function static_block( string $name, array $attrs, string $html ): array {

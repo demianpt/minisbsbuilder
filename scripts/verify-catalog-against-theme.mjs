@@ -122,13 +122,20 @@ const note = (map, key, pattern) => {
 for (const pattern of catalog) {
   let exported;
   try {
-    exported = await page.evaluate(({ id, family }) => {
+    exported = await page.evaluate(async ({ id, family }) => {
       const api = window.__SBS_TEST_API;
       const project = api.state.project;
       const kept = project.sections;
       const section = api.createSection(family, 0, id);
       project.sections = [section];
       api.ensureProject(project);
+      /*
+       * The export button measures the preview and writes the result into the
+       * blocks before it saves anything. Checking the unmeasured artifact would
+       * check something no client ever receives — and it is precisely the
+       * measured attributes that could name a control the theme does not have.
+       */
+      if (typeof api.refreshTypography === 'function') await api.refreshTypography(project);
       const page2 = api.buildPageExport(project);
       project.sections = kept;
       return page2;
