@@ -9,6 +9,8 @@ final class SBS_Importer_Block_Converter {
 	private array $components = array();
 	private int $block_count = 0;
 	private array $unknown_attribute_sets = array();
+	/** @var array<string,true> legacy attribute renames applied, for the report */
+	private array $migrated_attributes = array();
 
 	/** @return array{content:string,blocks:int,components:array<int,string>,warnings:array<int,string>}|WP_Error */
 	public function page_to_content( array $artifact ) {
@@ -57,6 +59,56 @@ final class SBS_Importer_Block_Converter {
 	}
 
 	/**
+	 * Attribute names the theme has since renamed.
+	 *
+	 * The slider controls were `enableLightSlider` / `lightSliderSettings` when
+	 * parts of the pattern library were ingested, and the theme now reads
+	 * `enableDstSlider` / `dstSliderSettings`. The settings object did not change
+	 * shape — `showProgress`, `bleedRight`, `bleedRightVisibleItems`,
+	 * `arrowsPosition` and the thumbnail keys all still mean what they meant — so
+	 * this is a rename and nothing else.
+	 *
+	 * It matters because the old names are not wrong in a way anything notices.
+	 * `c-cards` ignores them, renders the static grid it would have rendered with
+	 * no slider at all, and reports success. The section arrives looking finished
+	 * and quietly missing the one behaviour it was chosen for.
+	 *
+	 * Applied here rather than only in the builder because a bundle exported by an
+	 * older build is still a bundle someone will import.
+	 *
+	 * @param array<string,mixed> $attrs
+	 * @return array<string,mixed>
+	 */
+	private function migrate_legacy_attributes( string $name, array $attrs ): array {
+		$renames = array(
+			'ds-blocks/c-cards'            => array(
+				'enableLightSlider'   => 'enableDstSlider',
+				'lightSliderSettings' => 'dstSliderSettings',
+			),
+			'ds-blocks/dst-banner-slider'  => array(
+				'lightSliderSettings' => 'dstSliderSettings',
+			),
+			'ds-blocks/dst-testimonials-slider' => array(
+				'lightSliderSettings' => 'dstSliderSettings',
+			),
+		);
+
+		foreach ( $renames[ $name ] ?? array() as $was => $now ) {
+			if ( ! array_key_exists( $was, $attrs ) ) {
+				continue;
+			}
+			// A value already under the current name is the newer decision and wins.
+			if ( ! array_key_exists( $now, $attrs ) ) {
+				$attrs[ $now ] = $attrs[ $was ];
+			}
+			unset( $attrs[ $was ] );
+			$this->migrated_attributes[ $name . ': ' . $was . ' → ' . $now ] = true;
+		}
+
+		return $attrs;
+	}
+
+	/**
 	 * Keys that belong to the builder and mean nothing here.
 	 *
 	 * `groupTheme` tells the *preview* which button variant to draw. WordPress
@@ -87,6 +139,7 @@ final class SBS_Importer_Block_Converter {
 		$this->components = array();
 		$this->block_count = 0;
 		$this->unknown_attribute_sets = array();
+		$this->migrated_attributes = array();
 	}
 
 	/** @param array<int,array> $blocks */
@@ -112,6 +165,8 @@ final class SBS_Importer_Block_Converter {
 		$this->components[] = $name;
 
 		$attrs = isset( $node['attributes'] ) && is_array( $node['attributes'] ) ? $this->sanitize_value( $node['attributes'] ) : array();
+		$attrs = $this->migrate_legacy_attributes( $name, $attrs );
+		$attrs = $this->absolute_lengths( $attrs );
 		$attrs = $this->strip_builder_internals( $name, $attrs );
 		$attrs = $this->merge_node_metadata( $name, $attrs, $node, $context );
 		if ( 'ds-blocks/dst-site-logo' === $name ) {
@@ -210,9 +265,45 @@ final class SBS_Importer_Block_Converter {
 				'bottom' => $this->spacing_axis( $layout['padding']['bottom'] ?? 'none' ),
 			);
 		}
+		/*
+		 * The band's own margin, which had nowhere to land.
+		 *
+		 * The export moves `dsMargin` off the attributes and onto `layout.margin`,
+		 * exactly as it does with padding — and nothing here ever read it back, so
+		 * every margin a strategist set arrived as the block's default. It is the
+		 * same shape as padding and the theme reads the same two sides, so it is
+		 * rebuilt the same way.
+		 */
+		if ( ! isset( $attrs['dsMargin'] ) && $has_attr( 'dsMargin' ) && isset( $layout['margin'] ) && is_array( $layout['margin'] ) ) {
+			$margin = array();
+			foreach ( array( 'top', 'bottom' ) as $side ) {
+				if ( isset( $layout['margin'][ $side ] ) && '' !== $layout['margin'][ $side ] ) {
+					$margin[ $side ] = $this->spacing_axis( $layout['margin'][ $side ] );
+				}
+			}
+			if ( ! empty( $margin ) ) {
+				$attrs['dsMargin'] = $margin;
+			}
+		}
 		if ( ! isset( $attrs['dsContainer'] ) && $has_attr( 'dsContainer' ) && isset( $layout['container'] ) ) {
 			$container = (string) $layout['container'];
-			$map = array( 'default' => '', 'alt' => 'container-alt', 'wide' => 'container-wide', 'full' => '', 'custom' => 'container-custom' );
+			/*
+			 * `container-wide` is an editor-only class.
+			 *
+			 * The theme styles it under `.editor-styles-wrapper` and nowhere else,
+			 * so on the front end a band asking for the builder's widest measure
+			 * matched no rule at all — and a block with no container class is a
+			 * plain child of the constrained page root, which WordPress caps at
+			 * `--wp--style--global--content-size`. That is `var(--blog-width,850px)`
+			 * here, so the widest sections in the library came out the narrowest.
+			 *
+			 * Measured against the live theme, the front end renders `container`
+			 * (the default measure), `container-alt`, `container-alt-2`,
+			 * `container-alt-3`, `container-custom` and `container-fluid`. There is
+			 * no wider one, so `wide` resolves to the default measure, which is
+			 * what the preview draws it at.
+			 */
+			$map = array( 'default' => '', 'alt' => 'container-alt', 'wide' => 'container', 'full' => '', 'custom' => 'container-custom' );
 			if ( isset( $map[ $container ] ) ) {
 				$attrs['dsContainer'] = $map[ $container ];
 			}
@@ -314,6 +405,53 @@ final class SBS_Importer_Block_Converter {
 			default:
 				return array( 'blockName' => $name, 'attrs' => $attrs, 'innerBlocks' => $children, 'innerHTML' => '', 'innerContent' => array_fill( 0, count( $children ), null ) );
 		}
+	}
+
+	/**
+	 * Attributes whose value is a length the design chose, not prose.
+	 *
+	 * Matched on the attribute name so a sentence is never rewritten: a caption
+	 * reading "the 4rem rule" keeps its words, `cardItemPadding` does not.
+	 */
+	private const LENGTH_KEYS = '/(padding|margin|gap|radius|width|height|size|spacing|offset|inset|indent|track|top|right|bottom|left)/i';
+
+	/**
+	 * One rem is ten pixels to the builder, and something else here.
+	 *
+	 * The preview runs on `html{font-size:62.5%}` — the DST convention — so every
+	 * `2.4rem` gap and `4rem` card padding the export carries means exactly 24px
+	 * and 40px. This theme scales its root with the viewport instead: 48% above
+	 * 1281px and 50% below, which is 7.68px at a 1440 desktop. Every one of those
+	 * lengths therefore arrived at roughly three quarters of the size that was
+	 * approved, and the page read as a tighter, smaller version of the preview
+	 * without a single attribute being lost.
+	 *
+	 * Restating them in rem cannot fix it, because the root moves with the
+	 * viewport and no single multiplier is right at more than one width. Pixels
+	 * are. Only the values the export chose are rewritten; the theme's own
+	 * stylesheet keeps its rem and keeps scaling as its authors intended.
+	 */
+	private function absolute_lengths( $value, bool $is_length = false ) {
+		if ( is_array( $value ) ) {
+			$out = array();
+			foreach ( $value as $key => $child ) {
+				$out[ $key ] = $this->absolute_lengths(
+					$child,
+					$is_length || ( is_string( $key ) && (bool) preg_match( self::LENGTH_KEYS, $key ) )
+				);
+			}
+			return $out;
+		}
+		if ( ! $is_length || ! is_string( $value ) || ! str_contains( $value, 'rem' ) ) {
+			return $value;
+		}
+		return preg_replace_callback(
+			'/(?<![\w.-])(-?\d*\.?\d+)rem\b/',
+			static function ( array $m ): string {
+				return rtrim( rtrim( number_format( (float) $m[1] * 10.0, 4, '.', '' ), '0' ), '.' ) . 'px';
+			},
+			$value
+		);
 	}
 
 	private function static_block( string $name, array $attrs, string $html ): array {

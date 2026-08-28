@@ -695,6 +695,12 @@ function normalizeBackgroundLayers(value,id='media'){const layers=Array.isArray(
       mobile:descriptor({size:layer.mobile?.size||layer.desktop?.size||'cover',focal:layer.mobile?.focal||{x:.56,y:.42},...(layer.mobile||{})}),
       lazy:layer.lazy!==false,hideMobile:!!layer.hideMobile}})}
 function normalizeDecorationList(list=[]){return (Array.isArray(list)?list:[]).map(d=>{const out=cleanExportValue(d);if(out.motif==='topo-lines'&&out.position==='cover')out.position='right';if(out.motif==='tick-scale-h'&&Number(out.opacity)<1){out.motif='blueprint-grid';out.position='cover';out.opacity=.08}if(['top-left','top-right','bottom-left','bottom-right'].includes(out.position)&&Number(out.scale)>1)out.scale=1;return out})}
+/** Attribute names the theme renamed; see the rename step in `normalizeExportNode`. */
+var EXPORT_ATTRIBUTE_RENAMES={
+  'ds-blocks/c-cards':{enableLightSlider:'enableDstSlider',lightSliderSettings:'dstSliderSettings'},
+  'ds-blocks/dst-banner-slider':{lightSliderSettings:'dstSliderSettings'},
+  'ds-blocks/dst-testimonials-slider':{lightSliderSettings:'dstSliderSettings'}
+};
 function normalizeExportNode(input,ctx={depth:0,index:0}){let node=cleanExportValue(deepClone(input||{}));node.attributes=node.attributes&&typeof node.attributes==='object'?node.attributes:{};node.layout=node.layout&&typeof node.layout==='object'?node.layout:{};const attrs=node.attributes;
   if(Object.prototype.hasOwnProperty.call(attrs,'dsContainer')){node.layout.container=exportContainer(attrs.dsContainer,node.layout.container||'default');delete attrs.dsContainer}
   if(Object.prototype.hasOwnProperty.call(attrs,'dsPadding')){node.layout.padding=exportSpacing(attrs.dsPadding,node.layout.padding||{top:'default',bottom:'default'});delete attrs.dsPadding}
@@ -713,6 +719,17 @@ function normalizeExportNode(input,ctx={depth:0,index:0}){let node=cleanExportVa
   if(node.component==='ds-blocks/c-list'){attrs.colCount=Number(attrs.colCount||1);attrs.colCountTablet=Number(attrs.colCountTablet||Math.min(2,attrs.colCount));attrs.colCountMobile=Number(attrs.colCountMobile||1);if(attrs.layoutVariant!=='flex')delete attrs.flexJustify;if(attrs.listTheme==='inverted')attrs.titleTypography={...(attrs.titleTypography||{}),color:'var(--dst--base-heading-color-alt)'};if(attrs.enableTimeline){attrs.colCount=1;attrs.colCountTablet=1;attrs.colCountMobile=1;attrs.timelineType='vertical'}}
   if(node.component==='ds-blocks/c-list-item'){if(attrs.icon&&typeof attrs.icon==='object')attrs.iconDisplay='inline';if(attrs.iconDisplay==='icon')attrs.iconDisplay='inline';attrs.contentMode=attrs.contentMode||'simple'}
   if(node.component==='ds-blocks/ds-tab')attrs.currentBlockIndex=Number(attrs.currentBlockIndex||ctx.index+1)
+  /*
+   * The slider controls, under the names the theme reads now.
+   *
+   * `enableLightSlider`/`lightSliderSettings` are what these were called when
+   * part of the library was ingested; the theme reads `enableDstSlider`/
+   * `dstSliderSettings` and the settings object never changed shape. Renaming
+   * beats whitelisting: an unknown name that survives the registry filter is a
+   * slider WordPress silently renders as a static grid, which is the one failure
+   * that looks like success.
+   */
+  {const renames=EXPORT_ATTRIBUTE_RENAMES[node.component];if(renames)for(const was in renames){if(!Object.prototype.hasOwnProperty.call(attrs,was))continue;const now=renames[was];if(!Object.prototype.hasOwnProperty.call(attrs,now))attrs[now]=attrs[was];delete attrs[was]}}
   if(node.component==='ds-blocks/c-accordion'){attrs.dataSource=attrs.dataSource||'static';attrs.faqItems=Array.isArray(attrs.faqItems)?attrs.faqItems:[];attrs.faqIds=Array.isArray(attrs.faqIds)?attrs.faqIds:[];attrs.dsContainerSideGap=false}
   const reg=DATA.registry[node.component];if(reg&&node.component!=='gravityforms/form'&&!node.component.startsWith('core/')){const allowed=new Map((reg.attributes||[]).map(a=>[a.name,a]));for(const key of Object.keys(attrs)){if(!allowed.has(key))delete attrs[key]}const required=(reg.attributes||[]).filter(a=>!a.hasDefault);for(const desc of required){if(!Object.prototype.hasOwnProperty.call(attrs,desc.name))attrs[desc.name]=mandatoryExportValue(desc,attrs,ctx.index)}for(const [key,desc] of allowed){const val=attrs[key],values=desc.enum;if(values&&typeof val==='string'&&val!==''&&!values.includes(val)){const fallback=desc.hasDefault&&values.includes(desc.default)?desc.default:values[0];attrs[key]=fallback}}}
   if(ctx.depth>0&&['default','alt','wide'].includes(node.layout.container))node.layout.container='full';node.children=(Array.isArray(node.children)?node.children:[]).map((child,i)=>normalizeExportNode(child,{...ctx,depth:ctx.depth+1,index:i}));return node}
@@ -6837,6 +6854,18 @@ siteCss=function(project){
     '#sbs-site .sbs-form-slot{color:'+v19FormInk(palette)+'}',
     '#sbs-site .sbs-form-slot__head b{color:'+v19FormInk(palette)+'}',
     /*
+     * The slot's own copy, at a specificity that can actually win.
+     *
+     * An inverted band paints `p` white *directly* — `.is-style-colors-inverted p`
+     * — and a colour a element inherits never beats a rule that names it. Setting
+     * the ink on `.sbs-form-slot` therefore did nothing for the paragraph inside
+     * it: white text on the one surface that is always white, measured at 1.00:1.
+     * Naming the paragraph here outranks the band rule and leaves the two places
+     * the slot is deliberately not body ink — the accent eyebrow, and the white
+     * label on the accent button — alone.
+     */
+    '#sbs-site .sbs-form-slot p{color:'+v19FormInk(palette)+'}',
+    /*
      * The held column.
      *
      * `align-self:start` is what makes sticky mean anything in a grid: a stretched
@@ -8566,9 +8595,17 @@ function v14Look(look,counts){
  * The export deletes any attribute the registry does not know, which is right —
  * it is the only thing stopping a builder-internal key reaching WordPress. But
  * the registry is a snapshot, and where it had fallen behind the theme it was
- * deleting real attributes: both slider controls, a card overlay strength, and
- * `c-heading.description`, which is *copy*. Every entry below was read out of
- * the registered patterns, so each is a value the theme already writes.
+ * deleting real attributes: a card overlay strength, and `c-heading.description`,
+ * which is *copy*. Every entry below was read out of the registered patterns, so
+ * each is a value the theme already writes.
+ *
+ * The slider controls used to be listed here too, and that was the wrong repair.
+ * `enableLightSlider`/`lightSliderSettings` are not names the theme has fallen
+ * behind on — they are names it has *renamed*. Letting them through the filter
+ * bought nothing: `c-cards` does not read them, so the section imported as a
+ * static grid and said it had succeeded. They are renamed on the way out now
+ * (`EXPORT_ATTRIBUTE_RENAMES`) and again on the way in, so a value keeps its
+ * meaning instead of merely keeping its spelling.
  */
 var V14_REGISTRY_GAPS={
   'ds-blocks/c-heading':[
@@ -8578,18 +8615,13 @@ var V14_REGISTRY_GAPS={
     {name:'title_styles',type:'object',default:{}}
   ],
   'ds-blocks/c-cards':[
-    {name:'mediaOverlayOpacity',type:'number',default:.5},
-    {name:'enableLightSlider',type:'boolean',default:false},
-    {name:'lightSliderSettings',type:'object',default:{}}
+    {name:'mediaOverlayOpacity',type:'number',default:.5}
   ],
   'ds-blocks/c-list':[
     {name:'mediaOverlayOpacity',type:'number',default:.5}
   ],
   'ds-blocks/c-btn':[
     {name:'btnVariant',type:'string',default:''}
-  ],
-  'ds-blocks/dst-banner-slider':[
-    {name:'lightSliderSettings',type:'object',default:{}}
   ],
   'ds-blocks/dst-banner':[
     {name:'decorations',type:'array',default:[]}
@@ -9083,6 +9115,135 @@ document.addEventListener('click',function(event){
   if(!section)return;
   requestAnimationFrame(function(){v12QueuePaint(v6Section(section.id))});
 },true);
+
+/* ================================================================== *
+ * v24 — What the preview infers, the export has to say out loud
+ *
+ * The preview and the block package reach the same look by different routes.
+ * The preview is a stylesheet reading the page it just drew: it can ask "is
+ * this a testimonial band?" or "does this banner contain a centred heading?"
+ * and style accordingly. WordPress cannot. A block renders from its own
+ * attributes and nothing else, so anything the preview worked out by looking
+ * around it has to be written down before it leaves the builder.
+ *
+ * Two places where it was not, both reported from a real import:
+ *
+ *   - `renderCards` turns on the slider for any band in the `slider` or
+ *     `testimonial` family, whatever `enableDstSlider` says. The pattern data
+ *     for `sbs-testimonial-p43-v2` says nothing, so the preview showed a
+ *     slider, the export carried a static grid, and WordPress rendered the
+ *     static grid it was given — correctly, and not at all what was approved.
+ *
+ *   - The hero centres its inner column with `:has(> .c-heading.text-center)`.
+ *     `dst-banner` has no such rule and no such selector to fall back on; it
+ *     reads `horizontalAlign`, which defaulted to `left`. A centred hero came
+ *     out left-aligned and full-width.
+ *
+ * Both are fixed the same way: read what the preview would have inferred, and
+ * state it as an attribute.
+ * ================================================================== */
+
+/** Every node in a section tree, parents before children. */
+function v24Walk(node,visit){
+  if(!node||typeof node!=='object')return;
+  visit(node);
+  (Array.isArray(node.children)?node.children:[]).forEach(function(child){v24Walk(child,visit)});
+}
+
+/**
+ * The slider the preview draws, as an attribute the block reads.
+ *
+ * Mirrors `renderCards`: a `slider` or `testimonial` band is a slider unless the
+ * pattern already said otherwise. The settings are the ones the preview's own
+ * controls imply — a right bleed, arrows and a progress bar under the track —
+ * and `v23SliderVisibility` then derives how many cards are visible from the
+ * column counts, so the two cannot drift.
+ */
+function v24CardSlider(node,family){
+  if(!node||node.component!=='ds-blocks/c-cards')return;
+  if(family!=='slider'&&family!=='testimonial')return;
+  var attrs=node.attributes=node.attributes||{};
+  if(attrs.enableDstSlider===true)return;
+  attrs.enableDstSlider=true;
+  var settings=attrs.dstSliderSettings&&typeof attrs.dstSliderSettings==='object'?attrs.dstSliderSettings:{};
+  if(settings.showArrows==null)settings.showArrows=true;
+  if(settings.showProgress==null)settings.showProgress=true;
+  if(settings.bleedRight==null)settings.bleedRight=true;
+  if(settings.arrowsPosition==null)settings.arrowsPosition='bottom';
+  if(settings.bleedRightVisibleItems==null){
+    settings.bleedRightVisibleItems=Math.max(1,Math.min(3,Number(attrs.columnsDesktop||attrs.columns||3)));
+  }
+  attrs.dstSliderSettings=settings;
+  v23SliderVisibility(node);
+}
+
+/**
+ * A banner is aligned the way the heading inside it is aligned.
+ *
+ * The preview says so with `:has()`; `dst-banner/render.php` maps
+ * `horizontalAlign` onto `--content-horizontal-align` and reads nothing else.
+ * The banner's own value wins when the pattern set one — this only fills the
+ * silence, which is where the default `left` was coming from.
+ */
+function v24BannerAlignment(node){
+  if(!node||node.component!=='ds-blocks/dst-banner')return;
+  var attrs=node.attributes=node.attributes||{},heading=null;
+  v24Walk(node,function(child){
+    if(!heading&&child!==node&&child.component==='ds-blocks/c-heading')heading=child;
+  });
+  if(!heading)return;
+  var h=heading.attributes||{},desktop=String(h.alignment||h.alignmentDesktop||'').trim();
+  var mobile=String(h.alignmentMobile||desktop||'').trim();
+  var allowed=['left','center','right'];
+  if(!attrs.horizontalAlign&&allowed.indexOf(desktop)>=0)attrs.horizontalAlign=desktop;
+  if(!attrs.horizontalAlignMobile&&allowed.indexOf(mobile)>=0)attrs.horizontalAlignMobile=mobile;
+}
+
+/**
+ * A heading's size is its preset, because the block throws the variable away.
+ *
+ * `dst-heading/render.php` builds the inline typography and then filters it
+ * through `$filter_heading_vars`, which drops every declaration whose value
+ * mentions `var(--dst--h…)`, `var(--dst--pretitle…)` or `var(--dst--fs-h…)` —
+ * deliberately, so the preset class is the single place a heading's scale is
+ * decided. So `titleTypography.fontSize: 'var(--dst--h2-fs)'` is not merely
+ * ignored, it is *designed* to be ignored.
+ *
+ * The hero is where that showed. Its title carried `preset: 'h1-style'` and
+ * `fontSize: var(--dst--h2-fs)`; the preview draws every title at the h2 token
+ * and rendered 92.6px, the block obeyed the preset and rendered 140.8px. The
+ * size the export named explicitly is the one both sides already agree on, so
+ * it is restated as the preset — which is the only channel the block reads —
+ * and the variable that was going to be discarded is dropped.
+ *
+ * `tag` is untouched: a hero is still an `h1` in the document outline. Only how
+ * large it is drawn changes, and it changes to what was approved.
+ */
+var V24_HEADING_SIZE=/^var\(\s*--dst--(?:h([1-4])-fs|fs-h([1-4]))\s*\)$/;
+function v24HeadingPreset(node){
+  if(!node||node.component!=='ds-blocks/c-heading')return;
+  var typo=node.attributes&&node.attributes.titleTypography;
+  if(!typo||typeof typo!=='object')return;
+  var match=V24_HEADING_SIZE.exec(String(typo.fontSize||'').trim());
+  if(!match)return;
+  // A pattern that named a style slug outright has said something the preset
+  // cannot say; leave it alone rather than overwrite a deliberate choice.
+  if(!typo.styleSlug)typo.preset='h'+(match[1]||match[2])+'-style';
+  delete typo.fontSize;
+  delete typo.fontSizeMobile;
+}
+
+var normalizeExportSectionBeforeV24=normalizeExportSection;
+normalizeExportSection=function(section){
+  var node=normalizeExportSectionBeforeV24(section),family=section&&section.family;
+  v24Walk(node,function(child){
+    v24CardSlider(child,family);
+    v24BannerAlignment(child);
+    v24HeadingPreset(child);
+  });
+  return node;
+};
+
 
 v2EnsureProject(state.project);state.project.sections.forEach(function(s){ensureSectionSettings(s);syncSectionNode(s)});window.__SBS_TEST_API={version:SBS_BUILDER_VERSION,previewSwitcher:{step:v6Step,pool:v6PatternPool,hoverId:function(){return v6HoverId},show:v6Show,hide:v6Hide,geometry:v6Geometry},patternChoice:function(family,index){return v8RankPatterns(family,{index:index||0}).slice(0,8).map(function(entry){return {id:entry.pattern.id,score:entry.score,why:entry.why}})},pickPattern:function(family,index){return (v8PickPattern(family,index||0)||{}).id||''},briefDirectives:function(){return briefDirectives(state.project.brief)},ensureProject:v2EnsureProject,buildTheme:function(p,options){return buildTheme(p||state.project,options||{})},buildSiteDocument:function(p,options){return buildSiteDocument(p||state.project,options||{})},buildPageExport:function(p){return buildPageExport(p||state.project)},buildNavigationExport:function(p){return buildNavigationExport(p||state.project)},buildFooterExport:function(p){return buildFooterExport(p||state.project)},buildGlobalsExport:function(p){return buildGlobalsExport(p||state.project)},buildCompleteExport:function(p){return buildExport(p||state.project)},auditDocument:v2AuditDocument,createSection:createSection,patternIds:DATA.patterns.map(function(p){return p.id}),patterns:DATA.patterns.map(function(p){return {id:p.id,family:p.family}}),flowIds:FLOW_CATALOG.map(function(f){return f.id}),flowCatalog:FLOW_CATALOG,allFlows:function(p){return allFlows(p||state.project)},design:{ensure:v3EnsureDesign,dialTokens:function(p){return dialTokens((p||state.project).design)},dialLevels:function(p){return dialLevels((p||state.project).design)},dialCss:function(p){return dialCss((p||state.project).design)},buttonStyleCss:buttonStyleCss,presets:DIAL_PRESETS,dialKeys:DIAL_KEYS,buttonStyles:BUTTON_STYLES},brain:{applyContentDraft:v3ApplyContentDraft,applyCustomFlow:v3ApplyCustomFlow,sectionFamilies:SECTION_FAMILIES},documents:{accept:BRIEF_DOCUMENT_ACCEPT,kind:briefDocumentKind,supported:isBriefDocument,read:readBriefDocument,readAll:readBriefDocuments,apply:function(files){return v11ReadBriefFiles(files)},attached:v17Attachments,detach:v17DetachDocument,chips:v17DocumentChips,source:function(){return briefBrainFeature.briefSourceText(state.project)}},updateBinding:function(path,value,input){return updateBinding(path,value,input)},paint:{painted:function(){return v12Painted},rebuilt:function(){return v12Rebuilt},queue:v12QueuePaint,section:v6RepaintSection},catalog:{report:function(){return v14Report},counts:v14Counts,flags:v14Flags,look:v14Look,nodes:v14Nodes,all:function(){return DATA.patterns},defaults:function(){return DATA.defaultPatternByFamily},unregistered:function(){return V14_UNREGISTERED}},registry:function(){return DATA.registry},mediaLibrary:function(){return DATA.media},exportMedia:{read:v13Read,attachment:v13Attachment,block:v13MediaBlock,layers:v13BackgroundLayers,ratio:v13Ratio,mime:v13Mime},media:{sectionSlots:v5SectionSlots,slots:function(){return v5MediaSlots(state.project)},fillSlots:v5FillSlots,applyPlan:v5ApplyMediaPlan,clearPlan:v5ClearMediaPlan,assetMedia:v5AssetMedia,slotAt:v11SlotAt,markTiles:v11MarkMediaTiles,dragging:function(){return v11Drag}},simple:{mode:v4Mode,setMode:v4SetMode,steps:v4Steps,ensure:function(){return v4EnsureSimple(state.project)},applyConcept:v4ApplyConcept,normalizeConcepts:v4NormalizeConcepts,buildConceptExport:function(p){return v4BuildConceptExport(p||state.project)},importConcept:v4ImportConcept,canLeaveBrief:v4CanLeaveSimpleBrief},styles:{
   families:function(){return STYLE_FAMILIES},

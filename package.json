@@ -38,7 +38,10 @@
     "predev:client": "node scripts/free-dev-port.mjs",
     "free:port": "node scripts/free-dev-port.mjs",
     "build:sample": "node scripts/test-project-bundle.mjs --deliver",
-    "verify:catalog": "node scripts/verify-catalog-against-theme.mjs"
+    "verify:catalog": "node scripts/verify-catalog-against-theme.mjs",
+    "audit:coverage": "node scripts/audit-export-coverage.mjs",
+    "audit:legibility": "node scripts/audit-pattern-legibility.mjs",
+    "audit:legibility:pixels": "node scripts/audit-pattern-legibility-pixels.mjs"
   },
   "dependencies": {
     "compression": "^1.8.1",

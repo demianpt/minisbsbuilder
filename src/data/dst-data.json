@@ -6,7 +6,7 @@
     "patternCount": 156,
     "familyCount": 19,
     "registeredComponentCount": 52,
-    "registeredAttributeCount": 1270,
+    "registeredAttributeCount": 1264,
     "builderVersion": "2.0-fidelity",
     "flowCount": 35,
     "registrySource": "digitalsilk theme build/blocks"
@@ -35572,8 +35572,7 @@
               "showDescription": true,
               "headingTheme": "inverted",
               "pretitleTypography": {
-                "preset": "default",
-                "color": "var(--dst--secondary-color1)"
+                "preset": "default"
               }
             },
             "children": [
@@ -35680,8 +35679,7 @@
                       "showDescription": true,
                       "headingTheme": "inverted",
                       "pretitleTypography": {
-                        "preset": "default",
-                        "color": "var(--dst--secondary-color1)"
+                        "preset": "default"
                       },
                       "titleTypography": {
                         "fontFamily": "var(--dst--h4-ff)",
@@ -35752,8 +35750,7 @@
                       "showDescription": true,
                       "headingTheme": "inverted",
                       "pretitleTypography": {
-                        "preset": "default",
-                        "color": "var(--dst--secondary-color1)"
+                        "preset": "default"
                       },
                       "titleTypography": {
                         "fontFamily": "var(--dst--h4-ff)",
@@ -47334,15 +47331,13 @@
                 "lineHeight": "var(--dst--h4-lh)",
                 "letterSpacing": "var(--dst--h4-ls)",
                 "textTransform": "var(--dst--h4-tt)",
-                "color": "var(--dst--secondary-color1)",
                 "lineClamp": ""
               },
               "textTypography": {
                 "preset": "default",
                 "fontSize": "",
                 "fontSizeMobile": "",
-                "lineClamp": "3",
-                "color": "var(--dst--secondary-color1)"
+                "lineClamp": "3"
               },
               "cardBorder": {
                 "color": "var(--dst--secondary-color4)",
@@ -58222,8 +58217,7 @@
                         "lineHeight": "var(--dst--pretitle-lh)",
                         "letterSpacing": "var(--dst--pretitle-ls)",
                         "fontWeight": "var(--dst--pretitle-fw)",
-                        "textTransform": "var(--dst--pretitle-tt)",
-                        "color": "var(--dst--secondary-color1)"
+                        "textTransform": "var(--dst--pretitle-tt)"
                       },
                       "titleTypography": {
                         "preset": "h2-style",
@@ -61569,8 +61563,7 @@
               "showPretitle": true,
               "headingTheme": "inverted",
               "pretitleTypography": {
-                "preset": "default",
-                "color": "var(--dst--secondary-color1)"
+                "preset": "default"
               }
             },
             "children": [],
@@ -62081,8 +62074,7 @@
               "showDescription": true,
               "headingTheme": "inverted",
               "pretitleTypography": {
-                "preset": "default",
-                "color": "var(--dst--secondary-color1)"
+                "preset": "default"
               }
             },
             "children": [
@@ -64544,13 +64536,6 @@
           "hasDefault": true
         },
         {
-          "name": "btnVariant",
-          "type": "string",
-          "enum": null,
-          "default": null,
-          "hasDefault": true
-        },
-        {
           "name": "className",
           "type": "string",
           "enum": null,
@@ -64604,6 +64589,13 @@
           "type": "string",
           "enum": null,
           "default": "",
+          "hasDefault": true
+        },
+        {
+          "name": "groupTheme",
+          "type": "string",
+          "enum": null,
+          "default": null,
           "hasDefault": true
         },
         {
@@ -65461,13 +65453,6 @@
           "hasDefault": true
         },
         {
-          "name": "enableLightSlider",
-          "type": "string",
-          "enum": null,
-          "default": null,
-          "hasDefault": true
-        },
-        {
           "name": "enableScrollSnap",
           "type": "boolean",
           "enum": null,
@@ -65619,13 +65604,6 @@
           "type": "boolean",
           "enum": null,
           "default": true,
-          "hasDefault": true
-        },
-        {
-          "name": "lightSliderSettings",
-          "type": "string",
-          "enum": null,
-          "default": null,
           "hasDefault": true
         },
         {
@@ -66288,13 +66266,6 @@
           "hasDefault": true
         },
         {
-          "name": "description",
-          "type": "string",
-          "enum": null,
-          "default": null,
-          "hasDefault": true
-        },
-        {
           "name": "description_hidden",
           "type": "string",
           "enum": null,
@@ -66505,13 +66476,6 @@
           "hasDefault": true
         },
         {
-          "name": "showButtons",
-          "type": "string",
-          "enum": null,
-          "default": null,
-          "hasDefault": true
-        },
-        {
           "name": "showDescription",
           "type": "boolean",
           "enum": null,
@@ -66544,13 +66508,6 @@
           "type": "boolean",
           "enum": null,
           "default": false,
-          "hasDefault": true
-        },
-        {
-          "name": "showText",
-          "type": "string",
-          "enum": null,
-          "default": null,
           "hasDefault": true
         },
         {
@@ -69438,13 +69395,6 @@
           "type": "string",
           "enum": null,
           "default": "center",
-          "hasDefault": true
-        },
-        {
-          "name": "lightSliderSettings",
-          "type": "string",
-          "enum": null,
-          "default": null,
           "hasDefault": true
         },
         {

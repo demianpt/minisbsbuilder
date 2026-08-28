@@ -90,7 +90,18 @@ $check( str_contains( $css, '.editor-styles-wrapper' ), 'theme CSS is available 
 $check( ! preg_match( '/url\s*\(/i', $css ), 'theme CSS contains no external URL values' );
 $check( str_contains( $css, '--sbs-grid-gap:' ) || empty( $page['concept']['theme']['designDialTokens'] ), 'resolved design-dial tokens are preserved when exported' );
 $dial_css = SBS_Importer_Theme::build_css( array( 'designDialTokens' => array( 'gridGap' => '2.75rem', 'measure' => '68ch', 'motionDuration' => '0.42s', 'mediaSaturate' => '1.1' ) ) );
-$check( str_contains( $dial_css, '--sbs-grid-gap:2.75rem;' ), 'WordPress consumes the exact exported grid-gap dial token' );
+/*
+ * The same length, in units the host theme cannot rescale.
+ *
+ * This used to assert the string survived as `2.75rem`, and it did — into a
+ * theme whose root font-size is 48% above 1281px and 50% below. The builder
+ * previews on the DST convention of 62.5%, so the gap the strategist approved
+ * as 27.5px arrived as 21px, and so did every other length on the page. The
+ * dial is still consumed exactly; it is now stated absolutely so that it means
+ * the same thing on both sides.
+ */
+$check( str_contains( $dial_css, '--sbs-grid-gap:27.5px;' ), 'WordPress consumes the exact exported grid-gap dial token' );
+$check( ! str_contains( $dial_css, 'rem' ), 'no exported length is left for the host root font-size to rescale' );
 $check( str_contains( $dial_css, '--sbs-measure:68ch;' ), 'WordPress consumes the exact exported reading-measure dial token' );
 $check( str_contains( $dial_css, '--sbs-motion-duration:0.42s;' ), 'WordPress consumes the exact exported motion dial token' );
 

@@ -86,7 +86,7 @@ $artifact = array(
 					'component'  => 'ds-blocks/dst-wrapper',
 					'attributes' => array( 'fullWidthWrapper' => true ),
 					'dsEffects'  => array( 'type' => 'fade-up', 'mode' => 'trigger' ),
-					'layout'     => array( 'container' => 'wide', 'padding' => array( 'top' => 'large', 'bottom' => 'large' ) ),
+					'layout'     => array( 'container' => 'wide', 'padding' => array( 'top' => 'large', 'bottom' => 'large' ), 'margin' => array( 'top' => 'medium' ) ),
 					'children'   => array(),
 				),
 			),
@@ -100,10 +100,143 @@ $assert( 'the section converts', is_array( $converted ) );
 $assert( 'the scroll effect reaches WordPress', str_contains( $content, '"dsEffects"' ) && str_contains( $content, 'fade-up' ) );
 $assert( 'the band padding reaches WordPress', str_contains( $content, '"dsPadding"' ) && str_contains( $content, 'large' ) );
 $assert( 'the container choice reaches WordPress', str_contains( $content, '"dsContainer"' ) );
+/*
+ * Margin travels the same road as padding and used to fall off the end of it:
+ * the export moves it to `layout.margin`, and nothing read it back.
+ */
+$assert( 'the band margin reaches WordPress', str_contains( $content, '"dsMargin"' ) && str_contains( $content, 'medium' ) );
 $assert(
 	'no warning is raised about attributes the theme applies',
 	! (bool) preg_grep( '/dsPadding|dsEffects|dsContainer/', (array) $converted['warnings'] )
 );
+
+/*
+ * A slider exported under the theme's old attribute names.
+ *
+ * `enableLightSlider`/`lightSliderSettings` are what these controls were called
+ * when part of the pattern library was ingested; `c-cards` reads
+ * `enableDstSlider`/`dstSliderSettings` now. The old names are not rejected by
+ * anything — the block simply does not read them, so the section imports as the
+ * static grid it would have been with no slider at all and reports success.
+ * A bundle written by an older builder is still a bundle someone will import,
+ * so the rename happens here rather than only at export.
+ */
+$registry->register_fixture(
+	'ds-blocks/c-cards',
+	array( 'anchor' => true, 'columns' => true, 'enableDstSlider' => true, 'dstSliderSettings' => true ),
+	array( 'anchor' => true, 'dsGapControl' => true, 'dsContainers' => true, 'dsEffects' => true )
+);
+
+$legacy = new SBS_Importer_Block_Converter();
+$legacy_artifact = array(
+	'concept' => array(
+		'page' => array(
+			'sections' => array(
+				array(
+					'id'         => 'section-slider',
+					'component'  => 'ds-blocks/c-cards',
+					'attributes' => array(
+						'columns'             => 3,
+						'enableLightSlider'   => true,
+						'lightSliderSettings' => array( 'showProgress' => true, 'arrowsPosition' => 'bottom' ),
+					),
+					'children'   => array(),
+				),
+			),
+		),
+	),
+);
+$legacy_out     = $legacy->page_to_content( $legacy_artifact );
+$legacy_content = is_array( $legacy_out ) ? (string) $legacy_out['content'] : '';
+
+$assert( 'the legacy slider section converts', is_array( $legacy_out ) );
+$assert( 'the slider is enabled under the name the theme reads', str_contains( $legacy_content, '"enableDstSlider":true' ) );
+$assert( 'the slider settings are carried over, not dropped', str_contains( $legacy_content, '"dstSliderSettings"' ) && str_contains( $legacy_content, 'arrowsPosition' ) );
+$assert( 'the retired slider names are gone', ! str_contains( $legacy_content, 'enableLightSlider' ) && ! str_contains( $legacy_content, 'lightSliderSettings' ) );
+$assert(
+	'no warning is raised about the renamed slider controls',
+	! (bool) preg_grep( '/LightSlider|lightSlider/', (array) $legacy_out['warnings'] )
+);
+
+$registry->forget_fixture( 'ds-blocks/c-cards' );
+
+/*
+ * A length the design chose, against a root the host theme moves.
+ *
+ * The builder previews on `html{font-size:62.5%}`, so `2.4rem` in an exported
+ * attribute means 24px. This theme sets its root to 48% above 1281px, which
+ * makes the same string mean 18.4px — and it does that to every gap, padding
+ * and radius at once, so the page arrives as a smaller, tighter copy of itself
+ * with no attribute missing and nothing to warn about.
+ *
+ * Prose is matched on the attribute *name*, not the value, so a caption that
+ * happens to mention a measurement keeps its words.
+ */
+$registry->register_fixture(
+	'ds-blocks/dst-spacer',
+	array( 'gapVertical' => true, 'cardItemPadding' => true, 'borderRadiusCustom' => true, 'listTitle' => true, 'imageTextRatio' => true ),
+	array( 'anchor' => true )
+);
+
+$lengths     = new SBS_Importer_Block_Converter();
+$length_page = $lengths->page_to_content(
+	array(
+		'concept' => array(
+			'page' => array(
+				'sections' => array(
+					array(
+						'id'         => 'section-lengths',
+						'component'  => 'ds-blocks/dst-spacer',
+						'attributes' => array(
+							'gapVertical'        => '2.4rem',
+							'cardItemPadding'    => array( 'top' => '4rem', 'right' => '2rem', 'bottom' => '0', 'left' => 'var(--dst--x)' ),
+							'borderRadiusCustom' => '0 0 0 4rem',
+							'imageTextRatio'     => '32%',
+							'listTitle'          => 'Cut to a 4rem margin, by hand',
+						),
+						'children'   => array(),
+					),
+				),
+			),
+		),
+	)
+);
+$length_content = is_array( $length_page ) ? (string) $length_page['content'] : '';
+
+$assert( 'a scalar length is restated in pixels', str_contains( $length_content, '"gapVertical":"24px"' ) );
+$assert( 'a length inside a box is restated in pixels', str_contains( $length_content, '"top":"40px"' ) && str_contains( $length_content, '"right":"20px"' ) );
+$assert( 'a length beside other tokens is restated in place', str_contains( $length_content, '"borderRadiusCustom":"0 0 0 40px"' ) );
+$assert( 'a value with no rem is left alone', str_contains( $length_content, '"bottom":"0"' ) && str_contains( $length_content, 'var(--dst--x)' ) && str_contains( $length_content, '"imageTextRatio":"32%"' ) );
+$assert( 'prose is not a length', str_contains( $length_content, 'Cut to a 4rem margin, by hand' ) );
+
+$registry->forget_fixture( 'ds-blocks/dst-spacer' );
+
+/*
+ * `container-wide` is styled only under `.editor-styles-wrapper`. On the front
+ * end it matches nothing, so the band fell through to WordPress's constrained
+ * layout and the widest sections in the library rendered as an 850px column.
+ */
+$containers = new SBS_Importer_Block_Converter();
+$wide_page  = $containers->page_to_content(
+	array(
+		'concept' => array(
+			'page' => array(
+				'sections' => array(
+					array(
+						'id'        => 'section-wide',
+						'component' => 'ds-blocks/dst-wrapper',
+						'layout'    => array( 'container' => 'wide' ),
+						'children'  => array(),
+					),
+				),
+			),
+		),
+	)
+);
+$wide_content = is_array( $wide_page ) ? (string) $wide_page['content'] : '';
+
+$assert( 'the widest band asks for a container the front end renders', str_contains( $wide_content, '"dsContainer":"container"' ) );
+$assert( 'the editor-only container class is gone', ! str_contains( $wide_content, 'container-wide' ) );
 
 $registry->forget_fixture( 'ds-blocks/dst-wrapper' );
 
