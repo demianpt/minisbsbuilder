@@ -90,7 +90,22 @@ const PROBE = (rootSelector) => {
     const box = el.getBoundingClientRect();
     return { cls: el.className.toString().slice(0, 70), left: Math.round(box.left), width: Math.round(box.width) };
   });
-  return { rows, bands };
+  /*
+   * Pictures, counted.
+   *
+   * The comparison above only ever looked at text, and said a page was a
+   * near-perfect match while five photographs were missing from it — the
+   * `c-media` block rendered a correctly classed, correctly sized, completely
+   * empty `<figure>`. A check that cannot see an absent image will keep
+   * approving pages that have lost them.
+   */
+  const pictures = [...root.querySelectorAll('img, video')]
+    .filter((el) => { const r = el.getBoundingClientRect(); return r.width > 4 && r.height > 4 })
+    .map((el) => (el.getAttribute('alt') || el.currentSrc || el.src || '').split('/').pop().slice(0, 60));
+  const emptyFigures = [...root.querySelectorAll('figure')]
+    .filter((el) => !el.querySelector('img, video, svg, picture source'))
+    .map((el) => el.className.toString().slice(0, 70));
+  return { rows, bands, pictures, emptyFigures };
 };
 
 const browser = await chromium.launch();
@@ -181,6 +196,15 @@ $b = json_decode(file_get_contents(ABSPATH . 'qa-parity-bundle.json'), true);
 $warn = array();
 $split = SBS_Importer_Package::split_artifacts($b, $warn);
 if (is_wp_error($split)) { echo json_encode(array('error'=>$split->get_error_message())); return; }
+/*
+ * Media is sideloaded before conversion, exactly as the admin screen does it.
+ * Skipping it made this check pass on pages whose every photograph was missing:
+ * the media component will not draw a picture without the attachment sizes, and
+ * those do not exist until the file has been brought into WordPress.
+ */
+require_once WP_PLUGIN_DIR . '/sbs-website-importer/includes/class-sbs-importer-media.php';
+$media = new SBS_Importer_Media();
+$warn = array_merge($warn, $media->sideload_artifacts($split));
 $conv = new SBS_Importer_Block_Converter();
 $out = $conv->page_to_content($split['page']);
 if (!is_array($out)) { echo json_encode(array('error'=>'conversion failed')); return; }
@@ -191,7 +215,7 @@ if (!is_array($out)) { echo json_encode(array('error'=>'conversion failed')); re
 $id = wp_insert_post(array('post_type'=>'page','post_title'=>'QA parity','post_status'=>'publish','post_content'=>wp_slash($out['content'])));
 $theme = SBS_Importer_Services::artifact_theme(array('page'=>$split['page']));
 if ($theme) SBS_Importer_Theme::save($theme);
-echo json_encode(array('id'=>$id,'blocks'=>$out['blocks'],'warnings'=>$out['warnings']));
+echo json_encode(array('id'=>$id,'blocks'=>$out['blocks'],'warnings'=>array_merge($warn, $out['warnings'])));
 `);
 let made;
 try { made = JSON.parse(created) } catch { made = { error: created.slice(0, 400) } }
@@ -230,8 +254,19 @@ const missing = [...a.keys()].filter((k) => !b.has(k)).map((k) => a.get(k).text)
 const byField = {};
 for (const f of FIELDS) byField[f] = findings.filter((x) => x.differs.includes(f)).length;
 
+/* An image is identified by its alt text, which survives the sideload; the file
+   name does not, because WordPress renames and resizes what it stores. */
+const pictureKey = (name) => name.replace(/[^a-z0-9]/gi, '').toLowerCase().slice(0, 28);
+const previewPictures = preview.pictures.map(pictureKey).filter(Boolean);
+const importedPictures = new Set(imported.pictures.map(pictureKey).filter(Boolean));
+const lostPictures = previewPictures.filter((k) => !importedPictures.has(k));
+
 const report = {
   patterns: plan, blocks: made.blocks, importWarnings: made.warnings,
+  previewPictures: preview.pictures.length,
+  importedPictures: imported.pictures.length,
+  picturesNotFound: lostPictures.length,
+  emptyFigures: imported.emptyFigures,
   previewText: a.size, importedText: b.size, matched: matched.length,
   identical: matched.length - findings.length,
   differingByProperty: byField,
@@ -250,6 +285,7 @@ if (JSON_OUT) writeFileSync(JSON_OUT, JSON.stringify(report, null, 2));
 console.log(`patterns        ${plan.length}  (${plan.join(', ').slice(0, 110)}${plan.join(', ').length > 110 ? '…' : ''})`);
 console.log(`blocks imported ${made.blocks}   import warnings ${made.warnings.length}`);
 console.log(`text matched    ${matched.length} of ${a.size} in the preview`);
+console.log(`pictures        ${imported.pictures.length} of ${preview.pictures.length} in the preview${imported.emptyFigures.length ? `   (${imported.emptyFigures.length} empty figures)` : ''}`);
 console.log(`identical       ${report.identical}/${matched.length}`);
 console.log(`\ndifferences by property`);
 for (const [f, n] of Object.entries(byField)) if (n) console.log(`  ${f.padEnd(15)} ${n}`);
@@ -270,6 +306,11 @@ if (findings.length) {
   }
   if (findings.length > 40) console.log(`  …and ${findings.length - 40} more`);
 }
-const clean = findings.length === 0 && clamped.length === 0 && missing.length === 0;
+if (lostPictures.length || imported.emptyFigures.length) {
+  console.log(`\nPICTURES THE PREVIEW SHOWS AND WORDPRESS DOES NOT (${lostPictures.length})`);
+  imported.emptyFigures.forEach((cls) => console.log(`  empty figure: ${cls}`));
+}
+const clean = findings.length === 0 && clamped.length === 0 && missing.length === 0
+  && lostPictures.length === 0 && imported.emptyFigures.length === 0;
 console.log(`\n${clean ? 'the imported page matches the preview' : `${findings.length + clamped.length + missing.length} differences between the preview and the imported page`}`);
 process.exit(clean ? 0 : 1);

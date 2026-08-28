@@ -312,8 +312,22 @@ final class SBS_Importer_Theme {
 			 * this paints into the slot the theme left for it, and nothing else.
 			 */
 			self::scoped( '.media-bg .dst-card', 'position:relative;isolation:isolate' ) .
-			self::scoped( '.media-bg .dst-card::after', 'content:"";position:absolute;inset:0;z-index:var(--zIndex-overlay,1);pointer-events:none;border-radius:inherit;background:var(--sbs-card-scrim,linear-gradient(180deg,rgba(7,28,42,.02),rgba(7,28,42,.92)))' ) .
-			self::scoped( '.media-bg .dst-card .c-block__body', 'position:relative;z-index:2' );
+			self::scoped( '.media-bg .dst-card::after', 'content:"";position:absolute;inset:0;z-index:var(--zIndex-overlay,1);pointer-events:none;border-radius:inherit;background:var(--sbs-card-scrim,linear-gradient(180deg,rgba(7,28,42,.02),rgba(7,28,42,.92)))' );
+			/*
+			 * The body is NOT repositioned here.
+			 *
+			 * It used to be — `position:relative;z-index:2` — from a time when this
+			 * stylesheet was scoped to `.wp-site-blocks` and matched nothing on a
+			 * classic theme. Once the scope was widened to `.site-content` the rule
+			 * started applying, and at four classes it outranks the theme's own
+			 * `.media-bg .dst-card .c-block__body{position:absolute}`. Every
+			 * media-background card in the library stopped overlaying its picture
+			 * and stacked its text underneath instead.
+			 *
+			 * The theme positions the body and gives it `z-index:2`; the scrim above
+			 * sits on `--zIndex-overlay`, which is 1. Nothing more is needed, and
+			 * anything more is a regression waiting to happen.
+			 */
 
 		/*
 		 * The rule before a pretitle.
